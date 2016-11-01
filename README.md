@@ -1,2 +1,16 @@
-# Tiger-Zone
-Tiger Zone is a spinoff of the popular tile-laying game Carcassonne. Created for CEN3031 with Dave Small (Fall 2016).
+## TigerZone
+### CEN3031 - Fall 2016
+---
+
+#### Contributors:
+* Adam Schuster
+* Adam Wexler
+* Brandon Goldman
+* Bradley Lazar
+* Alexander Krepacki
+* David Weng
+
+---
+
+#### To-Do:
+- [] Deliverable #1
