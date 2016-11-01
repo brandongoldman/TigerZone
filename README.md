@@ -1,5 +1,5 @@
-## TigerZone
-### CEN3031 - Fall 2016
+# TigerZone
+## CEN3031 - Fall 2016
 ---
 
 #### Contributors:
