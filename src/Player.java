@@ -1,4 +1,4 @@
-import java.util.*
+import java.util.*;
 
 public abstract class Player 
 {
@@ -25,7 +25,7 @@ public abstract class Player
 	public void placeTile(int tileLocation, int rotationChoice)
 	{
 		this.tileLocation = tileLocation;
-		this.rotationaChoice = rotationChoice;
+		this.rotationChoice = rotationChoice;
 	}
 	
 	// Do you want to place a tiger?
