@@ -32,11 +32,11 @@ public abstract class GameManager
 		
 	}
 
-	public void returnMeeple(){
-        // Calculations to determine where meeples need to be returned
+	public void returnTiger(){
+        // Calculations to determine where tigers need to be returned
 
-        /** Call each player who need to meeples return and give back their meeples.
-         *  Also be sure to give players their score earned for those returned meeples.
+        /** Call each player who need to tigers return and give back their tigers.
+         *  Also be sure to give players their score earned for those returned tigers.
          */
     	}
 
