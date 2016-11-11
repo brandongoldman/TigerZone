@@ -6,7 +6,7 @@ public abstract class Player
 	private int numOfTigers;
 	int tileLocation_X;
 	int tileLocation_Y;
-	int rotationChoice;
+	int orientation;
 	int tigerPlacement;
 	
 	// Get Score
@@ -21,24 +21,19 @@ public abstract class Player
 		return numOfTigers;
 	}
 	
-	/* MAKE MOVE */
-	// Player can make move by choosing location and rotating tile
-	// location to be given to player via game manager / server ??
+	/* MAKE MOVE *************************************************************************
+	 *		1. A player must place a tile by choosing location, orientation (rotation),	 *
+	 *		and if the player wants to place a tiger.									 *
+	 *		2. Data will be sent to game host and other player.							 *
+	 *************************************************************************************/
 	
-	// not sure if placement of tile will be done with (X,Y) coordinates if 2-D array..
-	public void placeTile(int tileLocation_X, int tileLocation_Y, int rotationChoice)
+	// data to confirm move --> to be sent to other player and game manager / host??
+	public void placeTile(int tileLocation_X, int tileLocation_Y, int orientation, int tigerPlacement)
 	{
 		this.tileLocation_X = tileLocation_X;
 		this.tileLocation_Y = tileLocation_Y;
-		this.rotationChoice = rotationChoice;
-	}
-	
-	// Do you want to place a tiger?
-	// For now, disregard ability to place Tiger
-	public void placeTiger(int tigerPlacement)
-	{
+		this.orientation = orientation;
 		this.tigerPlacement = tigerPlacement;
 	}
-	
 	
 }
