@@ -56,4 +56,7 @@ public abstract class Player
 		this.orientation = orientation;
 		this.tigerPlacement = tigerPlacement;
 	}
+
+	// next steps:
+	// most of game manager is now in player.. woo!!
 }
