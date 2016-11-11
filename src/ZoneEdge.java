@@ -1,21 +1,21 @@
-public class Edge {
+public class ZoneEdge {
 	
 
 	//Edge Type Variable
-	private boolean edgeType;
+	private int edgeType;
 
 	//public constructor for class
-	public Edge(bool edgeType){
+	public ZoneEdge(int edgeType){
 		this.edgeType = edgeType;
 	}
 
 	//get Edge characteristic
-	public getEdgeType(){
+	public getZoneEdgeType(){
 		return edgeType;
 	}
 
 	//set Edge characteristic
-	public setEdgeType(bool edgeType){
+	public setZoneEdgeType(int edgeType){
 		this.edgeType = edgeType;
 	}
 
