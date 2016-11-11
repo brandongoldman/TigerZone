@@ -2,22 +2,22 @@ public class ZoneEdgeMatch{
 	
 
 	//Corner values
-	boolean cornerA;
-	boolean cornerB;
-	boolean cornerC;
-	boolean cornerD;
+	private boolean cornerA;
+	private boolean cornerB;
+	private boolean cornerC;
+	private boolean cornerD;
 
-	//opposite values
-	boolean oppositeAC;
-	boolean oppositeBD;
+	//Opposite Edge Values
+	private boolean oppositeAC;
+	private boolean oppositeBD;
 
 	//public constructor
-	public ZoneEdgeMatch(boolean cornerA, 
-						 boolean cornerB, 
-						 boolean cornerC,
-						 boolean cornerD,
-						 boolean oppositeAC,
-						 boolean oppositeBD){
+	public ZoneEdgeMatch(boolean cornerA,
+						boolean cornerB,
+						boolean cornerC,
+						boolean cornerD,
+						boolean oppositeAC,
+						boolean oppositeBD){
 
 		this.cornerA = cornerA;
 		this.cornerB = cornerB;
