@@ -3,14 +3,14 @@ public abstract class GameManager
 	private int numberOfPlayers;
 	private int turnNumber;
 	private int playerScore;
-  private boolean stopGameFlag;
+  	private boolean stopGameFlag;
 	
 	public GameManager() 
 	{
 		this.numberOfPlayers = 2;
 		this.turnNumber = 0;
 		this.playerScore = 0;
-    this.stopGameFlag = false;
+    		this.stopGameFlag = false;
 	}
 
 	public GameManager(int numberOfPlayers, int turnNumber, int playerScore, boolean stopGameFlag)
@@ -18,7 +18,7 @@ public abstract class GameManager
 		this.numberOfPlayers = numberOfPlayers;
 		this.turnNumber = turnNumber;
 		this.playerScore = playerScore;
-    this.stopGameFlag = false;
+    		this.stopGameFlag = false;
 	}
 	
 	
@@ -35,7 +35,7 @@ public abstract class GameManager
 		do
 		{
 			// Game runs in infinite loop, runs until hits flag that game is over.
-      // GameManager can stop game if realizes no more tiles can be placed.  
+      			// GameManager can stop game if realizes no more tiles can be placed.  
 			
 		} while(true);
 		
@@ -43,7 +43,7 @@ public abstract class GameManager
 	
 	public void stopGame()
 	{
-    stopGameFlag = true;   // game is over
+    	    stopGameFlag = true;   // game is over
 	}
 	
 	
