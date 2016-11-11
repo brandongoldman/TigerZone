@@ -15,8 +15,8 @@ public class Edge {
 	}
 
 	//set Edge characteristic
-	public setEdgeType(){
-		return edgeType;
+	public setEdgeType(bool edgeType){
+		this.edgeType = edgeType;
 	}
 
 }
