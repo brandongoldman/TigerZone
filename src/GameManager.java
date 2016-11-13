@@ -4,7 +4,7 @@ public abstract class GameManager
 	private int turnNumber;
 	private int[] playerScore;
   	private boolean stopGameFlag;
-	//private Position[] OpenSpaces;
+	private set<position> OpenSpaces;
 	//private Board;
 	//private TileStack;
 
@@ -14,7 +14,8 @@ public abstract class GameManager
 		this.numberOfPlayers = 2;
 		this.turnNumber = 0;
 		this.stopGameFlag = false;
-		this.playerScore = new int[numberOfPlayers]
+		this.playerScore = new int[numberOfPlayers];
+		this.Openspaces = new HashSet<position>(); //Populate set with initial positions
 	}
 
 	public GameManager(int numberOfPlayers, int turnNumber, boolean stopGameFlag)
@@ -23,6 +24,7 @@ public abstract class GameManager
 		this.turnNumber = turnNumber;
 		this.playerScore = new int[numberOfPlayers];
 		this.stopGameFlag = false;
+		this.Openspaces = new HashSet<position>(); //Populate set with initial positions
 	}
 	
 	
@@ -41,6 +43,22 @@ public abstract class GameManager
     	}
 
 	public boolean CheckValidMove(){
+		position[] spaces = OpenSpaces.toArray(new position[OpenSpaces.size()]);
+		position check;
+		for(int i = 0; i<spaces.length(); i++){
+			if(/**Board[spaces[i].x][spaces[i].y]**/ != NULL){
+				check=spaces[i];
+				break;
+			}
+		}
+		/**Check surrounding edges for the tile on coordinates in check variable
+		 * If fails return false
+		 * If pass continue
+		 */
+		//Remove coordinate of tile that was just placed
+		OpenSpaces.remove(check);
+		//Add coordinates around tile that have not been populated yet.
+
 		/**Use the Openspaces to keep track of all open spaces in O(1) time and updae the Openspaces array everytime a
 		 * new tile is placed onto the board. Doing this will allow us to know where the new tile was places so every
 		 * iteration of a new tile being placed we only need to check if that tile is a valid move instead of entire
