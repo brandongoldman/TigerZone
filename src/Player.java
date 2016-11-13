@@ -3,7 +3,7 @@ import java.util.*;
 public abstract class Player 
 {
 	private int score;
-	private int numOfTigers;
+	private int numOfTigers = 7;
 	private boolean tigerOnBoard;
 	int tileLocation_X;
 	int tileLocation_Y;
@@ -27,12 +27,16 @@ public abstract class Player
 		return numOfTigers;
 	}
 
-	public void setTigers(int startingTigers)
+	// let player place a tiger
+	public void placeTiger()
 	{
-		numOfTigers = startingTigers;
+		if(numOfTigers > 0)
+		{
+			numOfTigers--;
+		}
+		else
+			System.out.println("Error: No Tigers Available");
 	}
-
-	// Determine how many tigers player has remaining (count number on board and decrement)
 	
 	/* MAKE MOVE *************************************************************************
 	 *		1. A player must place a tile by choosing location, orientation (rotation),	 *
@@ -57,6 +61,15 @@ public abstract class Player
 		this.tigerPlacement = tigerPlacement;
 	}
 
-	// next steps:
-	// most of game manager is now in player.. woo!!
+	// if score is calculated on turn, return tiger to player
+	public void returnTiger()
+	{
+		numOfTigers++;
+	}
+
+	// update player's score with new point value after turn completed
+	public void setScore(int score)
+	{
+		this.score = score;
+	}
 }
