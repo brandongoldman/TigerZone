@@ -2,8 +2,8 @@ public class Tile {
 
 	//private variables for a tile
 	
-	int xCoordinate;
-	int yCoordinate;
+	private int xCoordinate;
+	private int yCoordinate;
 
 
 	//public methods for tile action
@@ -15,9 +15,23 @@ public class Tile {
 
 	//getters
 
+	public getXCoordinate(){
+		return xCoordinate;
+	}
 
+	public getYCoordinate(){
+		return yCoordinate;
+	}
 
 	//setters
 
+	public setXCoordinate(int x){
+		this.xCoordinate = x;
+	}
 	
+	public setYCoordinate(int x){
+		this.yCoordinate = y;
+	}
+	
+
 }
