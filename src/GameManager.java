@@ -5,7 +5,7 @@ public abstract class GameManager
 	private int[] playerScore;
   	private boolean stopGameFlag;
 	private set<position> OpenSpaces;
-	//private Board;
+	private Board board;
 	//private TileStack;
 
 	
@@ -46,18 +46,42 @@ public abstract class GameManager
 		position[] spaces = OpenSpaces.toArray(new position[OpenSpaces.size()]);
 		position check;
 		for(int i = 0; i<spaces.length(); i++){
-			if(/**Board[spaces[i].x][spaces[i].y]**/ != NULL){
+			if(/**board.xy_pos[spaces[i].x][spaces[i].y]**/ != NULL){
 				check=spaces[i];
 				break;
 			}
 		}
-		/**Check surrounding edges for the tile on coordinates in check variable
-		 * If fails return false
-		 * If pass continue
-		 */
+		if(board.xypos[check.x][check.y]./**EdgeTop*/==board.xypos[check.x][check.y-1]./**EdgeBottom*/ || board.xypos[check.x][check.y-1]==NULL){
+
+		}
+		else{ return false;}
+		if(board.xypos[check.x][check.y]./**EdgeBottom*/==board.xypos[check.x][check.y+1]./**EdgeTop*/ || board.xypos[check.x][check.y+1]==NULL){
+
+		}
+		else{ return false;}
+		if(board.xypos[check.x][check.y]./**EdgeRight*/==board.xypos[check.x+1][check.y]./**EdgeLeft*/ || board.xypos[check.x+1][check.y]==NULL){
+
+		}
+		else{ return false;}
+		if(board.xypos[check.x][check.y]./**EdgeLeft*/==board.xypos[check.x-1][check.y]./**EdgeRight*/ || board.xypos[check.x-1][check.y]==NULL){
+
+		}
+		else{ return false;}
 		//Remove coordinate of tile that was just placed
 		OpenSpaces.remove(check);
-		//Add coordinates around tile that have not been populated yet.
+		//Add coordinates around tile that have not been populated yet
+		if(board.xypos[check.x][check.y-1]==NULL){
+			Openspaces.add(new position(check.x,check.y-1));
+		}
+		if(board.xypos[check.x][check.y+1]==NULL){
+			Openspaces.add(new position(check.x,check.y+1));
+		}
+		if(board.xypos[check.x+1][check.y]==NULL){
+			Openspaces.add(new position(check.x+1,check.y));
+		}
+		if(board.xypos[check.x-1][check.y]==NULL){
+			Openspaces.add(new position(check.x-1,check.y));
+		}
 
 		/**Use the Openspaces to keep track of all open spaces in O(1) time and updae the Openspaces array everytime a
 		 * new tile is placed onto the board. Doing this will allow us to know where the new tile was places so every
