@@ -74,7 +74,7 @@ public abstract class GameManager
 			// Game runs in infinite loop, runs until hits flag that game is over.
       			// GameManager can stop game if realizes no more tiles can be placed.  
 			
-		} while(true);
+		} while(!stopGameFlag);
 		
 	}
 	
