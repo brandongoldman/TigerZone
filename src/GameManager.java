@@ -1,12 +1,16 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class GameManager 
 {
 	private int numberOfPlayers;
 	private int turnNumber;
 	private int[] playerScore;
   	private boolean stopGameFlag;
-	private set<position> OpenSpaces;
+	private Set<Position> OpenSpaces;
 	private Board board;
 	//private TileStack;
+	private HashSet<Position> Openspaces;
 
 	
 	public GameManager() 
@@ -15,7 +19,7 @@ public abstract class GameManager
 		this.turnNumber = 0;
 		this.stopGameFlag = false;
 		this.playerScore = new int[numberOfPlayers];
-		this.Openspaces = new HashSet<position>(); //Populate set with initial positions
+		this.Openspaces = new HashSet<Position>();      //Populate set with initial positions
 	}
 
 	public GameManager(int numberOfPlayers, int turnNumber, boolean stopGameFlag)
@@ -24,13 +28,13 @@ public abstract class GameManager
 		this.turnNumber = turnNumber;
 		this.playerScore = new int[numberOfPlayers];
 		this.stopGameFlag = false;
-		this.Openspaces = new HashSet<position>(); //Populate set with initial positions
+		this.Openspaces = new HashSet<Position>();      //Populate set with initial positions
 	}
 	
 	
 	public void setScore(int Score, int PlayerNumber)
 	{
-		PlayerScore[PlayerNumber]=Score;
+		playerScore[PlayerNumber-1] = Score;
 		
 	}
 
@@ -42,53 +46,76 @@ public abstract class GameManager
          */
     	}
 
-	public boolean CheckValidMove(){
-		position[] spaces = OpenSpaces.toArray(new position[OpenSpaces.size()]);
-		position check;
-		for(int i = 0; i<spaces.length(); i++){
-			if(/**board.xy_pos[spaces[i].x][spaces[i].y]**/ != NULL){
-				check=spaces[i];
+	
+	public boolean CheckValidMove()
+	{
+		Position[] spaces = OpenSpaces.toArray(new Position[OpenSpaces.size()]);
+		Position check;
+		for(int i = 0;  i < spaces.length; i++)
+		{
+			
+			if(board[spaces[i].x][spaces[i].y] != null)   
+			{
+				check = spaces[i];
 				break;
 			}
-		}
-		if(board.xypos[check.x][check.y]./**EdgeTop*/==board.xypos[check.x][check.y-1]./**EdgeBottom*/ || board.xypos[check.x][check.y-1]==NULL){
+			if(board.xy_pos[check.x][check.y]/**EdgeTop*/ == board.xy_pos[check.x][check.y-1]/**EdgeBottom*/ || board.xy_pos[check.x][check.y-1] == null)
+			{
+				
+			}
+			else{ return false;}
+			
+			if(board.xy_pos[check.x][check.y]/**EdgeBottom*/== board.xy_pos[check.x][check.y+1]/**EdgeTop*/ || board.xy_pos[check.x][check.y+1] == null)
+			{
 
-		}
-		else{ return false;}
-		if(board.xypos[check.x][check.y]./**EdgeBottom*/==board.xypos[check.x][check.y+1]./**EdgeTop*/ || board.xypos[check.x][check.y+1]==NULL){
+			}
+			else{ return false;}
+			
+			if(board.xy_pos[check.x][check.y]/**EdgeRight*/== board.xy_pos[check.x+1][check.y]/**EdgeLeft*/ || board.xy_pos[check.x+1][check.y] == null)
+			{
 
-		}
-		else{ return false;}
-		if(board.xypos[check.x][check.y]./**EdgeRight*/==board.xypos[check.x+1][check.y]./**EdgeLeft*/ || board.xypos[check.x+1][check.y]==NULL){
+			}
+			else{return false;}
+			
+			if(board.xy_pos[check.x][check.y]/**EdgeLeft*/== board.xy_pos[check.x-1][check.y]/**EdgeRight*/ || board.xy_pos[check.x-1][check.y] == null)
+			{
 
-		}
-		else{ return false;}
-		if(board.xypos[check.x][check.y]./**EdgeLeft*/==board.xypos[check.x-1][check.y]./**EdgeRight*/ || board.xypos[check.x-1][check.y]==NULL){
+			}
+			else{ return false;}
+			
+			//Remove coordinate of tile that was just placed
+			
+			OpenSpaces.remove(check);
+			
+			//Add coordinates around tile that have not been populated yet
+			
+			if(board.xy_pos[check.x][check.y-1]== null)
+			{
+				Openspaces.add(new Position(check.x,check.y-1));   // error here: Cannot instantiate the type Position
+			}
+			
+			if(board.xy_pos[check.x][check.y+1]== null)
+			{
+				Openspaces.add(new Position(check.x,check.y+1));  // error here: Cannot instantiate the type Position
+			}
+			
+			if(board.xy_pos[check.x+1][check.y]== null)
+			{
+				Openspaces.add(new Position(check.x+1,check.y));   // error here: Cannot instantiate the type Position
+			}
+			
+			if(board.xy_pos[check.x-1][check.y]== null)
+			{
+				Openspaces.add(new Position(check.x-1,check.y));   // error here: Cannot instantiate the type Position
+			}
 
+			/**Use the Openspaces to keep track of all open spaces in O(1) time and updae the Openspaces array everytime a
+			 * new tile is placed onto the board. Doing this will allow us to know where the new tile was places so every
+			 * iteration of a new tile being placed we only need to check if that tile is a valid move instead of entire
+			 * board.
+			 */
+			return true;
 		}
-		else{ return false;}
-		//Remove coordinate of tile that was just placed
-		OpenSpaces.remove(check);
-		//Add coordinates around tile that have not been populated yet
-		if(board.xypos[check.x][check.y-1]==NULL){
-			Openspaces.add(new position(check.x,check.y-1));
-		}
-		if(board.xypos[check.x][check.y+1]==NULL){
-			Openspaces.add(new position(check.x,check.y+1));
-		}
-		if(board.xypos[check.x+1][check.y]==NULL){
-			Openspaces.add(new position(check.x+1,check.y));
-		}
-		if(board.xypos[check.x-1][check.y]==NULL){
-			Openspaces.add(new position(check.x-1,check.y));
-		}
-
-		/**Use the Openspaces to keep track of all open spaces in O(1) time and updae the Openspaces array everytime a
-		 * new tile is placed onto the board. Doing this will allow us to know where the new tile was places so every
-		 * iteration of a new tile being placed we only need to check if that tile is a valid move instead of entire
-		 * board.
-		 */
-		return true;
 	}
 	
 	public void startGame()
