@@ -7,7 +7,7 @@
 *******************************/
 
 
-public class ZoneEdgeMatch{
+public class EdgeMatch{
 	
 
 	//Corner values

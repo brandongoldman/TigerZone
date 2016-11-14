@@ -11,7 +11,7 @@
 
 ************************************/
 
-public class ZoneEdge {
+public class Edge {
 	
 
 	//Edge Type Variable

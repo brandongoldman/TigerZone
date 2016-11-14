@@ -1,4 +1,4 @@
-public class Zone {
+public class Tile {
 
 	//private variables for a tile
 	
