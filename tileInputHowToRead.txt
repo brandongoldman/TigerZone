@@ -1,0 +1,65 @@
+DO NOT INPUT THIS FILE
+THIS FILE IS FOR WRITING/COMPREHENSIVE PURPOSES ONLY
+
+how many instances of current tile (1)
+numberOfCurrentTile
+  does the tile have a shield (2)
+	does the tile has a den (3)
+	  THE NEXT FOUR CHARS (4-7) REPRESENT THE RESPECTIVE EDGE VALUES
+	  0 - JUNGLE
+	  1 - PATH
+	  2 - LAKE
+			  THE NEXT FOUR BOOLEANS (8-11) REPRESENT THE CORNERS
+			  0 - NOT CONNECTED
+			  1 - CONNECTED
+			  cTL = corner Top Left
+			    cTR = corner Top Right
+			      cBL = corner Bottom Left
+			        cBR = corner Bottom Right
+					  THE LAST TWO BOOLEANS (12, 13) REPRESENT STRETCHES
+					  0 - NOT STRETCHING
+					  1 - STRETCHING
+					  oLR = stretches Left/Right
+						oTB = stretches Top/Bottom
+											Tile number (not in real file)
+4 0 1 0 0 0 0 1 1 1 1 1 1					1
+2 0 1 0 0 0 1 1 1 1 1 1 1					2
+1 1 0 2 2 2 2 1 1 1 1 1 1					3
+3 0 0 2 2 2 0 1 1 0 0 1 0					4
+1 1 0 2 2 2 0 1 1 0 0 1 0					5
+1 0 0 2 2 2 1 1 1 0 0 1 0					6
+2 1 0 2 2 2 1 1 1 0 0 1 0					7
+3 0 0 2 2 0 0 1 0 0 1 0 0					8
+2 1 0 2 2 0 0 1 0 0 1 0 0					9
+3 0 0 2 2 1 1 1 0 0 1 0 0					10
+2 1 0 2 2 1 1 1 0 0 1 0 0					11
+1 0 0 0 2 2 0 0 0 0 0 1 0					12
+2 1 0 0 2 2 0 0 0 0 0 1 0					13
+2 0 0 2 2 0 0 0 0 0 1 0 0					14
+3 0 0 2 0 0 2 0 0 0 0 0 0					15
+5 0 0 2 0 0 0 0 0 1 1 0 0					16
+3 0 0 2 1 0 1 0 0 1 1 0 0					17
+3 0 0 2 0 1 1 0 0 1 1 0 0					18
+3 0 0 2 1 1 1 0 0 1 1 1 0					19
+3 0 0 2 1 1 0 0 0 1 1 1 0					20
+8 0 0 1 0 0 1 1 1 1 1 0 1					21
+9 0 0 0 1 0 1 1 1 1 1 0 0					22
+4 0 0 0 1 1 1 1 1 1 1 1 0					23
+1 0 0 1 1 1 1 1 1 1 1 1 1					24
+1 0 0 2 1 1 0 0 0 1 1 1 0					25
+
+THINGS TO NOTE
+~~~~~~~~~~~~~~
+REFERENCING carc-tiles-main.jpg (GITHUB):
+	
+Tile 1: how to set stretch bools?			(currently set)
+Tile 2: how to set stretch bools?			(currently set)
+Tile 10: how to set cBR?					(currently set)
+Tile 11: how to set cBR?					(currently set)
+Tile 17: how to set cBL?					(currently set)
+Tile 18: how to set cBR?					(currently set)
+Tile 19: how to set anything??				(currently cBL, cBR set)
+Tile 22: how to set CBL?					(currently set)
+Tile 23: how to set anything??				(currently cBL, cBR set)
+Tile 24: holy hell how do we set that up lol	(currently everything is set)
+
