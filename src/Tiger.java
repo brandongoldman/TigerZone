@@ -3,7 +3,7 @@ public abstract class Tiger{
     private int tigerOwner;
     private int tigerPlacement;
     private boolean edgeHasRoad;
-    char locationType;
+    private char locationType;
     
     
     //return the owner int of the tiger
