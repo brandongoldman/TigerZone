@@ -1,3 +1,12 @@
+/******************************
+
+		Creator: Group N
+
+
+
+*******************************/
+
+
 public class ZoneEdgeMatch{
 	
 
@@ -29,10 +38,13 @@ public class ZoneEdgeMatch{
 
 	}
 
+	//Possible logic of the board:
 
+		/*
+		
+			if(cornerA == cornerB)
 
-
-
+		*/
 
 	//Everything below:
 		//Getter and Setter methods
