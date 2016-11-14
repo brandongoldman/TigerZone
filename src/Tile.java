@@ -15,21 +15,21 @@ public class Tile {
 
 	//getters
 
-	public getXCoordinate(){
+	public int getXCoordinate(){
 		return xCoordinate;
 	}
 
-	public getYCoordinate(){
+	public int getYCoordinate(){
 		return yCoordinate;
 	}
 
 	//setters
 
-	public setXCoordinate(int x){
+	public void setXCoordinate(int x){
 		this.xCoordinate = x;
 	}
 	
-	public setYCoordinate(int x){
+	public void setYCoordinate(int y){
 		this.yCoordinate = y;
 	}
 	
