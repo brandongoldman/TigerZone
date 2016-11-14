@@ -15,9 +15,9 @@ public class Board
 	public Board(int width, int height)
 	{
 		xy_pos = new Tile[width][height];
-		for(int i = 1; i <= width; i++)
+		for(int i = 0; i < width; i++)
 		{
-			for(int j = 1; j <= height; j++)
+			for(int j = 0; j < height; j++)
 			{
 				xy_pos[i][j] = new Tile(i,j);
 				tiles.add(xy_pos[i][j]);
