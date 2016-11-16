@@ -158,26 +158,35 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class DisplayBoard
+import java.io.FilenameFilter;
+
+
+//import javax.imageio.ImageIO;
+//import javax.swing.JFrame;
+
+public class DisplayBoard extends JFrame
 {
     //placeholder for each tile
-    public BufferedImage[] tiles = new BufferedImage[27];
+    BufferedImage im = new BufferedImage(800,600,null);
+    public BufferedImage[] tiles = new BufferedImage[28];
     
+    
+    private int length,width;
     //array of tile types
     int[][] map = new int[32][32];
     //position coordinates
     public static int posX, posY;
     //Edge of map Cooridinates
-    public static int sx, sy;
-    public String fileName;
+    //public static int sx, sy;
+    public int newTile = f;
     
     
      public static void main(String[] args) {
-         
-         DisplayBoard();
+         DisplayBoard display = new DisplayBoard();
+         display.loadTile();
          
      }
-    
+    /*
     public DisplayBoard() {
          img = new BufferedImage( 450, 350, this);
     }
@@ -187,37 +196,45 @@ public class DisplayBoard
     }
 
 
-    
-    public DisplayBoard(int posX, int posY, int f) throws IOException
+    */
+    public DisplayBoard(/*int posX, int posY, int f*/) throws IOException
     {
-        this.fileName = fileName;
-        int x = 0, y = 0;
-        //this.f = f;
-        this.posX = posX;
-        this.posY = posY;
-        this.sx = map.length * 32;
-        this.sy = map.length * 32;
-        /*BufferedReader in = new ImageIO.read(new File("/src/tileImages/tile_" + f + ".png"));
+        init();
+        /*int x = 0, y = 0;
+        this.f = f;
+        //this.sx = map.length * 32;
+        //this.sy = map.length * 32;
+        BufferedReader in = tile[f]; //new ImageIO.read(new File("/src/tileImages/tile_" + f + ".png"));
         
-        String line;
-        
-        while((line = in.readLine()) != null)
-        {
-            String[] values = line.split(",");
-            
-            for(String str : values)
-            {
-                int str_int = Integer.parseInt(str);
-                map[x][y] = str_int;
-                y += 1;
+        for(int x = 0; x < 31; x++){
+            for (int y = 0; y < 31; y++){
+                
             }
-            x += 1;
-            y = 0;
-        }
-        
-        in.close();*/
+        }*/
     }
     
+    public void init(){
+        Graphics g = im.getGraphics();
+
+        for(int x = 0; x < 31; x++){
+            for (int y = 0; y < 31; y++){
+                //map[x][y].drawTile(g);
+                map[x][y] = tiles[27]; // initialize blank board w/ blank tile
+            }
+        }
+        
+        
+    }
+                                         
+    public void drawTile(Graphics g){
+        try {
+            img = ImageIO.read(new File("src/model/tileTest.png"));
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+        }
+        g.drawImage(img, 10, 10, null);
+    }
+    /*
     public void update()
     {
     }
@@ -242,43 +259,20 @@ public class DisplayBoard
         //posY = Game.mapY;
         
     }
+    */
     
-    
-    public static void loadTile()
+    public void loadTile()
     {
-        
-        
         for(int i = 0; i < 26; i++){
-            tiles[i] = ImageIO.read(new File("/src/tileImages/tile_" + i + ".png"));
-            //System.out.println("image: " + tiles[i].getName());
+            try {
+                tiles[i] = ImageIO.read(new File("/Users/Adam/TigerZone/src/tileImages/tile_" + i + ".png"));
+                //System.out.println("image: " + tiles[i].getName());
+            }
+            catch (final IOException e) {
+                System.out.println(e);
+            }
+            
         }
-        /*tiles[0] = ImageIO.read(new File("/src/tileImages/tile_0.png"));
-        tiles[1] = ImageIO.read(new File("/src/tileImages/tile_1.png"));
-        tiles[2] = ImageIO.read(new File("/src/tileImages/tile_" + 2 + ".png"));
-        tiles[3] = ImageIO.read(new File("/src/tileImages/tile_" + 3 + ".png"));
-        tiles[4] = ImageIO.read(new File("/src/tileImages/tile_" + 4 + ".png"));
-        tiles[5] = ImageIO.read(new File("/src/tileImages/tile_" + 5 + ".png"));
-        tiles[6] = ImageIO.read(new File("/src/tileImages/tile_" + 6 + ".png"));
-        tiles[7] = ImageIO.read(new File("/src/tileImages/tile_" + 7 + ".png"));
-        tiles[8] = ImageIO.read(new File("/src/tileImages/tile_" + 8 + ".png"));
-        tiles[9] = ImageIO.read(new File("/src/tileImages/tile_" + 9 + ".png"));
-        tiles[10] = ImageIO.read(new File("/src/tileImages/tile_" + 10 + ".png"));
-        tiles[11] = ImageIO.read(new File("/src/tileImages/tile_" + 11 + ".png"));
-        tiles[12] = ImageIO.read(new File("/src/tileImages/tile_" + 12 + ".png"));
-        tiles[13] = ImageIO.read(new File("/src/tileImages/tile_" + 13 + ".png"));
-        tiles[14] = ImageIO.read(new File("/src/tileImages/tile_" + 14 + ".png"));
-        tiles[15] = ImageIO.read(new File("/src/tileImages/tile_" + 15 + ".png"));
-        tiles[16] = ImageIO.read(new File("/src/tileImages/tile_" + 16 + ".png"));
-        tiles[17] = ImageIO.read(new File("/src/tileImages/tile_" + 17 + ".png"));
-        tiles[18] = ImageIO.read(new File("/src/tileImages/tile_" + 18 + ".png"));
-        tiles[19] = ImageIO.read(new File("/src/tileImages/tile_" + 19 + ".png"));
-        tiles[20] = ImageIO.read(new File("/src/tileImages/tile_" + 20 + ".png"));
-        tiles[21] = ImageIO.read(new File("/src/tileImages/tile_" + 21 + ".png"));
-        tiles[22] = ImageIO.read(new File("/src/tileImages/tile_" + 22 + ".png"));
-        tiles[23] = ImageIO.read(new File("/src/tileImages/tile_" + 23 + ".png"));
-        tiles[24] = ImageIO.read(new File("/src/tileImages/tile_" + 24 + ".png"));
-        tiles[25] = ImageIO.read(new File("/src/tileImages/tile_" + 25 + ".png"));
-        tiles[26] = ImageIO.read(new File("/src/tileImages/tile_" + 26 + ".png"));*/
     }
 }
 
