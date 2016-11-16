@@ -11,7 +11,9 @@ public abstract class GameManager
 	private Board board;
 	//private TileStack;
 	private HashSet<Position> Openspaces;
-
+	public Player[] currentPlayers;
+	public Player playerOne;
+	
 	
 	public GameManager() 
 	{
@@ -38,27 +40,43 @@ public abstract class GameManager
 		
 	}
 
-	public void returnTiger(){
+	public void returnTiger(int playerNumber)
+	{
         // Calculations to determine where tigers need to be returned
-
-        /** Call each player who need to tigers return and give back their tigers.
-         *  Also be sure to give players their score earned for those returned tigers.
-         */
-    	}
+		
+		for(int i = 0; i < playerOne.getTigers(); i++)
+		{
+			// If tiger is on a completed feature like a Lake, Game Trail, or Den
+			// Return the tiger back to its owner.
+			currentPlayers[i].getTigers();
+			
+		}
+		
+		/** Call each player who need to tigers return and give back their tigers.
+        *  Also be sure to give players their score earned for those returned tigers.
+        */
+    }
 
 	
 	public boolean CheckValidMove()
 	{
 		Position[] spaces = OpenSpaces.toArray(new Position[OpenSpaces.size()]);
-		Position check;
+		
+		Position check = null;
+		
 		for(int i = 0;  i < spaces.length; i++)
 		{
 			
-			if(board[spaces[i].x][spaces[i].y] != null)   
+			
+			if(board.xy_pos[spaces[i].x][spaces[i].y] != null)   
 			{
 				check = spaces[i];
 				break;
 			}
+			
+		}
+		
+		
 			if(board.xy_pos[check.x][check.y]/**EdgeTop*/ == board.xy_pos[check.x][check.y-1]/**EdgeBottom*/ || board.xy_pos[check.x][check.y-1] == null)
 			{
 				
@@ -91,7 +109,8 @@ public abstract class GameManager
 			
 			if(board.xy_pos[check.x][check.y-1]== null)
 			{
-				Openspaces.add(new Position(check.x,check.y-1));   // error here: Cannot instantiate the type Position
+				Position addition = new Position(check.x,check.y-1);
+				Openspaces.add(addition);   // error here: Cannot instantiate the type Position
 			}
 			
 			if(board.xy_pos[check.x][check.y+1]== null)
@@ -115,7 +134,6 @@ public abstract class GameManager
 			 * board.
 			 */
 			return true;
-		}
 	}
 	
 	public void startGame()
