@@ -35,6 +35,8 @@ public class Tile {
 		this.cBR = cBR;
 		this.oLR = oLR;
 		this.oTB = oTB;
+		//this.xCoordinate = x;
+		//this.yCoordinate = y;
 	}
 		
 	public Tile(int x, int y)

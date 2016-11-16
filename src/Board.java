@@ -12,7 +12,7 @@ public class Board
 	Tile[][] xy_pos;
 	List<Tile> tiles = new ArrayList<>();
 
-	//public method
+	// initializing board
 	public Board(int width, int height)
 	{
 		xy_pos = new Tile[width][height];
@@ -26,13 +26,17 @@ public class Board
 		}
 	}
 
-	//getters
+	// Get Tiles
 	public List<Tile> getTiles()
 	{
 		return tiles;
 	}
 
-	//setters
+	// Place Tile on Board
+	public void placeTile(Tile t, int xpos, int ypos)
+	{
+		// player places tile 
+	} 
 
 	public static void main(String[] args)
 	{
