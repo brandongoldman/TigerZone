@@ -10,13 +10,13 @@ public class TileInterpreter {
 		File file = new File("tileInput.txt");
 		
 		//TEXT FILE MUST FOLLOW FORMAT:
-		System.out.println("Input tiles in format: \n NumbersOfCurrentTile hasShield? hasChurch? TileDescriptor... (ex: 3 1 0 l j j p)\n Where 0 means noShield/noChurch, 1 means hasShield/hasChurch,\n l means lake, p means path, j means jungle");
+		//System.out.println("Input tiles in format: \n NumbersOfCurrentTile hasShield? hasChurch? TileDescriptor... (ex: 3 1 0 l j j p)\n Where 0 means noShield/noChurch, 1 means hasShield/hasChurch,\n l means lake, p means path, j means jungle");
 		
 		//INSTANTIATE AN ARRAY OF TILES AND DECLARE THE TILE VARIABLES
 		Tile[] tileArray = new Tile[72];
 		int tileCreated = 0;
 		int numOfCurrentTile = 0;
-		boolean shield = false;
+		//boolean shield = false;
 		boolean den = false;
 		//EDGES
 		int eT;
@@ -31,6 +31,8 @@ public class TileInterpreter {
 		//STRETCHERS (OR WHATEVER ADAM NAMED IT LOL)
 		boolean oLR = false;
 		boolean oTB = false;
+		//ANIMALS
+		int animals;
 		
 		
 		//TRY TO SCAN THE TEXT FILE
@@ -42,10 +44,11 @@ public class TileInterpreter {
 			{
 				//READ AND SAVE THE NUMBER OF HOW MANY INSTANCES OF THIS TILE THERE WILL BE
 				numOfCurrentTile = input.nextInt();
-				System.out.println("numOfCurrentTile = " +numOfCurrentTile);
+				//System.out.println("numOfCurrentTile = " +numOfCurrentTile);
 				
 				//INPUT THE TILE DESCRIPTION
-				if (input.nextInt() == 1) shield = true;
+				animals = input.nextInt();
+				//if (input.nextInt() == 1) shield = true;
 				if (input.nextInt() == 1) den = true;
 				eT = input.nextInt();
 				eL = input.nextInt();
@@ -62,7 +65,7 @@ public class TileInterpreter {
 				for (int i = 0; i < numOfCurrentTile; i++)
 				{
 					//System.out.println("Creating tile with shield: " +shield +", church: " +church +", e0: " +e0 +", e1:" +e1 +", e2: " +e2 +", e3: " +e3);
-					Tile newTile = new Tile(shield, den, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB);
+					Tile newTile = new Tile(animals, den, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB);
 					tileArray[tileCreated] = newTile;
 					tileCreated++;
 				}	
