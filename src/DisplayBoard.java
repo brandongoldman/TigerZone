@@ -3,7 +3,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 
 import java.awt.Graphics;
-//import java.awt.Color;
+
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,7 +13,6 @@ import java.io.FilenameFilter;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
-
 
 public class DisplayBoard extends JPanel
 {
@@ -33,13 +32,25 @@ public class DisplayBoard extends JPanel
     //constructor to call methods and test operation
     public DisplayBoard() /*throws IOException*/
     {
+        
+        
+        
         loadTile();
         init();
-        setTile(8,3,5);
-        tiles[8]=RotateBy90(tiles[8]);
-        setTile(8,3,6);
-        setTile(5,8,9);
-        setTile(16,0,8);
+        //setTile(8,3,5);
+        setTile(19,18,9,0);
+        setTile(24,19,9,1);
+        for(int q = 0; q<20; q++){
+            
+            setTile(q,q,q,0);
+            
+        }
+        
+        //tiles[8]=RotateBy90(tiles[8]);
+        //setTile(8,3,6);
+        //setTile(RotateBy90(tiles[8]),3,6);
+        setTile(5,8,9,1);
+        setTile(16,18,10,1);
         TileGrid();
         
     }
@@ -54,8 +65,6 @@ public class DisplayBoard extends JPanel
                 tiles[i] = ImageIO.read(new File("/Users/Adam/TigerZone/src/tileImages/tile_" + i + ".png"));
                 
                 //tileLabel[i] = new JLabel(new ImageIcon(tiles[i]));
-                
-                //drawTile(g, tiles[i], i*30, 5);
                 
                 //System.out.println("image:  " + i + tiles[i] );
             }
@@ -78,11 +87,27 @@ public class DisplayBoard extends JPanel
     }
     
     //allows certain tiles to be placed in the map 2D array
-    public void setTile (int f, int xCord, int yCord) {
+    public void setTile (int f, int xCord, int yCord, int rotates) {
         
-        map[xCord][yCord] = tiles[f];
+        if(xCord <= mapLength && yCord <= mapWidth){
+            int num = rotates;
+            BufferedImage placeTile = tiles[f];
         
-    }
+                while(num != 0){
+                    placeTile = RotateBy90(placeTile);
+                    System.out.println("Rotated tile: " + f + " / " + rotates + " times" );
+                    num--;
+                }
+        
+        System.out.println("Placed tile: " + f + " at Coordinates (" + xCord + "," + yCord + ")");
+        //map[xCord][yCord] = tiles[f];
+        map[xCord][yCord] = placeTile;
+        }else{
+            System.out.println("Cannot place tile: OUT OF BOUNDS");
+            
+        }
+    
+}
     
     //initialized a blank board with all empty slots
     public void init(){

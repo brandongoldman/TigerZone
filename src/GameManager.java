@@ -7,12 +7,13 @@ public abstract class GameManager
 	private int turnNumber;
 	private int[] playerScore;
   	private boolean stopGameFlag;
-	private Set<Position> OpenSpaces;
+	private Set<Position> Openspaces;
 	private Board board;
 	//private TileStack;
-	private HashSet<Position> Openspaces;
-	public Player[] currentPlayers;
-	public Player playerOne;
+	//private HashSet<Position> Openspaces;
+	//public Player[] currentPlayers;
+	//public Player playerOne;
+	
 	
 	
 	public GameManager() 
@@ -33,12 +34,34 @@ public abstract class GameManager
 		this.Openspaces = new HashSet<Position>();      //Populate set with initial positions
 	}
 	
-	
-	public void setScore(int Score, int PlayerNumber)
+	// ************ Method does not work if Player class is abstract *********
+	public void initializePlayers(int numberOfPlayers)
 	{
-		playerScore[PlayerNumber-1] = Score;
+		Player[] totalPlayers = new Player[numberOfPlayers];
+		
+		int initialScore = 0;
+		int initialnumTigers = 7;
+		boolean initialTigerOnBoard = false;
+		
+		for(int i = 0; i < numberOfPlayers; i ++)
+		{
+			totalPlayers[i] = new Player(initialScore, initialnumTigers, initialTigerOnBoard);
+		}
+	}	
+	
+	
+	
+	public void setScore(int score, int playerNumber)
+	{
+		playerScore[playerNumber-1] = score;
 		
 	}
+	
+	public void meeplePosition()
+	{
+		// determine the meeple Position on the tile 
+	}
+	
 
 	public void returnTiger(int playerNumber)
 	{
@@ -48,19 +71,23 @@ public abstract class GameManager
 		{
 			// If tiger is on a completed feature like a Lake, Game Trail, or Den
 			// Return the tiger back to its owner.
-			currentPlayers[i].getTigers();
+			currentPlayer[i].returnTiger();  
+			
+			
+			
+			
 			
 		}
 		
 		/** Call each player who need to tigers return and give back their tigers.
         *  Also be sure to give players their score earned for those returned tigers.
         */
-    }
+ 	}
 
 	
 	public boolean CheckValidMove()
 	{
-		Position[] spaces = OpenSpaces.toArray(new Position[OpenSpaces.size()]);
+		Position[] spaces = Openspaces.toArray(new Position[Openspaces.size()]);
 		
 		Position check = null;
 		
@@ -110,22 +137,22 @@ public abstract class GameManager
 			if(board.xy_pos[check.x][check.y-1]== null)
 			{
 				Position addition = new Position(check.x,check.y-1);
-				Openspaces.add(addition);   // error here: Cannot instantiate the type Position
+				Openspaces.add(addition);   
 			}
 			
 			if(board.xy_pos[check.x][check.y+1]== null)
 			{
-				Openspaces.add(new Position(check.x,check.y+1));  // error here: Cannot instantiate the type Position
+				Openspaces.add(new Position(check.x,check.y+1));  
 			}
 			
 			if(board.xy_pos[check.x+1][check.y]== null)
 			{
-				Openspaces.add(new Position(check.x+1,check.y));   // error here: Cannot instantiate the type Position
+				Openspaces.add(new Position(check.x+1,check.y));   
 			}
 			
 			if(board.xy_pos[check.x-1][check.y]== null)
 			{
-				Openspaces.add(new Position(check.x-1,check.y));   // error here: Cannot instantiate the type Position
+				Openspaces.add(new Position(check.x-1,check.y));  
 			}
 
 			/**Use the Openspaces to keep track of all open spaces in O(1) time and updae the Openspaces array everytime a
