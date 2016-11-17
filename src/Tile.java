@@ -39,11 +39,12 @@ public class Tile {
 		//this.yCoordinate = y;
 	}
 		
-	public Tile(int x, int y)
-	{
-		this.xCoordinate = x;
-		this.yCoordinate = y;
-	}
+	// public blankTile(int x, int y)
+	// {
+	// 	this.xCoordinate = x;
+	// 	this.yCoordinate = y;
+	// 	//System.out.println("I am a tile!");
+	// }
 
 	
 	//getters

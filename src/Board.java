@@ -6,22 +6,28 @@ import java.util.Collections;
 
 public class Board 
 {
-	//Private variables initializes
+	// number of tiles being played
+	int sizeOfStack = 77;
+
+	//Board Dimensions
+	int width = 2* sizeOfStack;
+	int height = width;
+
 
 	// Initialize board
-	Tile[][] xy_pos;
+	Tile[][] gameBoard = new Tile[height][width];
 	List<Tile> tiles = new ArrayList<>();
 
-	// initializing board
-	public Board(int width, int height)
+	// initializing board with blank tiles
+	public Board()
 	{
-		xy_pos = new Tile[width][height];
+		// this line throws error:     Tile blank = new blankTile(width, height);
 		for(int i = 0; i < width; i++)
 		{
 			for(int j = 0; j < height; j++)
 			{
-				xy_pos[i][j] = new Tile(i,j);
-				tiles.add(xy_pos[i][j]);
+				// because of above error, this doesnt work:    gameBoard[i][j] = blank;
+				//tiles.add(xy_pos[i][j]);
 			}
 		}
 	}
@@ -33,10 +39,27 @@ public class Board
 	}
 
 	// Place Tile on Board
-	public void placeTile(Tile t, int xpos, int ypos)
+	public void placeTile(Tile t, int x, int y)
 	{
-		// player places tile 
+		int xpos = x + 1;
+		int ypos = y + 1;
+
+		// Tile above = gameBoard[xpos][ypos + 1];
+		// Tile below = gameBoard[xpos][ypos - 1];
+		// Tile left = gameBoard[xpos - 1][ypos];
+		// Tile right = gameBoard[xpos + 1][ypos];
+
+		// check if tiles above and below are valid
+		if(gameBoard[xpos][ypos] == null)
+		{
+			gameBoard[xpos][ypos] = t;
+		}
 	} 
+
+	public boolean noTile(int x, int y)
+	{
+		return gameBoard[x][y] == null;
+	}
 
 	public static void main(String[] args)
 	{
@@ -45,14 +68,14 @@ public class Board
 		int width = scan.nextInt();
 		int height = scan.nextInt();
 
-		Board board = new Board(width, height);
+		Board board = new Board();
 
 		List<Tile> tilesOnBoard = board.getTiles();
 
 
 		for(Tile tile : tilesOnBoard)
 		{
-			System.out.print(tile.getXCoordinate() + " " + tile.getYCoordinate() + "\n");
+			//System.out.print(tile.getXCoordinate() + " " + tile.getYCoordinate() + "\n");
 		}
 	}
 
