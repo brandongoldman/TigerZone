@@ -3,7 +3,7 @@ THIS FILE IS FOR WRITING/COMPREHENSIVE PURPOSES ONLY
 
 how many instances of current tile (1)
 numberOfCurrentTile
-  does the tile have a shield (2)
+  number of animals per tile (2)
 	does the tile has a den (3)
 	  THE NEXT FOUR CHARS (4-7) REPRESENT THE RESPECTIVE EDGE VALUES
 	  0 - JUNGLE
@@ -24,29 +24,29 @@ numberOfCurrentTile
 											Tile number (not in real file)
 4 0 1 0 0 0 0 1 1 1 1 1 1					1
 2 0 1 0 0 0 1 1 1 1 1 1 1					2
-1 1 0 2 2 2 2 1 1 1 1 1 1					3
-3 0 0 2 2 2 0 1 1 0 0 1 0					4
+1 0 0 2 2 2 2 1 1 1 1 1 1					3
+3 1 0 2 2 2 0 1 1 0 0 1 0					4
 1 1 0 2 2 2 0 1 1 0 0 1 0					5
-1 0 0 2 2 2 1 1 1 0 0 1 0					6
+1 1 0 2 2 2 1 1 1 0 0 1 0					6
 2 1 0 2 2 2 1 1 1 0 0 1 0					7
-3 0 0 2 2 0 0 1 0 0 1 0 0					8
+3 1 0 2 2 0 0 1 0 0 1 0 0					8
 2 1 0 2 2 0 0 1 0 0 1 0 0					9
-3 0 0 2 2 1 1 1 0 0 1 0 0					10
+3 1 0 2 2 1 1 1 0 0 1 0 0					10
 2 1 0 2 2 1 1 1 0 0 1 0 0					11
-1 0 0 0 2 2 0 0 0 0 0 1 0					12
-2 1 0 0 2 2 0 0 0 0 0 1 0					13
-2 0 0 2 2 0 0 0 0 0 1 0 0					14
-3 0 0 2 0 0 2 0 0 0 0 0 0					15
-5 0 0 2 0 0 0 0 0 1 1 0 0					16
-3 0 0 2 1 0 1 0 0 1 1 0 0					17
-3 0 0 2 0 1 1 0 0 1 1 0 0					18
-3 0 0 2 1 1 1 0 0 1 1 1 0					19
-3 0 0 2 1 1 0 0 0 1 1 1 0					20
+1 2 0 0 2 2 0 0 0 0 0 1 0					12
+2 2 0 0 2 2 0 0 0 0 0 1 0					13
+2 2 0 2 2 0 0 0 0 0 1 0 0					14
+3 2 0 2 0 0 2 0 0 0 0 0 0					15
+5 1 0 2 0 0 0 0 0 1 1 0 0					16
+3 1 0 2 1 0 1 0 0 1 1 0 0					17
+3 1 0 2 0 1 1 0 0 1 1 0 0					18
+3 1 0 2 1 1 1 0 0 1 1 1 0					19
+3 1 0 2 1 1 0 0 0 1 1 1 0					20
 8 0 0 1 0 0 1 1 1 1 1 0 1					21
 9 0 0 0 1 0 1 1 1 1 1 0 0					22
 4 0 0 0 1 1 1 1 1 1 1 1 0					23
 1 0 0 1 1 1 1 1 1 1 1 1 1					24
-1 0 0 2 1 1 0 0 0 1 1 1 0					25
+1 1 0 2 1 1 0 0 0 1 1 1 0					25
 
 THINGS TO NOTE
 ~~~~~~~~~~~~~~
@@ -62,4 +62,3 @@ Tile 19: how to set anything??				(currently cBL, cBR set)
 Tile 22: how to set CBL?					(currently set)
 Tile 23: how to set anything??				(currently cBL, cBR set)
 Tile 24: holy hell how do we set that up lol	(currently everything is set)
-
