@@ -11,8 +11,8 @@ public abstract class GameManager
 	private Board board;
 	//private TileStack;
 	//private HashSet<Position> Openspaces;
-	public Player[] currentPlayers;
-	public Player playerOne;
+	//public Player[] currentPlayers;
+	//public Player playerOne;
 	
 	
 	
@@ -37,7 +37,7 @@ public abstract class GameManager
 	// ************ Method does not work if Player class is abstract *********
 	public void initializePlayers(int numberOfPlayers)
 	{
-		Player[] currentPlayers = new Player[numberOfPlayers];
+		Player[] totalPlayers = new Player[numberOfPlayers];
 		
 		int initialScore = 0;
 		int initialnumTigers = 7;
@@ -45,15 +45,15 @@ public abstract class GameManager
 		
 		for(int i = 0; i < numberOfPlayers; i ++)
 		{
-			currentPlayers[i] = new Player(initialScore, initialnumTigers, initialTigerOnBoard);
+			totalPlayers[i] = new Player(initialScore, initialnumTigers, initialTigerOnBoard);
 		}
-		
-	}
+	}	
 	
 	
-	public void setScore(int Score, int PlayerNumber)
+	
+	public void setScore(int score, int playerNumber)
 	{
-		playerScore[PlayerNumber-1] = Score;
+		playerScore[playerNumber-1] = score;
 		
 	}
 	
@@ -71,7 +71,7 @@ public abstract class GameManager
 		{
 			// If tiger is on a completed feature like a Lake, Game Trail, or Den
 			// Return the tiger back to its owner.
-			currentPlayers[i].returnTiger();  
+			currentPlayer[i].returnTiger();  
 			
 			
 			
@@ -82,7 +82,7 @@ public abstract class GameManager
 		/** Call each player who need to tigers return and give back their tigers.
         *  Also be sure to give players their score earned for those returned tigers.
         */
-    }
+ 	}
 
 	
 	public boolean CheckValidMove()
