@@ -34,6 +34,7 @@ public abstract class GameManager
 		this.Openspaces = new HashSet<Position>();      //Populate set with initial positions
 	}
 	
+	// ************ Method does not work if Player class is abstract *********
 	public void initializePlayers(int numberOfPlayers)
 	{
 		Player[] currentPlayers = new Player[numberOfPlayers];
@@ -44,7 +45,7 @@ public abstract class GameManager
 		
 		for(int i = 0; i < numberOfPlayers; i ++)
 		{
-			
+			currentPlayers[i] = new Player(initialScore, initialnumTigers, initialTigerOnBoard);
 		}
 		
 	}
