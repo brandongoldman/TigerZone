@@ -21,6 +21,12 @@ public class Tile {
 
 	//public methods for tile action
 
+	public Tile(int x, int y){
+		this.xCoordinate = x;
+		this.yCoordinate = y;
+	}
+
+
 	public Tile(int animals, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
 	{
 		this.animals = animals;

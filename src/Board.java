@@ -49,7 +49,7 @@ public class Board
 	public void placeTile(Tile t, int x, int y)
 	{
 
-		Position pos = new Position(int x, int y);
+		Position pos = new Position(x, y);
 
 		int xpos = x + 1;
 		int ypos = y + 1;
