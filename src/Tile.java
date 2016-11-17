@@ -1,7 +1,7 @@
 public class Tile {
 
 	//private variables for a tile
-	private boolean shield;
+	private int animals;
 	private boolean den;
 	private int eT;
 	private int eL;
@@ -21,9 +21,9 @@ public class Tile {
 
 	//public methods for tile action
 
-	public Tile(boolean shield, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
+	public Tile(int animals, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
 	{
-		this.shield = shield;
+		this.animals = animals;
 		this.den = den;
 		this.eT = eT;
 		this.eL = eL;
