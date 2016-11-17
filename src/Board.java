@@ -15,6 +15,13 @@ public class Board
 
 
 	// Initialize board
+	
+		/* Using Hashmap
+	
+			HashMap<Position, Tile> gBoard = new HashMap<Position, Tile>();
+
+		*/
+
 	Tile[][] gameBoard = new Tile[height][width];
 	List<Tile> tiles = new ArrayList<>();
 
@@ -41,6 +48,9 @@ public class Board
 	// Place Tile on Board
 	public void placeTile(Tile t, int x, int y)
 	{
+
+		Position pos = new Position(int x, int y);
+
 		int xpos = x + 1;
 		int ypos = y + 1;
 
@@ -50,6 +60,21 @@ public class Board
 		// Tile right = gameBoard[xpos + 1][ypos];
 
 		// check if tiles above and below are valid
+
+		/*
+
+			Using the HashMap (checking if a key exists):
+
+				if(gBoard.containsKey(pos)){
+					return false;
+				}
+
+				Tile cTile = new Tile(pos.x, pos.y);
+				gBoard.put(pos, Tile);
+
+		*/
+
+
 		if(gameBoard[xpos][ypos] == null)
 		{
 			gameBoard[xpos][ypos] = t;
