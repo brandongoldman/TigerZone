@@ -5,6 +5,7 @@ public class Player
 	private int score;
 	private int numOfTigers = 7;
 	private boolean tigerOnBoard;
+	private boolean updated;
 	//private int playerNumber;
 	int tileLocation_X;
 	int tileLocation_Y;
@@ -105,16 +106,20 @@ public class Player
 		this.tigerPlacement = tigerPlacement;
 	}
 
+	// update player's score with new point value after turn completed
+	public void setScore(int score, boolean updated)
+	{
+		this.score = score;
+		this.updated = updated;
+	}
+
 	// if score is calculated on turn, return tiger to player
 	public void returnTiger()
 	{
-		numOfTigers++;
-	}
-
-	// update player's score with new point value after turn completed
-	public void setScore(int score)
-	{
-		this.score = score;
+		if(updated)
+		{
+			numOfTigers++;
+		}
 	}
     
     public static void main(String[] args) {
