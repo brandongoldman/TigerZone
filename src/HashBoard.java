@@ -30,7 +30,7 @@ import java.util.Scanner;
 
 public class HashBoard{
 	
-	HashMap <Position, Tile> gBoard;
+    private HashMap <Position, Tile> gBoard; // = new HashMap<Position, Tile>();
 	Set <Position> set;
 
 	public HashBoard(){
@@ -59,6 +59,12 @@ public class HashBoard{
 		// gBoard.put(new Position(0, 1), new Tile());
 		// gBoard.put(new Position(0, -1), new Tile());
 	}
+    
+    public HashMap<Position, Tile> getMap(){
+    
+        return gBoard;
+    
+    }
 
 	public void printKeys(){
 

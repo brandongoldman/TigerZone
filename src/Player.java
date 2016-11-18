@@ -11,12 +11,19 @@ public class Player
 	int tileLocation_Y;
 	int orientation;
 	int tigerPlacement;
+    
+    HashBoard x = new HashBoard();
 
 	public Player(int score, int numOfTigers)
 	{
 		//this.playerNumber = playerNumber;
 		this.score = score;
 		this.numOfTigers = numOfTigers;
+        HashMap<Position, Tile> board = x.getMap();
+        //x.board.print
+        x.getMap().put(new Position(0, 0), new Tile());
+        x.checkOpenSpots(new Position(0, 0));
+        this.x.printKeys();
 	}
 	
 	// Get Score
@@ -110,6 +117,7 @@ public class Player
 		int score = 0;
 		int tigers = 7;
     	Player player = new Player(score, tigers);
+      
     	//player.OpeningList();
     }
 
