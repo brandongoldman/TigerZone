@@ -64,6 +64,13 @@ public class Tile {
 	{
 		return yCoordinate;
 	}
+	
+	public String printTile()
+	{
+		return ("cTL is " + this.cTL + ". cTR is " + this.cTR + ". cBL is " + this.cBL + ". cBR is " + this.cBR
+			+ "\neT is " + this.eT + ". eL is " + this.eL + ". eR is " + this.eR + ". eB is " + this.eB
+			+ "\noTB is " + this.oTB + ". oLR is " + this.oLR);
+	}
 
 	//setters
 
@@ -77,5 +84,38 @@ public class Tile {
 		this.yCoordinate = y;
 	}
 	
+	public void rotateCW()
+	{
+		boolean bitTemp = cTL;
+		int edgeTemp = eT;
+		cTL = cBL;
+		cBL = cBR;
+		cBR = cTR;
+		cTR = bitTemp;
+		eT = eL;
+		eL = eB;
+		eB = eR;
+		eR = edgeTemp;
+		bitTemp = oTB;
+		oTB = oLR;
+		oLR = bitTemp;
+	}
+	
+	public void rotateCC()
+	{
+		boolean bitTemp = cTL;
+		int edgeTemp = eT;
+		cTL = cTR;
+		cTR = cBR;
+		cBR = cBL;
+		cBL = bitTemp;
+		eT = eR;
+		eR = eB;
+		eB = eL;
+		eL = edgeTemp;
+		bitTemp = oTB;
+		oTB = oLR;
+		oLR = bitTemp;
+	}
 
 }
