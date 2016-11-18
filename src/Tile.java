@@ -1,6 +1,19 @@
+/***********************************
+
+	Created By: Group N
+
+	Logic:
+
+		Stores the Edges with the
+		appropriate properties that
+		are associated with a Tile
+
+************************************/
+
+
 public class Tile {
 
-	//private variables for a tile
+	//Private Variables
 	private int animals;
 	private boolean den;
 	private int eT;
@@ -15,20 +28,17 @@ public class Tile {
 	private boolean oTB = false;
 	
 	
-	private int xCoordinate;
-	private int yCoordinate;
+	private Position position;
 
 
-
-	//public methods for tile action
+	//Public Constructors for the Tile Class
 
 	public Tile(){
 		//Empty Constructor
 	}
 
-	public Tile(int x, int y){
-		this.xCoordinate = x;
-		this.yCoordinate = y;
+	public Tile(Position pos){
+		this.position = pos;
 	}
 
 
@@ -46,28 +56,20 @@ public class Tile {
 		this.cBR = cBR;
 		this.oLR = oLR;
 		this.oTB = oTB;
-		//this.xCoordinate = x;
-		//this.yCoordinate = y;
 	}
-		
-	// public blankTile(int x, int y)
-	// {
-	// 	this.xCoordinate = x;
-	// 	this.yCoordinate = y;
-	// 	//System.out.println("I am a tile!");
-	// }
-
 	
-	//getters
+	//Getter
 
-	public int getXCoordinate()
+	public Position getPosition()
 	{
-		return xCoordinate;
+		return position;
 	}
 
-	public int getYCoordinate()
+	//Setter
+
+	public void setPosition(Position pos)
 	{
-		return yCoordinate;
+		this.position = pos;
 	}
 	
 	public String printTile()
@@ -75,18 +77,6 @@ public class Tile {
 		return ("cTL is " + this.cTL + ". cTR is " + this.cTR + ". cBL is " + this.cBL + ". cBR is " + this.cBR
 			+ "\neT is " + this.eT + ". eL is " + this.eL + ". eR is " + this.eR + ". eB is " + this.eB
 			+ "\noTB is " + this.oTB + ". oLR is " + this.oLR);
-	}
-
-	//setters
-
-	public void setXCoordinate(int x)
-	{
-		this.xCoordinate = x;
-	}
-	
-	public void setYCoordinate(int y)
-	{
-		this.yCoordinate = y;
 	}
 	
 	public void rotateCW()

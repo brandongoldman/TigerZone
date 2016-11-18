@@ -1,6 +1,6 @@
 /***********************************
 
-	Creater: Group N
+	Created By: Group N
 	Logic:
 		Association of the Edges are
 		based on three integers:

@@ -1,3 +1,26 @@
+/**********************************************************************
+
+	Created By: Group N
+
+	Logic:
+
+		Board is created using a HashMap that will map the values
+		of the Positions to the Tile. Two functions that basically
+		control the class:
+
+			1.  didAddTile -- which returns a boolean value
+				true: a tile was added to the board;
+				false: a tile was not added to the board;
+
+			2.  checkOpenSpots -- which will return a Set
+				of the possible locations that a tile can be
+				placed.
+
+		CheckOpenSpots can be used by the Player in the future
+		to allow the user/ai to pick which spot will be available
+
+***********************************************************************/
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
