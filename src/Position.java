@@ -24,4 +24,12 @@ public class Position
 		this.y = y;
 	}
 
+	public boolean equals(Position position){
+		if((this.x == position.x) && (this.y == position.y)){
+			return true;
+		}
+
+		return false;
+	}
+
 }

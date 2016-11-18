@@ -27,11 +27,21 @@ public class HashBoard{
 
 		*/
 
-
-		//gBoard.put(new Position(1, 0), new Tile());
-		//gBoard.put(new Position(-1, 0), new Tile());
+		gBoard.put(new Position(1, 0), new Tile());
+		// gBoard.put(new Position(-1, 0), new Tile());
 		// gBoard.put(new Position(0, 1), new Tile());
 		// gBoard.put(new Position(0, -1), new Tile());
+	}
+
+	public void printKeys(){
+
+		Set<Position> keySet = gBoard.keySet();
+
+		System.out.println("Key Set");
+
+		for(Position pos: keySet){
+			System.out.println("Coordinates: " + pos.getXPosition() + " " + pos.getYPosition());
+		}
 	}
 
 	public boolean didAddTile(Position pos, Tile tile){
@@ -45,11 +55,10 @@ public class HashBoard{
 			System.out.println(s.getXPosition() + " " + s.getYPosition());
 
 			//Position was found in set
-			
 			if(  (s.getXPosition() != pos.getXPosition()) && 
 				 (s.getYPosition() != pos.getYPosition())) {
-				gBoard.put(pos, tile);
-				return true;
+				//gBoard.put(pos, tile);
+				//return true;
 			}
 
 		}
@@ -66,6 +75,37 @@ public class HashBoard{
 		
 		Set<Position> keySet = gBoard.keySet();
 		Iterator<Position> it = keySet.iterator();
+
+		for(Position pos: keySet){
+
+			Position set_rPosX = new Position(pos.getXPosition() + 1, pos.getYPosition());
+			Position set_lPosX = new Position(pos.getXPosition() - 1, pos.getYPosition());
+			Position set_tPosY = new Position(pos.getXPosition(), pos.getYPosition() + 1);
+			Position set_bPosY = new Position(pos.getXPosition(), pos.getYPosition() - 1);
+
+			if(!pos.equals(set_rPosX)){
+				set.add(set_rPosX);
+			}
+
+			if(!pos.equals(set_lPosX)){
+				set.add(set_lPosX);
+			}
+
+			if(!pos.equals(set_tPosY)){
+				set.add(set_tPosY);
+			}
+
+			if(!pos.equals(set_bPosY)){
+				set.add(set_bPosY);
+			}
+
+		}
+
+
+		return set;
+
+
+	/*
 
 		while(it.hasNext()){
 
@@ -108,13 +148,14 @@ public class HashBoard{
 
 		}
 
-		return set;
-
+		*/
 	}
 
 	public static void main(String[] args){
 
 		HashBoard board = new HashBoard();
+		board.printKeys();
+
 		System.out.println("We Have Started a New Game");
 		System.out.println("Choose Your Position (Format: X Y )");
 		Scanner scan = new Scanner(System.in);
