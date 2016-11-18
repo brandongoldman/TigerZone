@@ -1,7 +1,6 @@
 
 import javax.imageio.ImageIO;
 import java.io.File;
-
 import java.awt.Graphics;
 
 import java.awt.image.BufferedImage;
@@ -45,6 +44,8 @@ public class DisplayBoard extends JPanel
             setTile(q,q,q,0);
             
         }
+        
+        //setTile(tile identifier, Tile.position(xCord), Tile.position(yCord), rotation amounts);
         
         //tiles[8]=RotateBy90(tiles[8]);
         //setTile(8,3,6);

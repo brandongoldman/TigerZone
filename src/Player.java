@@ -49,8 +49,39 @@ public abstract class Player
 	// get possible tiger locations
 
 	// determine which move yeilds highest score
-
+    /*
+    public void FeatureList(Tile recievedTile, Board board){
+        //create List to track in-progress features based on types on a tile
+        
+    }
+    //possibly intead of searching through the 2d board array to check for openings, we can create a list of open spots whenever a tile is placed and keep track of it
+    public void OpeningList(Board board, int tileXpos, int tileYPos){
+        
+        List<Position> objPos = new ArrayList<Position>();
+        //List<int[]> objPos = new ArrayList<int[]>();
+        //once the tile has been placed, check all adjacent positions on the board and add to the list if they are determined to be empty
+        if(map[placedtile.(tilexPos+1)][tileyPos] == nullTypeType){
+            objPos.add(tilePosition);
+        }
+        if(map[placedtile.(tilexPos)][tileyPos+1] == nullTypeType){
+            objPos.add(tilePosition);
+        }
+        if(map[placedtile.(tilexPos-1)][tileyPos] == nullTypeType){
+            objPos.add(tilePosition);
+        }
+        if(map[placedtile.(tilexPos)][tileyPos-1] == nullTypeType){
+            objPos.add(tilePosition);
+        }
+        
+    }
 	// let player make move
+    public void AnalyzeBoard(Tile recievedTile, Board board){
+        
+        //Look through board and/or availability list to see what is open and use edge comparisons to see if it has valid placement
+        
+        
+    }
+     */
 	
 	// data to confirm move --> to be sent to other player and game manager / host??
 	public void placeTile(int tileLocation_X, int tileLocation_Y, int orientation, int tigerPlacement)
@@ -72,4 +103,10 @@ public abstract class Player
 	{
 		this.score = score;
 	}
+    
+    public static void main(String[] args) {
+        Player player = new Player();
+        player.OpeningList();
+    }
+
 }
