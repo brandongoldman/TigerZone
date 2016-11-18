@@ -41,25 +41,29 @@ public class HashBoard{
 
 			Position pos = it.next();
 
+			//Position is checked to the Right
 			if(!gBoard.containsKey(pos.getXPosition() + 1)){
-				//Position can be added
+				
 				Position set_pos = new Position(pos.getXPosition() + 1, pos.getYPosition());
 
 				set.add(set_pos);
 			} 
 
+			//Position is checked to the Top
 			if(!gBoard.containsKey(pos.getYPosition() + 1)){
 				Position set_pos = new Position(pos.getXPosition(), pos.getYPosition() + 1);
 
 				set.add(set_pos);
 			}
 
+			//Position is checked to the Left
 			if(!gBoard.containsKey(pos.getXPosition() - 1)){
 				Position set_pos = new Position(pos.getXPosition() - 1, pos.getYPosition());
 
 				set.add(set_pos);
 			}
 
+			//Position is checked to the Bottom
 			if(!gBoard.containsKey(pos.getYPosition() - 1)){
 				Position set_pos = new Position(pos.getXPosition(), pos.getYPosition() - 1);
 
