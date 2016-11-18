@@ -69,7 +69,7 @@ public class HashBoard{
 		for(Position pos: keySet){
 			System.out.println("Coordinates: " + pos.getXPosition() + " " + pos.getYPosition());
 		}
-		System.out.println("Open Spaces")
+		System.out.println("Open Spaces");
 		for(Position pos: set){
 			System.out.println("Coordinates:" + pos.getXPosition() + " " + pos.getYPosition());
 		}
@@ -105,7 +105,7 @@ public class HashBoard{
 		Iterator<Position> it = keySet.iterator();
 
 		Position set_rPosX = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
-		Position set_lPosX = new Position(newpos.getXPosition() - 1, pnewpos.getYPosition());
+		Position set_lPosX = new Position(newpos.getXPosition() - 1, newpos.getYPosition());
 		Position set_tPosY = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
 		Position set_bPosY = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
 
@@ -113,25 +113,25 @@ public class HashBoard{
 			if(set_rPosX.equals(pos)){
 				break;
 			}
-			else {set.add(set_rPosX)}
+			else {set.add(set_rPosX);}
 		}
 		for(Position pos: keySet){
 			if(set_.lPosX.equals(pos)){
 				break;
 			}
-			else {set.add(set_lPosX)}
+			else {set.add(set_lPosX);}
 		}
 		for(Position pos: keySet){
 			if(set_tPosX.equals(pos)){
 				break;
 			}
-			else {set.add(set_tPosX)}
+			else {set.add(set_tPosY);}
 		}
 		for(Position pos: keySet){
 			if(set_bPosX.equals(pos)){
 				break;
 			}
-			else {set.add(set_bPosX)}
+			else {set.add(set_bPosY);}
 		}
 
 		Iterator<Position> deletespace = set.iterator();
