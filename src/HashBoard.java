@@ -122,22 +122,22 @@ public class HashBoard{
 			else {set.add(lPosX);}
 		}
 		for(Position pos: keySet){
-			if(tPosX.equals(pos)){
+			if(tPosY.equals(pos)){
 				break;
 			}
-			else {set.add(tPosX);}
+			else {set.add(tPosY);}
 		}
 		for(Position pos: keySet){
-			if(bPosX.equals(pos)){
+			if(bPosY.equals(pos)){
 				break;
 			}
-			else {set.add(bPosX);}
+			else {set.add(bPosY);}
 		}
 
 		Iterator<Position> deletespace = set.iterator();
 		while (deletespace.hasNext()) {
-			Position holder = iterator.next();
-			if (newpos.equal(holder)) {
+			Position holder = deletespace.next();
+			if (newpos.equals(holder)) {
 				deletespace.remove();
 				break;
 			}
