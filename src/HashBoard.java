@@ -79,7 +79,7 @@ public class HashBoard{
 	public boolean didAddTile(Position pos, Tile tile){
 
 		//Check All avaliable spots
-		Set<Position> set = checkOpenSpots();
+		//Set<Position> set = checkOpenSpots();
 
 		//Check Spot Exist?
 		for (Position s : set) {
@@ -104,34 +104,34 @@ public class HashBoard{
 		Set<Position> keySet = gBoard.keySet();
 		Iterator<Position> it = keySet.iterator();
 
-		Position set_rPosX = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
-		Position set_lPosX = new Position(newpos.getXPosition() - 1, newpos.getYPosition());
-		Position set_tPosY = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
-		Position set_bPosY = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
+		Position rPosX = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
+		Position lPosX = new Position(newpos.getXPosition() - 1, newpos.getYPosition());
+		Position tPosY = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
+		Position bPosY = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
 
 		for(Position pos: keySet){
-			if(set_rPosX.equals(pos)){
+			if(rPosX.equals(pos)){
 				break;
 			}
-			else {set.add(set_rPosX);}
+			else {set.add(rPosX);}
 		}
 		for(Position pos: keySet){
-			if(set_.lPosX.equals(pos)){
+			if(lPosX.equals(pos)){
 				break;
 			}
-			else {set.add(set_lPosX);}
+			else {set.add(lPosX);}
 		}
 		for(Position pos: keySet){
-			if(set_tPosX.equals(pos)){
+			if(tPosX.equals(pos)){
 				break;
 			}
-			else {set.add(set_tPosY);}
+			else {set.add(tPosX);}
 		}
 		for(Position pos: keySet){
-			if(set_bPosX.equals(pos)){
+			if(bPosX.equals(pos)){
 				break;
 			}
-			else {set.add(set_bPosY);}
+			else {set.add(bPosX);}
 		}
 
 		Iterator<Position> deletespace = set.iterator();
