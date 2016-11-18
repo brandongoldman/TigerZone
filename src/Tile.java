@@ -14,7 +14,7 @@
 public class Tile {
 
 	//Private Variables
-	private int animals;
+	private int animal;
 	private boolean den;
 	private int eT;
 	private int eL;
@@ -42,9 +42,9 @@ public class Tile {
 	}
 
 
-	public Tile(int animals, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
+	public Tile(int animal, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
 	{
-		this.animals = animals;
+		this.animal = animal;
 		this.den = den;
 		this.eT = eT;
 		this.eL = eL;
