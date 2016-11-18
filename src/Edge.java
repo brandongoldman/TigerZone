@@ -7,7 +7,7 @@
 		Association of the Edges are based on three integers:
 		
 		1. Jungle (int --> 0)
-		2. Game Trial (int --> 1)
+		2. Game Trail (int --> 1)
 		3. Lake (int --> 2)
 
 ************************************************************************/
