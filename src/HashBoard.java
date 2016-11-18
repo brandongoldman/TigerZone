@@ -31,10 +31,14 @@ import java.util.Scanner;
 public class HashBoard{
 	
 	HashMap <Position, Tile> gBoard;
+	Set <Position> set;
 
 	public HashBoard(){
 		gBoard = new HashMap<Position, Tile>();
-		gBoard.put(new Position(0, 0), new Tile());
+		//Initializing Possible spots for users
+		set = new HashSet<Position>();
+		//gBoard.put(new Position(0, 0), new Tile());
+
 
 		//Attempt to Scale
 		
@@ -50,7 +54,7 @@ public class HashBoard{
 
 		*/
 
-		gBoard.put(new Position(1, 0), new Tile());
+		// gBoard.put(new Position(1, 0), new Tile());
 		// gBoard.put(new Position(-1, 0), new Tile());
 		// gBoard.put(new Position(0, 1), new Tile());
 		// gBoard.put(new Position(0, -1), new Tile());
@@ -65,6 +69,11 @@ public class HashBoard{
 		for(Position pos: keySet){
 			System.out.println("Coordinates: " + pos.getXPosition() + " " + pos.getYPosition());
 		}
+		System.out.println("Open Spaces")
+		for(Position pos: set){
+			System.out.println("Coordinates:" + pos.getXPosition() + " " + pos.getYPosition());
+		}
+
 	}
 
 	public boolean didAddTile(Position pos, Tile tile){
@@ -91,41 +100,49 @@ public class HashBoard{
 	}
 
 
-	public Set<Position> checkOpenSpots(){
-
-		//Initializing Possible spots for users
-		Set<Position> set = new HashSet<Position>();
-		
+	public void checkOpenSpots(Position newpos){
 		Set<Position> keySet = gBoard.keySet();
 		Iterator<Position> it = keySet.iterator();
 
+		Position set_rPosX = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
+		Position set_lPosX = new Position(newpos.getXPosition() - 1, pnewpos.getYPosition());
+		Position set_tPosY = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
+		Position set_bPosY = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
+
 		for(Position pos: keySet){
-
-			Position set_rPosX = new Position(pos.getXPosition() + 1, pos.getYPosition());
-			Position set_lPosX = new Position(pos.getXPosition() - 1, pos.getYPosition());
-			Position set_tPosY = new Position(pos.getXPosition(), pos.getYPosition() + 1);
-			Position set_bPosY = new Position(pos.getXPosition(), pos.getYPosition() - 1);
-
-			if(!pos.equals(set_rPosX)){
-				set.add(set_rPosX);
+			if(set_rPosX.equals(pos)){
+				break;
 			}
-
-			if(!pos.equals(set_lPosX)){
-				set.add(set_lPosX);
+			else {set.add(set_rPosX)}
+		}
+		for(Position pos: keySet){
+			if(set_.lPosX.equals(pos)){
+				break;
 			}
-
-			if(!pos.equals(set_tPosY)){
-				set.add(set_tPosY);
+			else {set.add(set_lPosX)}
+		}
+		for(Position pos: keySet){
+			if(set_tPosX.equals(pos)){
+				break;
 			}
-
-			if(!pos.equals(set_bPosY)){
-				set.add(set_bPosY);
+			else {set.add(set_tPosX)}
+		}
+		for(Position pos: keySet){
+			if(set_bPosX.equals(pos)){
+				break;
 			}
-
+			else {set.add(set_bPosX)}
 		}
 
+		Iterator<Position> deletespace = set.iterator();
+		while (deletespace.hasNext()) {
+			Position holder = iterator.next();
+			if (newpos.equal(holder)) {
+				deletespace.remove();
+				break;
+			}
+		}
 
-		return set;
 
 
 	/*
@@ -177,9 +194,13 @@ public class HashBoard{
 	public static void main(String[] args){
 
 		HashBoard board = new HashBoard();
+		board.gBoard.put(new Position(0, 0), new Tile());
+		board.checkOpenSpots(new Position(0, 0));
 		board.printKeys();
-
-		System.out.println("We Have Started a New Game");
+		board.gBoard.put(new Position(1, 0), new Tile());
+		board.checkOpenSpots(new Position(1, 0));
+		board.printKeys();
+		/**System.out.println("We Have Started a New Game");
 		System.out.println("Choose Your Position (Format: X Y )");
 		Scanner scan = new Scanner(System.in);
 		int x = scan.nextInt();
@@ -192,6 +213,7 @@ public class HashBoard{
 		} else {
 			System.out.println("Nahhhhhhh");
 		}
+		 **/
 	}
 
 
