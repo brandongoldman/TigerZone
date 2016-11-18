@@ -1,14 +1,22 @@
 import java.util.*;
 
-public abstract class Player 
+public class Player 
 {
 	private int score;
 	private int numOfTigers = 7;
 	private boolean tigerOnBoard;
+	//private int playerNumber;
 	int tileLocation_X;
 	int tileLocation_Y;
 	int orientation;
 	int tigerPlacement;
+
+	public Player(int score, int numOfTigers)
+	{
+		//this.playerNumber = playerNumber;
+		this.score = score;
+		this.numOfTigers = numOfTigers;
+	}
 	
 	// Get Score
 	public int getScore()
@@ -20,6 +28,11 @@ public abstract class Player
 	{
 		return tigerOnBoard;
 	}
+
+	// public int getPlayerNumber()
+	// {
+	// 	return Tiger.getOwner();
+	// }
 	
 	// Get total number of tigers player has at start of game
 	public int getTigers()
@@ -105,8 +118,10 @@ public abstract class Player
 	}
     
     public static void main(String[] args) {
-        Player player = new Player();
-        player.OpeningList();
+    	int score = 0;
+    	int tigers = 7;
+        Player player = new Player(score, tigers);
+        //player.OpeningList();
     }
 
 }
