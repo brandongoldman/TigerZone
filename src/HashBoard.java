@@ -14,13 +14,17 @@ public class HashBoard{
 
 	public boolean didAddTile(Position pos, Tile tile){
 
-		//Check if the spot is available
-		if(gBoard.containsKey(pos)){
+		//Check All avaliable spots
+		Set<Position> set = checkOpenSpots();
+
+		//Check Spot Exist?
+
+		if(!set.contains(pos)){
 			return false;
 		}
 
+		//Position was found in the Set
 		gBoard.put(pos, tile);
-
 		return true;
 	}
 
