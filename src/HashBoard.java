@@ -11,7 +11,11 @@ public class HashBoard{
 
 	public HashBoard(){
 		gBoard = new HashMap<Position, Tile>();
-		gBoard.put(new Position(10, 10), new Tile());
+		gBoard.put(new Position(0, 0), new Tile());
+		gBoard.put(new Position(1, 0), new Tile());
+		gBoard.put(new Position(-1, 0), new Tile());
+		gBoard.put(new Position(0, 1), new Tile());
+		gBoard.put(new Position(0, -1), new Tile());
 	}
 
 	public boolean didAddTile(Position pos, Tile tile){
@@ -22,12 +26,16 @@ public class HashBoard{
 		//Check Spot Exist?
 		for (Position s : set) {
 
+			System.out.println(s.getXPosition() + " " + s.getYPosition());
 
+			/*
 			if(  (s.getXPosition() != pos.getXPosition()) && 
 				 (s.getYPosition() != pos.getYPosition())) {
 				gBoard.put(pos, tile);
 				return true;
 			}
+
+			*/
 		}
 
 		//Position was found in the Set
@@ -46,6 +54,9 @@ public class HashBoard{
 		while(it.hasNext()){
 
 			Position pos = it.next();
+
+			System.out.println(pos.getXPosition() + " " + pos.getYPosition());
+
 
 			//Position is checked to the Right
 			if(!gBoard.containsKey(pos.getXPosition() + 1)){
