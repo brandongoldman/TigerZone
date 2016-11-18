@@ -1,15 +1,16 @@
-/***********************************
+/***********************************************************************
 
 	Created By: Group N
+
 	Logic:
-		Association of the Edges are
-		based on three integers:
+	
+		Association of the Edges are based on three integers:
 		
 		1. Jungle (int --> 0)
 		2. Game Trial (int --> 1)
 		3. Lake (int --> 2)
 
-************************************/
+************************************************************************/
 
 public class Edge {
 	
