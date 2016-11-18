@@ -12,10 +12,26 @@ public class HashBoard{
 	public HashBoard(){
 		gBoard = new HashMap<Position, Tile>();
 		gBoard.put(new Position(0, 0), new Tile());
-		gBoard.put(new Position(1, 0), new Tile());
-		gBoard.put(new Position(-1, 0), new Tile());
-		gBoard.put(new Position(0, 1), new Tile());
-		gBoard.put(new Position(0, -1), new Tile());
+
+		//Attempt to Scale
+		
+		/*	
+
+			Known Bug:
+			Comparsion in the HashMap with Position doesn't work
+			Talk about tomorrow in the group
+
+			Test Case:
+			1. Try a tile that is already on the board
+			2. Try an invalid placement
+
+		*/
+
+
+		//gBoard.put(new Position(1, 0), new Tile());
+		//gBoard.put(new Position(-1, 0), new Tile());
+		// gBoard.put(new Position(0, 1), new Tile());
+		// gBoard.put(new Position(0, -1), new Tile());
 	}
 
 	public boolean didAddTile(Position pos, Tile tile){
@@ -28,17 +44,17 @@ public class HashBoard{
 
 			System.out.println(s.getXPosition() + " " + s.getYPosition());
 
-			/*
+			//Position was found in set
+			
 			if(  (s.getXPosition() != pos.getXPosition()) && 
 				 (s.getYPosition() != pos.getYPosition())) {
 				gBoard.put(pos, tile);
 				return true;
 			}
 
-			*/
 		}
 
-		//Position was found in the Set
+		//Position was not found in the Set
 		return false;
 	}
 
@@ -55,36 +71,39 @@ public class HashBoard{
 
 			Position pos = it.next();
 
-			System.out.println(pos.getXPosition() + " " + pos.getYPosition());
+			//System.out.println(pos.getXPosition() + " " + pos.getYPosition());
 
+			Position set_pPosX = new Position(pos.getXPosition() + 1, pos.getYPosition());
+			Position set_nPosX = new Position(pos.getXPosition() - 1, pos.getYPosition());
+			Position set_pPosY = new Position(pos.getXPosition(), pos.getYPosition() + 1);
+			Position set_nPosY = new Position(pos.getXPosition(), pos.getYPosition() - 1);
+
+			if(gBoard.containsKey(pos)){
+				set.remove(pos);
+			}
 
 			//Position is checked to the Right
-			if(!gBoard.containsKey(pos.getXPosition() + 1)){
-				
-				Position set_pos = new Position(pos.getXPosition() + 1, pos.getYPosition());
+			if(!gBoard.containsKey(set_pPosX)){
 
-				set.add(set_pos);
+				set.add(set_pPosX);
 			} 
 
 			//Position is checked to the Top
-			if(!gBoard.containsKey(pos.getYPosition() + 1)){
-				Position set_pos = new Position(pos.getXPosition(), pos.getYPosition() + 1);
+			if(!gBoard.containsKey(set_nPosX)){
 
-				set.add(set_pos);
+				set.add(set_nPosX);
 			}
 
 			//Position is checked to the Left
-			if(!gBoard.containsKey(pos.getXPosition() - 1)){
-				Position set_pos = new Position(pos.getXPosition() - 1, pos.getYPosition());
+			if(!gBoard.containsKey(set_pPosY)){
 
-				set.add(set_pos);
+				set.add(set_pPosY);
 			}
 
 			//Position is checked to the Bottom
-			if(!gBoard.containsKey(pos.getYPosition() - 1)){
-				Position set_pos = new Position(pos.getXPosition(), pos.getYPosition() - 1);
+			if(!gBoard.containsKey(set_pPosY)){
 
-				set.add(set_pos);
+				set.add(set_nPosY);
 			}
 
 		}
