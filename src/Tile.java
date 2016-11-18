@@ -19,7 +19,12 @@ public class Tile {
 	private int yCoordinate;
 
 
+
 	//public methods for tile action
+
+	public Tile(){
+		//Empty Constructor
+	}
 
 	public Tile(int x, int y){
 		this.xCoordinate = x;

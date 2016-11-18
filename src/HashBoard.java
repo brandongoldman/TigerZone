@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Map;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class HashBoard{
 	
@@ -10,6 +11,7 @@ public class HashBoard{
 
 	public HashBoard(){
 		gBoard = new HashMap<Position, Tile>();
+		gBoard.put(new Position(10, 10), new Tile());
 	}
 
 	public boolean didAddTile(Position pos, Tile tile){
@@ -18,14 +20,18 @@ public class HashBoard{
 		Set<Position> set = checkOpenSpots();
 
 		//Check Spot Exist?
+		for (Position s : set) {
 
-		if(!set.contains(pos)){
-			return false;
+
+			if(  (s.getXPosition() != pos.getXPosition()) && 
+				 (s.getYPosition() != pos.getYPosition())) {
+				gBoard.put(pos, tile);
+				return true;
+			}
 		}
 
 		//Position was found in the Set
-		gBoard.put(pos, tile);
-		return true;
+		return false;
 	}
 
 
@@ -75,5 +81,25 @@ public class HashBoard{
 		return set;
 
 	}
+
+	public static void main(String[] args){
+
+		HashBoard board = new HashBoard();
+		System.out.println("We Have Started a New Game");
+		System.out.println("Choose Your Position (Format: X Y )");
+		Scanner scan = new Scanner(System.in);
+		int x = scan.nextInt();
+		int y = scan.nextInt();
+
+		System.out.println("X Location: " + x + " \nY Location: " + y);
+
+		if(board.didAddTile(new Position(x, y), new Tile())){
+			System.out.println("That is a viable location.");
+		} else {
+			System.out.println("Nahhhhhhh");
+		}
+	}
+
+
 
 }
