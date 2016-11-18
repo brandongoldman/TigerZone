@@ -1,6 +1,6 @@
 import java.lang.Exception;
 
- public class NoTilePlacementException extends Exception {
+public class NoTilePlacementException extends Exception {
 
     private Position pos;
     private Tile tile;

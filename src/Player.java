@@ -42,14 +42,17 @@ public class Player
 	}
 
 	// let player place a tiger
-	public void placeTiger()
-	{
+	public void placeTiger() throws NoTigerException {
 		if(numOfTigers > 0)
 		{
 			numOfTigers--;
 		}
-		else
+		else{
+
 			System.out.println("Error: No Tigers Available");
+			throw new NoTigerException(numOfTigers);
+
+		}
 	}
 	
 	/* MAKE MOVE *************************************************************************
@@ -123,10 +126,11 @@ public class Player
 	}
     
     public static void main(String[] args) {
-    	int score = 0;
-    	int tigers = 7;
-        Player player = new Player(score, tigers);
-        //player.OpeningList();
+
+		int score = 0;
+		int tigers = 7;
+    	Player player = new Player(score, tigers);
+    	//player.OpeningList();
     }
 
 }
