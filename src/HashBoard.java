@@ -115,29 +115,49 @@ public class HashBoard{
 		Position tPosY = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
 		Position bPosY = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
 
+		//Right
+		boolean exists=false;
 		for(Position pos: keySet){
 			if(rPosX.equals(pos)){
+				exists=true;
 				break;
 			}
-			else {set.add(rPosX);}
 		}
+		if(!exists){
+			set.add(rPosX);
+		}
+		//Left
+		exists=false;
 		for(Position pos: keySet){
 			if(lPosX.equals(pos)){
+				exists=true;
 				break;
 			}
-			else {set.add(lPosX);}
 		}
+		if(!exists){
+			set.add(lPosX);
+		}
+		//Top
+		exists=false;
 		for(Position pos: keySet){
 			if(tPosY.equals(pos)){
+				exists=true;
 				break;
 			}
-			else {set.add(tPosY);}
 		}
+		if(!exists){
+			set.add(tPosY);
+		}
+		//Bottom
+		exists=false;
 		for(Position pos: keySet){
 			if(bPosY.equals(pos)){
+				exists=true;
 				break;
 			}
-			else {set.add(bPosY);}
+		}
+		if(!exists){
+			set.add(bPosY);
 		}
 
 		Iterator<Position> deletespace = set.iterator();
