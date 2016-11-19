@@ -206,9 +206,13 @@ public class HashBoard{
 		board.gBoard.put(new Position(1, 0), new Tile());
 		board.checkOpenSpots(new Position(1, 0));
 		board.printKeys();
-        //board.gBoard.put(new Position(10, 46), new Tile());
-        //board.checkOpenSpots(new Position(10, 46));
+        //board.gBoard.put(new Position(0, 1), new Tile());
+        //board.checkOpenSpots(new Position(0, 1));
         //board.printKeys();
+        //board.gBoard.put(new Position(2, 0), new Tile());
+        //board.checkOpenSpots(new Position(2, 0));
+        //board.printKeys();
+        
         
 		/**System.out.println("We Have Started a New Game");
 		System.out.println("Choose Your Position (Format: X Y )");
