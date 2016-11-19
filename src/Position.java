@@ -8,6 +8,10 @@ public class Position
 		this.y = y;
 	}
 
+	public int hashCode()
+	{
+		return x * 31 + y;
+	}
 	public int getXPosition(){
 		return x;
 	}
@@ -24,11 +28,10 @@ public class Position
 		this.y = y;
 	}
 
-	public boolean equals(Position position){
-		if((this.x == position.x) && (this.y == position.y)){
+	public boolean equals(Object other){
+		if (other == this) {
 			return true;
 		}
-
 		return false;
 	}
 

@@ -66,6 +66,7 @@ public class HashBoard{
     
     }
 
+
 	public void printKeys(){
 
 		Set<Position> keySet = gBoard.keySet();
@@ -117,14 +118,34 @@ public class HashBoard{
 
 		//Right
 		boolean exists=false;
-		for(Position pos: keySet){
+		if(!gBoard.containsKey(rPosX)){
+			set.add(rPosX);
+		}
+		if(!gBoard.containsKey(lPosX)){
+			set.add(lPosX);
+		}
+		if(!gBoard.containsKey(tPosY)){
+			set.add(tPosY);
+		}
+		if(!gBoard.containsKey(bPosY)){
+			set.add(bPosY);
+		}
+		/*for(Position pos: keySet){
 			if(rPosX.equals(pos)){
 				exists=true;
 				break;
 			}
 		}
 		if(!exists){
-			set.add(rPosX);
+			for(Position pos: set){
+				if(rPosX.equals(pos)){
+					exists=true;
+					break;
+				}
+			}
+			if(!exists) {
+				set.add(rPosX);
+			}
 		}
 		//Left
 		exists=false;
@@ -135,7 +156,15 @@ public class HashBoard{
 			}
 		}
 		if(!exists){
-			set.add(lPosX);
+			for(Position pos: set){
+				if(lPosX.equals(pos)){
+					exists=true;
+					break;
+				}
+			}
+			if(!exists) {
+				set.add(lPosX);
+			}
 		}
 		//Top
 		exists=false;
@@ -146,7 +175,15 @@ public class HashBoard{
 			}
 		}
 		if(!exists){
-			set.add(tPosY);
+			for(Position pos: set){
+				if(tPosY.equals(pos)){
+					exists=true;
+					break;
+				}
+			}
+			if(!exists) {
+				set.add(tPosY);
+			}
 		}
 		//Bottom
 		exists=false;
@@ -157,8 +194,16 @@ public class HashBoard{
 			}
 		}
 		if(!exists){
-			set.add(bPosY);
-		}
+			for(Position pos: set){
+				if(bPosY.equals(pos)){
+					exists=true;
+					break;
+				}
+			}
+			if(!exists) {
+				set.add(bPosY);
+			}
+		}*/
 
 		Iterator<Position> deletespace = set.iterator();
 		while (deletespace.hasNext()) {
@@ -246,12 +291,18 @@ public class HashBoard{
 		board.gBoard.put(new Position(1, 0), new Tile());
 		board.checkOpenSpots(new Position(1, 0));
 		board.printKeys();
+		/*board.gBoard.put(new Position(2, 0), new Tile());
+		board.checkOpenSpots(new Position(2, 0));
+		board.printKeys();
+		board.gBoard.put(new Position(0, 1), new Tile());
+		board.checkOpenSpots(new Position(0, 1));
+		board.printKeys();
         //board.gBoard.put(new Position(0, 1), new Tile());
         //board.checkOpenSpots(new Position(0, 1));
         //board.printKeys();
         //board.gBoard.put(new Position(2, 0), new Tile());
         //board.checkOpenSpots(new Position(2, 0));
-        //board.printKeys();
+        //board.printKeys();*/
         
         
 		/**System.out.println("We Have Started a New Game");
