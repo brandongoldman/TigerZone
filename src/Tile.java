@@ -64,7 +64,66 @@ public class Tile {
 	{
 		return position;
 	}
+	
+	public int getAnimal()
+	{
+		return animal;
+	}
+	
+	public boolean getDen()
+	{
+		return den;
+	}
+	
+	public int getEdgeT()
+	{
+		return eT;
+	}
+	
+	public int getEdgeL()
+	{
+		return eL;
+	}
+	
+	public int getEdgeR()
+	{
+		return eR;
+	}
+	
+	public int getEdgeB()
+	{
+		return eB;
+	}
+	
+	public boolean getCTL()
+	{
+		return cTL;
+	}
+	
+	public boolean getCTR()
+	{
+		return cTR;
+	}
+	
+	public boolean getCBR()
+	{
+		return cBR;
+	}
+	
+	public boolean getCBL()
+	{
+		return cBL;
+	}
+	
+	public boolean getOLR()
+	{
+		return oLR;
+	}
 
+	public boolean getOTB()
+	{
+		return oTB;
+	}
 	//Setter
 
 	public void setPosition(Position pos)
