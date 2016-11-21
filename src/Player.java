@@ -4,21 +4,25 @@ public class Player
 {
 	private int score;
 	private int numOfTigers = 7;
+	private int numOfCrocodiles = 2;
 	private boolean tigerOnBoard;
+	private boolean crocodileOnBoard;
 	private boolean updated;
 	//private int playerNumber;
 	int tileLocation_X;
 	int tileLocation_Y;
 	int orientation;
 	int tigerPlacement;
+	int crocodilePlacement;
     
     HashBoard x = new HashBoard();
 
-	public Player(int score, int numOfTigers)
+	public Player(int score, int numOfTigers, int numOfCrocodiles)
 	{
 		//this.playerNumber = playerNumber;
 		this.score = score;
 		this.numOfTigers = numOfTigers;
+		this.numOfCrocodiles = numOfCrocodiles;
         HashMap<Position, Tile> board = x.getMap();
         //x.board.print
         x.getMap().put(new Position(0, 0), new Tile());
@@ -37,6 +41,11 @@ public class Player
 		return tigerOnBoard;
 	}
 
+	public boolean crocodileOnBoard()
+	{
+		return crocodileOnBoard;
+	}
+
 	// public int getPlayerNumber()
 	// {
 	// 	return Tiger.getOwner();
@@ -46,6 +55,11 @@ public class Player
 	public int getTigers()
 	{
 		return numOfTigers;
+	}
+
+	public int getCrocodiles()
+	{
+		return numOfCrocodiles;
 	}
 
 	// let player place a tiger
@@ -59,6 +73,19 @@ public class Player
 			System.out.println("Error: No Tigers Available");
 			throw new NoTigerException(numOfTigers);
 
+		}
+	}
+
+	// let player place a crocodile
+	public void placeCrocodile() throws NoCrocodileException {
+		if(numOfCrocodiles > 0)
+		{
+			numOfCrocodiles--;
+		}
+		else{
+
+			System.out.println("Error: No Crocodiles Available");
+			throw new NoCrocodileException(numOfCrocodiles);
 		}
 	}
 	
@@ -116,7 +143,8 @@ public class Player
 
 		int score = 0;
 		int tigers = 7;
-    	Player player = new Player(score, tigers);
+		int crocodiles = 2;
+    	Player player = new Player(score, tigers, crocodiles);
       
     	//player.OpeningList();
     }
