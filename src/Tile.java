@@ -26,6 +26,7 @@ public class Tile {
 	private boolean cBR = false;
 	private boolean oLR = false;
 	private boolean oTB = false;
+	private int orientation = 0;
 	
 	
 	private Position position;
@@ -41,8 +42,13 @@ public class Tile {
 		this.position = pos;
 	}
 
+	public int getOrientation()
+	{
+		return orientation;
+	}
 
-	public Tile(int animal, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
+
+	public Tile(int animal, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB, int orientation)
 	{
 		this.animal = animal;
 		this.den = den;
@@ -56,6 +62,7 @@ public class Tile {
 		this.cBR = cBR;
 		this.oLR = oLR;
 		this.oTB = oTB;
+		this.orientation = orientation;
 	}
 	
 	//Getter
@@ -138,6 +145,8 @@ public class Tile {
 			+ "\noTB is " + this.oTB + ". oLR is " + this.oLR);
 	}
 	
+
+	// need to determine rotation based on: int orientation
 	public void rotateCW()
 	{
 		boolean bitTemp = cTL;
@@ -153,6 +162,7 @@ public class Tile {
 		bitTemp = oTB;
 		oTB = oLR;
 		oLR = bitTemp;
+		orientation = (orientation + 1) % 4;		// !!!!! BRAD FIX ME!!
 	}
 	
 	public void rotateCC()
@@ -170,6 +180,7 @@ public class Tile {
 		bitTemp = oTB;
 		oTB = oLR;
 		oLR = bitTemp;
+		orientation = (orientation + 1) % 4;			// !!!!! BRAD FIX ME!!  
 	}
 
 }
