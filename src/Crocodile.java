@@ -4,18 +4,18 @@
 
     Logic:
 
-        This class is suppose to represent the tigers. 
+        This class is suppose to represent the crocodiles. 
         Properties below will help in the scoring and
-        in the placement of the Tigers on specific parts
+        in the placement of the Crocodiles on specific parts
         of the game board.
 
 ***********************************************************************/
 
 
-public class Tiger{
+public class Crocodile{
 	
-    private int tigerOwner;
-    private int tigerPlacement;
+    private int crocodileOwner;
+    private int crocodilePlacement;
     private boolean edgeHasRoad;
     private char locationType;
     
@@ -23,24 +23,24 @@ public class Tiger{
     //return the owner int of the tiger
     public int getOwner()
     {
-        return tigerOwner
+        return crocodileOwner;
     }
     
     
     //detect what location on a tile that the tiger placed
-    public int getTigerPlacement(){
-        return tigerPlacement;   
+    public int getCrocodilePlacement(){
+        return crocodilePlacement;   
     }
 
     //don't know how this will happen, but screw it 
-    public void setTigerPlacement(){
-        this.tigerPlacement = tigerPlacement;
+    public void setCrocodilePlacement(){
+        this.crocodilePlacement = crocodilePlacement;
     }
     
     //detect whether the tiger is placed on a road type
     public boolean edgeRoad(){
         
-        if(tigerPlacement == 'r'){
+        if(crocodilePlacement == 'r'){
             return true;
         }
         else{
