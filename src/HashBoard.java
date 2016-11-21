@@ -118,7 +118,7 @@ public class HashBoard{
 
 		//Right
 		boolean exists=false;
-		if(!gBoard.containsKey(rPosX)){
+		/**if(!gBoard.containsKey(rPosX)){
 			set.add(rPosX);
 		}
 		if(!gBoard.containsKey(lPosX)){
@@ -129,8 +129,8 @@ public class HashBoard{
 		}
 		if(!gBoard.containsKey(bPosY)){
 			set.add(bPosY);
-		}
-		/*for(Position pos: keySet){
+		}**/
+		for(Position pos: keySet){
 			if(rPosX.equals(pos)){
 				exists=true;
 				break;
@@ -203,7 +203,7 @@ public class HashBoard{
 			if(!exists) {
 				set.add(bPosY);
 			}
-		}*/
+		}
 
 		Iterator<Position> deletespace = set.iterator();
 		while (deletespace.hasNext()) {
