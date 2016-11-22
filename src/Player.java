@@ -14,8 +14,8 @@ import java.util.*;
 public class Player 
 {
 	private int score;
-	private int numOfTigers = 7;
-	private int numOfCrocodiles = 2;
+	private int numOfTigers;
+	private int numOfCrocodiles;
 	private boolean tigerOnBoard;
 	private boolean crocodileOnBoard;
 	private boolean updated;
