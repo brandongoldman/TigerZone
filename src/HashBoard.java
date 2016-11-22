@@ -83,31 +83,20 @@ public class HashBoard{
 
 	}
 
-	public boolean didAddTile(Position pos, Tile tile){
+	public void AddTile(Position pos, Tile tile){
+		//This is assuming that position and tile, is already been validated!
+		//No new tiger or crocodile
+		gBoard.put(pos,tile);
+		updateOpenSpots(pos);
 
-		//Check All avaliable spots
-		//Set<Position> set = checkOpenSpots();
+	}
 
-		//Check Spot Exist?
-		for (Position s : set) {
+	public void updateFeatures(){
 
-			System.out.println(s.getXPosition() + " " + s.getYPosition());
-
-			//Position was found in set
-			if(  (s.getXPosition() != pos.getXPosition()) && 
-				 (s.getYPosition() != pos.getYPosition())) {
-				//gBoard.put(pos, tile);
-				//return true;
-			}
-
-		}
-
-		//Position was not found in the Set
-		return false;
 	}
 
 
-	public void checkOpenSpots(Position newpos){
+	public void updateOpenSpots(Position newpos){
 		Set<Position> keySet = gBoard.keySet();
 		Iterator<Position> it = keySet.iterator();
 
@@ -288,16 +277,16 @@ public class HashBoard{
 
 		HashBoard board = new HashBoard();
 		board.gBoard.put(new Position(0, 0), new Tile());
-		board.checkOpenSpots(new Position(0, 0));
+		board.updateOpenSpots(new Position(0, 0));
 		board.printKeys();
 		board.gBoard.put(new Position(1, 0), new Tile());
-		board.checkOpenSpots(new Position(1, 0));
+		board.updateOpenSpots(new Position(1, 0));
 		board.printKeys();
 		board.gBoard.put(new Position(2, 0), new Tile());
-		board.checkOpenSpots(new Position(2, 0));
+		board.updateOpenSpots(new Position(2, 0));
 		board.printKeys();
 		board.gBoard.put(new Position(0, -1), new Tile());
-		board.checkOpenSpots(new Position(0, -1));
+		board.updateOpenSpots(new Position(0, -1));
 		board.printKeys();
 		/*board.gBoard.put(new Position(2, 0), new Tile());
 		board.checkOpenSpots(new Position(2, 0));

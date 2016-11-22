@@ -26,7 +26,7 @@ public class Player
         HashMap<Position, Tile> board = x.getMap();
         //x.board.print
         x.getMap().put(new Position(0, 0), new Tile());
-        x.checkOpenSpots(new Position(0, 0));
+        x.updateOpenSpots(new Position(0, 0));
         this.x.printKeys();
 	}
 	
