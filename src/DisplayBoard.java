@@ -20,9 +20,9 @@ public class DisplayBoard extends JPanel
     private static final int IMAGE_TYPE = BufferedImage.TYPE_INT_RGB;
     
     BufferedImage screen = new BufferedImage(1500,1000,IMAGE_TYPE);
-    public BufferedImage[] tiles = new BufferedImage[28];
-    public JLabel[] tileLabel = new JLabel[28];
-    private int tTypes = 28;
+    public BufferedImage[] tiles = new BufferedImage[29];
+    //public JLabel[] tileLabel = new JLabel[29];
+    private int tTypes = 29;
     private int mapLength = 35;
     private int mapWidth = 20;
     private int tEdge = 40;
@@ -44,6 +44,7 @@ public class DisplayBoard extends JPanel
             setTile(q,q,q,0);
             
         }
+        setTile(27,14,10,0);
         
         //setTile(tile identifier, Tile.position(xCord), Tile.position(yCord), rotation amounts);
         
@@ -116,7 +117,7 @@ public class DisplayBoard extends JPanel
         for(int x = 0; x < map.length; x++){
             
             for (int y = 0; y < map[x].length; y++){
-                map[x][y] = tiles[27];
+                map[x][y] = tiles[28];
             }
         }
         
