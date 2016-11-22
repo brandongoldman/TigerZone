@@ -117,8 +117,8 @@ public class HashBoard{
 		Position bPosY = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
 
 		//Right
-		boolean exists=false;
-		/**if(!gBoard.containsKey(rPosX)){
+		//boolean exists=false;
+		if(!gBoard.containsKey(rPosX)){
 			set.add(rPosX);
 		}
 		if(!gBoard.containsKey(lPosX)){
@@ -129,8 +129,8 @@ public class HashBoard{
 		}
 		if(!gBoard.containsKey(bPosY)){
 			set.add(bPosY);
-		}**/
-		for(Position pos: keySet){
+		}
+		/*for(Position pos: keySet){
 			if(rPosX.equals(pos)){
 				exists=true;
 				break;
@@ -203,16 +203,18 @@ public class HashBoard{
 			if(!exists) {
 				set.add(bPosY);
 			}
-		}
+		}*/
 
-		Iterator<Position> deletespace = set.iterator();
+		set.remove(newpos);
+
+		/*Iterator<Position> deletespace = set.iterator();
 		while (deletespace.hasNext()) {
 			Position holder = deletespace.next();
 			if (newpos.equals(holder)) {
 				deletespace.remove();
 				break;
 			}
-		}
+		}*/
 
 
 
@@ -290,6 +292,12 @@ public class HashBoard{
 		board.printKeys();
 		board.gBoard.put(new Position(1, 0), new Tile());
 		board.checkOpenSpots(new Position(1, 0));
+		board.printKeys();
+		board.gBoard.put(new Position(2, 0), new Tile());
+		board.checkOpenSpots(new Position(2, 0));
+		board.printKeys();
+		board.gBoard.put(new Position(0, -1), new Tile());
+		board.checkOpenSpots(new Position(0, -1));
 		board.printKeys();
 		/*board.gBoard.put(new Position(2, 0), new Tile());
 		board.checkOpenSpots(new Position(2, 0));

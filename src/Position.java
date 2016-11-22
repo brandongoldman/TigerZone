@@ -8,10 +8,12 @@ public class Position
 		this.y = y;
 	}
 
-	/*public int hashCode()
-	{
-		return x * 31 + y;
-	}*/
+	public int hashCode() {
+		int result = x;
+		result = 80 * result + y;
+		return result;
+	}
+
 	public int getXPosition(){
 		return x;
 	}
@@ -28,18 +30,18 @@ public class Position
 		this.y = y;
 	}
 
-	public boolean equals(Position position){
+	/*public boolean equals(Position position){
 		if(this.x==position.getXPosition() && this.y==position.getYPosition()){
 			return true;
 		}
 		return false;
 
-	}
-	/*public boolean equals(Object other){
-		if (other == this) {
-			return true;
-		}
-		return false;
 	}*/
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Position)) return false;
+		Position position = (Position) o;
+		return x == position.x && y == position.y;
+	}
 
 }
