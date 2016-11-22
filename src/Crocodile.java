@@ -18,7 +18,22 @@ public class Crocodile{
     private int crocodilePlacement;
     private boolean edgeHasRoad;
     private char locationType;
-    
+
+
+    //Empty Constructor for Testing    
+    public Crocodile(){
+
+    }
+
+    //Public Constructor for Full Integration
+    public Crocodile(int crocodileOwner, int crocodilePlacement, boolean edgeHasRoad, char locationType){
+
+        this.crocodileOwner = crocodileOwner;
+        this.crocodilePlacement = crocodilePlacement;
+        this.edgeHasRoad = edgeHasRoad;
+        this.locationType = locationType;
+
+    }
     
     //return the owner int of the tiger
     public int getOwner()

@@ -1,4 +1,23 @@
+/**********************************************************************
+
+    Created By: Group N
+
+    Logic:
+
+        This class will simulate the options of the player,
+        which will probably changed to an AI to some point.
+
+
+***********************************************************************/
+
 import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Player 
 {
@@ -8,80 +27,62 @@ public class Player
 	private boolean tigerOnBoard;
 	private boolean crocodileOnBoard;
 	private boolean updated;
-	//private int playerNumber;
 	int tileLocation_X;
 	int tileLocation_Y;
 	int orientation;
+	ArrayList<Tiger> tigers;
+	ArrayList<Crocodile> crocodiles;
 	int tigerPlacement;
 	int crocodilePlacement;
     
     HashBoard x = new HashBoard();
 
-	public Player(int score, int numOfTigers, int numOfCrocodiles)
-	{
-		//this.playerNumber = playerNumber;
-		this.score = score;
-		this.numOfTigers = numOfTigers;
-		this.numOfCrocodiles = numOfCrocodiles;
-        HashMap<Position, Tile> board = x.getMap();
-        //x.board.print
-        x.getMap().put(new Position(0, 0), new Tile());
-        x.updateOpenSpots(new Position(0, 0));
-        this.x.printKeys();
+    //For Testing Purposes, use an empty Player constructor
+
+	public Player(){
+		this.score = 0;
+		this.tigers = new ArrayList<Tiger>(7);
+		this.crocodiles = new ArrayList<Crocodile>(2);
+        //HashMap<Position, Tile> board = x.getMap();
+        //x.getMap().put(new Position(0, 0), new Tile());
+        //x.updateOpenSpots(new Position(0, 0));
+        //this.x.printKeys();
 	}
 
-	public boolean tigerOnBoard()
-	{
+	public boolean tigerOnBoard(){
 		return tigerOnBoard;
 	}
 
-	public boolean crocodileOnBoard()
-	{
+	public boolean crocodileOnBoard(){
 		return crocodileOnBoard;
 	}
-
-	// public int getPlayerNumber()
-	// {
-	// 	return Tiger.getOwner();
-	// }
 	
 	// Get total number of tigers player has at start of game
-	public int getTigers()
-	{
-		return numOfTigers;
+	public ArrayList<Tiger> getTigers(){
+		return tigers;
 	}
 
-	public int getCrocodiles()
-	{
-		return numOfCrocodiles;
+	public ArrayList<Crocodile> getCrocodiles(){
+		return crocodiles;
 	}
 
 	// let player place a tiger
 	public void placeTiger() throws NoTigerException {
-		if(numOfTigers > 0)
-		{
-			numOfTigers--;
-		}
-		else{
-
+		if(tigers.empty()) {
 			System.out.println("Error: No Tigers Available");
 			throw new NoTigerException(numOfTigers);
-
 		}
 	}
 
 	// let player place a crocodile
 	public void placeCrocodile() throws NoCrocodileException {
-		if(numOfCrocodiles > 0)
-		{
-			numOfCrocodiles--;
-		}
-		else{
-
+		if(crocodiles.empty()){
 			System.out.println("Error: No Crocodiles Available");
 			throw new NoCrocodileException(numOfCrocodiles);
 		}
+
 	}
+
 	
 	/* MAKE MOVE *************************************************************************
 	 *		1. A player must place a tile by choosing location, orientation (rotation),	 *
@@ -127,8 +128,7 @@ public class Player
 	// if score is calculated on turn, return tiger to player
 	public void returnTiger()
 	{
-		if(updated)
-		{
+		if(updated){
 			numOfTigers++;
 		}
 	}
@@ -138,9 +138,8 @@ public class Player
 		int score = 0;
 		int tigers = 7;
 		int crocodiles = 2;
-    	Player player = new Player(score, tigers, crocodiles);
+    	//Player player = new Player(score, tigers, crocodiles);
       
-    	//player.OpeningList();
     }
 
 }

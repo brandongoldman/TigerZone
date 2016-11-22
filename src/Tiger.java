@@ -34,7 +34,7 @@ public class Tiger{
     //return the owner int of the tiger
     public int getOwner()
     {
-        return tigerOwner
+        return tigerOwner;
     }
     
     
