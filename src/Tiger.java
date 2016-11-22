@@ -17,11 +17,20 @@ public class Tiger{
     private int tigerOwner;
     private int tigerPlacement;
 
+    //Empty Public Constructor with Empty Features
 
-    public Tiger(int owner, int placement){
-        tigerOwner=owner;
-        tigerPlacement=placement;
+    public Tiger(){
+
+
     }
+
+    //Public Constructor with Full Features
+    public Tiger(int owner, int placement){
+        this.tigerOwner=owner;
+        this.tigerPlacement=placement;
+    }
+
+
     //return the owner int of the tiger
     public int getOwner()
     {
