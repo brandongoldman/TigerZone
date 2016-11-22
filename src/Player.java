@@ -29,12 +29,6 @@ public class Player
         x.updateOpenSpots(new Position(0, 0));
         this.x.printKeys();
 	}
-	
-	// Get Score
-	public int getScore()
-	{
-		return score;
-	}
 
 	public boolean tigerOnBoard()
 	{

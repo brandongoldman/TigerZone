@@ -27,13 +27,15 @@ import java.util.Set;
 import java.util.Map;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class HashBoard{
 	
     private HashMap <Position, Tile> gBoard; // = new HashMap<Position, Tile>();
 	Set <Position> set;
 
-	public HashBoard(){
+
+	public HashBoard(int numberOfPlayers){
 		gBoard = new HashMap<Position, Tile>();
 		//Initializing Possible spots for users
 		set = new HashSet<Position>();
@@ -46,7 +48,7 @@ public class HashBoard{
 
 			Known Bug:
 			Comparsion in the HashMap with Position doesn't work
-			Talk about tomorrow in the group
+			Talk about tomorrow in the group (Solved)
 
 			Test Case:
 			1. Try a tile that is already on the board
@@ -275,7 +277,7 @@ public class HashBoard{
 
 	public static void main(String[] args){
 
-		HashBoard board = new HashBoard();
+		HashBoard board = new HashBoard(0);
 		board.gBoard.put(new Position(0, 0), new Tile());
 		board.updateOpenSpots(new Position(0, 0));
 		board.printKeys();

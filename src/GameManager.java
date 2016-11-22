@@ -7,7 +7,7 @@ public abstract class GameManager
 	private int turnNumber;
 	private int[] playerScore;
   	private boolean stopGameFlag;
-	private Board board;
+	private HashBoard board;
 	private Player[] Players;
 	
 	
@@ -19,6 +19,7 @@ public abstract class GameManager
 		this.stopGameFlag = false;
 		this.playerScore = new int[numberOfPlayers];
 		initializePlayers(numberOfPlayers);
+		board=new HashBoard(numberOfPlayers);
 	}
 
 	public GameManager(int numberOfPlayers, int turnNumber, boolean stopGameFlag)
@@ -28,6 +29,7 @@ public abstract class GameManager
 		this.playerScore = new int[numberOfPlayers];
 		this.stopGameFlag = false;
 		initializePlayers(numberOfPlayers);
+		board=new HashBoard(numberOfPlayers);
 	}
 	
 	// ************ Method does not work if Player class is abstract *********
@@ -43,13 +45,15 @@ public abstract class GameManager
 		{
 			Players[i] = new Player(initialScore, initialnumTigers, initialnumCrocodile);
 		}
+
+
 	}	
 	
 	
 	
-	public void setScore(int score, int playerNumber)
+	public void addScore(int score, int playerNumber)
 	{
-		playerScore[playerNumber-1] = score;
+		playerScore[playerNumber] += score;
 		
 	}
 	

@@ -16,9 +16,12 @@ public class Tiger{
 	
     private int tigerOwner;
     private int tigerPlacement;
-    private char locationType;
-    private boolean completed;
-    
+
+
+    public Tiger(int owner, int placement){
+        tigerOwner=owner;
+        tigerPlacement=placement;
+    }
     //return the owner int of the tiger
     public int getOwner()
     {
