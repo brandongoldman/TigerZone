@@ -13,6 +13,10 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+
 public class DisplayBoard extends JPanel
 {
     
@@ -37,22 +41,26 @@ public class DisplayBoard extends JPanel
         loadTile();
         init();
         //setTile(8,3,5);
-        setTile(19,18,9,0);
-        setTile(24,19,9,1);
-        for(int q = 0; q<20; q++){
+        setTile(19,0,0,0);
+        //setTile(24,19,9,1);
+        //for(int q = 0; q<20; q++){
             
-            setTile(q,q,q,0);
+        //    setTile(q,q,q,0);
             
-        }
-        setTile(27,14,10,0);
+        //}
+        //setTile(27,14,10,0);
         
         //setTile(tile identifier, Tile.position(xCord), Tile.position(yCord), rotation amounts);
         
         //tiles[8]=RotateBy90(tiles[8]);
         //setTile(8,3,6);
-        //setTile(RotateBy90(tiles[8]),3,6);
-        setTile(5,8,9,1);
-        setTile(16,18,10,1);
+        
+        setTile(19,0,1,1);
+        setTile(19,0,2,2);
+        setTile(19,0,3,3);
+        setTile(19,0,4,4);
+        //setTile(5,8,9,1);
+        //setTile(16,18,10,1);
         TileGrid();
         
     }
@@ -96,7 +104,8 @@ public class DisplayBoard extends JPanel
             BufferedImage placeTile = tiles[f];
         
                 while(num != 0){
-                    placeTile = RotateBy90(placeTile);
+                    //placeTile = RotateBy90(placeTile);
+                    placeTile = NewRotate(placeTile);
                     System.out.println("Rotated tile: " + f + " / " + rotates + " times" );
                     num--;
                 }
@@ -142,6 +151,26 @@ public class DisplayBoard extends JPanel
         return biFlip;
         
         //--TODO-- allow image to continually be rotated again by 90 degrees instead of flipping back
+    }
+    
+    public BufferedImage NewRotate(BufferedImage bi){
+        
+        int width = bi.getWidth();
+        int height = bi.getHeight();
+        
+        BufferedImage bufferedImage = new BufferedImage(height, width, bi.getType());
+        
+        bufferedImage = bi;
+        
+        AffineTransform tx = new AffineTransform();
+        tx.rotate(Math.PI / 2, bi.getWidth() / 2, bi.getHeight() / 2);
+        
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        bufferedImage = op.filter(bufferedImage, null);
+        
+        return bufferedImage;
+
+        
     }
     
     //draws each tile currently in the map array to the board
