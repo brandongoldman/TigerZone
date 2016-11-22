@@ -7,12 +7,8 @@ public abstract class GameManager
 	private int turnNumber;
 	private int[] playerScore;
   	private boolean stopGameFlag;
-	private Set<Position> Openspaces;
 	private Board board;
-	//private TileStack;
-	//private HashSet<Position> Openspaces;
-	//public Player[] currentPlayers;
-	//public Player playerOne;
+	private Player[] Players;
 	
 	
 	
@@ -22,7 +18,7 @@ public abstract class GameManager
 		this.turnNumber = 0;
 		this.stopGameFlag = false;
 		this.playerScore = new int[numberOfPlayers];
-		this.Openspaces = new HashSet<Position>();      //Populate set with initial positions
+		initializePlayers(numberOfPlayers);
 	}
 
 	public GameManager(int numberOfPlayers, int turnNumber, boolean stopGameFlag)
@@ -31,21 +27,21 @@ public abstract class GameManager
 		this.turnNumber = turnNumber;
 		this.playerScore = new int[numberOfPlayers];
 		this.stopGameFlag = false;
-		this.Openspaces = new HashSet<Position>();      //Populate set with initial positions
+		initializePlayers(numberOfPlayers);
 	}
 	
 	// ************ Method does not work if Player class is abstract *********
 	public void initializePlayers(int numberOfPlayers)
 	{
-		Player[] totalPlayers = new Player[numberOfPlayers];
+		Players = new Player[numberOfPlayers];
 		
 		int initialScore = 0;
 		int initialnumTigers = 7;
-		boolean initialTigerOnBoard = false;
+		int initialnumCrocodile = 2;
 		
 		for(int i = 0; i < numberOfPlayers; i ++)
 		{
-			totalPlayers[i] = new Player(initialScore, initialnumTigers, initialTigerOnBoard);
+			Players[i] = new Player(initialScore, initialnumTigers, initialnumCrocodile);
 		}
 	}	
 	
@@ -55,11 +51,6 @@ public abstract class GameManager
 	{
 		playerScore[playerNumber-1] = score;
 		
-	}
-	
-	public void meeplePosition()
-	{
-		// determine the meeple Position on the tile 
 	}
 	
 
@@ -84,84 +75,6 @@ public abstract class GameManager
         */
  	}
 
-	
-	public boolean CheckValidMove()
-	{
-		Position[] spaces = Openspaces.toArray(new Position[Openspaces.size()]);
-		
-		Position check = null;
-		
-		for(int i = 0;  i < spaces.length; i++)
-		{
-			
-			
-			if(board.xy_pos[spaces[i].x][spaces[i].y] != null)   
-			{
-				check = spaces[i];
-				break;
-			}
-			
-		}
-		
-		
-			if(board.xy_pos[check.x][check.y]/**EdgeTop*/ == board.xy_pos[check.x][check.y-1]/**EdgeBottom*/ || board.xy_pos[check.x][check.y-1] == null)
-			{
-				
-			}
-			else{ return false;}
-			
-			if(board.xy_pos[check.x][check.y]/**EdgeBottom*/== board.xy_pos[check.x][check.y+1]/**EdgeTop*/ || board.xy_pos[check.x][check.y+1] == null)
-			{
-
-			}
-			else{ return false;}
-			
-			if(board.xy_pos[check.x][check.y]/**EdgeRight*/== board.xy_pos[check.x+1][check.y]/**EdgeLeft*/ || board.xy_pos[check.x+1][check.y] == null)
-			{
-
-			}
-			else{return false;}
-			
-			if(board.xy_pos[check.x][check.y]/**EdgeLeft*/== board.xy_pos[check.x-1][check.y]/**EdgeRight*/ || board.xy_pos[check.x-1][check.y] == null)
-			{
-
-			}
-			else{ return false;}
-			
-			//Remove coordinate of tile that was just placed
-			
-			OpenSpaces.remove(check);
-			
-			//Add coordinates around tile that have not been populated yet
-			
-			if(board.xy_pos[check.x][check.y-1]== null)
-			{
-				Position addition = new Position(check.x,check.y-1);
-				Openspaces.add(addition);   
-			}
-			
-			if(board.xy_pos[check.x][check.y+1]== null)
-			{
-				Openspaces.add(new Position(check.x,check.y+1));  
-			}
-			
-			if(board.xy_pos[check.x+1][check.y]== null)
-			{
-				Openspaces.add(new Position(check.x+1,check.y));   
-			}
-			
-			if(board.xy_pos[check.x-1][check.y]== null)
-			{
-				Openspaces.add(new Position(check.x-1,check.y));  
-			}
-
-			/**Use the Openspaces to keep track of all open spaces in O(1) time and updae the Openspaces array everytime a
-			 * new tile is placed onto the board. Doing this will allow us to know where the new tile was places so every
-			 * iteration of a new tile being placed we only need to check if that tile is a valid move instead of entire
-			 * board.
-			 */
-			return true;
-	}
 	
 	public void startGame()
 	{

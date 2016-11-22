@@ -4,7 +4,7 @@
 
     Logic:
 
-        This class is suppose to represent the meeples. 
+        This class is suppose to represent the tigers. 
         Properties below will help in the scoring and
         in the placement of the Tigers on specific parts
         of the game board.
@@ -16,9 +16,8 @@ public class Tiger{
 	
     private int tigerOwner;
     private int tigerPlacement;
-    private boolean edgeHasRoad;
     private char locationType;
-    
+    private boolean completed;
     
     //return the owner int of the tiger
     public int getOwner()
@@ -36,17 +35,7 @@ public class Tiger{
     public void setTigerPlacement(){
         this.tigerPlacement = tigerPlacement;
     }
-    
-    //detect whether the tiger is placed on a road type
-    public boolean edgeRoad(){
-        
-        if(tigerPlacement == 'r'){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+
     
     
 }
