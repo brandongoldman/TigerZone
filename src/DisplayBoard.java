@@ -64,8 +64,7 @@ public class DisplayBoard extends JPanel
         for(int i = 0; i < tTypes; i++){
             try {
                // tiles[i] = ImageIO.read(new File("/Users/Adam/TigerZone/src/tileImages/tile_" + i + ".png"));
-                tiles[i] = ImageIO.read(new File("../src/tileImages/tile_" + i + ".png"));   // ADAM.. I CHANGED THE DIRECTORY SO CHANGE BACK IF YOU HAVE PROBLEMS
-                
+                tiles[i] = ImageIO.read(new File("../src/tileImages/tile_" + i + ".png"));
                 //tileLabel[i] = new JLabel(new ImageIcon(tiles[i]));
                 
                 //System.out.println("image:  " + i + tiles[i] );
