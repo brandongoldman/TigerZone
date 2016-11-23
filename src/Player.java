@@ -133,10 +133,9 @@ public class Player
 	}
 
 	// update player's score with new point value after turn completed
-	public void setScore(int score, boolean updated)
+	public void updateScore(int newScore)
 	{
-		this.score = score;
-		this.updated = updated;
+		this.score = newScore;
 	}
 
 	// if score is calculated on turn, return tiger to player
