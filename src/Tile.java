@@ -167,7 +167,7 @@ public class Tile {
 	// }
 	
 	// ---- ROTATE COUNTER CLOCKWISE
-	public void rotate90()
+	public void rotate()
 	{
 		boolean bitTemp = cTL;
 		int edgeTemp = eT;
