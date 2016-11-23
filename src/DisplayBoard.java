@@ -25,11 +25,10 @@ public class DisplayBoard extends JPanel
     
     BufferedImage screen = new BufferedImage(1500,1000,IMAGE_TYPE);
     public BufferedImage[] tiles = new BufferedImage[29];
-    //public JLabel[] tileLabel = new JLabel[29];
     private int tTypes = 29;
-    private int mapLength = 35;
-    private int mapWidth = 20;
-    private int tEdge = 40;
+    private int mapLength = 60;
+    private int mapWidth = 35;
+    private int tEdge = 25;
     public BufferedImage[][] map = new BufferedImage[mapLength][mapWidth];
     
     //constructor to call methods and test operation
@@ -40,28 +39,18 @@ public class DisplayBoard extends JPanel
         
         loadTile();
         init();
-        //setTile(8,3,5);
         setTile(19,0,0,0);
-        //setTile(24,19,9,1);
+        
         //for(int q = 0; q<20; q++){
             
         //    setTile(q,q,q,0);
             
         //}
-        //setTile(27,14,10,0);
-        
         //setTile(tile identifier, Tile.position(xCord), Tile.position(yCord), rotation amounts);
-        
-        //tiles[8]=RotateBy90(tiles[8]);
-        //setTile(8,3,6);
-        
         setTile(19,0,1,90);
-        
         setTile(19,0,2,180);
         setTile(19,0,3,270);
-        //setTile(19,0,4,4);
-        //setTile(5,8,9,1);
-        //setTile(16,18,10,1);
+
         TileGrid();
         
     }
@@ -73,11 +62,7 @@ public class DisplayBoard extends JPanel
         //Graphics g = screen.getGraphics();
         for(int i = 0; i < tTypes; i++){
             try {
-               // tiles[i] = ImageIO.read(new File("/Users/Adam/TigerZone/src/tileImages/tile_" + i + ".png"));
                 tiles[i] = ImageIO.read(new File("../src/tileImages/tile_" + i + ".png"));
-                //tileLabel[i] = new JLabel(new ImageIcon(tiles[i]));
-                
-                //System.out.println("image:  " + i + tiles[i] );
             }
             catch (final IOException e) {
                 System.out.println(e);
@@ -111,13 +96,6 @@ public class DisplayBoard extends JPanel
             placeTile = CCRotate(placeTile, rotates);
             }
         
-                //while(degrees != 0){
-                //    //placeTile = RotateBy90(placeTile);
-                //    placeTile = NewRotate(placeTile);
-                //    System.out.println("Rotated tile: " + f + " / " + rotates + " times" );
-                //    num--;
-                //}
-        
         System.out.println("Placed tile: " + f + " at Coordinates (" + xCord + "," + yCord + ") rotated " + rotates + " degrees");
         //map[xCord][yCord] = tiles[f];
         map[xCord][yCord] = placeTile;
@@ -140,11 +118,8 @@ public class DisplayBoard extends JPanel
         
     }
     
-    //public void update{
-    //}
-    
     //method that allows tiles to be rotated by 90 degree
-    public BufferedImage RotateBy90(BufferedImage bi) {
+    /*public BufferedImage RotateBy90(BufferedImage bi) {
         
         int width = bi.getWidth();
         int height = bi.getHeight();
@@ -157,9 +132,7 @@ public class DisplayBoard extends JPanel
             }
         }
         return biFlip;
-        
-        //--TODO-- allow image to continually be rotated again by 90 degrees instead of flipping back
-    }
+    }*/
     
     public BufferedImage CCRotate(BufferedImage bi, int degrees){
         
@@ -188,7 +161,7 @@ public class DisplayBoard extends JPanel
         
         AffineTransform tx = new AffineTransform();
         tx.rotate(radians, bi.getWidth() / 2, bi.getHeight() / 2);
-        
+        //rotating by radians counterclockwise about center of tile
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
         bufferedImage = op.filter(bufferedImage, null);
         
@@ -200,14 +173,11 @@ public class DisplayBoard extends JPanel
     //draws each tile currently in the map array to the board
     public void TileGrid(){
         Graphics g = screen.getGraphics();
-        //Graphics g = screen.getGraphics();
         
         for(int x = 0; x < map.length; x++){
             
             for (int y = 0; y < map[x].length; y++){
                 drawTile(g, map[x][y], x*tEdge, y*tEdge);
-                //drawTile(g, tiles[3], 0, x*30);
-                //System.out.println("swag");
             }
         }
     }
@@ -220,8 +190,6 @@ public class DisplayBoard extends JPanel
         
         DisplayBoard display = new DisplayBoard();
         frame.add(display);
-        //frame.setSize(800,800);
-        //frame.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
