@@ -3,17 +3,18 @@
  */
 import java.util.HashSet;
 import java.util.Set;
+import java.util.ArrayList;
 
 public class FeatureArea {
     private Tiger tiger;
     private boolean hasTiger;
     private boolean completed;
     Set<Position> area;
-    private Edge typeOfArea;
+    ArrayList<Boundary> openBoundary;
 
-    public FeatureArea(int type){
+    public FeatureArea(){
         area = new HashSet<Position>();
-        typeOfArea=new Edge(type);
+        openBoundary = new ArrayList<Boundary>();
         completed = false;
         hasTiger=false;
     }
@@ -22,10 +23,7 @@ public class FeatureArea {
         tiger=newTiger;
         hasTiger=true;
     }
-
-    public Edge getTypeOfArea() {
-        return typeOfArea;
-    }
+    
     public boolean getCompleted(){
         return completed;
     }

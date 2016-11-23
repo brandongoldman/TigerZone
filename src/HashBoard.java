@@ -33,6 +33,12 @@ public class HashBoard{
 	
     private HashMap <Position, Tile> gBoard; // = new HashMap<Position, Tile>();
 	Set <Position> set;
+	ArrayList<FeatureArea> Jungle;
+	ArrayList<FeatureArea> Trail;
+	ArrayList<FeatureArea> Lake;
+	ArrayList<FeatureArea> ClaimedJungle;
+	ArrayList<FeatureArea> ClaimedTrail;
+	ArrayList<FeatureArea> ClaimedLake;
 
 
 	public HashBoard(int numberOfPlayers){
@@ -40,15 +46,14 @@ public class HashBoard{
 		//Initializing Possible spots for users
 		set = new HashSet<Position>();
 		//gBoard.put(new Position(0, 0), new Tile());
-
-
-		//Attempt to Scale
+		Jungle = new ArrayList<FeatureArea>();
+		Trail = new ArrayList<FeatureArea>();
+		Lake = new ArrayList<FeatureArea>();
+		ClaimedJungle = new ArrayList<FeatureArea>();
+		ClaimedTrail = new ArrayList<FeatureArea>();
+		ClaimedLake = new ArrayList<FeatureArea>();
 		
-		/*	
-
-			Known Bug:
-			Comparsion in the HashMap with Position doesn't work
-			Talk about tomorrow in the group (Solved)
+		/*
 
 			Test Case:
 			1. Try a tile that is already on the board
@@ -56,10 +61,6 @@ public class HashBoard{
 
 		*/
 
-		// gBoard.put(new Position(1, 0), new Tile());
-		// gBoard.put(new Position(-1, 0), new Tile());
-		// gBoard.put(new Position(0, 1), new Tile());
-		// gBoard.put(new Position(0, -1), new Tile());
 	}
     
     public HashMap<Position, Tile> getMap(){
@@ -90,13 +91,20 @@ public class HashBoard{
 		//No new tiger or crocodile
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
-
+		updateFeatures();
 	}
 
 	public void updateFeatures(){
 
 	}
 
+	public void AddTile(Position pos, Tile tile, Tiger tiger){
+
+	}
+
+	public void updateFeatures(Tiger tiger){
+
+	}
 
 	public void updateOpenSpots(Position newpos){
 		Set<Position> keySet = gBoard.keySet();
