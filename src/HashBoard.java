@@ -64,6 +64,8 @@ public class HashBoard{
 		initialLake.areaCoor.add(new Position(0,0));
 		initialLake.openBoundary.add(new Boundary(new Position(0,0),2));
 
+		Lake.add(initialLake);
+
 		//Area of Jungle
 		/**New Area for Jungle to account for split tiles
 		 *
@@ -107,11 +109,193 @@ public class HashBoard{
 		//No new tiger or crocodile
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
-		updateFeatures(pos);
+		updateFeatures(pos, tile);
 
 	}
 
-	public void updateFeatures(Position pos){
+	public void updateFeatures(Position pos, Tile tile){
+		Set<Boundary> adjacent= new HashSet<Boundary>();
+		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
+		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
+		Position top = new Position(pos.getXPosition(), pos.getYPosition() + 1); //1
+		Position bottom = new Position(pos.getXPosition(), pos.getYPosition() - 1); //3
+
+		boolean found = false;
+		FeatureArea RightArea;
+		FeatureArea LeftArea;
+		FeatureArea TopArea;
+		FeatureArea BottomArea;
+		/**RightArea**/
+		if(gBoard.containsKey(right)){
+			if(tile.getEdgeR()==2){
+				Boundary checkRight = new Boundary(right,4);
+				for(FeatureArea check : Lake){
+					if(check.openBoundary.contains(checkRight)){
+						RightArea=check;
+						found=true;
+						break;
+					}
+				}
+				if(!found) {
+					for (FeatureArea check : ClaimedLake) {
+						if (check.openBoundary.contains(checkRight)) {
+							RightArea = check;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeR()==1){
+				Boundary checkRight = new Boundary(right,4);
+				for(FeatureArea check : Trail){
+					if(check.openBoundary.contains(checkRight)){
+						RightArea=check;
+						found=true;
+						break;
+					}
+				}
+				if(!found) {
+					for (FeatureArea check : ClaimedTrail) {
+						if (check.openBoundary.contains(checkRight)) {
+							RightArea = check;
+							break;
+						}
+					}
+				}
+			}
+			//Add Jungle Area
+
+
+		}
+
+		/**LeftArea**/
+		found=false;
+		if(gBoard.containsKey(left)){
+			if(tile.getEdgeR()==2){
+				Boundary checkLeft = new Boundary(right,2);
+				for(FeatureArea check : Lake){
+					if(check.openBoundary.contains(checkLeft)){
+						LeftArea=check;
+						found=true;
+						break;
+					}
+				}
+				if(!found) {
+					for (FeatureArea check : ClaimedLake) {
+						if (check.openBoundary.contains(checkLeft)) {
+							LeftArea = check;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeR()==1){
+				Boundary checkLeft = new Boundary(right,2);
+				for(FeatureArea check : Trail){
+					if(check.openBoundary.contains(checkLeft)){
+						LeftArea=check;
+						found=true;
+						break;
+					}
+				}
+				if(!found) {
+					for (FeatureArea check : ClaimedTrail) {
+						if (check.openBoundary.contains(checkLeft)) {
+							LeftArea = check;
+							break;
+						}
+					}
+				}
+			}
+			//Add Jungle Area
+
+		}
+
+		/**TopArea**/
+		if(gBoard.containsKey(top)){
+			if(tile.getEdgeR()==2){
+				Boundary checkTop = new Boundary(right,3);
+				for(FeatureArea check : Lake){
+					if(check.openBoundary.contains(checkTop)){
+						TopArea=check;
+						found=true;
+						break;
+					}
+				}
+				if(!found) {
+					for (FeatureArea check : ClaimedLake) {
+						if (check.openBoundary.contains(checkTop)) {
+							TopArea = check;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeR()==1){
+				Boundary checkTop = new Boundary(right,3);
+				for(FeatureArea check : Trail){
+					if(check.openBoundary.contains(checkTop)){
+						TopArea=check;
+						found=true;
+						break;
+					}
+				}
+				if(!found) {
+					for (FeatureArea check : ClaimedTrail) {
+						if (check.openBoundary.contains(checkTop)) {
+							TopArea = check;
+							break;
+						}
+					}
+				}
+			}
+			//Add Jungle Area
+
+		}
+
+		/**BottomArea**/
+		if(gBoard.containsKey(bottom)){
+			if(tile.getEdgeR()==2){
+				Boundary checkBottom = new Boundary(right,1);
+				for(FeatureArea check : Lake){
+					if(check.openBoundary.contains(checkBottom)){
+						BottomArea=check;
+						found=true;
+						break;
+					}
+				}
+				if(!found) {
+					for (FeatureArea check : ClaimedLake) {
+						if (check.openBoundary.contains(checkBottom)) {
+							BottomArea = check;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeR()==1){
+				Boundary checkBottom = new Boundary(right,1);
+				for(FeatureArea check : Trail){
+					if(check.openBoundary.contains(checkBottom)){
+						BottomArea=check;
+						found=true;
+						break;
+					}
+				}
+				if(!found) {
+					for (FeatureArea check : ClaimedTrail) {
+						if (check.openBoundary.contains(checkBottom)) {
+							BottomArea = check;
+							break;
+						}
+					}
+				}
+			}
+			//Add Jungle Area
+
+		}
+
+
 
 	}
 
@@ -119,7 +303,7 @@ public class HashBoard{
 
 	}
 
-	public void updateFeatures(Tiger tiger){
+	public void updateFeatures(Position pos, Tiger tiger){
 
 	}
 
@@ -146,138 +330,10 @@ public class HashBoard{
 		if(!gBoard.containsKey(bPosY)){
 			set.add(bPosY);
 		}
-		/*for(Position pos: keySet){
-			if(rPosX.equals(pos)){
-				exists=true;
-				break;
-			}
-		}
-		if(!exists){
-			for(Position pos: set){
-				if(rPosX.equals(pos)){
-					exists=true;
-					break;
-				}
-			}
-			if(!exists) {
-				set.add(rPosX);
-			}
-		}
-		//Left
-		exists=false;
-		for(Position pos: keySet){
-			if(lPosX.equals(pos)){
-				exists=true;
-				break;
-			}
-		}
-		if(!exists){
-			for(Position pos: set){
-				if(lPosX.equals(pos)){
-					exists=true;
-					break;
-				}
-			}
-			if(!exists) {
-				set.add(lPosX);
-			}
-		}
-		//Top
-		exists=false;
-		for(Position pos: keySet){
-			if(tPosY.equals(pos)){
-				exists=true;
-				break;
-			}
-		}
-		if(!exists){
-			for(Position pos: set){
-				if(tPosY.equals(pos)){
-					exists=true;
-					break;
-				}
-			}
-			if(!exists) {
-				set.add(tPosY);
-			}
-		}
-		//Bottom
-		exists=false;
-		for(Position pos: keySet){
-			if(bPosY.equals(pos)){
-				exists=true;
-				break;
-			}
-		}
-		if(!exists){
-			for(Position pos: set){
-				if(bPosY.equals(pos)){
-					exists=true;
-					break;
-				}
-			}
-			if(!exists) {
-				set.add(bPosY);
-			}
-		}*/
+
 
 		set.remove(newpos);
 
-		/*Iterator<Position> deletespace = set.iterator();
-		while (deletespace.hasNext()) {
-			Position holder = deletespace.next();
-			if (newpos.equals(holder)) {
-				deletespace.remove();
-				break;
-			}
-		}*/
-
-
-
-	/*
-
-		while(it.hasNext()){
-
-			Position pos = it.next();
-
-			//System.out.println(pos.getXPosition() + " " + pos.getYPosition());
-
-			Position set_pPosX = new Position(pos.getXPosition() + 1, pos.getYPosition());
-			Position set_nPosX = new Position(pos.getXPosition() - 1, pos.getYPosition());
-			Position set_pPosY = new Position(pos.getXPosition(), pos.getYPosition() + 1);
-			Position set_nPosY = new Position(pos.getXPosition(), pos.getYPosition() - 1);
-
-			if(gBoard.containsKey(pos)){
-				set.remove(pos);
-			}
-
-			//Position is checked to the Right
-			if(!gBoard.containsKey(set_pPosX)){
-
-				set.add(set_pPosX);
-			} 
-
-			//Position is checked to the Top
-			if(!gBoard.containsKey(set_nPosX)){
-
-				set.add(set_nPosX);
-			}
-
-			//Position is checked to the Left
-			if(!gBoard.containsKey(set_pPosY)){
-
-				set.add(set_pPosY);
-			}
-
-			//Position is checked to the Bottom
-			if(!gBoard.containsKey(set_pPosY)){
-
-				set.add(set_nPosY);
-			}
-
-		}
-
-		*/
 	}
 	
 	
