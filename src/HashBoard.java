@@ -52,7 +52,23 @@ public class HashBoard{
 		ClaimedJungle = new ArrayList<FeatureArea>();
 		ClaimedTrail = new ArrayList<FeatureArea>();
 		ClaimedLake = new ArrayList<FeatureArea>();
-		
+
+		FeatureArea initialTrail = new FeatureArea();
+		initialTrail.areaCoor.add(new Position(0,0));
+		initialTrail.openBoundary.add(new Boundary(new Position(0,0),1));
+		initialTrail.openBoundary.add(new Boundary(new Position(0,0),3));
+
+		Trail.add(initialTrail);
+
+		FeatureArea initialLake = new FeatureArea();
+		initialLake.areaCoor.add(new Position(0,0));
+		initialLake.openBoundary.add(new Boundary(new Position(0,0),2));
+
+		//Area of Jungle
+		/**New Area for Jungle to account for split tiles
+		 *
+		 */
+
 		/*
 
 			Test Case:
@@ -91,10 +107,11 @@ public class HashBoard{
 		//No new tiger or crocodile
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
-		updateFeatures();
+		updateFeatures(pos);
+
 	}
 
-	public void updateFeatures(){
+	public void updateFeatures(Position pos){
 
 	}
 

@@ -6,24 +6,25 @@ import java.util.Set;
 import java.util.ArrayList;
 
 public class FeatureArea {
-    private Tiger tiger;
+    private ArrayList<Tiger> tiger;
     private boolean hasTiger;
     private boolean completed;
-    Set<Position> area;
-    ArrayList<Boundary> openBoundary;
+    Set<Position> areaCoor;
+    Set<Boundary> openBoundary;
 
     public FeatureArea(){
-        area = new HashSet<Position>();
-        openBoundary = new ArrayList<Boundary>();
+        areaCoor = new HashSet<Position>();
+        openBoundary = new HashSet<Boundary>();
+        tiger = new ArrayList<Tiger>();
         completed = false;
         hasTiger=false;
     }
 
     public void addTiger(Tiger newTiger){
-        tiger=newTiger;
+        tiger.add(newTiger);
         hasTiger=true;
     }
-    
+
     public boolean getCompleted(){
         return completed;
     }
