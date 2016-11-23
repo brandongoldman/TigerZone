@@ -282,18 +282,52 @@ public class HashBoard{
 	
 	
 	
-	//CHECKOPENSPOTS RETURNS THE OPENSET OF POTENTIAL MOVES (BASED ON NOTHING BUT ADJACENCIES)
-	//CHECKLEGALMOVE FIRST ASSURES THAT THE DESIRED POSITION EXISTS WITHIN THE OPENSET (SET)
-	/*CHECKLEGALMOVE THEN, BASED ON THE TILE'S CURRENT EDGES (AFTER ORIENTATION IS DECIDED),
-	  LOOKS AT THE NEW POSITION'S (NEWPOS) EDGES TO ASSURE THEY MATCH ON THE FOLLOWING CONDITIONS*/
-			//(X,Y+1) IS EITHER NULL OR ITS eB MATCHES CURRENT'S eT
-			//(X-1,Y) IS EITHER NULL OR ITS eR MATCHES CURRENT'S eL
-			//(X+1,Y) IS EITHER NULL OR ITS eL MATCHES CURRENT's eR
-			//(X,Y-1) IS EITHER NULL OR ITS eT MATCHES CURRENT's eB
-	//RETURNS BOOLEAN ACCORDINGLY (TO BE USED BY PLACE TILE METHOD)
 	public boolean checkLegalMove(Position newpos, Tile currentTile)
 	{
-		
+	/*	if (!set.contains(newpos)) return false;		// Make sure the space is open
+	 * 
+	 *  // For each adjacency (to the open newpos) make sure at least one of the following conditions is true
+	 *  // 1. exists in open set
+	 *  // 2. does not exist in either open or taken set
+	 *  // 3. exists in taken set and has edge matching (BUT BC OF ACCESS WE NEED TO ASSURE OTHER TWO FIRST)
+	 *  
+	 *  Position rPos = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
+	 *	Position lPos = new Position(newpos.getXPosition() - 1, newpos.getYPosition());
+	 *	Position tPos = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
+	 *	Position bPos = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
+	 *
+	 *	// If the spot exists in the open set or does not exist in either set (2 tiles away)
+	 *	goodToGo = false;
+	 *  if ( (set.contains(tPos)) || ((!set.contains(tPos)) && (!TAKENSET.contains(tPos)))) goodToGo = true;	
+	 *  
+	 *  if (!goodToGo) 
+	 *       if (TILE@tPos.eB != TILE@newpos.eT) return false;	// If all three conditions fail
+	 *      
+	 *       // REPEAT FOR OTHER THREE SURROUNDING
+	 *       
+	 *  goodToGo = false;
+	 *	if ( (set.contains(rPos)) || ((!set.contains(rPos)) && (!TAKENSET.contains(rPos)))) goodToGo = true;	
+	 *  
+	 *  if (!goodToGo) 
+	 *       if (TILE@rPos.eL != TILE@newpos.eR) return false;
+	 *   
+	 *  goodToGo = false;
+	 *	if ( (set.contains(bPos)) || ((!set.contains(bPos)) && (!TAKENSET.contains(bPos)))) goodToGo = true;	
+	 *  
+	 *  if (!goodToGo) 
+	 *       if (TILE@bPos.eT != TILE@newpos.eB) return false;
+	 *  
+	 *  goodToGo = false;
+	 *	if ( (set.contains(lPos)) || ((!set.contains(lPos)) && (!TAKENSET.contains(lPos)))) goodToGo = true;	
+	 *  
+	 *  if (!goodToGo) 
+	 *       if (TILE@lPos.eR != TILE@newpos.eL) return false;
+	 *       
+	 *  // SHOULD BE VALID... I THINK
+			
+			
+			
+	*/	
 		return false;
 	}
 	
