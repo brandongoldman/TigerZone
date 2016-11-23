@@ -125,10 +125,15 @@ public class HashBoard{
 		FeatureArea LeftArea;
 		FeatureArea TopArea;
 		FeatureArea BottomArea;
+
+		Boundary checkRight = new Boundary(right,4);
+		Boundary checkLeft = new Boundary(right,2);
+		Boundary checkTop = new Boundary(right,3);
+		Boundary checkBottom = new Boundary(right,1);
+
 		/**RightArea**/
 		if(gBoard.containsKey(right)){
 			if(tile.getEdgeR()==2){
-				Boundary checkRight = new Boundary(right,4);
 				for(FeatureArea check : Lake){
 					if(check.openBoundary.contains(checkRight)){
 						RightArea=check;
@@ -146,7 +151,6 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeR()==1){
-				Boundary checkRight = new Boundary(right,4);
 				for(FeatureArea check : Trail){
 					if(check.openBoundary.contains(checkRight)){
 						RightArea=check;
@@ -163,7 +167,12 @@ public class HashBoard{
 					}
 				}
 			}
-			//Add Jungle Area
+			else {
+				//Add Jungle Area
+			}
+
+			//Feature Updating
+
 
 
 		}
@@ -172,7 +181,6 @@ public class HashBoard{
 		found=false;
 		if(gBoard.containsKey(left)){
 			if(tile.getEdgeR()==2){
-				Boundary checkLeft = new Boundary(right,2);
 				for(FeatureArea check : Lake){
 					if(check.openBoundary.contains(checkLeft)){
 						LeftArea=check;
@@ -190,7 +198,6 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeR()==1){
-				Boundary checkLeft = new Boundary(right,2);
 				for(FeatureArea check : Trail){
 					if(check.openBoundary.contains(checkLeft)){
 						LeftArea=check;
@@ -207,14 +214,16 @@ public class HashBoard{
 					}
 				}
 			}
-			//Add Jungle Area
+			else {
+				//Add Jungle Area
+			}
+
 
 		}
 
 		/**TopArea**/
 		if(gBoard.containsKey(top)){
 			if(tile.getEdgeR()==2){
-				Boundary checkTop = new Boundary(right,3);
 				for(FeatureArea check : Lake){
 					if(check.openBoundary.contains(checkTop)){
 						TopArea=check;
@@ -232,7 +241,6 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeR()==1){
-				Boundary checkTop = new Boundary(right,3);
 				for(FeatureArea check : Trail){
 					if(check.openBoundary.contains(checkTop)){
 						TopArea=check;
@@ -249,14 +257,16 @@ public class HashBoard{
 					}
 				}
 			}
-			//Add Jungle Area
+			else {
+				//Add Jungle Area
+			}
+
 
 		}
 
 		/**BottomArea**/
 		if(gBoard.containsKey(bottom)){
 			if(tile.getEdgeR()==2){
-				Boundary checkBottom = new Boundary(right,1);
 				for(FeatureArea check : Lake){
 					if(check.openBoundary.contains(checkBottom)){
 						BottomArea=check;
@@ -274,7 +284,6 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeR()==1){
-				Boundary checkBottom = new Boundary(right,1);
 				for(FeatureArea check : Trail){
 					if(check.openBoundary.contains(checkBottom)){
 						BottomArea=check;
@@ -291,7 +300,10 @@ public class HashBoard{
 					}
 				}
 			}
-			//Add Jungle Area
+			else {
+				//Add Jungle Area
+			}
+
 
 		}
 
@@ -303,7 +315,7 @@ public class HashBoard{
 
 	}
 
-	public void updateFeatures(Position pos, Tiger tiger){
+	public void updateFeatures(Position pos, Tile tile, Tiger tiger){
 
 	}
 
