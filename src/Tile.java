@@ -1,4 +1,4 @@
-/***********************************
+//***********************************
 
 	Created By: Group N
 
@@ -27,7 +27,7 @@ public class Tile {
 	private boolean cBR = false;
 	private boolean oLR = false;
 	private boolean oTB = false;
-	private int orientation = 0;
+	private int beenRotated = 0;
 	
 	
 	private Position position;
@@ -43,13 +43,8 @@ public class Tile {
 		this.position = pos;
 	}
 
-	public int getOrientation()
-	{
-		return orientation;
-	}
 
-
-	public Tile(int animal, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB, int orientation)
+	public Tile(int animal, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
 	{
 		this.animal = animal;
 		this.den = den;
@@ -63,7 +58,6 @@ public class Tile {
 		this.cBR = cBR;
 		this.oLR = oLR;
 		this.oTB = oTB;
-		this.orientation = orientation;
 	}
 	
 	//Getter
@@ -182,7 +176,7 @@ public class Tile {
 		bitTemp = oTB;
 		oTB = oLR;
 		oLR = bitTemp;
-		orientation += 90;
+		beenRotated = (beenRotated + 1) % 4;
 	}
 
 	// public void rotate180()
@@ -220,5 +214,9 @@ public class Tile {
 	// 	oLR = bitTemp;
 	// 	orientation += 270;
 	// }
+	
+	public int getRotation() {
+		return beenRotated * 90;
+	}
 
 }
