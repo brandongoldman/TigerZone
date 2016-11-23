@@ -55,10 +55,11 @@ public class DisplayBoard extends JPanel
         //tiles[8]=RotateBy90(tiles[8]);
         //setTile(8,3,6);
         
-        setTile(19,0,1,1);
-        setTile(19,0,2,2);
-        setTile(19,0,3,3);
-        setTile(19,0,4,4);
+        setTile(19,0,1,90);
+        
+        setTile(19,0,2,180);
+        setTile(19,0,3,270);
+        //setTile(19,0,4,4);
         //setTile(5,8,9,1);
         //setTile(16,18,10,1);
         TileGrid();
@@ -99,18 +100,25 @@ public class DisplayBoard extends JPanel
     //allows certain tiles to be placed in the map 2D array
     public void setTile (int f, int xCord, int yCord, int rotates) {
         
+        xCord = xCord + mapLength/2;
+        yCord = yCord + mapWidth/2;
+        
         if(xCord <= mapLength && yCord <= mapWidth){
-            int num = rotates;
+            //int degrees = rotates;
             BufferedImage placeTile = tiles[f];
+            
+            if(rotates != 0){
+            placeTile = CCRotate(placeTile, rotates);
+            }
         
-                while(num != 0){
-                    //placeTile = RotateBy90(placeTile);
-                    placeTile = NewRotate(placeTile);
-                    System.out.println("Rotated tile: " + f + " / " + rotates + " times" );
-                    num--;
-                }
+                //while(degrees != 0){
+                //    //placeTile = RotateBy90(placeTile);
+                //    placeTile = NewRotate(placeTile);
+                //    System.out.println("Rotated tile: " + f + " / " + rotates + " times" );
+                //    num--;
+                //}
         
-        System.out.println("Placed tile: " + f + " at Coordinates (" + xCord + "," + yCord + ")");
+        System.out.println("Placed tile: " + f + " at Coordinates (" + xCord + "," + yCord + ") rotated " + rotates + " degrees");
         //map[xCord][yCord] = tiles[f];
         map[xCord][yCord] = placeTile;
         }else{
@@ -153,17 +161,33 @@ public class DisplayBoard extends JPanel
         //--TODO-- allow image to continually be rotated again by 90 degrees instead of flipping back
     }
     
-    public BufferedImage NewRotate(BufferedImage bi){
+    public BufferedImage CCRotate(BufferedImage bi, int degrees){
         
         int width = bi.getWidth();
         int height = bi.getHeight();
+        
+        //double radians = ((degrees + 180 ) * Math.PI) / 180;
+        double radians = 0;
+        
+        if (degrees == 90){
+            radians = (3*Math.PI)/2;
+        }
+        else if (degrees == 180){
+            radians = (Math.PI);
+        }
+        else if(degrees == 270){
+            radians = (Math.PI/2);
+        }
+        else{
+            System.out.println("INVALID ROTATION VARIABLE");
+        }
         
         BufferedImage bufferedImage = new BufferedImage(height, width, bi.getType());
         
         bufferedImage = bi;
         
         AffineTransform tx = new AffineTransform();
-        tx.rotate(Math.PI / 2, bi.getWidth() / 2, bi.getHeight() / 2);
+        tx.rotate(radians, bi.getWidth() / 2, bi.getHeight() / 2);
         
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
         bufferedImage = op.filter(bufferedImage, null);
