@@ -51,9 +51,10 @@ public class DisplayBoard extends JPanel
         
     }
     
+    //translate the input tile STRING to INT identifier
     public int TranslateTile(String tileString){
         
-        int tileID;
+        int tileID = 28;
         
         switch(tileString){
             case "JJJJ-": tileID = 0;
@@ -112,7 +113,8 @@ public class DisplayBoard extends JPanel
                 break;
             case "TLLLC": tileID = 27;
                 break;
-            default: tileID = 0;
+            default: tileID = 28;
+                //default tile is blank tile to be placed
                 System.out.println("NO TILE FOUND?!");
                 break;
         }
@@ -178,7 +180,7 @@ public class DisplayBoard extends JPanel
         for(int x = 0; x < map.length; x++){
             
             for (int y = 0; y < map[x].length; y++){
-                map[x][y] = tiles[28];
+                map[x][y] = tiles[28]; //all map locations are set to blank tiles
             }
         }
         
