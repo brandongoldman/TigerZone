@@ -483,7 +483,7 @@ public class HashBoard{
 						TopArea.tiger.addAll(LeftArea.tiger);
 						TopArea.setHasTiger(true);
 					}
-					skipR=true;
+					skipL=true;
 				}
 				if(TopArea.openBoundary.isEmpty()){
 					TopArea.setCompleted(true);
@@ -553,7 +553,226 @@ public class HashBoard{
 
 		}
 
+		/**RIGHT**/
+		if(!skipR){
+			/**Lake**/
+			if(tile.getEdgeR()==2){
+				if(tile.getCBR()&&!skipB){
+					RightArea.areaCoor.addAll(BottomArea.areaCoor);
+					RightArea.openBoundary.addAll((BottomArea.openBoundary));
+					RightArea.openBoundary.remove(checkBottom);
+					if(RightArea.getHasTiger()||BottomArea.getHasTiger()){
+						RightArea.tiger.addAll(BottomArea.tiger);
+						RightArea.setHasTiger(true);
+					}
+					skipB=true;
+				}
+				if(tile.getOLR()&&!skipL){
+					RightArea.areaCoor.addAll(LeftArea.areaCoor);
+					RightArea.openBoundary.addAll((LeftArea.openBoundary));
+					RightArea.openBoundary.remove(checkLeft);
+					if(RightArea.getHasTiger()||LeftArea.getHasTiger()){
+						RightArea.tiger.addAll(LeftArea.tiger);
+						RightArea.setHasTiger(true);
+					}
+					skipL=true;
+				}
+				RightArea.areaCoor.add(pos);
+				RightArea.openBoundary.remove(checkRight);
+				if(RightArea.openBoundary.isEmpty()){
+					RightArea.setCompleted(true);
+				}
+				if(RightArea.getHasTiger()){
+					ClaimedLake.add(RightArea);
+				}
+				else{
+					Lake.add(RightArea);
+				}
+			}
+			/**Trail**/
+			else if(tile.getEdgeR()==1){
+				int count = 0;
+				if(tile.getEdgeB()==1){
+					count++;
+				}
+				if(tile.getEdgeL()==1){
+					count++;
+				}
+				//check Intersection
+				if(count==1){
+					if(tile.getEdgeB()==1){
+						RightArea.areaCoor.addAll(BottomArea.areaCoor);
+						RightArea.openBoundary.addAll(BottomArea.openBoundary);
+						RightArea.openBoundary.remove(checkRight);
+						RightArea.openBoundary.remove(checkBottom);
+						if(RightArea.getHasTiger()||BottomArea.getHasTiger()){
+							RightArea.tiger.addAll(BottomArea.tiger);
+							RightArea.setHasTiger(true);
+						}
+						skipB=true;
+					}
+					else if(tile.getEdgeL()==1){
+						RightArea.areaCoor.addAll(LeftArea.areaCoor);
+						RightArea.openBoundary.addAll(LeftArea.openBoundary);
+						RightArea.openBoundary.remove(checkRight);
+						RightArea.openBoundary.remove(checkLeft);
+						if(RightArea.getHasTiger()||LeftArea.getHasTiger()){
+							RightArea.tiger.addAll(LeftArea.tiger);
+							RightArea.setHasTiger(true);
+						}
+						skipL=true;
+					}
+					if(RightArea.openBoundary.isEmpty()){
+						RightArea.setCompleted(true);
+					}
+					if(RightArea.getHasTiger()){
+						ClaimedTrail.add(RightArea);
+					}
+					else{
+						Trail.add(RightArea);
+					}
 
+				}
+				else{
+					RightArea.areaCoor.add(pos);
+					RightArea.openBoundary.remove(checkRight);
+					if(RightArea.openBoundary.isEmpty()){
+						RightArea.setCompleted(true);
+					}
+					if(RightArea.getHasTiger()){
+						ClaimedTrail.add(RightArea);
+					}
+					else{
+						Trail.add(RightArea);
+					}
+					if(count>1) {
+						if (tile.getEdgeB() == 1) {
+							BottomArea.areaCoor.add(pos);
+							BottomArea.openBoundary.remove(checkBottom);
+							if (BottomArea.openBoundary.isEmpty()) {
+								BottomArea.setCompleted(true);
+							}
+							if (BottomArea.getHasTiger()) {
+								ClaimedTrail.add(BottomArea);
+							} else {
+								Trail.add(BottomArea);
+							}
+							skipB = true;
+						}
+						if (tile.getEdgeL() == 1) {
+							LeftArea.areaCoor.add(pos);
+							LeftArea.openBoundary.remove(checkLeft);
+							if (LeftArea.openBoundary.isEmpty()) {
+								LeftArea.setCompleted(true);
+							}
+							if (LeftArea.getHasTiger()) {
+								ClaimedTrail.add(LeftArea);
+							} else {
+								Trail.add(LeftArea);
+							}
+							skipL = true;
+						}
+					}
+				}
+
+			}
+		}
+
+		/**BOTTOM**/
+		if(!skipB){
+			/**Lake**/
+			if(tile.getEdgeB()==2){
+				if(tile.getCBL()&&!skipL){
+					BottomArea.areaCoor.addAll(LeftArea.areaCoor);
+					BottomArea.openBoundary.addAll((LeftArea.openBoundary));
+					BottomArea.openBoundary.remove(checkLeft);
+					if(BottomArea.getHasTiger()||LeftArea.getHasTiger()){
+						BottomArea.tiger.addAll(LeftArea.tiger);
+						BottomArea.setHasTiger(true);
+					}
+					skipL=true;
+				}
+				BottomArea.areaCoor.add(pos);
+				BottomArea.openBoundary.remove(checkBottom);
+				if(BottomArea.openBoundary.isEmpty()){
+					BottomArea.setCompleted(true);
+				}
+				if(BottomArea.getHasTiger()){
+					ClaimedLake.add(BottomArea);
+				}
+				else{
+					Lake.add(BottomArea);
+				}
+			}
+			/**Trail**/
+			else if(tile.getEdgeB()==1){
+				if(tile.getEdgeL()==1){
+					BottomArea.areaCoor.addAll(LeftArea.areaCoor);
+					BottomArea.openBoundary.addAll(LeftArea.openBoundary);
+					BottomArea.openBoundary.remove(checkBottom);
+					BottomArea.openBoundary.remove(checkLeft);
+					if(BottomArea.getHasTiger()||LeftArea.getHasTiger()){
+						BottomArea.tiger.addAll(LeftArea.tiger);
+						BottomArea.setHasTiger(true);
+					}
+					skipL=true;
+					if(BottomArea.openBoundary.isEmpty()){
+						BottomArea.setCompleted(true);
+					}
+					if(BottomArea.getHasTiger()){
+						ClaimedTrail.add(BottomArea);
+					}
+					else{
+						Trail.add(BottomArea);
+					}
+				}
+				else{
+					BottomArea.areaCoor.add(pos);
+					BottomArea.openBoundary.remove(checkBottom);
+					if(BottomArea.openBoundary.isEmpty()){
+						BottomArea.setCompleted(true);
+					}
+					if(BottomArea.getHasTiger()){
+						ClaimedTrail.add(BottomArea);
+					}
+					else{
+						Trail.add(BottomArea);
+					}
+				}
+			}
+		}
+
+		/**LEFT**/
+		if(!skipL){
+			/**Lake**/
+			if(tile.getEdgeL()==2){
+				LeftArea.areaCoor.add(pos);
+				LeftArea.openBoundary.remove(checkLeft);
+				if(LeftArea.openBoundary.isEmpty()){
+					LeftArea.setCompleted(true);
+				}
+				if(LeftArea.getHasTiger()){
+					ClaimedLake.add(LeftArea);
+				}
+				else{
+					Lake.add(LeftArea);
+				}
+			}
+			/**Trail**/
+			else if(tile.getEdgeL()==1){
+				LeftArea.areaCoor.add(pos);
+				LeftArea.openBoundary.remove(checkLeft);
+				if(LeftArea.openBoundary.isEmpty()){
+					LeftArea.setCompleted(true);
+				}
+				if(LeftArea.getHasTiger()){
+					ClaimedTrail.add(LeftArea);
+				}
+				else {
+					Trail.add(LeftArea);
+				}
+			}
+		}
 	}
 
 	public void AddTile(Position pos, Tile tile, Tiger tiger){

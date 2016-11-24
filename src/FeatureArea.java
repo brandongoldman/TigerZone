@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class FeatureArea {
     Set<Tiger> tiger;
-    boolean hasTiger;
+    private boolean hasTiger;
     private boolean completed;
     Set<Position> areaCoor;
     Set<Boundary> openBoundary;
