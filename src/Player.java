@@ -130,6 +130,14 @@ public class Player
 			numOfTigers++;
 		}
 	}
+
+	public void returnCrocodile()
+	{
+		if(updated)
+		{
+			numOfCrocodiles++;
+		}
+	}
     
     public static void main(String[] args) {
 
