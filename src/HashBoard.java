@@ -107,10 +107,15 @@ public class HashBoard{
 	public void AddTile(Position pos, Tile tile){
 		//This is assuming that position and tile, is already been validated!
 		//No new tiger or crocodile
+		if(!checkLegalMove(pos, tile)) 
+		{
+			System.out.println("INVALID LOCATION");
+			System.exit(0);
+		}
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
-		updateFeatures(pos, tile);
-
+		updateFeatures();
+		System.out.println("TILE PLACED");
 	}
 
 	public void updateFeatures(Position pos, Tile tile){
