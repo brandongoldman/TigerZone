@@ -3,11 +3,10 @@
  */
 import java.util.HashSet;
 import java.util.Set;
-import java.util.ArrayList;
 
 public class FeatureArea {
-    private ArrayList<Tiger> tiger;
-    private boolean hasTiger;
+    Set<Tiger> tiger;
+    boolean hasTiger;
     private boolean completed;
     Set<Position> areaCoor;
     Set<Boundary> openBoundary;
@@ -15,7 +14,7 @@ public class FeatureArea {
     public FeatureArea(){
         areaCoor = new HashSet<Position>();
         openBoundary = new HashSet<Boundary>();
-        tiger = new ArrayList<Tiger>();
+        tiger = new HashSet<Tiger>();
         completed = false;
         hasTiger=false;
     }
@@ -28,7 +27,9 @@ public class FeatureArea {
     public boolean getCompleted(){
         return completed;
     }
+    public boolean getHasTiger(){return hasTiger;}
     public void setCompleted(boolean completed){
         this.completed=completed;
     }
+    public void setHasTiger(boolean hasTiger){this.hasTiger=hasTiger;}
 }
