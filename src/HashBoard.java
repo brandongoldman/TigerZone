@@ -107,6 +107,12 @@ public class HashBoard{
 	public void AddTile(Position pos, Tile tile){
 		//This is assuming that position and tile, is already been validated!
 		//No new tiger or crocodile
+		if(gBoard.isEmpty()) 
+		{
+				gBoard.put(pos, tile);
+				System.out.println("Initial tile placable");
+				return;
+		}
 		if(!checkLegalMove(pos, tile)) 
 		{
 			System.out.println("INVALID LOCATION");
@@ -395,6 +401,7 @@ public class HashBoard{
 		boolean goodToGo = false;
 		
 		if (!set.contains(newpos)) return false;		// Make sure the space is open
+		System.out.println("MADE IT PAST OPEN CHECK");
 	  
 	   // For each adjacency (to the open newpos) make sure at least one of the following conditions is true
 	   // 1. exists in open set
@@ -412,6 +419,7 @@ public class HashBoard{
 	 	if (!goodToGo){ 
 	        if (gBoard.get(tPos).getEdgeB() != currentTile.getEdgeT()) return false;	// If all three conditions fail
 	 	}
+	 	System.out.println("TPOS CHECKED OUT");
 	        // REPEAT FOR OTHER THREE SURROUNDING
 	        
 	   goodToGo = false;
@@ -420,26 +428,26 @@ public class HashBoard{
 	   if (!goodToGo) {
 	        if (gBoard.get(rPos).getEdgeL() != currentTile.getEdgeR()) return false;
 	   }
-	   
+	   System.out.println("RPOS CHECKED OUT");
 	   goodToGo = false;
 	   if ( (set.contains(bPos)) || ((!set.contains(bPos)) && (!gBoard.containsKey(bPos)))) goodToGo = true;	
 	   
 	   if (!goodToGo) {
 	        if (gBoard.get(bPos).getEdgeT() != currentTile.getEdgeB()) return false;
 	   }
-	   
+	   System.out.println("BPOS CHECKED OUT");
 	   goodToGo = false;
 	 	if ( (set.contains(lPos)) || ((!set.contains(lPos)) && (!gBoard.containsKey(lPos)))) goodToGo = true;	
 	   
 	   if (!goodToGo) 
 	        if (gBoard.get(lPos).getEdgeR() != currentTile.getEdgeL()) return false;
-	        
+	   System.out.println("LPOS CHECKED OUT");
 	   // SHOULD BE VALID... I THINK
 			
 			
 			
 	
-		return false;
+		return true;
 	}
 	
 	
