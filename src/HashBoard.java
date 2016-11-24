@@ -107,10 +107,15 @@ public class HashBoard{
 	public void AddTile(Position pos, Tile tile){
 		//This is assuming that position and tile, is already been validated!
 		//No new tiger or crocodile
+		if(!checkLegalMove(pos, tile)) 
+		{
+			System.out.println("INVALID LOCATION");
+			System.exit(0);
+		}
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
-		updateFeatures(pos, tile);
-
+		updateFeatures();
+		System.out.println("TILE PLACED");
 	}
 
 	public void updateFeatures(Position pos, Tile tile){
@@ -352,50 +357,54 @@ public class HashBoard{
 	
 	public boolean checkLegalMove(Position newpos, Tile currentTile)
 	{
-	/*	if (!set.contains(newpos)) return false;		// Make sure the space is open
-	 * 
-	 *  // For each adjacency (to the open newpos) make sure at least one of the following conditions is true
-	 *  // 1. exists in open set
-	 *  // 2. does not exist in either open or taken set
-	 *  // 3. exists in taken set and has edge matching (BUT BC OF ACCESS WE NEED TO ASSURE OTHER TWO FIRST)
-	 *  
-	 *  Position rPos = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
-	 *	Position lPos = new Position(newpos.getXPosition() - 1, newpos.getYPosition());
-	 *	Position tPos = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
-	 *	Position bPos = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
-	 *
-	 *	// If the spot exists in the open set or does not exist in either set (2 tiles away)
-	 *	goodToGo = false;
-	 *  if ( (set.contains(tPos)) || ((!set.contains(tPos)) && (!TAKENSET.contains(tPos)))) goodToGo = true;	
-	 *  
-	 *  if (!goodToGo) 
-	 *       if (TILE@tPos.eB != TILE@newpos.eT) return false;	// If all three conditions fail
-	 *      
-	 *       // REPEAT FOR OTHER THREE SURROUNDING
-	 *       
-	 *  goodToGo = false;
-	 *	if ( (set.contains(rPos)) || ((!set.contains(rPos)) && (!TAKENSET.contains(rPos)))) goodToGo = true;	
-	 *  
-	 *  if (!goodToGo) 
-	 *       if (TILE@rPos.eL != TILE@newpos.eR) return false;
-	 *   
-	 *  goodToGo = false;
-	 *	if ( (set.contains(bPos)) || ((!set.contains(bPos)) && (!TAKENSET.contains(bPos)))) goodToGo = true;	
-	 *  
-	 *  if (!goodToGo) 
-	 *       if (TILE@bPos.eT != TILE@newpos.eB) return false;
-	 *  
-	 *  goodToGo = false;
-	 *	if ( (set.contains(lPos)) || ((!set.contains(lPos)) && (!TAKENSET.contains(lPos)))) goodToGo = true;	
-	 *  
-	 *  if (!goodToGo) 
-	 *       if (TILE@lPos.eR != TILE@newpos.eL) return false;
-	 *       
-	 *  // SHOULD BE VALID... I THINK
+		
+		boolean goodToGo = false;
+		
+		if (!set.contains(newpos)) return false;		// Make sure the space is open
+	  
+	   // For each adjacency (to the open newpos) make sure at least one of the following conditions is true
+	   // 1. exists in open set
+	   // 2. does not exist in either open or taken set
+	   // 3. exists in taken set and has edge matching (BUT BC OF ACCESS WE NEED TO ASSURE OTHER TWO FIRST)
+	   
+		Position rPos = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
+	 	Position lPos = new Position(newpos.getXPosition() - 1, newpos.getYPosition());
+	 	Position tPos = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
+	 	Position bPos = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
+	 
+	 	// If the spot exists in the open set or does not exist in either set (2 tiles away)
+	 	if ( (set.contains(tPos)) || ((!set.contains(tPos)) && (!gBoard.containsKey(tPos)))) goodToGo = true;	
+	   
+	 	if (!goodToGo){ 
+	        if (gBoard.get(tPos).getEdgeB() != currentTile.getEdgeT()) return false;	// If all three conditions fail
+	 	}
+	        // REPEAT FOR OTHER THREE SURROUNDING
+	        
+	   goodToGo = false;
+	 	if ( (set.contains(rPos)) || ((!set.contains(rPos)) && (!gBoard.containsKey(rPos)))) goodToGo = true;	
+	   
+	   if (!goodToGo) {
+	        if (gBoard.get(rPos).getEdgeL() != currentTile.getEdgeR()) return false;
+	   }
+	   
+	   goodToGo = false;
+	   if ( (set.contains(bPos)) || ((!set.contains(bPos)) && (!gBoard.containsKey(bPos)))) goodToGo = true;	
+	   
+	   if (!goodToGo) {
+	        if (gBoard.get(bPos).getEdgeT() != currentTile.getEdgeB()) return false;
+	   }
+	   
+	   goodToGo = false;
+	 	if ( (set.contains(lPos)) || ((!set.contains(lPos)) && (!gBoard.containsKey(lPos)))) goodToGo = true;	
+	   
+	   if (!goodToGo) 
+	        if (gBoard.get(lPos).getEdgeR() != currentTile.getEdgeL()) return false;
+	        
+	   // SHOULD BE VALID... I THINK
 			
 			
 			
-	*/	
+	
 		return false;
 	}
 	
