@@ -15,7 +15,6 @@ import javax.swing.*;
 
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
 
 public class DisplayBoard extends JPanel
 {
@@ -34,12 +33,9 @@ public class DisplayBoard extends JPanel
     //constructor to call methods and test operation
     public DisplayBoard() /*throws IOException*/
     {
-        
-        
-        
         loadTile();
         init();
-        setTile(19,0,0,0);
+        setTile("TLTJD",0,0,0);
         
         //for(int q = 0; q<20; q++){
             
@@ -47,12 +43,80 @@ public class DisplayBoard extends JPanel
             
         //}
         //setTile(tile identifier, Tile.position(xCord), Tile.position(yCord), rotation amounts);
-        setTile(19,0,1,90);
-        setTile(19,0,2,180);
-        setTile(19,0,3,270);
+        setTile("TLTJD",0,1,90);
+        setTile("TLTJD",0,2,180);
+        setTile("TLTJD",0,3,270);
 
         TileGrid();
         
+    }
+    
+    public int TranslateTile(String tileString){
+        
+        int tileID;
+        
+        switch(tileString){
+            case "JJJJ-": tileID = 0;
+                break;
+            case "JJJJX": tileID = 1;
+                break;
+            case "JJTJX": tileID = 2;
+                break;
+            case "TTTT-": tileID = 3;
+                break;
+            case "TJTJ-": tileID = 4;
+                break;
+            case "TJJT-": tileID = 5;
+                break;
+            case "TJTT-": tileID = 6;
+                break;
+            case "LLLL-": tileID = 7;
+                break;
+            case "JLLL-": tileID = 8;
+                break;
+            case "LLJJ-": tileID = 9;
+                break;
+            case "JLJL-": tileID = 10;
+                break;
+            case "LJLJ-": tileID = 11;
+                break;
+            case "LJJJ-": tileID = 12;
+                break;
+            case "JLLJ-": tileID = 13;
+                break;
+            case "TLJT-": tileID = 14;
+                break;
+            case "TLJTP": tileID = 15;
+                break;
+            case "JLTT-": tileID = 16;
+                break;
+            case "JLTTB": tileID = 17;
+                break;
+            case "TLTJ-": tileID = 18;
+                break;
+            case "TLTJD": tileID = 19;
+                break;
+            case "TLLL-": tileID = 20;
+                break;
+            case "TLTT-": tileID = 21;
+                break;
+            case "TLTTP": tileID = 22;
+                break;
+            case "TLLT-": tileID = 23;
+                break;
+            case "TLLTB": tileID = 24;
+                break;
+            case "LJTJ-": tileID = 25;
+                break;
+            case "LJTJD": tileID = 26;
+                break;
+            case "TLLLC": tileID = 27;
+                break;
+            default: tileID = 0;
+                System.out.println("NO TILE FOUND?!");
+                break;
+        }
+        return tileID;
     }
     
     
@@ -83,12 +147,14 @@ public class DisplayBoard extends JPanel
     }
     
     //allows certain tiles to be placed in the map 2D array
-    public void setTile (int f, int xCord, int yCord, int rotates) {
+    public void setTile (String t, int xCord, int yCord, int rotates) {
         
-        xCord = xCord + mapLength/2;
-        yCord = yCord + mapWidth/2;
+        int f = TranslateTile(t);
         
-        if(xCord <= mapLength && yCord <= mapWidth){
+        int newX = xCord + mapLength/2;
+        int newY = yCord + mapWidth/2;
+        
+        if(newX <= mapLength && newY <= mapWidth){
             //int degrees = rotates;
             BufferedImage placeTile = tiles[f];
             
@@ -96,9 +162,9 @@ public class DisplayBoard extends JPanel
             placeTile = CCRotate(placeTile, rotates);
             }
         
-        System.out.println("Placed tile: " + f + " at Coordinates (" + xCord + "," + yCord + ") rotated " + rotates + " degrees");
+        System.out.println("Placed tile: " + t + " at Coordinates (" + xCord + "," + yCord + ") rotated " + rotates + " degrees");
         //map[xCord][yCord] = tiles[f];
-        map[xCord][yCord] = placeTile;
+        map[newX][newY] = placeTile;
         }else{
             System.out.println("Cannot place tile: OUT OF BOUNDS");
             
