@@ -104,24 +104,8 @@ public class Player
 	 *		2. Data will be sent to game host and other player.							 *
 	 *************************************************************************************/
 
-	// get possible moves (know what the next tile in the stack is before turn)
+	// check if valid move
 
-	// get possible tiger locations
-
-	// determine which move yeilds highest score
-    /*
-    public void FeatureList(Tile recievedTile, Board board){
-        //create List to track in-progress features based on types on a tile
-        
-    }
-     // let player make move
-    public void AnalyzeBoard(Tile recievedTile, Board board){
-        
-        //Look through board and/or availability list to see what is open and use edge comparisons to see if it has valid placement
-        
-        
-    }
-     */
 	
 	// data to confirm move --> to be sent to other player and game manager / host??
 	public void placeTile(int tileLocation_X, int tileLocation_Y, int orientation, int tigerPlacement)
