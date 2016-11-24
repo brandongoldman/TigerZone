@@ -32,4 +32,8 @@ public class FeatureArea {
         this.completed=completed;
     }
     public void setHasTiger(boolean hasTiger){this.hasTiger=hasTiger;}
+
+    public boolean equals(FeatureArea Area){
+        return this.areaCoor.containsAll(Area.areaCoor)&&this.openBoundary.containsAll(Area.openBoundary);
+    }
 }
