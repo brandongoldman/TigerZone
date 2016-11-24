@@ -468,6 +468,17 @@ public class HashBoard{
 			/**Trail**/
 			else if (tile.getEdgeT() == 1) {
 				int count = 0;
+				
+				if(TopArea.equals(RightArea)){
+					skipR=true;
+				}
+				if(TopArea.equals(BottomArea)){
+					skipB=true;
+				}
+				if(TopArea.equals(LeftArea)){
+					skipL=true;
+				}
+
 				if (tile.getEdgeR() == 1&&!skipR) {
 					count++;
 				}
