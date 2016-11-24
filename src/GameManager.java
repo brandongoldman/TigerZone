@@ -62,7 +62,7 @@ public abstract class GameManager
 	{
         // Calculations to determine where tigers need to be returned
 		
-		for(int i = 0; i < playerOne.getTigers(); i++)
+		/**for(int i = 0; i < playerOne.getTigers(); i++)
 		{
 			// If tiger is on a completed feature like a Lake, Game Trail, or Den
 			// Return the tiger back to its owner.

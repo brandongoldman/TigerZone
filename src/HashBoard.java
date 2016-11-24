@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 public class HashBoard{
 	
-    private HashMap <Position, Tile> gBoard; // = new HashMap<Position, Tile>();
+    HashMap <Position, Tile> gBoard; // = new HashMap<Position, Tile>();
 	Set <Position> set;
 	ArrayList<FeatureArea> Jungle;
 	ArrayList<FeatureArea> Trail;
@@ -154,6 +154,7 @@ public class HashBoard{
 						}
 					}
 				}
+
 			}
 			else if (tile.getEdgeR()==1){
 				for(FeatureArea check : Trail){
@@ -175,17 +176,26 @@ public class HashBoard{
 			else {
 				//Add Jungle Area
 			}
-
-			//Feature Updating
-
-
-
+		}
+		else{
+			RightArea=new FeatureArea();
+			if(tile.getEdgeR()==2){
+				RightArea.areaCoor.add(pos);
+				RightArea.openBoundary.add(new Boundary(pos,2));
+			}
+			else if(tile.getEdgeR()==1){
+				RightArea.areaCoor.add(pos);
+				RightArea.openBoundary.add(new Boundary(pos,2));
+			}
+			else{
+				//Add Jungle Area
+			}
 		}
 
 		/**LeftArea**/
 		found=false;
 		if(gBoard.containsKey(left)){
-			if(tile.getEdgeR()==2){
+			if(tile.getEdgeL()==2){
 				for(FeatureArea check : Lake){
 					if(check.openBoundary.contains(checkLeft)){
 						LeftArea=check;
@@ -202,7 +212,7 @@ public class HashBoard{
 					}
 				}
 			}
-			else if (tile.getEdgeR()==1){
+			else if (tile.getEdgeL()==1){
 				for(FeatureArea check : Trail){
 					if(check.openBoundary.contains(checkLeft)){
 						LeftArea=check;
@@ -222,13 +232,21 @@ public class HashBoard{
 			else {
 				//Add Jungle Area
 			}
-
-
+		}
+		else{
+			LeftArea=new FeatureArea();
+			if(tile.getEdgeL()==2||tile.getEdgeL()==1) {
+				LeftArea.areaCoor.add(pos);
+				LeftArea.openBoundary.add(new Boundary(pos, 4));
+			}
+			else{
+				//Add Jungle Area
+			}
 		}
 
 		/**TopArea**/
 		if(gBoard.containsKey(top)){
-			if(tile.getEdgeR()==2){
+			if(tile.getEdgeT()==2){
 				for(FeatureArea check : Lake){
 					if(check.openBoundary.contains(checkTop)){
 						TopArea=check;
@@ -245,7 +263,7 @@ public class HashBoard{
 					}
 				}
 			}
-			else if (tile.getEdgeR()==1){
+			else if (tile.getEdgeT()==1){
 				for(FeatureArea check : Trail){
 					if(check.openBoundary.contains(checkTop)){
 						TopArea=check;
@@ -265,13 +283,21 @@ public class HashBoard{
 			else {
 				//Add Jungle Area
 			}
-
-
+		}
+		else{
+			TopArea=new FeatureArea();
+			if(tile.getEdgeT()==2||tile.getEdgeT()==1){
+				TopArea.areaCoor.add(pos);
+				TopArea.openBoundary.add(new Boundary(pos,1));
+			}
+			else{
+				//Add Jungle Area
+			}
 		}
 
 		/**BottomArea**/
 		if(gBoard.containsKey(bottom)){
-			if(tile.getEdgeR()==2){
+			if(tile.getEdgeB()==2){
 				for(FeatureArea check : Lake){
 					if(check.openBoundary.contains(checkBottom)){
 						BottomArea=check;
@@ -288,7 +314,7 @@ public class HashBoard{
 					}
 				}
 			}
-			else if (tile.getEdgeR()==1){
+			else if (tile.getEdgeB()==1){
 				for(FeatureArea check : Trail){
 					if(check.openBoundary.contains(checkBottom)){
 						BottomArea=check;
@@ -308,8 +334,16 @@ public class HashBoard{
 			else {
 				//Add Jungle Area
 			}
-
-
+		}
+		else{
+			BottomArea=new FeatureArea();
+			if(tile.getEdgeB()==2||tile.getEdgeB()==1){
+				BottomArea.areaCoor.add(pos);
+				BottomArea.openBoundary.add(new Boundary(pos,3));
+			}
+			else{
+				//Add Jungle Area
+			}
 		}
 
 
@@ -412,7 +446,6 @@ public class HashBoard{
 	
 
 	public static void main(String[] args){
-
 		HashBoard board = new HashBoard(0);
 		board.gBoard.put(new Position(0, 0), new Tile());
 		board.updateOpenSpots(new Position(0, 0));
@@ -437,7 +470,7 @@ public class HashBoard{
         //board.printKeys();
         //board.gBoard.put(new Position(2, 0), new Tile());
         //board.checkOpenSpots(new Position(2, 0));
-        //board.printKeys();*/
+        //board.printKeys();
         
         
 		/**System.out.println("We Have Started a New Game");
