@@ -95,18 +95,20 @@ public class HashBoard{
 		if(gBoard.isEmpty()) 
 		{
 				gBoard.put(pos, tile);
-				System.out.println("Initial tile placable");
+				System.out.println("Initial tile placed");
 				return;
 		}
+		
+		System.out.println("TRYING TO PLACE TILE AT " + pos.getXPosition() + " " + pos.getYPosition());
 		if(!checkLegalMove(pos, tile)) 
 		{
 			System.out.println("INVALID LOCATION");
-			System.exit(0);
+			return;
 		}
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
-		updateFeatures(pos,tile);
-		System.out.println("TILE PLACED");
+		updateFeatures();
+		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
 	}
 
 	public void updateFeatures(Position pos, Tile tile){
@@ -1041,8 +1043,40 @@ public class HashBoard{
 	   System.out.println("LPOS CHECKED OUT");
 	   // SHOULD BE VALID... I THINK
 			
+			
+			
 	
 		return true;
+	}
+	
+	
+	public Move FindBestMove(Tile t){
+		
+		int bestScore = -1;
+		int currScore = -1;
+		
+		//Initialize a Move struct to send to server
+		Move bestMove = null;
+		
+		//For all four rotations
+		for (int i = 0; i < 4; i++){
+			//Go thru all open spaces and if there is a valid move, find out what score it would get. Compare to best and save best move
+			for(Position pos: set){
+				if(checkLegalMove(pos, t)){
+					currScore = getMoveScore(pos, t);
+					if(currScore > bestScore){
+						bestScore = currScore;
+						bestMove = new Move();
+					}
+				}
+			}
+			t.rotate();
+		}
+		return bestMove;
+	}
+	
+	public int getMoveScore(Position pos, Tile t){
+		return 0;
 	}
 	
 	

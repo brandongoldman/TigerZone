@@ -32,6 +32,7 @@ public class TileInterpreter {
 		boolean oTB = false;
 		//ANIMALS
 		int animal = 0;
+        int[][] miniZones = new int[3][3];
 		
 		
 		//TRY TO SCAN THE TEXT FILE
@@ -80,6 +81,32 @@ public class TileInterpreter {
 				oLR = stretchArr[0];
 				oTB = stretchArr[1];
 				
+                //setting 3x3 matix of miniZones
+                /*for(int i = 0; i < 3; i++){
+                    
+                    for(int j = 0; j < 3; j++)
+                        
+                 
+                    
+                }*/
+                
+                if((0 == eT == eL) && (cTR == true)){
+                    miniZones[0][0] = 0;
+                }
+                else if ((2 == eT == eL) && (cTR == true)){
+                    miniZones[0][0] = 2;
+                }
+                else if ((2 == eT == eL) && (cTR == false)){
+                    miniZones[0][0] = 0;
+                }
+                else if ((eT == 0 && eL == 2) || (eT == 2 && eL == 0)){
+                    miniZones[0][0] = 3;
+                }
+                
+                
+                
+                
+                
 				//CREATE THE INSTANCES OF THE CURRENT TILE AND ADD THEM TO THE TILE ARRAY
 				for (int i = 0; i < numOfCurrentTile; i++)
 				{
@@ -94,6 +121,10 @@ public class TileInterpreter {
 		
 
 	}
+    
+    //public int[][] SetMiniType(){
+    
+    //}
 	
 	public static int decipher(char c) {
 		switch (c) {
