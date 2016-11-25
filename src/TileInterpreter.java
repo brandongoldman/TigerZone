@@ -80,7 +80,7 @@ public class TileInterpreter {
 				
 				//CHECK STRETCHERS
 				boolean stretchArr[] = new boolean[2];
-				stretchArr = stretcherCalculator(eT, eR, eB, eL, den);
+				stretchArr = stretcherCalculator(eT, eR, eB, eL, den, croc);
 				oLR = stretchArr[0];
 				oTB = stretchArr[1];
 				
@@ -94,7 +94,7 @@ public class TileInterpreter {
                     
                 }*/
                 
-                //need to rethink better way to initialize these positions using this logic...
+                //need to put logic into separate method once completed
                 if(((0 == eT) == eL) && (cTR == true)){
                     miniZones[0][0] = 0;
                 }
@@ -125,12 +125,25 @@ public class TileInterpreter {
                 if(den == true){
                     miniZones [1][1] = 55;
                 }
-                if(croc == true){
-                    miniZOnes [1][1] = 60;
+                else if(croc == true){
+                    miniZones [1][1] = 60;
                 }
-                else if(den == false && ((eT == 0) && (eR == 0) && (eL == 0) && ( eB == 0))){
+                else if(den == false && croc = false && ((eT == 0) && (eR == 0) && (eL == 0) && ( eB == 0))){
                     miniZones[1][1] = 0;
                 }
+                else if((eT == 2) && (eR == 2) && (eL == 2) && ( eB == 2)){
+                    miniZones[1][1] = 2;
+                }
+                else if (eL == eR && oLR == true){
+                    miniZones[1][1] = eL;
+                }
+                else if(eL == 1 || eT == 1 || eB == 1 && croc = false ){
+                    miniZones [1][1] = 1;
+                }
+                
+                miniZones[1][2] = eR;
+                
+                miniZones[2][1] = eB;
                 
                 
                 
@@ -175,10 +188,10 @@ public class TileInterpreter {
 		else return true;
 	}
 	
-	public static boolean[] stretcherCalculator(int e0, int e1, int e2, int e3, boolean hasDen) {
+	public static boolean[] stretcherCalculator(int e0, int e1, int e2, int e3, boolean hasDen, boolean hasCroc) {
 		boolean[] ba = new boolean[2];
 		
-		if (hasDen == true) return ba;	//If there is a den, the tile does not stretch on either oLR or oTB
+		if (hasDen == true || hasCroc == true) return ba;	//If there is a den, the tile does not stretch on either oLR or oTB
 		
 		//THREE SPECIAL TILES 
 		// ***(FIRST TWO WILL NEED TO BE UPDATED IF TILE INPUT INCLUDES VARIABLE ORIENTATION)***
