@@ -113,7 +113,7 @@ public class TileInterpreter {
                 if ((eT == 1) && (eR == 1) || (eT == 1) && (eR == 0)){
                     miniZones[0][2] = 0;
                 }
-                else if (((eT == 0) && (eR == 2) || ((eT == 2) && (eR == 0)))){
+                else if (((eT == 0) && (eR == 2)) || ((eT == 2) && (eR == 0)) || ((eT == 1) && (eR == 2))){
                     miniZones[0][2] = 3;
                 }
                 else if(eT == 2 && eR == 2){
@@ -137,13 +137,40 @@ public class TileInterpreter {
                 else if (eL == eR && oLR == true){
                     miniZones[1][1] = eL;
                 }
-                else if(eL == 1 || eT == 1 || eB == 1 && croc = false ){
+                else if(eL == 1 || eT == 1 || eB == 1 && croc = false && den == false){
+                    miniZones [1][1] = 1;
+                }
+                else if(eT != eB && (eT != 1) && (eB != 1)){
+                    miniZones [1][1] = 3;
+                }
+                else if((eT != eB) && ((eT = 1) || (eB = 1))){
                     miniZones [1][1] = 1;
                 }
                 
                 miniZones[1][2] = eR;
                 
+                if((eB == 1 || (eT == 1 && eB == 0)) || ((eL == 0) && (eB == 0))){
+                    miniZones[2][0] = 0;
+                }
+                else if( eL == 2 && eB == 2 && eR == 2){
+                    miniZones[2][0] = 2;
+                }
+                else if((eL == 2 && eB == 0) || (eL == 0 && eB == 2)){
+                    miniZones[2][0] = 3;
+                }
+                
                 miniZones[2][1] = eB;
+                
+                if((eB == 2 && eR == 0) || (eB == 0 && eR == 2) || (eR == 2 && eB == 1) || (eB == 2 && eR == 2 && cBR == false)){
+                    miniZones[2][2] = 3;
+                }
+                else if(eB == 2 && eR == 2 && cBR == true){
+                    miniZones[2][2] = 2;
+                }
+                else if(eB == 0 && eR == 0 || eR == 1 && eB == 0 || eR == 0 && eB == 1 || eB == 1 && eB == 1){
+                    miniZones[2][2] = 0;
+                }
+                
                 
                 
                 
