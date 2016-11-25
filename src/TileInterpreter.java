@@ -17,6 +17,7 @@ public class TileInterpreter {
 		String description = "";
 		//boolean shield = false;
 		boolean den = false;
+        boolean croc = false;
 		//EDGES
 		int eT;
 		int eL;
@@ -70,6 +71,8 @@ public class TileInterpreter {
 						 break;
 				case 55: den = true;
 						 break;
+                case 60: croc = true;
+                         break;
 				case 99: break;
 				case -1: System.out.println("Tile input may be formatted unexpectedly");
 						 continue;
@@ -77,11 +80,12 @@ public class TileInterpreter {
 				
 				//CHECK STRETCHERS
 				boolean stretchArr[] = new boolean[2];
-				stretchArr = stretcherCalculator(eT, eR, eB, eL, den);
+				stretchArr = stretcherCalculator(eT, eR, eB, eL, den, croc);
 				oLR = stretchArr[0];
 				oTB = stretchArr[1];
 				
                 //setting 3x3 matix of miniZones
+                // 0 = jungle / 1 = game trail / 2 = lake / 3 = Jungle/Lake split / 55 = DEN / 60 = CROC
                 /*for(int i = 0; i < 3; i++){
                     
                     for(int j = 0; j < 3; j++)
@@ -90,18 +94,56 @@ public class TileInterpreter {
                     
                 }*/
                 
-                if((0 == eT == eL) && (cTR == true)){
+                //need to put logic into separate method once completed
+                if(((0 == eT) == eL) && (cTR == true)){
                     miniZones[0][0] = 0;
                 }
-                else if ((2 == eT == eL) && (cTR == true)){
+                else if (((2 == eT) == eL) && (cTR == true)){
                     miniZones[0][0] = 2;
                 }
-                else if ((2 == eT == eL) && (cTR == false)){
+                else if (((2 == eT) == eL) && (cTR == false)){
                     miniZones[0][0] = 0;
                 }
-                else if ((eT == 0 && eL == 2) || (eT == 2 && eL == 0)){
+                else if (((eT == 0) && eL == 2) || (eT == 2 && eL == 0)){
                     miniZones[0][0] = 3;
                 }
+                
+                miniZones[0][1] = eT;
+                
+                if ((eT == 1) && (eR == 1) || (eT == 1) && (eR == 0)){
+                    miniZones[0][2] = 0;
+                }
+                else if (((eT == 0) && (eR == 2) || ((eT == 2) && (eR == 0)))){
+                    miniZones[0][2] = 3;
+                }
+                else if(eT == 2 && eR == 2){
+                    miniZones[0][2] = 2;
+                }
+                
+                miniZones[1][0] = eL;
+                         
+                if(den == true){
+                    miniZones [1][1] = 55;
+                }
+                else if(croc == true){
+                    miniZones [1][1] = 60;
+                }
+                else if(den == false && croc = false && ((eT == 0) && (eR == 0) && (eL == 0) && ( eB == 0))){
+                    miniZones[1][1] = 0;
+                }
+                else if((eT == 2) && (eR == 2) && (eL == 2) && ( eB == 2)){
+                    miniZones[1][1] = 2;
+                }
+                else if (eL == eR && oLR == true){
+                    miniZones[1][1] = eL;
+                }
+                else if(eL == 1 || eT == 1 || eB == 1 && croc = false ){
+                    miniZones [1][1] = 1;
+                }
+                
+                miniZones[1][2] = eR;
+                
+                miniZones[2][1] = eB;
                 
                 
                 
@@ -110,7 +152,7 @@ public class TileInterpreter {
 				//CREATE THE INSTANCES OF THE CURRENT TILE AND ADD THEM TO THE TILE ARRAY
 				for (int i = 0; i < numOfCurrentTile; i++)
 				{
-					Tile newTile = new Tile(animal, den, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB);
+					Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB);
 					tileArray[tileCreated] = newTile;
 					tileCreated++;
 				}	
@@ -135,7 +177,8 @@ public class TileInterpreter {
 		case 'B': return 10;
 		case 'D': return 20;
 		case 'P': return 30;
-		case 'X': return 55;
+        case 'X': return 55;
+        case 'C': return 60;
 		default: return -1;
 		}
 	}
@@ -145,10 +188,10 @@ public class TileInterpreter {
 		else return true;
 	}
 	
-	public static boolean[] stretcherCalculator(int e0, int e1, int e2, int e3, boolean hasDen) {
+	public static boolean[] stretcherCalculator(int e0, int e1, int e2, int e3, boolean hasDen, boolean hasCroc) {
 		boolean[] ba = new boolean[2];
 		
-		if (hasDen == true) return ba;	//If there is a den, the tile does not stretch on either oLR or oTB
+		if (hasDen == true || hasCroc == true) return ba;	//If there is a den, the tile does not stretch on either oLR or oTB
 		
 		//THREE SPECIAL TILES 
 		// ***(FIRST TWO WILL NEED TO BE UPDATED IF TILE INPUT INCLUDES VARIABLE ORIENTATION)***
