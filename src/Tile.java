@@ -16,6 +16,9 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
+import java.util.Random;
+
 
 public class Tile {
 
@@ -40,8 +43,21 @@ public class Tile {
 
 	//Public Constructors for the Tile Class
 
-	public Tile(){
 		//Empty Constructor
+		//Using for Testing purpose
+	public Tile(){
+		miniZones = new int[3][3];
+
+		for(int i=0; i < miniZones.length; i++){
+			for(int j=0; j < miniZones.length; j++){
+
+				Random rand = new Random();
+				int n = rand.nextInt(3);
+
+				miniZones[i][j] = n;
+			}
+		
+		}
 	}
 
 	public Tile(Position pos){
@@ -220,6 +236,26 @@ public class Tile {
 	// 	oLR = bitTemp;
 	// 	orientation += 270;
 	// }
+
+
+	//Using for Testing the Tile connected jungle Feature
+	public ArrayList<HashSet<Integer>> addFeatures(){
+
+		ArrayList<HashSet<Integer>> arraylistSet = new ArrayList<HashSet<Integer>>();
+
+		for(int i=0; i < miniZones.length; i++){
+			for(int j=0; j < miniZones.length; j++){
+
+				HashSet<Integer> singleton = new HashSet<Integer>();
+				singleton.add(miniZones[i][j]);
+				arraylistSet.add(singleton);
+			}
+		
+		}
+	
+		return arraylistSet;
+
+	}
 	
 	public int getRotation() {
 		return beenRotated * 90;
@@ -282,46 +318,90 @@ public class Tile {
 		//	Need more research for figuring out solution
 		//	Still doesn't have concise sets and allows duplicates
 
-		ArrayList<HashSet<Integer>> jungles = new ArrayList<HashSet<Integer>>();
-
+		/*
 
 		for(int i=0; i < miniZones.length; i++){
 			for(int j=0; j < miniZones.length; j++){
 
 				HashSet<Integer> cJungle = new HashSet<Integer>();
 
-				if(miniZones[i][j] == 0){
+				try {
+					if(miniZones[i][j] == 0){
 
-					cJungle.add(miniZones[i][j]);
+						cJungle.add(miniZones[i][j]);
 
-					if(miniZones[i+1][j] == 0){
-						int rJungle = miniZones[i+1][j];
-						cJungle.add(rJungle);
-					}
-		
-					if(miniZones[i][j+1] == 0){
-						int upJungle = miniZones[i][j+1];
-						cJungle.add(upJungle);
+						if(miniZones[i+1][j] == 0){
+							System.out.println("Right Jungle");
+							int rJungle = miniZones[i+1][j];
+							cJungle.add(rJungle);
+						}
+			
+						if(miniZones[i][j+1] == 0){
+							System.out.println("Upper Jungle");
+							int upJungle = miniZones[i][j+1];
+							cJungle.add(upJungle);
+						}
+
+						if(miniZones[i-1][j] == 0){
+							System.out.println("Left Jungle");
+							int lJungle = miniZones[i-1][j];
+							cJungle.add(lJungle);
+						}
+
+						if(miniZones[i][j-1] == 0){
+							System.out.println("Lower Jungle");
+							int downJungle = miniZones[i][j-1];
+							cJungle.add(downJungle);
+						}
+
+						jungles.add(cJungle);
+
 					}
 
-					if(miniZones[i][j-1] == 0){
-						int downJungle = miniZones[i][j-1];
-						cJungle.add(downJungle);
-					}
+				} catch(Exception e){
 
-					if(miniZones[i-1][j] == 0){
-						int lJungle = miniZones[i-1][j];
-						cJungle.add(lJungle);
-					}
+					System.out.println("Throwing Exception");
+
 				}
-
-				jungles.add(cJungle);
 
 			}
 
 		}
 
+		*/
+
+		ArrayList<HashSet<Integer>> jungles = addFeatures();
+
+
+
+
+
+
+
+
 		return jungles;
 	}
+
+	public static void main(String[] args){
+
+		Tile tile = new Tile();
+
+		tile.addFeatures();
+		ArrayList <HashSet<Integer>> tiles = tile.connectedJungle();
+
+		Iterator <HashSet<Integer>> it = tiles.iterator();
+
+		while (it.hasNext()) {
+			System.out.println(it.next());
+		}
+
+	}
+
+
+
+
+
+
+
 
 }
