@@ -1101,7 +1101,7 @@ public class HashBoard{
 		/**Check Open Boundary Equal function and HashCode works**/
 		FeatureArea first = new FeatureArea();
 		first.areaCoor.add(new Position(0,0));
-		first.areaCoor.add(new Position(0,1));
+		first.areaCoor.add(new Position(0,0));
 		first.openBoundary.add(new Boundary(new Position (0,0),1));
 		first.openBoundary.add(new Boundary(new Position (0,0),1));
 
