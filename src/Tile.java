@@ -225,9 +225,7 @@ public class Tile {
 		return beenRotated * 90;
 	}
 
-	public Set<ArrayList<Integer>> connectedJungle(){
-		Set<ArrayList<Integer>> jungles = new HashSet<ArrayList<Integer>>();
-
+	public ArrayList<HashSet<Integer>> connectedJungle(){
 
 		//Covers the simple case of adding minizones
 		/*
@@ -284,30 +282,34 @@ public class Tile {
 		//	Need more research for figuring out solution
 		//	Still doesn't have concise sets and allows duplicates
 
+		ArrayList<HashSet<Integer>> jungles = new ArrayList<HashSet<Integer>>();
+
+
 		for(int i=0; i < miniZones.length; i++){
-			for(int j=0; j < minizones.length; j++){
+			for(int j=0; j < miniZones.length; j++){
 
+				HashSet<Integer> cJungle = new HashSet<Integer>();
 
-				if(miniZones[i][j] == 1){
+				if(miniZones[i][j] == 0){
 
-				cJungle.add(miniZones[i][j]);
+					cJungle.add(miniZones[i][j]);
 
-					if(miniZones[i+1][j] == 1){
+					if(miniZones[i+1][j] == 0){
 						int rJungle = miniZones[i+1][j];
 						cJungle.add(rJungle);
 					}
 		
-					if(miniZones[i][j+1] == 1){
+					if(miniZones[i][j+1] == 0){
 						int upJungle = miniZones[i][j+1];
 						cJungle.add(upJungle);
 					}
 
-					if(miniZones[i][j-1] == 1){
+					if(miniZones[i][j-1] == 0){
 						int downJungle = miniZones[i][j-1];
 						cJungle.add(downJungle);
 					}
 
-					if(miniZones[i-1][j] == 1){
+					if(miniZones[i-1][j] == 0){
 						int lJungle = miniZones[i-1][j];
 						cJungle.add(lJungle);
 					}
