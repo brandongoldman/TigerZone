@@ -386,24 +386,30 @@ public class HashBoard{
 		/**Account if two or more edges of a tile become a part of the same area.**/
 		/**TOP**/
 		/**Lake**/
+		boolean R=false;
+		boolean B=false;
+		boolean L=false;
 		if(!skipT) {
 			if (tile.getEdgeT() == 2) {
 				if(TopArea.equals(RightArea)){
 					skipR=true;
+					R=true;
 				}
 				if(TopArea.equals(BottomArea)){
 					skipB=true;
+					B=true;
 				}
 				if(TopArea.equals(LeftArea)){
 					skipL=true;
+					L=true;
 				}
-				if(skipR){
+				if(R){
 					TopArea.openBoundary.remove(checkRight);
 				}
-				if(skipB){
+				if(B){
 					TopArea.openBoundary.remove(checkBottom);
 				}
-				if(skipL){
+				if(L){
 					TopArea.openBoundary.remove(checkLeft);
 				}
 				if (tile.getCTR()&&!skipR) {
@@ -453,16 +459,6 @@ public class HashBoard{
 			/**Trail**/
 			else if (tile.getEdgeT() == 1) {
 				int count = 0;
-				
-				if(TopArea.equals(RightArea)){
-					skipR=true;
-				}
-				if(TopArea.equals(BottomArea)){
-					skipB=true;
-				}
-				if(TopArea.equals(LeftArea)){
-					skipL=true;
-				}
 
 				if (tile.getEdgeR() == 1&&!skipR) {
 					count++;
@@ -475,30 +471,41 @@ public class HashBoard{
 				}
 				//check Intersection
 				if (count == 1) {
+					if(TopArea.equals(RightArea)){
+						TopArea.openBoundary.remove(checkRight);
+						skipR=true;
+					}
+					else if(TopArea.equals(BottomArea)){
+						TopArea.openBoundary.remove(checkBottom);
+						skipB=true;
+					}
+					else if(TopArea.equals(LeftArea)){
+						TopArea.openBoundary.remove(checkLeft);
+						skipL=true;
+					}
 					if (tile.getEdgeR() == 1&&!skipR) {
 						TopArea.areaCoor.addAll(RightArea.areaCoor);
 						TopArea.openBoundary.addAll(RightArea.openBoundary);
-						TopArea.openBoundary.remove(checkTop);
 						TopArea.openBoundary.remove(checkRight);
 						if (TopArea.getHasTiger() || RightArea.getHasTiger()) {
 							TopArea.tiger.addAll(RightArea.tiger);
 							TopArea.setHasTiger(true);
 						}
 						skipR = true;
-					} else if (tile.getEdgeB() == 1&&!skipB) {
+					}
+					else if (tile.getEdgeB() == 1&&!skipB) {
 						TopArea.areaCoor.addAll(BottomArea.areaCoor);
 						TopArea.openBoundary.addAll(BottomArea.openBoundary);
-						TopArea.openBoundary.remove(checkTop);
 						TopArea.openBoundary.remove(checkBottom);
 						if (TopArea.getHasTiger() || BottomArea.getHasTiger()) {
 							TopArea.tiger.addAll(BottomArea.tiger);
 							TopArea.setHasTiger(true);
 						}
 						skipB = true;
-					} else if (tile.getEdgeL() == 1&&!skipL) {
+					}
+					else if (tile.getEdgeL() == 1&&!skipL) {
 						TopArea.areaCoor.addAll(LeftArea.areaCoor);
 						TopArea.openBoundary.addAll(LeftArea.openBoundary);
-						TopArea.openBoundary.remove(checkTop);
 						TopArea.openBoundary.remove(checkLeft);
 						if (TopArea.getHasTiger() || LeftArea.getHasTiger()) {
 							TopArea.tiger.addAll(LeftArea.tiger);
@@ -506,8 +513,13 @@ public class HashBoard{
 						}
 						skipL = true;
 					}
+					TopArea.areaCoor.add(pos);
+					TopArea.openBoundary.remove(checkTop);
 					if (TopArea.openBoundary.isEmpty()) {
 						TopArea.setCompleted(true);
+					}
+					if(foundT){
+						checkT.remove();
 					}
 					if (TopArea.getHasTiger()) {
 						ClaimedTrail.add(TopArea);
@@ -515,57 +527,104 @@ public class HashBoard{
 						Trail.add(TopArea);
 					}
 
-				} else {
+				}
+				else if (count > 1) {
+					if(TopArea.equals(RightArea)){
+						skipR=true;
+						R=true;
+					}
+					if(TopArea.equals(BottomArea)){
+						skipB=true;
+						B=true;
+					}
+					if(TopArea.equals(LeftArea)){
+						skipL=true;
+						L=true;
+					}
+					if(R){
+						TopArea.openBoundary.remove(checkRight);
+					}
+					if(B){
+						TopArea.openBoundary.remove(checkBottom);
+					}
+					if(L){
+						TopArea.openBoundary.remove(checkLeft);
+					}
+					if (tile.getEdgeR() == 1&&!skipR) {
+						RightArea.areaCoor.add(pos);
+						RightArea.openBoundary.remove(checkRight);
+						if (RightArea.openBoundary.isEmpty()) {
+							RightArea.setCompleted(true);
+						}
+						if(foundR){
+							checkR.remove();
+						}
+						if (RightArea.getHasTiger()) {
+							ClaimedTrail.add(RightArea);
+						} else {
+							Trail.add(RightArea);
+						}
+							skipR = true;
+					}
+					if (tile.getEdgeB() == 1&&!skipB) {
+						BottomArea.areaCoor.add(pos);
+						BottomArea.openBoundary.remove(checkBottom);
+						if (BottomArea.openBoundary.isEmpty()) {
+							BottomArea.setCompleted(true);
+						}
+						if(foundB){
+							checkB.remove();
+						}
+						if (BottomArea.getHasTiger()) {
+							ClaimedTrail.add(BottomArea);
+						} else {
+							Trail.add(BottomArea);
+						}
+						skipB = true;
+					}
+					if (tile.getEdgeL() == 1&&!skipL) {
+						LeftArea.areaCoor.add(pos);
+						LeftArea.openBoundary.remove(checkLeft);
+						if (LeftArea.openBoundary.isEmpty()) {
+							LeftArea.setCompleted(true);
+						}
+						if(foundL){
+							checkL.remove();
+						}
+						if (LeftArea.getHasTiger()) {
+							ClaimedTrail.add(LeftArea);
+						} else {
+							Trail.add(LeftArea);
+						}
+						skipL = true;
+					}
 					TopArea.areaCoor.add(pos);
 					TopArea.openBoundary.remove(checkTop);
 					if (TopArea.openBoundary.isEmpty()) {
 						TopArea.setCompleted(true);
+					}
+					if(foundT){
+						checkT.remove();
 					}
 					if (TopArea.getHasTiger()) {
 						ClaimedTrail.add(TopArea);
 					} else {
 						Trail.add(TopArea);
 					}
-					if (count > 1) {
-						if (tile.getEdgeR() == 1&&!skipR) {
-							RightArea.areaCoor.add(pos);
-							RightArea.openBoundary.remove(checkRight);
-							if (RightArea.openBoundary.isEmpty()) {
-								RightArea.setCompleted(true);
-							}
-							if (RightArea.getHasTiger()) {
-								ClaimedTrail.add(RightArea);
-							} else {
-								Trail.add(RightArea);
-							}
-							skipR = true;
-						}
-						if (tile.getEdgeB() == 1&&!skipB) {
-							BottomArea.areaCoor.add(pos);
-							BottomArea.openBoundary.remove(checkBottom);
-							if (BottomArea.openBoundary.isEmpty()) {
-								BottomArea.setCompleted(true);
-							}
-							if (BottomArea.getHasTiger()) {
-								ClaimedTrail.add(BottomArea);
-							} else {
-								Trail.add(BottomArea);
-							}
-							skipB = true;
-						}
-						if (tile.getEdgeL() == 1&&!skipL) {
-							LeftArea.areaCoor.add(pos);
-							LeftArea.openBoundary.remove(checkLeft);
-							if (LeftArea.openBoundary.isEmpty()) {
-								LeftArea.setCompleted(true);
-							}
-							if (LeftArea.getHasTiger()) {
-								ClaimedTrail.add(LeftArea);
-							} else {
-								Trail.add(LeftArea);
-							}
-							skipL = true;
-						}
+				}
+				else{
+					TopArea.areaCoor.add(pos);
+					TopArea.openBoundary.remove(checkTop);
+					if (TopArea.openBoundary.isEmpty()) {
+						TopArea.setCompleted(true);
+					}
+					if(foundT){
+						checkT.remove();
+					}
+					if (TopArea.getHasTiger()) {
+						ClaimedTrail.add(TopArea);
+					} else {
+						Trail.add(TopArea);
 					}
 				}
 
@@ -573,20 +632,24 @@ public class HashBoard{
 		}
 
 		/**RIGHT**/
+		B=false;
+		L=false;
 		if(!skipR){
 			/**Lake**/
 			if(tile.getEdgeR()==2){
-				if(TopArea.equals(BottomArea)){
+				if(RightArea.equals(BottomArea)){
 					skipB=true;
+					B=true;
 				}
-				if(TopArea.equals(LeftArea)){
+				if(RightArea.equals(LeftArea)){
 					skipL=true;
+					L=true;
 				}
-				if(skipB){
-					TopArea.openBoundary.remove(checkBottom);
+				if(B){
+					RightArea.openBoundary.remove(checkBottom);
 				}
-				if(skipL){
-					TopArea.openBoundary.remove(checkLeft);
+				if(L){
+					RightArea.openBoundary.remove(checkLeft);
 				}
 				if(tile.getCBR()&&!skipB){
 					RightArea.areaCoor.addAll(BottomArea.areaCoor);
@@ -634,10 +697,17 @@ public class HashBoard{
 				}
 				//check Intersection
 				if(count==1){
+					if(RightArea.equals(BottomArea)){
+						RightArea.openBoundary.remove(checkBottom);
+						skipB=true;
+					}
+					else if(RightArea.equals(LeftArea)){
+						RightArea.openBoundary.remove(checkLeft);
+						skipL=true;
+					}
 					if(tile.getEdgeB()==1&&!skipB){
 						RightArea.areaCoor.addAll(BottomArea.areaCoor);
 						RightArea.openBoundary.addAll(BottomArea.openBoundary);
-						RightArea.openBoundary.remove(checkRight);
 						RightArea.openBoundary.remove(checkBottom);
 						if(RightArea.getHasTiger()||BottomArea.getHasTiger()){
 							RightArea.tiger.addAll(BottomArea.tiger);
@@ -648,7 +718,6 @@ public class HashBoard{
 					else if(tile.getEdgeL()==1&&!skipL){
 						RightArea.areaCoor.addAll(LeftArea.areaCoor);
 						RightArea.openBoundary.addAll(LeftArea.openBoundary);
-						RightArea.openBoundary.remove(checkRight);
 						RightArea.openBoundary.remove(checkLeft);
 						if(RightArea.getHasTiger()||LeftArea.getHasTiger()){
 							RightArea.tiger.addAll(LeftArea.tiger);
@@ -656,8 +725,13 @@ public class HashBoard{
 						}
 						skipL=true;
 					}
+					RightArea.areaCoor.add(pos);
+					RightArea.openBoundary.remove(checkRight);
 					if(RightArea.openBoundary.isEmpty()){
 						RightArea.setCompleted(true);
+					}
+					if(foundR){
+						checkR.remove();
 					}
 					if(RightArea.getHasTiger()){
 						ClaimedTrail.add(RightArea);
@@ -666,6 +740,68 @@ public class HashBoard{
 						Trail.add(RightArea);
 					}
 
+				}
+				else if(count>1) {
+					if(RightArea.equals(BottomArea)){
+						skipB=true;
+						B=true;
+					}
+					if(RightArea.equals(LeftArea)){
+						skipL=true;
+						L=true;
+					}
+					if(B){
+						RightArea.openBoundary.remove(checkBottom);
+					}
+					if(L){
+						RightArea.openBoundary.remove(checkLeft);
+					}
+					if (tile.getEdgeB() == 1&&!skipB) {
+						BottomArea.areaCoor.add(pos);
+						BottomArea.openBoundary.remove(checkBottom);
+						if (BottomArea.openBoundary.isEmpty()) {
+							BottomArea.setCompleted(true);
+						}
+						if(foundB){
+							checkB.remove();
+						}
+						if (BottomArea.getHasTiger()) {
+							ClaimedTrail.add(BottomArea);
+						} else {
+							Trail.add(BottomArea);
+						}
+						skipB = true;
+					}
+					if (tile.getEdgeL() == 1&&!skipL) {
+						LeftArea.areaCoor.add(pos);
+						LeftArea.openBoundary.remove(checkLeft);
+						if (LeftArea.openBoundary.isEmpty()) {
+							LeftArea.setCompleted(true);
+						}
+						if(foundL){
+							checkL.remove();
+						}
+						if (LeftArea.getHasTiger()) {
+							ClaimedTrail.add(LeftArea);
+						} else {
+							Trail.add(LeftArea);
+						}
+						skipL = true;
+					}
+					RightArea.areaCoor.add(pos);
+					RightArea.openBoundary.remove(checkRight);
+					if(RightArea.openBoundary.isEmpty()){
+						RightArea.setCompleted(true);
+					}
+					if(foundR){
+						checkR.remove();
+					}
+					if(RightArea.getHasTiger()){
+						ClaimedTrail.add(RightArea);
+					}
+					else{
+						Trail.add(RightArea);
+					}
 				}
 				else{
 					RightArea.areaCoor.add(pos);
@@ -673,54 +809,32 @@ public class HashBoard{
 					if(RightArea.openBoundary.isEmpty()){
 						RightArea.setCompleted(true);
 					}
+					if(foundR){
+						checkR.remove();
+					}
 					if(RightArea.getHasTiger()){
 						ClaimedTrail.add(RightArea);
 					}
 					else{
 						Trail.add(RightArea);
 					}
-					if(count>1) {
-						if (tile.getEdgeB() == 1&&!skipB) {
-							BottomArea.areaCoor.add(pos);
-							BottomArea.openBoundary.remove(checkBottom);
-							if (BottomArea.openBoundary.isEmpty()) {
-								BottomArea.setCompleted(true);
-							}
-							if (BottomArea.getHasTiger()) {
-								ClaimedTrail.add(BottomArea);
-							} else {
-								Trail.add(BottomArea);
-							}
-							skipB = true;
-						}
-						if (tile.getEdgeL() == 1&&!skipL) {
-							LeftArea.areaCoor.add(pos);
-							LeftArea.openBoundary.remove(checkLeft);
-							if (LeftArea.openBoundary.isEmpty()) {
-								LeftArea.setCompleted(true);
-							}
-							if (LeftArea.getHasTiger()) {
-								ClaimedTrail.add(LeftArea);
-							} else {
-								Trail.add(LeftArea);
-							}
-							skipL = true;
-						}
-					}
 				}
+
 
 			}
 		}
 
 		/**BOTTOM**/
+		L=false;
 		if(!skipB){
 			/**Lake**/
 			if(tile.getEdgeB()==2){
-				if(TopArea.equals(LeftArea)){
+				if(BottomArea.equals(LeftArea)){
 					skipL=true;
+					L=true;
 				}
-				if(skipL){
-					TopArea.openBoundary.remove(checkLeft);
+				if(L){
+					BottomArea.openBoundary.remove(checkLeft);
 				}
 				if(tile.getCBL()&&!skipL){
 					BottomArea.areaCoor.addAll(LeftArea.areaCoor);
@@ -750,17 +864,31 @@ public class HashBoard{
 			/**Trail**/
 			else if(tile.getEdgeB()==1){
 				if(tile.getEdgeL()==1&&!skipL){
-					BottomArea.areaCoor.addAll(LeftArea.areaCoor);
-					BottomArea.openBoundary.addAll(LeftArea.openBoundary);
-					BottomArea.openBoundary.remove(checkBottom);
-					BottomArea.openBoundary.remove(checkLeft);
-					if(BottomArea.getHasTiger()||LeftArea.getHasTiger()){
-						BottomArea.tiger.addAll(LeftArea.tiger);
-						BottomArea.setHasTiger(true);
+					if(BottomArea.equals(LeftArea)){
+						skipL=true;
+						L=true;
 					}
+					if(L){
+						BottomArea.openBoundary.remove(checkLeft);
+					}
+					else{
+						BottomArea.areaCoor.addAll(LeftArea.areaCoor);
+						BottomArea.openBoundary.addAll(LeftArea.openBoundary);
+						BottomArea.openBoundary.remove(checkLeft);
+						if(BottomArea.getHasTiger()||LeftArea.getHasTiger()){
+							BottomArea.tiger.addAll(LeftArea.tiger);
+							BottomArea.setHasTiger(true);
+						}
 					skipL=true;
+					}
+
+					BottomArea.areaCoor.add(pos);
+					BottomArea.openBoundary.remove(checkBottom);
 					if(BottomArea.openBoundary.isEmpty()){
 						BottomArea.setCompleted(true);
+					}
+					if(foundB){
+						checkB.remove();
 					}
 					if(BottomArea.getHasTiger()){
 						ClaimedTrail.add(BottomArea);
@@ -775,6 +903,9 @@ public class HashBoard{
 					if(BottomArea.openBoundary.isEmpty()){
 						BottomArea.setCompleted(true);
 					}
+					if(foundB){
+						checkB.remove();
+					}
 					if(BottomArea.getHasTiger()){
 						ClaimedTrail.add(BottomArea);
 					}
@@ -786,6 +917,7 @@ public class HashBoard{
 		}
 
 		/**LEFT**/
+		L=false;
 		if(!skipL){
 			/**Lake**/
 			if(tile.getEdgeL()==2){
@@ -810,6 +942,9 @@ public class HashBoard{
 				LeftArea.openBoundary.remove(checkLeft);
 				if(LeftArea.openBoundary.isEmpty()){
 					LeftArea.setCompleted(true);
+				}
+				if(foundL){
+					checkL.remove();
 				}
 				if(LeftArea.getHasTiger()){
 					ClaimedTrail.add(LeftArea);
