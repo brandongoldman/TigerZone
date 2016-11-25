@@ -237,6 +237,9 @@ public class Tile {
 	// 	orientation += 270;
 	// }
 
+	public int getRotation() {
+		return beenRotated * 90;
+	}
 
 	//Using for Testing the Tile connected jungle Feature
 	public ArrayList<HashSet<Integer>> addFeatures(){
@@ -256,61 +259,9 @@ public class Tile {
 		return arraylistSet;
 
 	}
-	
-	public int getRotation() {
-		return beenRotated * 90;
-	}
+
 
 	public ArrayList<HashSet<Integer>> connectedJungle(){
-
-		//Covers the simple case of adding minizones
-		/*
-	
-			Problems:
-
-				1.	Cover case for a string/trial of
-				jungles that are connected with one
-				another
-
-				2.	Make sure that there are not repeating
-				values for the jungles connected sets
-
-
-
-		for(int i=0; i < miniZones.length; i++){
-			
-			ArrayList<Integer> cJungle = new ArrayList<Integer>();
-
-			if(miniZones[i][i] == 1){
-
-				cJungle.add(miniZones[i][i]);
-
-				if(miniZones[i+1][i] == 1){
-					int rJungle = miniZones[i][i+1];
-					cJungle.add(rJungle);
-				}
-	
-				if(miniZones[i][i+1] == 1){
-					int upJungle = miniZones[i][i+1];
-					cJungle.add(upJungle);
-				}
-
-				if(miniZones[i][i-1] == 1){
-					int downJungle = miniZones[i][i-1];
-					cJungle.add(downJungle);
-				}
-
-				if(miniZones[i-1][i] == 1){
-					int lJungle = miniZones[i-1][i];
-					cJungle.add(lJungle);
-				}
-			}
-
-			jungles.add(cJungle);
-
-		}
-
-		*/
 
 
 		//	Simple Implementation
@@ -370,29 +321,56 @@ public class Tile {
 
 		*/
 
+		/*
+
+			Using the indecies 2, 4, 6, 8, which will work to
+			solve the connection problem a lot more.
+
+		*/
+
 		ArrayList<HashSet<Integer>> jungles = addFeatures();
+		ArrayList<HashSet<Integer>> cJungles = new ArrayList<HashSet<Integer>>();
+
+		for(int i=0; i < 3; i++){
+
+			for(int j=0; j < 3; j++){
+
+				if(((i+j) % 2) == 1){
+
+					HashSet<Integer> jungle = new HashSet<Integer>();
+					jungle = jungles.get(i+j);
+
+					cJungles.add(jungle);
+
+				}
+				
+			}
+
+		}
 
 
-
-
-
-
-
-
-		return jungles;
+		return cJungles;
 	}
 
 	public static void main(String[] args){
 
 		Tile tile = new Tile();
 
-		tile.addFeatures();
-		ArrayList <HashSet<Integer>> tiles = tile.connectedJungle();
+		ArrayList <HashSet<Integer>> tile1 = tile.addFeatures();
+		ArrayList <HashSet<Integer>> tile2 = tile.connectedJungle();
 
-		Iterator <HashSet<Integer>> it = tiles.iterator();
+		Iterator <HashSet<Integer>> it1 = tile1.iterator();
+		Iterator <HashSet<Integer>> it2 = tile2.iterator();
 
-		while (it.hasNext()) {
-			System.out.println(it.next());
+		while (it1.hasNext()) {
+			System.out.println(it1.next());
+		}
+
+
+		System.out.println("================================================");
+
+		while (it2.hasNext()) {
+			System.out.println(it2.next());
 		}
 
 	}
