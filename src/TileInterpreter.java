@@ -82,6 +82,7 @@ public class TileInterpreter {
 				oTB = stretchArr[1];
 				
                 //setting 3x3 matix of miniZones
+                // 0 = jungle / 1 = game trail / 2 = lake / 3 = Jungle/Lake split / 55 = DEN / 60 = CROC
                 /*for(int i = 0; i < 3; i++){
                     
                     for(int j = 0; j < 3; j++)
@@ -90,17 +91,39 @@ public class TileInterpreter {
                     
                 }*/
                 
-                if((0 == eT == eL) && (cTR == true)){
+                //need to rethink better way to initialize these positions using this logic...
+                if(((0 == eT) == eL) && (cTR == true)){
                     miniZones[0][0] = 0;
                 }
-                else if ((2 == eT == eL) && (cTR == true)){
+                else if (((2 == eT) == eL) && (cTR == true)){
                     miniZones[0][0] = 2;
                 }
-                else if ((2 == eT == eL) && (cTR == false)){
+                else if (((2 == eT) == eL) && (cTR == false)){
                     miniZones[0][0] = 0;
                 }
-                else if ((eT == 0 && eL == 2) || (eT == 2 && eL == 0)){
+                else if (((eT == 0) && eL == 2) || (eT == 2 && eL == 0)){
                     miniZones[0][0] = 3;
+                }
+                
+                miniZones[0][1] = eT;
+                
+                if ((eT == 1) && (eR == 1) || (eT == 1) && (eR == 0)){
+                    miniZones[0][2] = 0;
+                }
+                else if (((eT == 0) && (eR == 2) || ((eT == 2) && (eR == 0)))){
+                    miniZones[0][2] = 3;
+                }
+                else if(eT == 2 && eR == 2){
+                    miniZones[0][2] = 2;
+                }
+                
+                miniZones[1][0] = eL;
+                         
+                if(den == true){
+                    miniZones [1][1] = 55;
+                }
+                else if(den == false && ((eT == 0) && (eR == 0) && (eL == 0) && ( eB == 0))){
+                    miniZones[1][1] = 0;
                 }
                 
                 
@@ -136,6 +159,7 @@ public class TileInterpreter {
 		case 'D': return 20;
 		case 'P': return 30;
 		case 'X': return 55;
+        case 'C': return 60;
 		default: return -1;
 		}
 	}
