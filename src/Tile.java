@@ -25,6 +25,7 @@ public class Tile {
 	//Private Variables
 	private int animal;
 	private boolean den;
+    private boolean croc;
 	private int eT;
 	private int eL;
 	private int eR;
@@ -66,10 +67,11 @@ public class Tile {
 	}
 
 
-	public Tile(int animal, boolean den, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
+	public Tile(int animal, boolean den, boolean croc, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
 	{
 		this.animal = animal;
 		this.den = den;
+        this.croc = croc;
 		this.eT = eT;
 		this.eL = eL;
 		this.eR = eR;
@@ -98,6 +100,10 @@ public class Tile {
 	{
 		return den;
 	}
+    
+    public boolean getCroc(){
+        return croc;
+    }
 	
 	public int getEdgeT()
 	{

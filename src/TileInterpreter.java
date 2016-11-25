@@ -17,6 +17,7 @@ public class TileInterpreter {
 		String description = "";
 		//boolean shield = false;
 		boolean den = false;
+        boolean croc = false;
 		//EDGES
 		int eT;
 		int eL;
@@ -70,6 +71,8 @@ public class TileInterpreter {
 						 break;
 				case 55: den = true;
 						 break;
+                case 60: croc = true;
+                         break;
 				case 99: break;
 				case -1: System.out.println("Tile input may be formatted unexpectedly");
 						 continue;
@@ -122,6 +125,9 @@ public class TileInterpreter {
                 if(den == true){
                     miniZones [1][1] = 55;
                 }
+                if(croc == true){
+                    miniZOnes [1][1] = 60;
+                }
                 else if(den == false && ((eT == 0) && (eR == 0) && (eL == 0) && ( eB == 0))){
                     miniZones[1][1] = 0;
                 }
@@ -133,7 +139,7 @@ public class TileInterpreter {
 				//CREATE THE INSTANCES OF THE CURRENT TILE AND ADD THEM TO THE TILE ARRAY
 				for (int i = 0; i < numOfCurrentTile; i++)
 				{
-					Tile newTile = new Tile(animal, den, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB);
+					Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB);
 					tileArray[tileCreated] = newTile;
 					tileCreated++;
 				}	
@@ -158,7 +164,7 @@ public class TileInterpreter {
 		case 'B': return 10;
 		case 'D': return 20;
 		case 'P': return 30;
-		case 'X': return 55;
+        case 'X': return 55;
         case 'C': return 60;
 		default: return -1;
 		}
