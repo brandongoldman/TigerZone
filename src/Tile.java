@@ -11,6 +11,11 @@
 ************************************/
 
 import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tile {
 
@@ -28,7 +33,7 @@ public class Tile {
 	private boolean oLR = false;
 	private boolean oTB = false;
 	private int beenRotated = 0;
-	
+	private int[][] miniZones;
 	
 	private Position position;
 
@@ -41,6 +46,7 @@ public class Tile {
 
 	public Tile(Position pos){
 		this.position = pos;
+		miniZones = new int[3][3];
 	}
 
 
@@ -218,5 +224,59 @@ public class Tile {
 	public int getRotation() {
 		return beenRotated * 90;
 	}
+
+	public Set<ArrayList<Integer>> connectedJungle(){
+		Set<ArrayList<Integer>> jungles = new HashSet<ArrayList<Integer>>();
+
+
+		//Covers the simple case of adding minizones
+		/*
+	
+			Problems:
+
+				1.	Cover case for a string/trial of
+				jungles that are connected with one
+				another
+
+				2.	Make sure that there are not repeating
+				values for the jungles connected sets
+
+		*/
+		for(int i=0; i < miniZones.length; i++){
+			if(miniZones[i][i]){
+				if(miniZones[i+1][i] == 1){
+
+
+				}
+	
+				if(miniZones[i][i+1] == 1){
+
+
+				}
+
+				if(miniZones[i][i-1] == 1){
+
+
+
+				}
+
+				if(miniZones[i-1][i] == 1){
+
+
+
+				}
+			}
+		}
+
+
+		return jungles;
+	}
+
+
+
+
+
+
+
 
 }
