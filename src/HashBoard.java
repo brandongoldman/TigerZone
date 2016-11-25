@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 public class HashBoard{
 	
-    HashMap <Position, Tile> gBoard; // = new HashMap<Position, Tile>();
+    HashMap <Position, Tile> gBoard;
 	Set <Position> set;
 	ArrayList<FeatureArea> Jungle;
 	ArrayList<FeatureArea> Trail;
@@ -43,9 +43,7 @@ public class HashBoard{
 
 	public HashBoard(int numberOfPlayers){
 		gBoard = new HashMap<Position, Tile>();
-		//Initializing Possible spots for users
 		set = new HashSet<Position>();
-		//gBoard.put(new Position(0, 0), new Tile());
 		Jungle = new ArrayList<FeatureArea>();
 		Trail = new ArrayList<FeatureArea>();
 		Lake = new ArrayList<FeatureArea>();
@@ -65,19 +63,6 @@ public class HashBoard{
 		initialLake.openBoundary.add(new Boundary(new Position(0,0),2));
 
 		Lake.add(initialLake);
-
-		//Area of Jungle
-		/**New Area for Jungle to account for split tiles
-		 *
-		 */
-
-		/*
-
-			Test Case:
-			1. Try a tile that is already on the board
-			2. Try an invalid placement
-
-		*/
 
 	}
     
@@ -920,8 +905,6 @@ public class HashBoard{
 	        if (gBoard.get(lPos).getEdgeR() != currentTile.getEdgeL()) return false;
 	   System.out.println("LPOS CHECKED OUT");
 	   // SHOULD BE VALID... I THINK
-			
-			
 			
 	
 		return true;

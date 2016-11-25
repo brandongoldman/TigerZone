@@ -242,6 +242,7 @@ public class Tile {
 				values for the jungles connected sets
 
 		*/
+
 		for(int i=0; i < miniZones.length; i++){
 
 			ArrayList<Integer> cJungle = new ArrayList<Integer>();
@@ -250,49 +251,35 @@ public class Tile {
 
 				cJungle.add(miniZones[i][i]);
 
-				if(miniZones[i][i+1] == 1){
-
+				if(miniZones[i+1][i] == 1){
 					int rJungle = miniZones[i][i+1];
 					cJungle.add(rJungle);
-
 				}
 	
 				if(miniZones[i][i+1] == 1){
-
 					int upJungle = miniZones[i][i+1];
 					cJungle.add(upJungle);
-
 				}
 
 				if(miniZones[i][i-1] == 1){
-
 					int downJungle = miniZones[i][i-1];
 					cJungle.add(downJungle);
-				
 				}
 
-				if(miniZones[i][i-1] == 1){
-
-					int lJungle = miniZones[i][i-1];
+				if(miniZones[i-1][i] == 1){
+					int lJungle = miniZones[i-1][i];
 					cJungle.add(lJungle);
-
 				}
 			}
-
 
 			jungles.add(cJungle);
 
 		}
 
 
+
+
 		return jungles;
 	}
-
-
-
-
-
-
-
 
 }
