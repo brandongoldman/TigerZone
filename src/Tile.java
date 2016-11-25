@@ -241,10 +241,10 @@ public class Tile {
 				2.	Make sure that there are not repeating
 				values for the jungles connected sets
 
-		*/
+
 
 		for(int i=0; i < miniZones.length; i++){
-
+			
 			ArrayList<Integer> cJungle = new ArrayList<Integer>();
 
 			if(miniZones[i][i] == 1){
@@ -276,8 +276,48 @@ public class Tile {
 
 		}
 
+		*/
 
 
+		//	Simple Implementation
+		//	Bad time complexity
+		//	Need more research for figuring out solution
+		//	Still doesn't have concise sets and allows duplicates
+
+		for(int i=0; i < miniZones.length; i++){
+			for(int j=0; j < minizones.length; j++){
+
+
+				if(miniZones[i][j] == 1){
+
+				cJungle.add(miniZones[i][j]);
+
+					if(miniZones[i+1][j] == 1){
+						int rJungle = miniZones[i+1][j];
+						cJungle.add(rJungle);
+					}
+		
+					if(miniZones[i][j+1] == 1){
+						int upJungle = miniZones[i][j+1];
+						cJungle.add(upJungle);
+					}
+
+					if(miniZones[i][j-1] == 1){
+						int downJungle = miniZones[i][j-1];
+						cJungle.add(downJungle);
+					}
+
+					if(miniZones[i-1][j] == 1){
+						int lJungle = miniZones[i-1][j];
+						cJungle.add(lJungle);
+					}
+				}
+
+				jungles.add(cJungle);
+
+			}
+
+		}
 
 		return jungles;
 	}
