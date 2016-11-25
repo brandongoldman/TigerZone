@@ -107,7 +107,7 @@ public class HashBoard{
 		}
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
-		updateFeatures();
+		updateFeatures(pos,tile);
 		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
 	}
 
