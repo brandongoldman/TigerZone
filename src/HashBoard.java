@@ -1083,7 +1083,8 @@ public class HashBoard{
 	
 
 	public static void main(String[] args){
-		HashBoard board = new HashBoard(0);
+		/**Check Open Spots Testing**/
+		/*HashBoard board = new HashBoard(0);
 		board.gBoard.put(new Position(0, 0), new Tile());
 		board.updateOpenSpots(new Position(0, 0));
 		board.printKeys();
@@ -1095,21 +1096,23 @@ public class HashBoard{
 		board.printKeys();
 		board.gBoard.put(new Position(0, -1), new Tile());
 		board.updateOpenSpots(new Position(0, -1));
-		board.printKeys();
-		/*board.gBoard.put(new Position(2, 0), new Tile());
-		board.checkOpenSpots(new Position(2, 0));
-		board.printKeys();
-		board.gBoard.put(new Position(0, 1), new Tile());
-		board.checkOpenSpots(new Position(0, 1));
-		board.printKeys();
-        //board.gBoard.put(new Position(0, 1), new Tile());
-        //board.checkOpenSpots(new Position(0, 1));
-        //board.printKeys();
-        //board.gBoard.put(new Position(2, 0), new Tile());
-        //board.checkOpenSpots(new Position(2, 0));
-        //board.printKeys();
-        
-        
+		board.printKeys();*/
+
+		/**Check Open Boundary Equal function and HashCode works**/
+		FeatureArea first = new FeatureArea();
+		first.areaCoor.add(new Position(0,0));
+		first.areaCoor.add(new Position(0,1));
+		first.openBoundary.add(new Boundary(new Position (0,0),1));
+		first.openBoundary.add(new Boundary(new Position (0,0),1));
+
+		FeatureArea second = new FeatureArea();
+		second.areaCoor.add(new Position(0,0));
+		second.openBoundary.add(new Boundary(new Position (0,0),1));
+
+		if(first.equals(second)){
+			System.out.print("TRUE");
+		}
+		else System.out.print("FALSE");
 		/**System.out.println("We Have Started a New Game");
 		System.out.println("Choose Your Position (Format: X Y )");
 		Scanner scan = new Scanner(System.in);
