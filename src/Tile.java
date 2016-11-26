@@ -334,26 +334,39 @@ public class Tile {
 
 		*/
 
-		ArrayList<HashSet<Integer>> jungles = addFeatures();
+		// ArrayList<HashSet<Integer>> jungles = addFeatures();
 		ArrayList<HashSet<Integer>> cJungles = new ArrayList<HashSet<Integer>>();
 
-		for(int i=0; i < 3; i++){
+		for(int i=0; i < miniZones.length; i++){
+			for(int j=0; j < miniZones[i].length; j++){
 
-			for(int j=0; j < 3; j++){
+				HashSet<Integer> jungle = new HashSet<Integer>();
 
-				if(((i+j) % 2) == 1){
+				int rNeighbor = miniZones[i][j+1];
+				int uNeighbor = miniZones[i+1][j];
+				int lNeighbor = miniZones[i][j-1];
+				int dNeighbor = miniZones[i-1][j];
 
-					HashSet<Integer> jungle = new HashSet<Integer>();
-					jungle = jungles.get(i+j);
-
-					cJungles.add(jungle);
-
+				if(rNeighbor == 1){
+					jungle.add(rNeighbor);
 				}
-				
+
+				if(uNeighbor == 1){
+					jungle.add(uNeighbor);
+				}
+
+				if(lNeighbor == 1){
+					jungle.add(lNeighbor);
+				}
+
+				if(dNeighbor == 1){
+					jungle.add(dNeighbor);
+				}
+
+				cJungles.add(jungle);
+
 			}
-
 		}
-
 
 		return cJungles;
 	}
