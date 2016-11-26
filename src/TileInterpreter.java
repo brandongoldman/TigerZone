@@ -28,7 +28,7 @@ public class TileInterpreter {
 		boolean cTR = false;
 		boolean cBL = false;
 		boolean cBR = false;
-		//STRETCHERS (OR WHATEVER ADAM NAMED IT LOL)
+		//STRETCHERS
 		boolean oLR = false;
 		boolean oTB = false;
 		//ANIMALS
@@ -49,6 +49,7 @@ public class TileInterpreter {
 				
 				//INPUT THE TILE DESCRIPTION AND DECIPHER THE EDGES
 				description = input.next();
+                System.out.println(description);
 				
 				eT = decipher(description.charAt(0));
 				eR = decipher(description.charAt(1));
@@ -95,13 +96,13 @@ public class TileInterpreter {
                 }*/
                 
                 //need to put logic into separate method once completed
-                if(((0 == eT) == eL) && (cTR == true)){
+                if(((0 == eT) && (0 == eL)) && (cTR == true)){
                     miniZones[0][0] = 0;
                 }
-                else if (((2 == eT) == eL) && (cTR == true)){
+                else if (((2 == eT) && (2 == eL)) && (cTR == true)){
                     miniZones[0][0] = 2;
                 }
-                else if (((2 == eT) == eL) && (cTR == false)){
+                else if (((2 == eT) && ( 2== eL)) && (cTR == false)){
                     miniZones[0][0] = 0;
                 }
                 else if (((eT == 0) && eL == 2) || (eT == 2 && eL == 0)){
@@ -128,7 +129,7 @@ public class TileInterpreter {
                 else if(croc == true){
                     miniZones [1][1] = 60;
                 }
-                else if(den == false && croc = false && ((eT == 0) && (eR == 0) && (eL == 0) && ( eB == 0))){
+                else if(((den == false) && (croc = false)) && ((eT == 0) && (eR == 0) && (eL == 0) && ( eB == 0))){
                     miniZones[1][1] = 0;
                 }
                 else if((eT == 2) && (eR == 2) && (eL == 2) && ( eB == 2)){
@@ -137,13 +138,13 @@ public class TileInterpreter {
                 else if (eL == eR && oLR == true){
                     miniZones[1][1] = eL;
                 }
-                else if(eL == 1 || eT == 1 || eB == 1 && croc = false && den == false){
+                else if(((((eL == 1) || eT == 1) || eB == 1) && ((croc = false) && (den == false)))){
                     miniZones [1][1] = 1;
                 }
                 else if(eT != eB && (eT != 1) && (eB != 1)){
                     miniZones [1][1] = 3;
                 }
-                else if((eT != eB) && ((eT = 1) || (eB = 1))){
+                else if((eT != eB) && ((eT == 1) || (eB == 1))){
                     miniZones [1][1] = 1;
                 }
                 
@@ -179,7 +180,7 @@ public class TileInterpreter {
 				//CREATE THE INSTANCES OF THE CURRENT TILE AND ADD THEM TO THE TILE ARRAY
 				for (int i = 0; i < numOfCurrentTile; i++)
 				{
-					Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB);
+					Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description);
 					tileArray[tileCreated] = newTile;
 					tileCreated++;
 				}	
@@ -244,6 +245,12 @@ public class TileInterpreter {
 	public Tile[] getTileArray(){
 		return tileArray;
 	}
+    
+    public static void main(String[] args) {
+        TileInterpreter readIt = new TileInterpreter();
+        readIt.interpret("JJJJ-");
+    }
+
 
 
 }

@@ -23,26 +23,26 @@ public class DisplayBoard extends JPanel
     private static final int IMAGE_TYPE = BufferedImage.TYPE_INT_RGB;
     
     BufferedImage screen = new BufferedImage(1500,1000,IMAGE_TYPE);
-    public BufferedImage[] tiles = new BufferedImage[29];
+    private BufferedImage[] tiles = new BufferedImage[29];
     private int tTypes = 29;
     private int mapLength = 60;
     private int mapWidth = 35;
     private int tEdge = 25;
-    public BufferedImage[][] map = new BufferedImage[mapLength][mapWidth];
+    private BufferedImage[][] map = new BufferedImage[mapLength][mapWidth];
     
     //constructor to call methods and test operation
     public DisplayBoard() /*throws IOException*/
     {
+        
         loadTile();
         init();
-        setTile("TLTJD",0,0,0);
+        //setTile("TLTJD",0,0,0);
         
         //setTile(tile identifier, Tile.position(xCord), Tile.position(yCord), rotation amounts);
-        setTile("TLTJD",0,1,90);
-        setTile("TLTJD",0,2,180);
-        setTile("TLTJD",0,3,270);
-
-        TileGrid();
+        //setTile("TLTJD",0,1,90);
+        //setTile("TLTJD",0,2,180);
+        //setTile("TLTJD",0,3,270);
+        //TileGrid();
         
     }
     
@@ -129,6 +129,8 @@ public class DisplayBoard extends JPanel
                 System.out.println(e);
             }
         }
+        
+        System.out.println("Game tile images loaded successfully...");
     }
     
     //method to paint background BOARD image that all tiles will be painted over
@@ -166,8 +168,8 @@ public class DisplayBoard extends JPanel
             System.out.println("Cannot place tile: OUT OF BOUNDS");
             
         }
-    
-}
+        TileGrid();
+    }
     
     //initialized a blank board with all empty slots
     public void init(){
@@ -178,6 +180,7 @@ public class DisplayBoard extends JPanel
                 map[x][y] = tiles[28]; //all map locations are set to blank tiles
             }
         }
+        System.out.println("Game board initialized successfully...");
         
     }
     
