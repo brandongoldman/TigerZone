@@ -37,11 +37,6 @@ public class DisplayBoard extends JPanel
         init();
         setTile("TLTJD",0,0,0);
         
-        //for(int q = 0; q<20; q++){
-            
-        //    setTile(q,q,q,0);
-            
-        //}
         //setTile(tile identifier, Tile.position(xCord), Tile.position(yCord), rotation amounts);
         setTile("TLTJD",0,1,90);
         setTile("TLTJD",0,2,180);
@@ -186,21 +181,6 @@ public class DisplayBoard extends JPanel
         
     }
     
-    //method that allows tiles to be rotated by 90 degree
-    /*public BufferedImage RotateBy90(BufferedImage bi) {
-        
-        int width = bi.getWidth();
-        int height = bi.getHeight();
-        
-        BufferedImage biFlip = new BufferedImage(height, width, bi.getType());
-        
-        for(int i=0; i<width; i++){
-            for(int j=0; j<height; j++){
-                biFlip.setRGB(height-1-j, width-1-i, bi.getRGB(i, j));
-            }
-        }
-        return biFlip;
-    }*/
     
     public BufferedImage CCRotate(BufferedImage bi, int degrees){
         
