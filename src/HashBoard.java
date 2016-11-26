@@ -1326,6 +1326,27 @@ public class HashBoard{
 		board.updateOpenSpots(new Position(0, -1));
 		board.printKeys();*/
 
+
+
+		/* Check if Valid Move Test
+		TileInterpreter ti = new TileInterpreter();				
+		ti.interpret("TLTJ-\nTTTT-\nTJTJ-\nJJJJ-\nLLJJ-");	
+		Tile[] arr = ti.getTileArray();							
+																
+		HashBoard board = new HashBoard(2);						
+		board.AddTile(new Position(0,0), arr[0]);				
+		board.updateOpenSpots(new Position(0, 0));
+		board.printKeys();
+		
+		board.AddTile(new Position(0,1), arr[1]);
+		board.AddTile(new Position(0,2), arr[2]);
+		board.AddTile(new Position(-1,0), arr[3]);
+		board.AddTile(new Position(-1,1), arr[4]);
+
+		*/
+
+		
+
 		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/
 		FeatureArea first = new FeatureArea();
 		first.areaCoor.add(new Position(0,0));
