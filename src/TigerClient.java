@@ -3,7 +3,7 @@
 
   “TigerClient” Class will establish a socket connection to the server using a provided IP address and port number. 
   The TigerClient will listen on then socket for messages from the server. 
-  The client will provide an output stream for which messages will be sent to the server.   
+  The client will provide an output stream for which messages will be sent to the server.
   ***See below as example of the main application.*** 
 
 ***********************************************************************/
@@ -12,8 +12,8 @@
 public static void main(String[] args) throws IOException 
     {
 
-	int score = 0;
-	int tigers = 7;
+		int score = 0;
+		int tigers = 7;
     	Player player = new Player(score, tigers);
       
     	//String username = "Red";
@@ -47,7 +47,7 @@ public static void main(String[] args) throws IOException
         	System.out.println("Cannot establish connection");
         	return;
         }
-	
+    	
     	pid = player.client.authenticateProtocol(username, password, tournamentPassword);
     	
     	if (pid == null)
@@ -68,24 +68,29 @@ public static void main(String[] args) throws IOException
     	
     	System.out.printf("Number of rounds: %d", rounds);
     	
+    	MatchParam match = new MatchParam();
+    	
     	for(int i = 0; i < rounds; i++)
     	{
     		// Rounds Protocol
     		
     		// Begin rounds
     		int roundID = player.client.roundProtocol();
-
-    	}
-
-    
-    	while(true)
-    	{
-    	     // Sit here 	
+    		
+    		// Start Match
+    		
+    		match = player.client.matchProtocol();
+    				
+    		// TODO: Add logic to start making moves in the game.  Beyond scope of the client
+    		
     	}
     	
-    	  
+    	while(true)
+    	{
+    		// Sit here 	
+    	}
+    	
     }
-    
 */
 
 /* The TigerClient will realize the Tigerzone protocol which is entirely text based. */ 
@@ -105,7 +110,7 @@ public class TigerClient
     private BufferedReader in;
     private PrintWriter out;
     private boolean connected = false; 
-	public MatchParam match;
+    public MatchParam match;
 
     public TigerClient()
     {
@@ -213,7 +218,7 @@ public class TigerClient
     public int challengeProtocol() throws IOException
     {
     	String response;
-    	String stringRounds = null;
+    	int rounds = 0;
     	boolean newChallenge = false;
     	
     	// TODO:  Do we need to return back the cid? 
@@ -229,7 +234,7 @@ public class TigerClient
     			String delims = "[ ]";
             	String[] tokens = response.split(delims);
             	
-            	stringRounds = tokens[6];
+            	rounds = Integer.parseInt(tokens[6]);
     			
             	newChallenge = true;
     		}
@@ -241,8 +246,6 @@ public class TigerClient
     	
     	}
     	
-    	int rounds = Integer.parseInt(stringRounds);
-
     	return rounds;
     	
     }
@@ -321,15 +324,81 @@ public class TigerClient
     	return roundID;
     }
     
-    public void matchProtocol()
+    public MatchParam matchProtocol() throws IOException
     {
-    	// TODO: Match Protocol
+    	// Returns the type MatchParam 
     	
+    	String response;
+    	boolean newMatch = false;
     	
+    	while(newMatch == false)
+    	{
+    		response = in.readLine();
+    		
+    		if (response.startsWith("YOUR"))
+    		{
+    			System.out.println(response);
+    			
+    			String delims = "[ ]";
+            	String[] tokens = response.split(delims);
+            	
+            	match.opponent = tokens[4];
+    		            	
+    		}
     	
+    		else if (response.startsWith("STARTING"))
+    		{
+    			System.out.println(response);
+    			
+    			String delims = "[ ]";
+            	String[] tokens = response.split(delims);
+            	
+            	match.startingTile= tokens[3];
+            	match.startingTileX = Integer.parseInt(tokens[5]);;
+            	match.startingTileY = Integer.parseInt(tokens[6]);
+            	match.orientation = Integer.parseInt(tokens[7]);
+            	
+    		}
+    		
+    		else if (response.startsWith("THE REMAINING"))
+    		{
+    			
+    			System.out.println(response);
+    			
+    			String delims = "[ ]";
+    			String[] tokens = response.split(delims);
+    			
+    			match.numOfTiles = Integer.parseInt(tokens[2]);
     	
+    			for(int i = 0; i < match.numOfTiles; i++)
+    			{
+    				match.tiles[i] = tokens[i+6];  	
+    			}
+    		}
+    		
+    		else if (response.startsWith("MATCH BEGINS"))
+    		{
+    			System.out.println(response);
+    			
+    			String delims = "[ ]";
+    			String[] tokens = response.split(delims);
+    			
+    			match.time = Integer.parseInt(tokens[3]);
+    			
+    			newMatch = true;
+    		}
+    		
+    	
+    		else if (response != null)
+    		{
+    			// Invalid or unexpected response
+    			return null;
+    		}
+    		
+    	}
+    	
+    	return match;
     }
-    
     
     
     public boolean isConnected()
