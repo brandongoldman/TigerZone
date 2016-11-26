@@ -371,6 +371,17 @@ public class Tile {
 		return cJungles;
 	}
 
+	/*
+
+		Main function that is used for the Tile class.
+		Used for unit testing the class and its appropriate
+		functions. 
+
+		Main checks the values before the subset and the
+		values that are created after the subset occurs.
+
+	*/
+
 	public static void main(String[] args){
 
 		Tile tile = new Tile();
