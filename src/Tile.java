@@ -23,7 +23,7 @@ import java.util.Random;
 public class Tile {
 
 	//Private Variables
-    private String stringID;
+    private String description;
 	private int animal;
 	private boolean den;
     private boolean croc;
@@ -68,7 +68,7 @@ public class Tile {
 	}
 
 
-	public Tile(int animal, boolean den, boolean croc, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB)
+	public Tile(int animal, boolean den, boolean croc, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB, String description)
 	{
 		this.animal = animal;
 		this.den = den;
@@ -83,12 +83,13 @@ public class Tile {
 		this.cBR = cBR;
 		this.oLR = oLR;
 		this.oTB = oTB;
+        this.description = description;
 	}
 	
 	//Getter
 
-    public String getStringID(){
-        return stringID;
+    public String getDescription(){
+        return description;
     }
     
 	public Position getPosition()
