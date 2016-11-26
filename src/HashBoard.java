@@ -162,8 +162,9 @@ public class HashBoard{
 
 
 		for(HashSet<Integer> connected : JungleConnection){
-			for(int num : connected){
+			for(int num : connected) {
 				//Check 1, 3, 7, 9 by edges, careful of duplicate edges. Maybe keep track on visited BoundaryJungles?
+			}
 		}
 
 
