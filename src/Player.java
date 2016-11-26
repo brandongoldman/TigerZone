@@ -26,7 +26,7 @@ public class Player
 	int tigerPlacement;
 	int crocodilePlacement;
     
-    HashBoard x = new HashBoard(0);
+    HashBoard x = new HashBoard();
 
     //For Testing Purposes, use an empty Player constructor
     public Player(){

@@ -33,21 +33,21 @@ public class HashBoard{
 	
     HashMap <Position, Tile> gBoard;
 	Set <Position> set;
-	ArrayList<FeatureArea> Jungle;
+	ArrayList<JungleArea> Jungle;
 	ArrayList<FeatureArea> Trail;
 	ArrayList<FeatureArea> Lake;
-	ArrayList<FeatureArea> ClaimedJungle;
+	ArrayList<JungleArea> ClaimedJungle;
 	ArrayList<FeatureArea> ClaimedTrail;
 	ArrayList<FeatureArea> ClaimedLake;
 
 
-	public HashBoard(int numberOfPlayers){
+	public HashBoard(){
 		gBoard = new HashMap<Position, Tile>();
 		set = new HashSet<Position>();
-		Jungle = new ArrayList<FeatureArea>();
+		Jungle = new ArrayList<JungleArea>();
 		Trail = new ArrayList<FeatureArea>();
 		Lake = new ArrayList<FeatureArea>();
-		ClaimedJungle = new ArrayList<FeatureArea>();
+		ClaimedJungle = new ArrayList<JungleArea>();
 		ClaimedTrail = new ArrayList<FeatureArea>();
 		ClaimedLake = new ArrayList<FeatureArea>();
 
@@ -63,6 +63,25 @@ public class HashBoard{
 		initialLake.openBoundary.add(new Boundary(new Position(0,0),2));
 
 		Lake.add(initialLake);
+
+		JungleArea initialJungle1 = new JungleArea();
+		initialJungle1.areaCoor.add(new Position(0,0));
+		Set<Integer> miniTile1 = new HashSet<Integer>();
+		miniTile1.add(1);
+		miniTile1.add(4);
+		miniTile1.add(7);
+		initialJungle1.boundary.add(new BoundaryJungle(new Position(0,0),miniTile1));
+
+		Jungle.add(initialJungle1);
+
+		JungleArea initialJungle2 = new JungleArea();
+		initialJungle2.areaCoor.add(new Position(0,0));
+		Set<Integer> miniTile2 = new HashSet<Integer>();
+		miniTile2.add(3);
+		miniTile2.add(9);
+		initialJungle2.boundary.add(new BoundaryJungle(new Position(0,0),miniTile2));
+
+		Jungle.add(initialJungle2);
 
 	}
     
@@ -119,7 +138,6 @@ public class HashBoard{
 		/**Reminder: ADD ANIMALS **/
 		/**Reminder: ADD ANIMALS **/
 
-		Set<Boundary> adjacent= new HashSet<Boundary>();
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
 		Position top = new Position(pos.getXPosition(), pos.getYPosition() + 1); //1
@@ -139,6 +157,15 @@ public class HashBoard{
 		Boundary checkLeft = new Boundary(left,2);
 		Boundary checkTop = new Boundary(top,3);
 		Boundary checkBottom = new Boundary(bottom,1);
+
+		ArrayList<HashSet<Integer>> JungleConnection = tile.connectedJungle();
+
+
+		for(HashSet<Integer> connected : JungleConnection){
+			for(int num : connected){
+				//Check 1, 3, 7, 9 by edges, careful of duplicate edges. Maybe keep track on visited BoundaryJungles?
+		}
+
 
 		/**NOTE REMOVE ITERATOR CONSTRUCTION WHEN FINISHED**/
 		Iterator<FeatureArea> checkR = Lake.iterator();
@@ -190,9 +217,6 @@ public class HashBoard{
 					}
 				}
 			}
-			else {
-				//Add Jungle Area
-			}
 		}
 		else{
 			RightArea=new FeatureArea();
@@ -200,11 +224,7 @@ public class HashBoard{
 				RightArea.areaCoor.add(pos);
 				RightArea.openBoundary.add(new Boundary(pos,2));
 			}
-			else{
-				//Add Jungle Area
-			}
 		}
-
 		/**LeftArea**/
 		if(gBoard.containsKey(left)){
 			FeatureArea holder;
@@ -248,18 +268,12 @@ public class HashBoard{
 					}
 				}
 			}
-			else {
-				//Add Jungle Area
-			}
 		}
 		else{
 			LeftArea=new FeatureArea();
 			if(tile.getEdgeL()==2||tile.getEdgeL()==1) {
 				LeftArea.areaCoor.add(pos);
 				LeftArea.openBoundary.add(new Boundary(pos, 4));
-			}
-			else{
-				//Add Jungle Area
 			}
 		}
 
@@ -306,18 +320,12 @@ public class HashBoard{
 					}
 				}
 			}
-			else {
-				//Add Jungle Area
-			}
 		}
 		else{
 			TopArea=new FeatureArea();
 			if(tile.getEdgeT()==2||tile.getEdgeT()==1){
 				TopArea.areaCoor.add(pos);
 				TopArea.openBoundary.add(new Boundary(pos,1));
-			}
-			else{
-				//Add Jungle Area
 			}
 		}
 
@@ -364,18 +372,12 @@ public class HashBoard{
 					}
 				}
 			}
-			else {
-				//Add Jungle Area
-			}
 		}
 		else{
 			BottomArea=new FeatureArea();
 			if(tile.getEdgeB()==2||tile.getEdgeB()==1){
 				BottomArea.areaCoor.add(pos);
 				BottomArea.openBoundary.add(new Boundary(pos,3));
-			}
-			else{
-				//Add Jungle Area
 			}
 		}
 
@@ -1329,7 +1331,7 @@ public class HashBoard{
 
 	public static void main(String[] args){
 		/**Check Open Spots Testing**/
-		/*HashBoard board = new HashBoard(0);
+		/*HashBoard board = new HashBoard();
 		board.gBoard.put(new Position(0, 0), new Tile());
 		board.updateOpenSpots(new Position(0, 0));
 		board.printKeys();
