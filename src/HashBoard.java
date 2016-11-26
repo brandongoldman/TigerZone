@@ -55,6 +55,8 @@ public class HashBoard{
 		ClaimedLake = new ArrayList<FeatureArea>();
 		ClaimedDens = new ArrayList<Den>();
 
+		gBoard.put(new Position(0,0), new Tile());
+
 		FeatureArea initialTrail = new FeatureArea();
 		initialTrail.areaCoor.add(new Position(0,0));
 		initialTrail.openBoundary.add(new Boundary(new Position(0,0),1));
@@ -145,6 +147,7 @@ public class HashBoard{
 		boolean foundT = false;
 		boolean foundB = false;
 
+
 		FeatureArea RightArea=new FeatureArea();
 		FeatureArea LeftArea=new FeatureArea();
 		FeatureArea TopArea=new FeatureArea();
@@ -155,12 +158,12 @@ public class HashBoard{
 		Boundary checkTop = new Boundary(top,3);
 		Boundary checkBottom = new Boundary(bottom,1);
 
-		ArrayList<HashSet<Integer>> JungleConnection = tile.connectedJungle();
+		//ArrayList<HashSet<Integer>> JungleConnection = tile.connectedJungle();
 		boolean outsideConnect = false;
 
 
 		/**JUNGLES**/
-		for(HashSet<Integer> connected : JungleConnection){
+		/*for(HashSet<Integer> connected : JungleConnection){
 			outsideConnect = false;
 			for(int num : connected){
 				if(num==1){
@@ -210,7 +213,7 @@ public class HashBoard{
 
 			}
 
-		}
+		}*/
 
 		/**DENS**/
 		if(tile.getDen()){
@@ -226,18 +229,13 @@ public class HashBoard{
 
 
 		/**LAKES AND TRAILS**/
-		/**NOTE REMOVE ITERATOR CONSTRUCTION WHEN FINISHED**/
-		Iterator<FeatureArea> checkR = Lake.iterator();
-		Iterator<FeatureArea> checkL = Lake.iterator();
-		Iterator<FeatureArea> checkT = Lake.iterator();
-		Iterator<FeatureArea> checkB = Lake.iterator();
 
 		/**RightArea**/
 		if(gBoard.containsKey(right)){
 			FeatureArea holder;
 			if(tile.getEdgeR()==2){
-				for(checkR=Lake.iterator(); checkR.hasNext(); ){
-					holder=checkR.next();
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
 					if(holder.openBoundary.contains(checkRight)){
 						RightArea=holder;
 						foundR=true;
@@ -245,8 +243,8 @@ public class HashBoard{
 					}
 				}
 				if(!foundR) {
-					for (checkR=ClaimedLake.iterator(); checkR.hasNext(); ) {
-						holder=checkR.next();
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext(); ) {
+						holder=check.next();
 						if (holder.openBoundary.contains(checkRight)) {
 							RightArea = holder;
 							foundR=true;
@@ -257,8 +255,8 @@ public class HashBoard{
 
 			}
 			else if (tile.getEdgeR()==1){
-				for(checkR=Trail.iterator(); checkR.hasNext();){
-					holder=checkR.next();
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
 					if(holder.openBoundary.contains(checkRight)){
 						RightArea=holder;
 						foundR=true;
@@ -266,8 +264,8 @@ public class HashBoard{
 					}
 				}
 				if(!foundR) {
-					for (checkR=ClaimedTrail.iterator(); checkR.hasNext();) {
-						holder=checkR.next();
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
 						if (holder.openBoundary.contains(checkRight)) {
 							RightArea = holder;
 							foundR=true;
@@ -288,8 +286,8 @@ public class HashBoard{
 		if(gBoard.containsKey(left)){
 			FeatureArea holder;
 			if(tile.getEdgeL()==2){
-				for(checkL=Lake.iterator(); checkL.hasNext(); ){
-					holder=checkL.next();
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
 					if(holder.openBoundary.contains(checkLeft)){
 						LeftArea=holder;
 						foundL=true;
@@ -297,8 +295,8 @@ public class HashBoard{
 					}
 				}
 				if(!foundL) {
-					for (checkL=ClaimedLake.iterator(); checkL.hasNext();) {
-						holder=checkL.next();
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
 						if (holder.openBoundary.contains(checkLeft)) {
 							LeftArea = holder;
 							foundL=true;
@@ -308,8 +306,8 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeL()==1){
-				for(checkL=Trail.iterator(); checkL.hasNext();){
-					holder=checkL.next();
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
 					if(holder.openBoundary.contains(checkLeft)){
 						LeftArea=holder;
 						foundL=true;
@@ -317,8 +315,8 @@ public class HashBoard{
 					}
 				}
 				if(!foundL) {
-					for (checkL=ClaimedTrail.iterator(); checkL.hasNext();) {
-						holder=checkL.next();
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
 						if (holder.openBoundary.contains(checkLeft)) {
 							LeftArea = holder;
 							foundL=true;
@@ -340,8 +338,8 @@ public class HashBoard{
 		if(gBoard.containsKey(top)){
 			FeatureArea holder;
 			if(tile.getEdgeT()==2){
-				for(checkT=Lake.iterator(); checkT.hasNext(); ){
-					holder=checkT.next();
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
 					if(holder.openBoundary.contains(checkTop)){
 						TopArea=holder;
 						foundT=true;
@@ -349,8 +347,8 @@ public class HashBoard{
 					}
 				}
 				if(!foundT) {
-					for (checkT=ClaimedLake.iterator(); checkT.hasNext();) {
-						holder=checkT.next();
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
 						if (holder.openBoundary.contains(checkTop)) {
 							TopArea = holder;
 							foundT=true;
@@ -360,8 +358,8 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeT()==1){
-				for(checkT=Trail.iterator(); checkT.hasNext();){
-					holder=checkT.next();
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
 					if(holder.openBoundary.contains(checkTop)){
 						TopArea=holder;
 						foundT=true;
@@ -369,8 +367,8 @@ public class HashBoard{
 					}
 				}
 				if(!foundT) {
-					for (checkT=ClaimedTrail.iterator(); checkT.hasNext();) {
-						holder=checkT.next();
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
 						if (holder.openBoundary.contains(checkTop)) {
 							TopArea = holder;
 							foundT=true;
@@ -392,8 +390,8 @@ public class HashBoard{
 		if(gBoard.containsKey(bottom)){
 			FeatureArea holder;
 			if(tile.getEdgeB()==2){
-				for(checkB=Lake.iterator(); checkB.hasNext(); ){
-					holder=checkB.next();
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
 					if(holder.openBoundary.contains(checkBottom)){
 						BottomArea=holder;
 						foundB=true;
@@ -401,8 +399,8 @@ public class HashBoard{
 					}
 				}
 				if(!foundB) {
-					for (checkB=ClaimedLake.iterator(); checkB.hasNext();) {
-						holder=checkB.next();
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
 						if (holder.openBoundary.contains(checkBottom)) {
 							BottomArea = holder;
 							foundB=true;
@@ -412,8 +410,8 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeB()==1){
-				for(checkB=Trail.iterator(); checkB.hasNext();){
-					holder=checkB.next();
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
 					if(holder.openBoundary.contains(checkBottom)){
 						BottomArea=holder;
 						foundB=true;
@@ -421,8 +419,8 @@ public class HashBoard{
 					}
 				}
 				if(!foundB) {
-					for (checkB=ClaimedTrail.iterator(); checkB.hasNext();) {
-						holder=checkB.next();
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
 						if (holder.openBoundary.contains(checkBottom)) {
 							BottomArea = holder;
 							foundB=true;
@@ -440,6 +438,196 @@ public class HashBoard{
 			}
 		}
 
+		/**Prevent deletion of what is already deleted**/
+		boolean sameR=false;
+		boolean sameB=false;
+		boolean sameL=false;
+
+		if(TopArea.equals(RightArea)){
+			sameR=true;
+		}
+		if(TopArea.equals(BottomArea)){
+			sameB=true;
+		}
+		if(TopArea.equals(LeftArea)){
+			sameL=true;
+		}
+		if(RightArea.equals(BottomArea)){
+			sameB=true;
+		}
+		if(RightArea.equals(LeftArea)){
+			sameL=true;
+		}
+		if(BottomArea.equals(LeftArea)){
+			sameL=true;
+		}
+
+		FeatureArea holder;
+		boolean found=false;
+		if(tile.getEdgeT()==2&&foundT){
+			for(Iterator<FeatureArea> check = Lake.iterator(); check.hasNext();){
+				holder=check.next();
+				if(holder.equals(TopArea)){
+					check.remove();
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				for(Iterator<FeatureArea> check = ClaimedLake.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.equals(TopArea)){
+						check.remove();
+						found=true;
+						break;
+					}
+				}
+			}
+		}
+		else if(tile.getEdgeT()==1){
+			for(Iterator<FeatureArea> check = Trail.iterator(); check.hasNext();){
+				holder=check.next();
+				if(holder.equals(TopArea)){
+					check.remove();
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				for(Iterator<FeatureArea> check = ClaimedTrail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.equals(TopArea)){
+						check.remove();
+						found=true;
+						break;
+					}
+				}
+			}
+		}
+		found=false;
+		if(tile.getEdgeR()==2&&!sameR&&foundR){
+			for(Iterator<FeatureArea> check = Lake.iterator(); check.hasNext();){
+				holder=check.next();
+				if(holder.equals(RightArea)){
+					check.remove();
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				for(Iterator<FeatureArea> check = ClaimedLake.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.equals(RightArea)){
+						check.remove();
+						found=true;
+						break;
+					}
+				}
+			}
+		}
+		else if(tile.getEdgeR()==1&&!sameR&&foundR){
+			for(Iterator<FeatureArea> check = Trail.iterator(); check.hasNext();){
+				holder=check.next();
+				if(holder.equals(RightArea)){
+					check.remove();
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				for(Iterator<FeatureArea> check = ClaimedTrail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.equals(RightArea)){
+						check.remove();
+						found=true;
+						break;
+					}
+				}
+			}
+		}
+		found=false;
+		if(tile.getEdgeB()==2&&!sameB&&foundB){
+			for(Iterator<FeatureArea> check = Lake.iterator(); check.hasNext();){
+				holder=check.next();
+				if(holder.equals(BottomArea)){
+					check.remove();
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				for(Iterator<FeatureArea> check = ClaimedLake.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.equals(BottomArea)){
+						check.remove();
+						found=true;
+						break;
+					}
+				}
+			}
+		}
+		else if(tile.getEdgeB()==1&&!sameB&&foundB){
+			for(Iterator<FeatureArea> check = Trail.iterator(); check.hasNext();){
+				holder=check.next();
+				if(holder.equals(BottomArea)){
+					check.remove();
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				for(Iterator<FeatureArea> check = ClaimedTrail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.equals(BottomArea)){
+						check.remove();
+						found=true;
+						break;
+					}
+				}
+			}
+		}
+		found=false;
+		if(tile.getEdgeL()==2&&!sameL&&foundL){
+			for(Iterator<FeatureArea> check = Lake.iterator(); check.hasNext();){
+				holder=check.next();
+				if(holder.equals(LeftArea)){
+					check.remove();
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				for(Iterator<FeatureArea> check = ClaimedLake.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.equals(LeftArea)){
+						check.remove();
+						found=true;
+						break;
+					}
+				}
+			}
+		}
+		else if(tile.getEdgeL()==1&&!sameL&&foundL){
+			for(Iterator<FeatureArea> check = Trail.iterator(); check.hasNext();){
+				holder=check.next();
+				if(holder.equals(LeftArea)){
+					check.remove();
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				for(Iterator<FeatureArea> check = ClaimedTrail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.equals(LeftArea)){
+						check.remove();
+						found=true;
+						break;
+					}
+				}
+			}
+		}
+
 
 		boolean skipT=false;
 		boolean skipR=false;
@@ -452,6 +640,7 @@ public class HashBoard{
 		boolean R=false;
 		boolean B=false;
 		boolean L=false;
+
 		if(!skipT) {
 			if (tile.getEdgeT() == 2) {
 				if(TopArea.equals(RightArea)){
@@ -479,6 +668,9 @@ public class HashBoard{
 					TopArea.areaCoor.addAll(RightArea.areaCoor);
 					TopArea.openBoundary.addAll((RightArea.openBoundary));
 					TopArea.openBoundary.remove(checkRight);
+					//if(foundR){
+					//	checkR.remove();
+					//}
 					if (RightArea.getHasTiger()) {
 						TopArea.tiger.addAll(RightArea.tiger);
 						TopArea.setHasTiger(true);
@@ -496,6 +688,9 @@ public class HashBoard{
 					TopArea.areaCoor.addAll(BottomArea.areaCoor);
 					TopArea.openBoundary.addAll((BottomArea.openBoundary));
 					TopArea.openBoundary.remove(checkBottom);
+					//if(foundB){
+					//	checkB.remove();
+					//}
 					if (BottomArea.getHasTiger()) {
 						TopArea.tiger.addAll(BottomArea.tiger);
 						TopArea.setHasTiger(true);
@@ -513,6 +708,9 @@ public class HashBoard{
 					TopArea.areaCoor.addAll(LeftArea.areaCoor);
 					TopArea.openBoundary.addAll((LeftArea.openBoundary));
 					TopArea.openBoundary.remove(checkLeft);
+					//if(foundL){
+					//	checkL.remove();
+					//}
 					if (LeftArea.getHasTiger()) {
 						TopArea.tiger.addAll(LeftArea.tiger);
 						TopArea.setHasTiger(true);
@@ -539,9 +737,9 @@ public class HashBoard{
 				if (TopArea.openBoundary.isEmpty()) {
 					TopArea.setCompleted(true);
 				}
-				if(foundT){
-					checkT.remove();
-				}
+				//if(foundT){
+				//	checkT.remove();
+				//}
 				if (TopArea.getHasTiger()) {
 					ClaimedLake.add(TopArea);
 				} else {
@@ -639,9 +837,9 @@ public class HashBoard{
 					if (TopArea.openBoundary.isEmpty()) {
 						TopArea.setCompleted(true);
 					}
-					if(foundT){
-						checkT.remove();
-					}
+					//if(foundT){
+					//	checkT.remove();
+					//}
 					if (TopArea.getHasTiger()) {
 						ClaimedTrail.add(TopArea);
 					} else {
@@ -685,9 +883,9 @@ public class HashBoard{
 						if (RightArea.openBoundary.isEmpty()) {
 							RightArea.setCompleted(true);
 						}
-						if(foundR){
-							checkR.remove();
-						}
+						//if(foundR){
+						//	checkR.remove();
+						//}
 						if (RightArea.getHasTiger()) {
 							ClaimedTrail.add(RightArea);
 						} else {
@@ -709,9 +907,9 @@ public class HashBoard{
 						if (BottomArea.openBoundary.isEmpty()) {
 							BottomArea.setCompleted(true);
 						}
-						if(foundB){
-							checkB.remove();
-						}
+						//if(foundB){
+						//	checkB.remove();
+						//}
 						if (BottomArea.getHasTiger()) {
 							ClaimedTrail.add(BottomArea);
 						} else {
@@ -733,9 +931,9 @@ public class HashBoard{
 						if (LeftArea.openBoundary.isEmpty()) {
 							LeftArea.setCompleted(true);
 						}
-						if(foundL){
-							checkL.remove();
-						}
+						//if(foundL){
+						//	checkL.remove();
+						//}
 						if (LeftArea.getHasTiger()) {
 							ClaimedTrail.add(LeftArea);
 						} else {
@@ -756,9 +954,9 @@ public class HashBoard{
 					if (TopArea.openBoundary.isEmpty()) {
 						TopArea.setCompleted(true);
 					}
-					if(foundT){
-						checkT.remove();
-					}
+					//if(foundT){
+					//	checkT.remove();
+					//}
 					if (TopArea.getHasTiger()) {
 						ClaimedTrail.add(TopArea);
 					} else {
@@ -779,9 +977,9 @@ public class HashBoard{
 					if (TopArea.openBoundary.isEmpty()) {
 						TopArea.setCompleted(true);
 					}
-					if(foundT){
-						checkT.remove();
-					}
+					//if(foundT){
+					//	checkT.remove();
+					//}
 					if (TopArea.getHasTiger()) {
 						ClaimedTrail.add(TopArea);
 					} else {
@@ -816,6 +1014,9 @@ public class HashBoard{
 					RightArea.areaCoor.addAll(BottomArea.areaCoor);
 					RightArea.openBoundary.addAll((BottomArea.openBoundary));
 					RightArea.openBoundary.remove(checkBottom);
+					//if(foundB){
+					//	checkB.remove();
+					//}
 					if(BottomArea.getHasTiger()){
 						RightArea.tiger.addAll(BottomArea.tiger);
 						RightArea.setHasTiger(true);
@@ -833,6 +1034,9 @@ public class HashBoard{
 					RightArea.areaCoor.addAll(LeftArea.areaCoor);
 					RightArea.openBoundary.addAll((LeftArea.openBoundary));
 					RightArea.openBoundary.remove(checkLeft);
+					//if(foundL){
+					//	checkL.remove();
+					//}
 					if(LeftArea.getHasTiger()){
 						RightArea.tiger.addAll(LeftArea.tiger);
 						RightArea.setHasTiger(true);
@@ -859,9 +1063,9 @@ public class HashBoard{
 				if(RightArea.openBoundary.isEmpty()){
 					RightArea.setCompleted(true);
 				}
-				if(foundR){
-					checkR.remove();
-				}
+				//if(foundR){
+				//	checkR.remove();
+				//}
 				if(RightArea.getHasTiger()){
 					ClaimedLake.add(RightArea);
 				}
@@ -935,9 +1139,9 @@ public class HashBoard{
 					if(RightArea.openBoundary.isEmpty()){
 						RightArea.setCompleted(true);
 					}
-					if(foundR){
-						checkR.remove();
-					}
+					//if(foundR){
+					//	checkR.remove();
+					//}
 					if(RightArea.getHasTiger()){
 						ClaimedTrail.add(RightArea);
 					}
@@ -975,9 +1179,9 @@ public class HashBoard{
 						if (BottomArea.openBoundary.isEmpty()) {
 							BottomArea.setCompleted(true);
 						}
-						if(foundB){
-							checkB.remove();
-						}
+						//if(foundB){
+						//	checkB.remove();
+						//}
 						if (BottomArea.getHasTiger()) {
 							ClaimedTrail.add(BottomArea);
 						} else {
@@ -999,9 +1203,9 @@ public class HashBoard{
 						if (LeftArea.openBoundary.isEmpty()) {
 							LeftArea.setCompleted(true);
 						}
-						if(foundL){
-							checkL.remove();
-						}
+						//if(foundL){
+						//	checkL.remove();
+						//}
 						if (LeftArea.getHasTiger()) {
 							ClaimedTrail.add(LeftArea);
 						} else {
@@ -1022,9 +1226,9 @@ public class HashBoard{
 					if(RightArea.openBoundary.isEmpty()){
 						RightArea.setCompleted(true);
 					}
-					if(foundR){
-						checkR.remove();
-					}
+					//if(foundR){
+					//	checkR.remove();
+					//}
 					if(RightArea.getHasTiger()){
 						ClaimedTrail.add(RightArea);
 					}
@@ -1046,9 +1250,9 @@ public class HashBoard{
 					if(RightArea.openBoundary.isEmpty()){
 						RightArea.setCompleted(true);
 					}
-					if(foundR){
-						checkR.remove();
-					}
+					//if(foundR){
+					//	checkR.remove();
+					//}
 					if(RightArea.getHasTiger()){
 						ClaimedTrail.add(RightArea);
 					}
@@ -1077,6 +1281,9 @@ public class HashBoard{
 					BottomArea.areaCoor.addAll(LeftArea.areaCoor);
 					BottomArea.openBoundary.addAll((LeftArea.openBoundary));
 					BottomArea.openBoundary.remove(checkLeft);
+					//if(foundL){
+					//	checkL.remove();
+					//}
 					if(LeftArea.getHasTiger()){
 						BottomArea.tiger.addAll(LeftArea.tiger);
 						BottomArea.setHasTiger(true);
@@ -1103,9 +1310,9 @@ public class HashBoard{
 				if(BottomArea.openBoundary.isEmpty()){
 					BottomArea.setCompleted(true);
 				}
-				if(foundB){
-					checkB.remove();
-				}
+				//if(foundB){
+				//	checkB.remove();
+				//}
 				if(BottomArea.getHasTiger()){
 					ClaimedLake.add(BottomArea);
 				}
@@ -1154,9 +1361,9 @@ public class HashBoard{
 					if(BottomArea.openBoundary.isEmpty()){
 						BottomArea.setCompleted(true);
 					}
-					if(foundB){
-						checkB.remove();
-					}
+					//if(foundB){
+					//	checkB.remove();
+					//}
 					if(BottomArea.getHasTiger()){
 						ClaimedTrail.add(BottomArea);
 					}
@@ -1178,9 +1385,9 @@ public class HashBoard{
 					if(BottomArea.openBoundary.isEmpty()){
 						BottomArea.setCompleted(true);
 					}
-					if(foundB){
-						checkB.remove();
-					}
+					//if(foundB){
+					//	checkB.remove();
+					//}
 					if(BottomArea.getHasTiger()){
 						ClaimedTrail.add(BottomArea);
 					}
@@ -1209,9 +1416,9 @@ public class HashBoard{
 				if(LeftArea.openBoundary.isEmpty()){
 					LeftArea.setCompleted(true);
 				}
-				if(foundL){
-					checkL.remove();
-				}
+				//if(foundL){
+				//	checkL.remove();
+				//}
 				if(LeftArea.getHasTiger()){
 					ClaimedLake.add(LeftArea);
 				}
@@ -1234,9 +1441,9 @@ public class HashBoard{
 				if(LeftArea.openBoundary.isEmpty()){
 					LeftArea.setCompleted(true);
 				}
-				if(foundL){
-					checkL.remove();
-				}
+				//if(foundL){
+				//	checkL.remove();
+				//}
 				if(LeftArea.getHasTiger()){
 					ClaimedTrail.add(LeftArea);
 				}
@@ -1384,11 +1591,71 @@ public class HashBoard{
 	{
 		return 0;
 	}
-	
-	
+
+	/**TESTING FUNCTIONS BELOW**/
+	public void printLake(){
+		for(FeatureArea lake : Lake){
+			System.out.println();
+			System.out.println("Lake Coordinates:");
+			for(Position pos : lake.areaCoor){
+				System.out.println(pos.getXPosition() + " " + pos.getYPosition());
+			}
+			System.out.println("Open Boundaries:");
+			for(Boundary bound : lake.openBoundary){
+				System.out.println("Coor:" + bound.position.getXPosition() + " " + bound.position.getYPosition() + " Boundary:" + bound.edge);
+			}
+		}
+	}
+
+	public void printTrail(){
+		for(FeatureArea trail : Trail){
+			System.out.println();
+			System.out.println("Trail Coordinates:");
+			for(Position pos : trail.areaCoor){
+				System.out.println(pos.getXPosition() + " " + pos.getYPosition());
+			}
+			System.out.println("Open Boundaries:");
+			for(Boundary bound : trail.openBoundary){
+				System.out.println("Coor:" + bound.position.getXPosition() + " " + bound.position.getYPosition() + " Boundary:" + bound.edge);
+			}
+		}
+	}
 	
 
 	public static void main(String[] args){
+		/**Feature Updating Testing**/
+		HashBoard board = new HashBoard();
+
+		//Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		//board.gBoard.put(new Position(1,0), tile1);
+		//board.updateFeatures(new Position(1,0), tile1);
+		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true);
+		board.gBoard.put(new Position(0,1), tile2);
+		board.updateFeatures(new Position(0,1),tile2);
+		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false);
+		board.gBoard.put(new Position(1,1),tile3);
+		board.updateFeatures(new Position(1,1),tile3);
+		Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false);
+		board.gBoard.put(new Position(2,1),tile4);
+		board.updateFeatures(new Position(2,1),tile4);
+		Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		board.gBoard.put(new Position(2,0),tile5);
+		board.updateFeatures(new Position(2,0),tile5);
+		Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		board.gBoard.put(new Position(2,-1),tile6);
+		board.updateFeatures(new Position(2,-1),tile6);
+		Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		board.gBoard.put(new Position(1,-1),tile7);
+		board.updateFeatures(new Position(1,-1),tile7);
+		Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		board.gBoard.put(new Position(1,0), tile1);
+		board.updateFeatures(new Position(1,0), tile1);
+
+
+		board.printLake();
+		board.printTrail();
+
+
 		/**Check Open Spots Testing**/
 		/*HashBoard board = new HashBoard();
 		board.gBoard.put(new Position(0, 0), new Tile());
@@ -1426,7 +1693,7 @@ public class HashBoard{
 
 
 		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/
-		FeatureArea first = new FeatureArea();
+		/*FeatureArea first = new FeatureArea();
 		first.areaCoor.add(new Position(0,0));
 		first.areaCoor.add(new Position(0,0));
 		first.openBoundary.add(new Boundary(new Position (0,0),1));
@@ -1439,7 +1706,7 @@ public class HashBoard{
 		if(first.equals(second)){
 			System.out.print("TRUE");
 		}
-		else System.out.print("FALSE");
+		else System.out.print("FALSE");*/
 
 
 		/**System.out.println("We Have Started a New Game");
