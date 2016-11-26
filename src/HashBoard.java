@@ -36,9 +36,11 @@ public class HashBoard{
 	ArrayList<JungleArea> Jungle;
 	ArrayList<FeatureArea> Trail;
 	ArrayList<FeatureArea> Lake;
+	ArrayList<Den> Dens;
 	ArrayList<JungleArea> ClaimedJungle;
 	ArrayList<FeatureArea> ClaimedTrail;
 	ArrayList<FeatureArea> ClaimedLake;
+	ArrayList<Den> ClaimedDens;
 
 
 	public HashBoard(){
@@ -47,9 +49,11 @@ public class HashBoard{
 		Jungle = new ArrayList<JungleArea>();
 		Trail = new ArrayList<FeatureArea>();
 		Lake = new ArrayList<FeatureArea>();
+		Dens = new ArrayList<Den>();
 		ClaimedJungle = new ArrayList<JungleArea>();
 		ClaimedTrail = new ArrayList<FeatureArea>();
 		ClaimedLake = new ArrayList<FeatureArea>();
+		ClaimedDens = new ArrayList<Den>();
 
 		FeatureArea initialTrail = new FeatureArea();
 		initialTrail.areaCoor.add(new Position(0,0));
@@ -131,13 +135,6 @@ public class HashBoard{
 	}
 
 	public void updateFeatures(Position pos, Tile tile){
-		/**Reminder: ADD ANIMALS **/
-		/**Reminder: ADD ANIMALS **/
-		/**Reminder: ADD ANIMALS **/
-		/**Reminder: ADD ANIMALS **/
-		/**Reminder: ADD ANIMALS **/
-		/**Reminder: ADD ANIMALS **/
-
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
 		Position top = new Position(pos.getXPosition(), pos.getYPosition() + 1); //1
@@ -159,15 +156,76 @@ public class HashBoard{
 		Boundary checkBottom = new Boundary(bottom,1);
 
 		ArrayList<HashSet<Integer>> JungleConnection = tile.connectedJungle();
+		boolean outsideConnect = false;
 
 
+		/**JUNGLES**/
 		for(HashSet<Integer> connected : JungleConnection){
-			for(int num : connected) {
-				//Check 1, 3, 7, 9 by edges, careful of duplicate edges. Maybe keep track on visited BoundaryJungles?
+			outsideConnect = false;
+			for(int num : connected){
+				if(num==1){
+					if(gBoard.containsKey(top)){
+						if(tile.getEdgeT()!=2){
+							for(JungleArea topJungle : Jungle){
+								for(BoundaryJungle check :topJungle.boundary){
+									if(check.position.getXPosition()==pos.getXPosition()&&check.position.getYPosition()==pos.getYPosition()&&check.miniTile.contains(7)){
+
+									}
+								}
+							}
+						}
+					}
+					if(gBoard.containsKey(left)){
+						if(tile.getEdgeL()!=2){
+
+						}
+					}
+				}
+				else if(num==3){
+					if(gBoard.containsKey(top)){
+
+					}
+					if(gBoard.containsKey(right)){
+
+					}
+				}
+				else if(num==7){
+					if(gBoard.containsKey(bottom)){
+
+					}
+					if(gBoard.containsKey(left)){
+
+					}
+				}
+				else if(num==9){
+					if(gBoard.containsKey(bottom)){
+
+					}
+					else if(gBoard.containsKey(right)){
+
+					}
+				}
+			}
+			if(!outsideConnect){
+
+			}
+
+		}
+
+		/**DENS**/
+		if(tile.getDen()){
+			Den newDen = new Den(pos);
+			/**ADD TIGER**/
+			if(newDen.getHasTiger()){
+				ClaimedDens.add(newDen);
+			}
+			else{
+				Dens.add(newDen);
 			}
 		}
 
 
+		/**LAKES AND TRAILS**/
 		/**NOTE REMOVE ITERATOR CONSTRUCTION WHEN FINISHED**/
 		Iterator<FeatureArea> checkR = Lake.iterator();
 		Iterator<FeatureArea> checkL = Lake.iterator();
