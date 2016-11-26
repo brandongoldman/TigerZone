@@ -58,7 +58,9 @@ public class FeatureArea {
 
     public static void main(String[] args){
         FeatureArea Test= new FeatureArea();
-        Test.uniqueAnimal.add(1);
+        Test.openBoundary.add(new Boundary(new Position(0,0),2));
+        System.out.print(Test.openBoundary.contains(new Boundary(new Position(0,0),1)));
+        /*Test.uniqueAnimal.add(1);
         Test.uniqueAnimal.add(1);
         Test.uniqueAnimal.add(1);
         Test.uniqueAnimal.add(2);
@@ -80,6 +82,6 @@ public class FeatureArea {
             System.out.print(i);
         }
         System.out.println();
-        System.out.print(Test.tiger.size());
+        System.out.print(Test.tiger.size());*/
     }
 }
