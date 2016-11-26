@@ -54,6 +54,9 @@ public class HashBoard{
 		ClaimedTrail = new ArrayList<FeatureArea>();
 		ClaimedLake = new ArrayList<FeatureArea>();
 		ClaimedDens = new ArrayList<Den>();
+        
+        DisplayBoard gameBoard = new DisplayBoard();
+        //gameBoard.setTile("TLTJD",0,3,270);
 
 		FeatureArea initialTrail = new FeatureArea();
 		initialTrail.areaCoor.add(new Position(0,0));
@@ -1411,7 +1414,7 @@ public class HashBoard{
 		ti.interpret("TLTJ-\nTTTT-\nTJTJ-\nJJJJ-\nLLJJ-");	
 		Tile[] arr = ti.getTileArray();							
 																
-		HashBoard board = new HashBoard(2);						
+		HashBoard board = new HashBoard();
 		board.AddTile(new Position(0,0), arr[0]);				
 		board.updateOpenSpots(new Position(0, 0));
 		board.printKeys();
@@ -1422,7 +1425,7 @@ public class HashBoard{
 		board.AddTile(new Position(-1,1), arr[4]);
 
 		*/
-
+        HashBoard board = new HashBoard();
 
 
 		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/

@@ -28,7 +28,7 @@ public class TileInterpreter {
 		boolean cTR = false;
 		boolean cBL = false;
 		boolean cBR = false;
-		//STRETCHERS (OR WHATEVER ADAM NAMED IT LOL)
+		//STRETCHERS
 		boolean oLR = false;
 		boolean oTB = false;
 		//ANIMALS

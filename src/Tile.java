@@ -23,6 +23,7 @@ import java.util.Random;
 public class Tile {
 
 	//Private Variables
+    private String stringID;
 	private int animal;
 	private boolean den;
     private boolean croc;
@@ -86,6 +87,10 @@ public class Tile {
 	
 	//Getter
 
+    public String getStringID(){
+        return stringID;
+    }
+    
 	public Position getPosition()
 	{
 		return position;
