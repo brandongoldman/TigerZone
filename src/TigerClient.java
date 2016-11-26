@@ -12,31 +12,42 @@
 public static void main(String[] args) throws IOException 
     {
 
-		int score = 0;
-		int tigers = 7;
+	int score = 0;
+	int tigers = 7;
     	Player player = new Player(score, tigers);
       
-    	String username = "Red";
-    	String password = "Obiwan77";
-    	String tournamentPassword = "PersianRocks!";
+    	//String username = "Red";
+    	//String password = "Obiwan77";
+    	//String tournamentPassword = "PersianRocks!";
     	String pid = null;
-    	    	
+    	   	
     	// Get IP address, if none provided use “localhost” 
-        String serverAdx = (args.length == 0)?"localhost":args[1];
+    	// args[0] = server Address
+    	// args[1] = port
+    	// args[2] = tournament password
+    	// args[3] = username
+     	// args[4] = password
+    	
+        String serverAdx = (args.length == 0)?"localhost":args[0];
+        String stringPort = args[1];
+        String tournamentPassword = args[2];
+        String username = args[3];
+        String password = args[4];
+        
+        int port = Integer.parseInt(stringPort);
     	
         if (player.client == null)
         {
         	System.out.println("I am null?");
         }
         
-        
-        if (player.client.connect(serverAdx) == false)
+        if (player.client.connect(serverAdx, port) == false)
         {
         	//Cannot establish connection 
         	System.out.println("Cannot establish connection");
         	return;
         }
-    	
+	
     	pid = player.client.authenticateProtocol(username, password, tournamentPassword);
     	
     	if (pid == null)
@@ -89,7 +100,7 @@ import java.net.UnknownHostException;
 /* A client for the Tigerzone game */
 public class TigerClient 
 {
-    private static int PORT = 9090;  // TODO: Get port number. For now hardcoded 
+    //private static int PORT = 9090;  // For testing purpose had this hardcoded.
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
@@ -102,11 +113,11 @@ public class TigerClient
     }
     
     /* Constructs the client by connecting to a server */
-    public boolean connect(String serverAdx) throws IOException  
+    public boolean connect(String serverAdx, int port) throws IOException  
     {	
         // Setup connection
         try {
-			socket = new Socket(serverAdx, PORT);
+			socket = new Socket(serverAdx, port);
 		} catch (UnknownHostException e) 
 		{
 			
