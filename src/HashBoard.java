@@ -1294,19 +1294,30 @@ public class HashBoard{
 			{
 				if(checkLegalMove(pos, t))
 				{
-					currScore = getMoveScore(pos, t);
+					currScore = getMoveScore(pos, t); // need to update with scoring method
 					if(currScore > bestScore)
 					{
 						bestScore = currScore;
 						bestMove = new Move();
+
 					}
 				}
 			}
 
 			t.rotate();
 		}
+
+		// case: tile is not valid on current board
+		if(bestMove == null)
+		{
+			// tile is not placeable on board, so pass
+			//Player.passOnTile(t);
+			System.out.println("Hello World");
+		}
+
 		return bestMove;
 	}
+
 	
 	public int getMoveScore(Position pos, Tile t)
 	{
