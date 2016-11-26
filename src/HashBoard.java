@@ -1228,7 +1228,7 @@ public class HashBoard{
 		boolean goodToGo = false;
 		
 		if (!set.contains(newpos)) return false;		// Make sure the space is open
-		System.out.println("MADE IT PAST OPEN CHECK");
+		//System.out.println("MADE IT PAST OPEN CHECK");
 	  
 	   // For each adjacency (to the open newpos) make sure at least one of the following conditions is true
 	   // 1. exists in open set
@@ -1246,7 +1246,7 @@ public class HashBoard{
 	 	if (!goodToGo){ 
 	        if (gBoard.get(tPos).getEdgeB() != currentTile.getEdgeT()) return false;	// If all three conditions fail
 	 	}
-	 	System.out.println("TPOS CHECKED OUT");
+	 	//System.out.println("TPOS CHECKED OUT");
 	        // REPEAT FOR OTHER THREE SURROUNDING
 	        
 	   goodToGo = false;
@@ -1255,20 +1255,20 @@ public class HashBoard{
 	   if (!goodToGo) {
 	        if (gBoard.get(rPos).getEdgeL() != currentTile.getEdgeR()) return false;
 	   }
-	   System.out.println("RPOS CHECKED OUT");
+	   //System.out.println("RPOS CHECKED OUT");
 	   goodToGo = false;
 	   if ( (set.contains(bPos)) || ((!set.contains(bPos)) && (!gBoard.containsKey(bPos)))) goodToGo = true;	
 	   
 	   if (!goodToGo) {
 	        if (gBoard.get(bPos).getEdgeT() != currentTile.getEdgeB()) return false;
 	   }
-	   System.out.println("BPOS CHECKED OUT");
+	   //System.out.println("BPOS CHECKED OUT");
 	   goodToGo = false;
 	 	if ( (set.contains(lPos)) || ((!set.contains(lPos)) && (!gBoard.containsKey(lPos)))) goodToGo = true;	
 	   
 	   if (!goodToGo) 
 	        if (gBoard.get(lPos).getEdgeR() != currentTile.getEdgeL()) return false;
-	   System.out.println("LPOS CHECKED OUT");
+	   //System.out.println("LPOS CHECKED OUT");
 	   // SHOULD BE VALID... I THINK
 			
 			
@@ -1287,23 +1287,29 @@ public class HashBoard{
 		Move bestMove = null;
 		
 		//For all four rotations
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 4; i++)
+		{
 			//Go thru all open spaces and if there is a valid move, find out what score it would get. Compare to best and save best move
-			for(Position pos: set){
-				if(checkLegalMove(pos, t)){
+			for(Position pos: set)
+			{
+				if(checkLegalMove(pos, t))
+				{
 					currScore = getMoveScore(pos, t);
-					if(currScore > bestScore){
+					if(currScore > bestScore)
+					{
 						bestScore = currScore;
 						bestMove = new Move();
 					}
 				}
 			}
+
 			t.rotate();
 		}
 		return bestMove;
 	}
 	
-	public int getMoveScore(Position pos, Tile t){
+	public int getMoveScore(Position pos, Tile t)
+	{
 		return 0;
 	}
 	
@@ -1345,7 +1351,7 @@ public class HashBoard{
 
 		*/
 
-		
+
 
 		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/
 		FeatureArea first = new FeatureArea();
