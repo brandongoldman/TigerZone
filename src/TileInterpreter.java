@@ -7,7 +7,7 @@ public class TileInterpreter {
 	//INSTANTIATE AN ARRAY OF TILES 
 	private Tile[] tileArray = new Tile[77];
 
-	public void interpret(String newTileInput) {
+	public Tile interpret(String newTileInput) {
 		
 		//File file = new File("newTileInput.txt");
 		
@@ -41,8 +41,8 @@ public class TileInterpreter {
 			Scanner input = new Scanner(newTileInput);
 			
 			//WHILE THERE ARE MORE LINES TO BE READ
-			while (input.hasNextLine())
-			{
+			//while (input.hasNextLine())
+			//{
 				//READ AND SAVE THE NUMBER OF HOW MANY INSTANCES OF THIS TILE THERE WILL BE
 				//numOfCurrentTile = input.nextInt();
 				
@@ -76,7 +76,7 @@ public class TileInterpreter {
                          break;
 				case 99: break;
 				case -1: System.out.println("Tile input may be formatted unexpectedly");
-						 continue;
+						 //continue;
 				}
 				
 				//CHECK STRETCHERS
@@ -193,17 +193,19 @@ public class TileInterpreter {
                 
                 
 				//CREATE THE INSTANCES OF THE CURRENT TILE AND ADD THEM TO THE TILE ARRAY
-				for (int i = 0; i < numOfCurrentTile; i++)
-				{
-					Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description);
-					tileArray[tileCreated] = newTile;
-					tileCreated++;
-				}	
-			}	
+				// for (int i = 0; i < numOfCurrentTile; i++)
+				// {
+				// 	Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description);
+				// 	tileArray[tileCreated] = newTile;
+				// 	tileCreated++;
+				// }	
+			//}	
 		/*} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}*/
-		
+
+		Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description);
+		return newTile;
 
 	}
     

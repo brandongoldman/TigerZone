@@ -90,13 +90,6 @@ public class Player
 			throw new NoCrocodileException(numOfCrocodiles);
 		}
 	}
-
-
-
-
-
-
-
 	
 	/* MAKE MOVE *************************************************************************
 	 *		1. A player must place a tile by choosing location, orientation (rotation),	 *
