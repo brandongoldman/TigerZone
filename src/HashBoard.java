@@ -207,10 +207,10 @@ public class HashBoard{
                     return null;
                 }
                 
-                t.rotate();
+                //t.rotate();
             }
             
-            //t.rotate();
+            t.rotate();
         }
         
         // case: tile is not valid on current board

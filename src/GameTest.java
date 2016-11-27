@@ -95,8 +95,8 @@ public class GameTest{
         Tile tile20 = ti.interpret("LJTJ-");
         board.FindBestMove(tile20,tiger);
         
-        //Tile tile21 = ti.interpret("JJJJX");
-        //board.FindBestMove(tile21,tiger);
+        Tile tile21 = ti.interpret("JJJJX");
+        board.FindBestMove(tile21,tiger);
         
         Tile tile22 = ti.interpret("JLJL-");
         board.FindBestMove(tile22,tiger);
