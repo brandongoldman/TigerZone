@@ -7,6 +7,11 @@ public class TileInterpreter {
 	//INSTANTIATE AN ARRAY OF TILES 
 	private Tile[] tileArray = new Tile[77];
 
+	//Empty constructor for testing
+	public TileInterpreter(){
+
+	}
+
 	public Tile interpret(String newTileInput) {
 		
 		//File file = new File("newTileInput.txt");

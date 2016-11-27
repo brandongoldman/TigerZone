@@ -1,9 +1,5 @@
 //	Import statements & possibly using JUnit to
 //	test the application
-import java.util.*;
-import static org.junit.Assert.*;
-import org.junit.Test;
-
 
 public class GameTest{
 
@@ -36,20 +32,21 @@ public class GameTest{
 		System.out.println("Test A Begins");
 		HashBoard board = new HashBoard();
 		TileInterpreter ti = new TileInterpreter();
+		Tiger tiger = new Tiger();
 		Tile tile = ti.interpret("TLTTP");
-		board.addTile(new Position(0, 1), tile);		//	Outcome: Pass
+		board.addTile(new Position(0, 1), tile, tiger);		//	Outcome: Pass
 		Tile tile2 = ti.interpret("TTTT-");
-		board.addTile(new Position(0, -1), tile2);		//	Outcome: Pass
+		board.addTile(new Position(0, -1), tile2, tiger);		//	Outcome: Pass
 		Tile tile3 = ti.interpret("TJTJ-");
-		board.addTile(new Position(0, -2), tile3);		//	Outcome: Pass
+		board.addTile(new Position(0, -2), tile3, tiger);		//	Outcome: Pass
 		Tile tile4 = ti.interpret("LLJJ-");
-		board.addTile(new Position(1, -2), tile4);		//	Outcome: Pass
+		board.addTile(new Position(1, -2), tile4, tiger);		//	Outcome: Pass
 		Tile tile5 = ti.interpret("JJJJ-");
-		board.addTile(new Position(1, 1), tile5);		//	Outcome: Fail
+		board.addTile(new Position(1, 1), tile5, tiger);		//	Outcome: Fail
 		Tile tile6 = ti.interpret("LLLL-");
-		board.addTile(new Position(1, 1), tile6);		//	Outcome: Pass
+		board.addTile(new Position(1, 1), tile6, tiger);		//	Outcome: Pass
 		Tile tile7 = ti.interpret("JLJL-");
-		board.addTile(new Position(1, 1), tile7);		//	Outcomes: Fail
+		board.addTile(new Position(1, 1), tile7, tiger);		//	Outcomes: Fail
 		board.printLake();
 		board.printTrail();
 
@@ -69,7 +66,16 @@ public class GameTest{
 				validing that the rotated tile is equalt to the
 				original tile plus the rotation
 
-	
+			-	Test has failed because the rotation function is 
+				not taking into account the change of the mini zones.
+
+			-	The other characteristics about the rotate function work
+
+			-	Another case: Rotating multiple times and seeing if
+				the characteristics change accordingly
+
+			-	All of the 
+
 		*/
 
 		System.out.println("Test B Begins");
@@ -77,12 +83,23 @@ public class GameTest{
 		HashBoard board = new HashBoard();
 		TileInterpreter ti = new TileInterpreter();
 		Tile tile = ti.interpret("TLTTP");
-		String brotate = tile.getDescription();
+		String rotate0 = tile.printTile();				//	Outcome:	Pass
 		tile.rotate();
-		String arotate = tile.getDescription();
+		String rotate90 = tile.printTile();				//	Outcome:	Pass
+		tile.rotate();
+		String rotate180 = tile.printTile();			//	Outcome: 	Pass
+		tile.rotate();
+		String rotate270 = tile.printTile();			//	Outcome:	Pass
+		tile.rotate();
+		String rotate360 = tile.printTile();			//	Outcome: 	Pass
 
-		System.out.println(brotate);
-		System.out.println(arotate);
+
+
+		System.out.println(rotate0);
+		System.out.println(rotate90);
+		System.out.println(rotate180);
+		System.out.println(rotate270);
+		System.out.println(rotate360);
 
 		System.out.println("Test B Ends");
 		System.out.println("==================================================================");
