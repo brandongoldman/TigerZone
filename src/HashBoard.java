@@ -58,7 +58,7 @@ public class HashBoard{
 		ClaimedDens = new ArrayList<Den>();
         
         gameBoard = new DisplayBoard();
-        //gameBoard.setTile("LLLL-", -5, -5, 180);
+        gameBoard.setTile("TLTJ-", 0, 0, 0);
 
 		TileInterpreter TI = new TileInterpreter();
 		gBoard.put(new Position(0,0), TI.interpret("TLTJ-"));
@@ -147,6 +147,105 @@ public class HashBoard{
         // ^^Should be working now^^
 	}
 
+    public boolean checkLegalMove(Position newpos, Tile currentTile)
+    {
+        
+        boolean goodToGo = false;
+        
+        if (!set.contains(newpos)) return false;		// Make sure the space is open
+        //System.out.println("MADE IT PAST OPEN CHECK");
+        
+        // For each adjacency (to the open newpos) make sure at least one of the following conditions is true
+        // 1. exists in open set
+        // 2. does not exist in either open or taken set
+        // 3. exists in taken set and has edge matching (BUT BC OF ACCESS WE NEED TO ASSURE OTHER TWO FIRST)
+        
+        Position rPos = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
+        Position lPos = new Position(newpos.getXPosition() - 1, newpos.getYPosition());
+        Position tPos = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
+        Position bPos = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
+        
+        // If the spot exists in the open set or does not exist in either set (2 tiles away)
+        if ( (set.contains(tPos)) || ((!set.contains(tPos)) && (!gBoard.containsKey(tPos)))) goodToGo = true;
+        
+        if (!goodToGo){
+            if (gBoard.get(tPos).getEdgeB() != currentTile.getEdgeT()) return false;	// If all three conditions fail
+        }
+        //System.out.println("TPOS CHECKED OUT");
+        // REPEAT FOR OTHER THREE SURROUNDING
+        
+        goodToGo = false;
+        if ( (set.contains(rPos)) || ((!set.contains(rPos)) && (!gBoard.containsKey(rPos)))) goodToGo = true;
+        
+        if (!goodToGo) {
+            if (gBoard.get(rPos).getEdgeL() != currentTile.getEdgeR()) return false;
+        }
+        //System.out.println("RPOS CHECKED OUT");
+        goodToGo = false;
+        if ( (set.contains(bPos)) || ((!set.contains(bPos)) && (!gBoard.containsKey(bPos)))) goodToGo = true;
+        
+        if (!goodToGo) {
+            if (gBoard.get(bPos).getEdgeT() != currentTile.getEdgeB()) return false;
+        }
+        //System.out.println("BPOS CHECKED OUT");
+        goodToGo = false;
+        if ( (set.contains(lPos)) || ((!set.contains(lPos)) && (!gBoard.containsKey(lPos)))) goodToGo = true;
+        
+        if (!goodToGo)
+            if (gBoard.get(lPos).getEdgeR() != currentTile.getEdgeL()) return false;
+        //System.out.println("LPOS CHECKED OUT");
+        // SHOULD BE VALID... I THINK
+        return true;
+    }
+    
+    
+    public Move FindBestMove(Tile t, Tiger tiger)
+    {
+        int bestScore = -1;
+        int currScore = -1;
+        int tigerLocation = 0;
+        
+        //Initialize a Move struct to send to server
+        Move bestMove = null;
+        
+        //For all four rotations
+        for (int i = 0; i < 4; i++)
+        {
+            //Go thru all open spaces and if there is a valid move, find out what score it would get. Compare to best and save best move
+            for(Position pos: set)
+            {
+                if(checkLegalMove(pos, t))
+                {
+                    
+                    addTile(pos, t, tiger);
+                    /*currScore = getMoveScore(pos, t, tigerLocation); // need to update with scoring method
+                    if(currScore > bestScore)
+                    {
+                        bestScore = currScore;
+                        bestMove = new Move();
+                    }*/
+                    return null;
+                }
+                
+                t.rotate();
+            }
+            
+            //t.rotate();
+        }
+        
+        // case: tile is not valid on current board
+        if(bestMove == null)
+        {
+            // tile is not placeable on board, so pass
+            //Player.passOnTile(t);
+            System.out.println("Hello World");
+        }
+        
+        return bestMove;
+    }
+    
+
+    
 	public void updateFeatures(Position pos, Tile tile, Tiger tiger){
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
@@ -1525,99 +1624,7 @@ public class HashBoard{
 	
 	
 	
-	public boolean checkLegalMove(Position newpos, Tile currentTile)
-	{
 		
-		boolean goodToGo = false;
-		
-		if (!set.contains(newpos)) return false;		// Make sure the space is open
-		//System.out.println("MADE IT PAST OPEN CHECK");
-	  
-	   // For each adjacency (to the open newpos) make sure at least one of the following conditions is true
-	   // 1. exists in open set
-	   // 2. does not exist in either open or taken set
-	   // 3. exists in taken set and has edge matching (BUT BC OF ACCESS WE NEED TO ASSURE OTHER TWO FIRST)
-	   
-		Position rPos = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
-	 	Position lPos = new Position(newpos.getXPosition() - 1, newpos.getYPosition());
-	 	Position tPos = new Position(newpos.getXPosition(), newpos.getYPosition() + 1);
-	 	Position bPos = new Position(newpos.getXPosition(), newpos.getYPosition() - 1);
-	 
-	 	// If the spot exists in the open set or does not exist in either set (2 tiles away)
-	 	if ( (set.contains(tPos)) || ((!set.contains(tPos)) && (!gBoard.containsKey(tPos)))) goodToGo = true;	
-	   
-	 	if (!goodToGo){ 
-	        if (gBoard.get(tPos).getEdgeB() != currentTile.getEdgeT()) return false;	// If all three conditions fail
-	 	}
-	 	//System.out.println("TPOS CHECKED OUT");
-	        // REPEAT FOR OTHER THREE SURROUNDING
-	        
-	   goodToGo = false;
-	 	if ( (set.contains(rPos)) || ((!set.contains(rPos)) && (!gBoard.containsKey(rPos)))) goodToGo = true;	
-	   
-	   if (!goodToGo) {
-	        if (gBoard.get(rPos).getEdgeL() != currentTile.getEdgeR()) return false;
-	   }
-	   //System.out.println("RPOS CHECKED OUT");
-	   goodToGo = false;
-	   if ( (set.contains(bPos)) || ((!set.contains(bPos)) && (!gBoard.containsKey(bPos)))) goodToGo = true;	
-	   
-	   if (!goodToGo) {
-	        if (gBoard.get(bPos).getEdgeT() != currentTile.getEdgeB()) return false;
-	   }
-	   //System.out.println("BPOS CHECKED OUT");
-	   goodToGo = false;
-	 	if ( (set.contains(lPos)) || ((!set.contains(lPos)) && (!gBoard.containsKey(lPos)))) goodToGo = true;	
-	   
-	   if (!goodToGo) 
-	        if (gBoard.get(lPos).getEdgeR() != currentTile.getEdgeL()) return false;
-	   //System.out.println("LPOS CHECKED OUT");
-	   // SHOULD BE VALID... I THINK
-		return true;
-	}
-	
-	
-	public Move FindBestMove(Tile t)
-	{	
-		int bestScore = -1;
-		int currScore = -1;
-		int tigerLocation = 0;
-		
-		//Initialize a Move struct to send to server
-		Move bestMove = null;
-		
-		//For all four rotations
-		for (int i = 0; i < 4; i++)
-		{
-			//Go thru all open spaces and if there is a valid move, find out what score it would get. Compare to best and save best move
-			for(Position pos: set)
-			{
-				if(checkLegalMove(pos, t))
-				{
-					currScore = getMoveScore(pos, t, tigerLocation); // need to update with scoring method
-					if(currScore > bestScore)
-					{
-						bestScore = currScore;
-						bestMove = new Move();
-					}
-				}
-			}
-
-			t.rotate();
-		}
-
-		// case: tile is not valid on current board
-		if(bestMove == null)
-		{
-			// tile is not placeable on board, so pass
-			//Player.passOnTile(t);
-			System.out.println("Hello World");
-		}
-
-		return bestMove;
-	}
-
-	
 	public int getMoveScore(Position pos, Tile tile, int tigerPlacement)
 	{
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
