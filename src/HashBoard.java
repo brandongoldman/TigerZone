@@ -57,6 +57,9 @@ public class HashBoard{
         
         DisplayBoard gameBoard = new DisplayBoard();
         //gameBoard.setTile("TLTJD",0,3,270);
+        //gameBoard.setTile("TLTJD",0,1,90);
+        //gameBoard.setTile("TLTJD",0,2,180);
+        //gameBoard.setTile("TLTJD",0,3,270);
 
 		gBoard.put(new Position(0,0), new Tile());
 
@@ -91,6 +94,8 @@ public class HashBoard{
 		initialJungle2.boundary.add(new BoundaryJungle(new Position(0,0),miniTile2));
 
 		Jungle.add(initialJungle2);
+        
+        //gameBoard.TileGrid();
 
 	}
     
@@ -137,6 +142,10 @@ public class HashBoard{
 		updateOpenSpots(pos);
 		updateFeatures(pos,tile);
 		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
+        
+        
+        gameBoard.setTile(tile.getDescription,pos.getXPosition, pos.getYPosition, /* GET ROTATION DEGREES*/);
+                          
 	}
 
 	public void updateFeatures(Position pos, Tile tile){
@@ -1455,15 +1464,8 @@ public class HashBoard{
 				}
 			}
 		}
-	}
+}
 
-	public void AddTile(Position pos, Tile tile, Tiger tiger){
-
-	}
-
-	public void updateFeatures(Position pos, Tile tile, Tiger tiger){
-
-	}
 
 	public void updateOpenSpots(Position newpos){
 		Position rPosX = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
@@ -1628,11 +1630,12 @@ public class HashBoard{
 	public static void main(String[] args){
 		/**Feature Updating Testing**/
 		HashBoard board = new HashBoard();
+        
 
 		//Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
 		//board.gBoard.put(new Position(1,0), tile1);
 		//board.updateFeatures(new Position(1,0), tile1);
-		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true);
+		/*Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true);
 		board.gBoard.put(new Position(0,1), tile2);
 		board.updateFeatures(new Position(0,1),tile2);
 		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false);
@@ -1656,7 +1659,7 @@ public class HashBoard{
 
 
 		board.printLake();
-		board.printTrail();
+		board.printTrail();*/
 
 
 		/**Check Open Spots Testing**/
@@ -1692,7 +1695,7 @@ public class HashBoard{
 		board.AddTile(new Position(-1,1), arr[4]);
 
 		*/
-        HashBoard board = new HashBoard();
+        //HashBoard board = new HashBoard();
 
 
 		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/

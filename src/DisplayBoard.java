@@ -34,8 +34,22 @@ public class DisplayBoard extends JPanel
     public DisplayBoard() /*throws IOException*/
     {
         
+        
+        JFrame frame = new JFrame("TigerZone");
+        
+        //DisplayBoard display = new DisplayBoard();
+        
         loadTile();
         init();
+        
+        
+        frame.add(this);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        
+        //loadTile();
+        //init();
         //setTile("TLTJD",0,0,0);
         
         //setTile(tile identifier, Tile.position(xCord), Tile.position(yCord), rotation amounts);
@@ -131,6 +145,7 @@ public class DisplayBoard extends JPanel
         }
         
         System.out.println("Game tile images loaded successfully...");
+        
     }
     
     //method to paint background BOARD image that all tiles will be painted over
@@ -234,7 +249,7 @@ public class DisplayBoard extends JPanel
     }
     
     
-    
+  /*
     public static void main(String[] args) {
         //creating the board JFrame
         JFrame frame = new JFrame("TigerZone");
@@ -246,6 +261,7 @@ public class DisplayBoard extends JPanel
         frame.setVisible(true);
         
     }
+   */
     
     
 }
