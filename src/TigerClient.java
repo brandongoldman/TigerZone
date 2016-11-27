@@ -267,8 +267,8 @@ public class TigerClient
     	return rounds;
     	
     }
-    
-    public void moveProtocol(int type, int gid, String tile, int x, int y, int orientation, int zone)
+    //                                  vvv I changed this from int to String!!!
+    public void moveProtocol(int type, String gid, String tile, int x, int y, int orientation, int zone)
     {
     	// type = move type
     	// type = 1:  GAME <gid> PLACE <tile> AT <x> <y> <orientation> NONE
