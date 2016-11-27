@@ -205,7 +205,7 @@ public class TileInterpreter {
 			e.printStackTrace();
 		}*/
 
-		Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description, rotation);
+		Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description, rotation, miniZones);
 		return newTile;
 
 	}
