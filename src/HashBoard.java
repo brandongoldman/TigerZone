@@ -173,55 +173,59 @@ public class HashBoard{
 		int tigerfeature = -1;
 		int x = -1;
 		int y = -1;
-		if(tiger.getOwner()!=0){
-			hasTiger=true;
-			switch(tiger.getTigerPlacement()){
+		if(tiger.getOwner()!=0) {
+			hasTiger = true;
+			switch (tiger.getTigerPlacement()) {
 				case 1:
-					x=0;
-					y=0;
+					x = 0;
+					y = 0;
 					break;
 				case 2:
-					x=1;
-					y=0;
+					x = 1;
+					y = 0;
 					break;
 				case 3:
-					x=2;
-					y=0;
+					x = 2;
+					y = 0;
 					break;
 				case 4:
-					x=0;
-					y=1;
+					x = 0;
+					y = 1;
 					break;
 				case 5:
-					x=1;
-					y=1;
+					x = 1;
+					y = 1;
 					break;
 				case 6:
-					x=2;
-					y=1;
+					x = 2;
+					y = 1;
 					break;
 				case 7:
-					x=0;
-					y=2;
+					x = 0;
+					y = 2;
 					break;
 				case 8:
-					x=1;
-					y=2;
+					x = 1;
+					y = 2;
 					break;
 				case 9:
-					x=2;
-					y=2;
+					x = 2;
+					y = 2;
 					break;
 			}
-		}
-		if(tile./*minitile[x][y]*/==2){
-
-		}
-		else if(tile./*minitile[x][y]*/==1){
-
-		}
-		else if(tile./*minitile[x][y]*/==55){
-
+			int[][] minitile = tile.getMiniZones();
+			if (minitile[x][y] == 2) {
+				tigerfeature = 2;
+			}
+			else if (minitile[x][y] == 1) {
+				tigerfeature = 1;
+			}
+			else if (minitile[x][y] == 55) {
+				tigerfeature = 55;
+			}
+			else{
+				hasTiger=false;
+			}
 		}
 
 
@@ -2782,119 +2786,4 @@ public class HashBoard{
 			}
 		}
 	}
-	
-
-	public static void main(String[] args){
-		/**Feature Updating Testing**/
-		HashBoard board = new HashBoard();
-
-		//Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
-		//board.gBoard.put(new Position(1,0), tile1);
-		//board.updateFeatures(new Position(1,0), tile1);
-		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true,"LLLL-",0);
-        board.addTile(new Position(0,1), tile2,new Tiger(0,0));
-		//board.gBoard.put(new Position(0,1), tile2);
-		
-        //ATTN: need to clarify why the ROTATE int identifier is #OFROTATES vs DEGREES ROTATED
-        //when itializing tile, rotates int = NUM OF ROTATES so 2 == 180 deg
-        Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"TLJT-",2);
-		//board.gBoard.put(new Position(1,1),tile3);
-		board.addTile(new Position(1,1), tile3,new Tiger(0,0));
-		
-        Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false,"TLLL-",0);
-		//board.gBoard.put(new Position(2,1),tile4);
-		board.addTile(new Position(2,1), tile4,new Tiger(0,0));
-        
-        Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TLLLC",0);
-		//board.gBoard.put(new Position(2,0),tile5);
-		board.addTile(new Position(2,0), tile5,new Tiger(0,0));
-		
-        Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LJTJ-",0);
-		//board.gBoard.put(new Position(2,-1),tile6);
-		board.addTile(new Position(2,-1), tile6,new Tiger(0,0));
-
-        Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TLJTP",0);
-		//board.gBoard.put(new Position(1,-1),tile7);
-		board.addTile(new Position(1,-1), tile7,new Tiger(0,0));
-
-        Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TJJT-",0);
-        //board.gBoard.put(new Position(1,0), tile1);
-        board.addTile(new Position(1,0), tile2,new Tiger(0,0));
-        
-
-
-		board.printLake();
-		board.printTrail();
-
-
-		/**Check Open Spots Testing**/
-		/*HashBoard board = new HashBoard();
-		board.gBoard.put(new Position(0, 0), new Tile());
-		board.updateOpenSpots(new Position(0, 0));
-		board.printKeys();
-		board.gBoard.put(new Position(1, 0), new Tile());
-		board.updateOpenSpots(new Position(1, 0));
-		board.printKeys();
-		board.gBoard.put(new Position(2, 0), new Tile());
-		board.updateOpenSpots(new Position(2, 0));
-		board.printKeys();
-		board.gBoard.put(new Position(0, -1), new Tile());
-		board.updateOpenSpots(new Position(0, -1));
-		board.printKeys();*/
-
-
-
-		/* Check if Valid Move Test
-		TileInterpreter ti = new TileInterpreter();				
-		ti.interpret("TLTJ-\nTTTT-\nTJTJ-\nJJJJ-\nLLJJ-");	
-		Tile[] arr = ti.getTileArray();							
-																
-		HashBoard board = new HashBoard();
-		board.AddTile(new Position(0,0), arr[0]);				
-		board.updateOpenSpots(new Position(0, 0));
-		board.printKeys();
-		
-		board.AddTile(new Position(0,1), arr[1]);
-		board.AddTile(new Position(0,2), arr[2]);
-		board.AddTile(new Position(-1,0), arr[3]);
-		board.AddTile(new Position(-1,1), arr[4]);
-
-		*/
-
-
-		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/
-		/*FeatureArea first = new FeatureArea();
-		first.areaCoor.add(new Position(0,0));
-		first.areaCoor.add(new Position(0,0));
-		first.openBoundary.add(new Boundary(new Position (0,0),1));
-		first.openBoundary.add(new Boundary(new Position (0,0),1));
-
-		FeatureArea second = new FeatureArea();
-		second.areaCoor.add(new Position(0,0));
-		second.openBoundary.add(new Boundary(new Position (0,0),1));
-
-		if(first.equals(second)){
-			System.out.print("TRUE");
-		}
-		else System.out.print("FALSE");*/
-
-
-		/**System.out.println("We Have Started a New Game");
-		System.out.println("Choose Your Position (Format: X Y )");
-		Scanner scan = new Scanner(System.in);
-		int x = scan.nextInt();
-		int y = scan.nextInt();
-
-		System.out.println("X Location: " + x + " \nY Location: " + y);
-
-		if(board.didAddTile(new Position(x, y), new Tile())){
-			System.out.println("That is a viable location.");
-		} else {
-			System.out.println("Nahhhhhhh");
-		}
-		 **/
-	}
-
-
-
 }
