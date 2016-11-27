@@ -225,19 +225,19 @@ public class HashBoard{
         // case: tile is not valid on current board
         if(bestMove == null)
         {
-<<<<<<< HEAD
+
             // tile is not placeable on board, so pass
             //Player.passOnTile(t);
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-=======
+
 			String tile = t.getDescription();
 			String gid = client.getGID();
 
 			// String serverMessage = server.moveProtocol(4, gid, tile, 0, 0, 0, 0);
 			// return serverMessage;
 
-			client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
->>>>>>> 01a22008f5fdbc6c3c1eb8458b5d62a283b460b1
+			//client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
+
         }
         addTile(best, t, tiger);
         return bestMove;
