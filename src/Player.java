@@ -42,10 +42,7 @@ public class Player
 		this.score = score;
 		this.numOfTigers = numOfTigers;
 		this.numOfCrocodiles = numOfCrocodiles;
-        HashMap<Position, Tile> board = x.getMap();
-        x.getMap().put(new Position(0, 0), new Tile());
-        x.updateOpenSpots(new Position(0, 0));
-        this.x.printKeys();
+        HashMap<Position, Tile> board = x;
 	}
 
 	public boolean tigerOnBoard(){

@@ -68,7 +68,7 @@ public class Tile {
 	}
 
 
-	public Tile(int animal, boolean den, boolean croc, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB, String description, int beenRotated)
+	public Tile(int animal, boolean den, boolean croc, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB, String description, int beenRotated, int[][] miniZones)
 	{
 		this.animal = animal;
 		this.den = den;
@@ -85,10 +85,10 @@ public class Tile {
 		this.oTB = oTB;
         this.description = description;
         this.beenRotated = beenRotated;
+        this.miniZones = miniZones;
 	}
 	
 	//Getter
-
     
     public String getDescription(){
         return description;
@@ -162,6 +162,11 @@ public class Tile {
 	{
 		return oTB;
 	}
+
+	public int[][] getMiniZones(){
+		return miniZones;
+	}
+
 	//Setter
 
 	public void setPosition(Position pos)
@@ -275,109 +280,6 @@ public class Tile {
 	}
 
 
-	public ArrayList<HashSet<Integer>> connectedJungle(){
-
-
-		//	Simple Implementation
-		//	Bad time complexity
-		//	Need more research for figuring out solution
-		//	Still doesn't have concise sets and allows duplicates
-
-		/*
-
-		for(int i=0; i < miniZones.length; i++){
-			for(int j=0; j < miniZones.length; j++){
-
-				HashSet<Integer> cJungle = new HashSet<Integer>();
-
-				try {
-					if(miniZones[i][j] == 0){
-
-						cJungle.add(miniZones[i][j]);
-
-						if(miniZones[i+1][j] == 0){
-							System.out.println("Right Jungle");
-							int rJungle = miniZones[i+1][j];
-							cJungle.add(rJungle);
-						}
-			
-						if(miniZones[i][j+1] == 0){
-							System.out.println("Upper Jungle");
-							int upJungle = miniZones[i][j+1];
-							cJungle.add(upJungle);
-						}
-
-						if(miniZones[i-1][j] == 0){
-							System.out.println("Left Jungle");
-							int lJungle = miniZones[i-1][j];
-							cJungle.add(lJungle);
-						}
-
-						if(miniZones[i][j-1] == 0){
-							System.out.println("Lower Jungle");
-							int downJungle = miniZones[i][j-1];
-							cJungle.add(downJungle);
-						}
-
-						jungles.add(cJungle);
-
-					}
-
-				} catch(Exception e){
-
-					System.out.println("Throwing Exception");
-
-				}
-
-			}
-
-		}
-
-		*/
-
-		/*
-
-			Using the indecies 2, 4, 6, 8, which will work to
-			solve the connection problem a lot more.
-
-		*/
-
-		// ArrayList<HashSet<Integer>> jungles = addFeatures();
-		ArrayList<HashSet<Integer>> cJungles = new ArrayList<HashSet<Integer>>();
-
-		for(int i=0; i < miniZones.length; i++){
-			for(int j=0; j < miniZones[i].length; j++){
-
-				HashSet<Integer> jungle = new HashSet<Integer>();
-
-				int rNeighbor = miniZones[i][j+1];
-				int uNeighbor = miniZones[i+1][j];
-				int lNeighbor = miniZones[i][j-1];
-				int dNeighbor = miniZones[i-1][j];
-
-				if(rNeighbor == 1){
-					jungle.add(rNeighbor);
-				}
-
-				if(uNeighbor == 1){
-					jungle.add(uNeighbor);
-				}
-
-				if(lNeighbor == 1){
-					jungle.add(lNeighbor);
-				}
-
-				if(dNeighbor == 1){
-					jungle.add(dNeighbor);
-				}
-
-				cJungles.add(jungle);
-
-			}
-		}
-
-		return cJungles;
-	}
 
 	/*
 
@@ -395,10 +297,8 @@ public class Tile {
 		Tile tile = new Tile();
 
 		ArrayList <HashSet<Integer>> tile1 = tile.addFeatures();
-		ArrayList <HashSet<Integer>> tile2 = tile.connectedJungle();
 
 		Iterator <HashSet<Integer>> it1 = tile1.iterator();
-		Iterator <HashSet<Integer>> it2 = tile2.iterator();
 
 		while (it1.hasNext()) {
 			System.out.println(it1.next());
@@ -406,10 +306,6 @@ public class Tile {
 
 
 		System.out.println("================================================");
-
-		while (it2.hasNext()) {
-			System.out.println(it2.next());
-		}
 
 	}
 

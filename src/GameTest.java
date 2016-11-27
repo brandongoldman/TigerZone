@@ -1,5 +1,8 @@
 //	Import statements & possibly using JUnit to
 //	test the application
+import java.util.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 
 public class GameTest{
@@ -30,7 +33,7 @@ public class GameTest{
 	
 		*/
 
-
+		System.out.println("Test A Begins");
 		HashBoard board = new HashBoard();
 		TileInterpreter ti = new TileInterpreter();
 		Tile tile = ti.interpret("TLTTP");
@@ -50,22 +53,50 @@ public class GameTest{
 		board.printLake();
 		board.printTrail();
 
+		System.out.println("Test A Ends");
+
+		System.out.println("==================================================================");
+
 	}
 
 	public static void testB(){
+
+		/*
+				
+			Test B Description:
+
+			-	Checking the Rotate function in the Tile class and
+				validing that the rotated tile is equalt to the
+				original tile plus the rotation
+
+	
+		*/
+
+		System.out.println("Test B Begins");
+
 		HashBoard board = new HashBoard();
 		TileInterpreter ti = new TileInterpreter();
+		Tile tile = ti.interpret("TLTTP");
+		String brotate = tile.getDescription();
+		tile.rotate();
+		String arotate = tile.getDescription();
+
+		System.out.println(brotate);
+		System.out.println(arotate);
+
+		System.out.println("Test B Ends");
+		System.out.println("==================================================================");
 	}
 
 	public static void testC(){
-		HashBoard board = new HashBoard();
-		TileInterpreter ti = new TileInterpreter();
+		//	HashBoard board = new HashBoard();
+		//	TileInterpreter ti = new TileInterpreter();
 
 	}
 
 	public static void testD(){
-		HashBoard board = new HashBoard();
-		TileInterpreter ti = new TileInterpreter();
+		//	HashBoard board = new HashBoard();
+		//	TileInterpreter ti = new TileInterpreter();
 
 
 	}

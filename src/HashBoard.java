@@ -1548,7 +1548,6 @@ public class HashBoard{
 		boolean foundT = false;
 		boolean foundB = false;
 
-
 		FeatureArea RightArea=new FeatureArea();
 		FeatureArea LeftArea=new FeatureArea();
 		FeatureArea TopArea=new FeatureArea();
