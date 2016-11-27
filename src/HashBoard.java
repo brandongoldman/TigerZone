@@ -166,57 +166,7 @@ public class HashBoard{
 
 
 		/**JUNGLES**/
-		/*for(HashSet<Integer> connected : JungleConnection){
-			outsideConnect = false;
-			for(int num : connected){
-				if(num==1){
-					if(gBoard.containsKey(top)){
-						if(tile.getEdgeT()!=2){
-							for(JungleArea topJungle : Jungle){
-								for(BoundaryJungle check :topJungle.boundary){
-									if(check.position.getXPosition()==pos.getXPosition()&&check.position.getYPosition()==pos.getYPosition()&&check.miniTile.contains(7)){
-
-									}
-								}
-							}
-						}
-					}
-					if(gBoard.containsKey(left)){
-						if(tile.getEdgeL()!=2){
-
-						}
-					}
-				}
-				else if(num==3){
-					if(gBoard.containsKey(top)){
-
-					}
-					if(gBoard.containsKey(right)){
-
-					}
-				}
-				else if(num==7){
-					if(gBoard.containsKey(bottom)){
-
-					}
-					if(gBoard.containsKey(left)){
-
-					}
-				}
-				else if(num==9){
-					if(gBoard.containsKey(bottom)){
-
-					}
-					else if(gBoard.containsKey(right)){
-
-					}
-				}
-			}
-			if(!outsideConnect){
-
-			}
-
-		}*/
+		//FAILED XD
 
 		/**DENS**/
 		if(tile.getDen()){
@@ -1590,8 +1540,895 @@ public class HashBoard{
 	}
 
 	
-	public int getMoveScore(Position pos, Tile t)
+	public int getMoveScore(Position pos, Tile tile)
 	{
+		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
+		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
+		Position top = new Position(pos.getXPosition(), pos.getYPosition() + 1); //1
+		Position bottom = new Position(pos.getXPosition(), pos.getYPosition() - 1); //3
+
+		boolean foundR = false;
+		boolean foundL = false;
+		boolean foundT = false;
+		boolean foundB = false;
+
+
+		FeatureArea RightArea=new FeatureArea();
+		FeatureArea LeftArea=new FeatureArea();
+		FeatureArea TopArea=new FeatureArea();
+		FeatureArea BottomArea=new FeatureArea();
+
+		Boundary checkRight = new Boundary(right,4);
+		Boundary checkLeft = new Boundary(left,2);
+		Boundary checkTop = new Boundary(top,3);
+		Boundary checkBottom = new Boundary(bottom,1);
+
+		/**RightArea**/
+		if(gBoard.containsKey(right)){
+			FeatureArea holder;
+			if(tile.getEdgeR()==2){
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkRight)){
+						RightArea=holder;
+						foundR=true;
+						break;
+					}
+				}
+				if(!foundR) {
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext(); ) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkRight)) {
+							RightArea = holder;
+							foundR=true;
+							break;
+						}
+					}
+				}
+
+			}
+			else if (tile.getEdgeR()==1){
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkRight)){
+						RightArea=holder;
+						foundR=true;
+						break;
+					}
+				}
+				if(!foundR) {
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkRight)) {
+							RightArea = holder;
+							foundR=true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else{
+			RightArea=new FeatureArea();
+			if(tile.getEdgeR()==2||tile.getEdgeR()==1){
+				RightArea.areaCoor.add(pos);
+				RightArea.openBoundary.add(new Boundary(pos,2));
+			}
+		}
+		/**LeftArea**/
+		if(gBoard.containsKey(left)){
+			FeatureArea holder;
+			if(tile.getEdgeL()==2){
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkLeft)){
+						LeftArea=holder;
+						foundL=true;
+						break;
+					}
+				}
+				if(!foundL) {
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkLeft)) {
+							LeftArea = holder;
+							foundL=true;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeL()==1){
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkLeft)){
+						LeftArea=holder;
+						foundL=true;
+						break;
+					}
+				}
+				if(!foundL) {
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkLeft)) {
+							LeftArea = holder;
+							foundL=true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else{
+			LeftArea=new FeatureArea();
+			if(tile.getEdgeL()==2||tile.getEdgeL()==1) {
+				LeftArea.areaCoor.add(pos);
+				LeftArea.openBoundary.add(new Boundary(pos, 4));
+			}
+		}
+
+		/**TopArea**/
+		if(gBoard.containsKey(top)){
+			FeatureArea holder;
+			if(tile.getEdgeT()==2){
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkTop)){
+						TopArea=holder;
+						foundT=true;
+						break;
+					}
+				}
+				if(!foundT) {
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkTop)) {
+							TopArea = holder;
+							foundT=true;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeT()==1){
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkTop)){
+						TopArea=holder;
+						foundT=true;
+						break;
+					}
+				}
+				if(!foundT) {
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkTop)) {
+							TopArea = holder;
+							foundT=true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else{
+			TopArea=new FeatureArea();
+			if(tile.getEdgeT()==2||tile.getEdgeT()==1){
+				TopArea.areaCoor.add(pos);
+				TopArea.openBoundary.add(new Boundary(pos,1));
+			}
+		}
+
+		/**BottomArea**/
+		if(gBoard.containsKey(bottom)){
+			FeatureArea holder;
+			if(tile.getEdgeB()==2){
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkBottom)){
+						BottomArea=holder;
+						foundB=true;
+						break;
+					}
+				}
+				if(!foundB) {
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkBottom)) {
+							BottomArea = holder;
+							foundB=true;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeB()==1){
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkBottom)){
+						BottomArea=holder;
+						foundB=true;
+						break;
+					}
+				}
+				if(!foundB) {
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkBottom)) {
+							BottomArea = holder;
+							foundB=true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else{
+			BottomArea=new FeatureArea();
+			if(tile.getEdgeB()==2||tile.getEdgeB()==1){
+				BottomArea.areaCoor.add(pos);
+				BottomArea.openBoundary.add(new Boundary(pos,3));
+			}
+		}
+
+		boolean skipR = false;
+		boolean skipB = false;
+		boolean skipL = false;
+
+		boolean R=false;
+		boolean B=false;
+		boolean L=false;
+
+		if (tile.getEdgeT() == 2) {
+			if (TopArea.equals(RightArea)) {
+				skipR = true;
+				R = true;
+			}
+			if (TopArea.equals(BottomArea)) {
+				skipB = true;
+				B = true;
+			}
+			if (TopArea.equals(LeftArea)) {
+				skipL = true;
+				L = true;
+			}
+			if (R) {
+				TopArea.openBoundary.remove(checkRight);
+			}
+			if (B) {
+				TopArea.openBoundary.remove(checkBottom);
+			}
+			if (L) {
+				TopArea.openBoundary.remove(checkLeft);
+			}
+			if (tile.getCTR() && !skipR) {
+				TopArea.areaCoor.addAll(RightArea.areaCoor);
+				TopArea.openBoundary.addAll((RightArea.openBoundary));
+				TopArea.openBoundary.remove(checkRight);
+				if (RightArea.getHasTiger()) {
+					TopArea.tiger.addAll(RightArea.tiger);
+					TopArea.setHasTiger(true);
+				}
+				if (RightArea.getHasCrocodile()) {
+					TopArea.addCrocodile(RightArea.numOfCrocs);
+				}
+				if (RightArea.getHasAnimal()) {
+					TopArea.uniqueAnimal.addAll(RightArea.uniqueAnimal);
+					TopArea.setHasAnimal(true);
+				}
+				RightArea.areaCoor.clear();
+				skipR = true;
+			}
+			if (tile.getOTB() && !skipB) {
+				TopArea.areaCoor.addAll(BottomArea.areaCoor);
+				TopArea.openBoundary.addAll((BottomArea.openBoundary));
+				TopArea.openBoundary.remove(checkBottom);
+				if (BottomArea.getHasTiger()) {
+					TopArea.tiger.addAll(BottomArea.tiger);
+					TopArea.setHasTiger(true);
+				}
+				if (BottomArea.getHasCrocodile()) {
+					TopArea.addCrocodile(BottomArea.numOfCrocs);
+				}
+				if (BottomArea.getHasAnimal()) {
+					TopArea.uniqueAnimal.addAll(BottomArea.uniqueAnimal);
+					TopArea.setHasAnimal(true);
+				}
+				BottomArea.areaCoor.clear();
+				skipB = true;
+			}
+			if (tile.getCTL() && !skipL) {
+				TopArea.areaCoor.addAll(LeftArea.areaCoor);
+				TopArea.openBoundary.addAll((LeftArea.openBoundary));
+				TopArea.openBoundary.remove(checkLeft);
+				if (LeftArea.getHasTiger()) {
+					TopArea.tiger.addAll(LeftArea.tiger);
+					TopArea.setHasTiger(true);
+				}
+				if (LeftArea.getHasCrocodile()) {
+					TopArea.addCrocodile(LeftArea.numOfCrocs);
+				}
+				if (LeftArea.getHasAnimal()) {
+					TopArea.uniqueAnimal.addAll(LeftArea.uniqueAnimal);
+					TopArea.setHasAnimal(true);
+				}
+				LeftArea.areaCoor.clear();
+				skipL = true;
+			}
+			TopArea.areaCoor.add(pos);
+			TopArea.openBoundary.remove(checkTop);
+			if (tile.getCroc()) {
+				TopArea.addCrocodile(1);
+			}
+			if (tile.getAnimal() != -1) {
+				TopArea.uniqueAnimal.add(tile.getAnimal());
+				TopArea.setHasAnimal(true);
+			}
+			/**ADD TIGER**/
+			if (TopArea.openBoundary.isEmpty()) {
+				TopArea.setCompleted(true);
+			}
+		}
+		/**Trail**/
+		else if (tile.getEdgeT() == 1) {
+			int count = 0;
+			if (tile.getEdgeR() == 1&&!skipR) {
+				count++;
+			}
+			if (tile.getEdgeB() == 1&&!skipB) {
+				count++;
+			}
+			if (tile.getEdgeL() == 1&&!skipL) {
+				count++;
+			}
+			//check Intersection
+			if (count == 1) {
+				if(TopArea.equals(RightArea)){
+					TopArea.openBoundary.remove(checkRight);
+					skipR=true;
+				}
+				else if(TopArea.equals(BottomArea)){
+					TopArea.openBoundary.remove(checkBottom);
+					skipB=true;
+				}
+				else if(TopArea.equals(LeftArea)){
+					TopArea.openBoundary.remove(checkLeft);
+					skipL=true;
+				}
+				if (tile.getEdgeR() == 1&&!skipR) {
+					TopArea.areaCoor.addAll(RightArea.areaCoor);
+					TopArea.openBoundary.addAll(RightArea.openBoundary);
+					TopArea.openBoundary.remove(checkRight);
+					if (RightArea.getHasTiger()) {
+						TopArea.tiger.addAll(RightArea.tiger);
+						TopArea.setHasTiger(true);
+					}
+					if(RightArea.getHasCrocodile()){
+						TopArea.addCrocodile(RightArea.numOfCrocs);
+					}
+					if(RightArea.getHasAnimal()){
+						TopArea.animal.addAll(RightArea.animal);
+						TopArea.setHasAnimal(true);
+					}
+					RightArea.areaCoor.clear();
+					skipR = true;
+				}
+				else if (tile.getEdgeB() == 1&&!skipB) {
+					TopArea.areaCoor.addAll(BottomArea.areaCoor);
+					TopArea.openBoundary.addAll(BottomArea.openBoundary);
+					TopArea.openBoundary.remove(checkBottom);
+					if (BottomArea.getHasTiger()) {
+						TopArea.tiger.addAll(BottomArea.tiger);
+						TopArea.setHasTiger(true);
+					}
+					if(BottomArea.getHasCrocodile()){
+						TopArea.addCrocodile(BottomArea.numOfCrocs);
+					}
+					if(BottomArea.getHasAnimal()){
+						TopArea.animal.addAll(BottomArea.animal);
+						TopArea.setHasAnimal(true);
+					}
+					BottomArea.areaCoor.clear();
+					skipB = true;
+				}
+				else if (tile.getEdgeL() == 1&&!skipL) {
+					TopArea.areaCoor.addAll(LeftArea.areaCoor);
+					TopArea.openBoundary.addAll(LeftArea.openBoundary);
+					TopArea.openBoundary.remove(checkLeft);
+					if (LeftArea.getHasTiger()) {
+						TopArea.tiger.addAll(LeftArea.tiger);
+						TopArea.setHasTiger(true);
+					}
+					if(LeftArea.getHasCrocodile()){
+						TopArea.addCrocodile(LeftArea.numOfCrocs);
+					}
+					if(LeftArea.getHasAnimal()){
+						TopArea.animal.addAll(LeftArea.animal);
+						TopArea.setHasAnimal(true);
+					}
+					LeftArea.areaCoor.clear();
+					skipL = true;
+				}
+				TopArea.areaCoor.add(pos);
+				TopArea.openBoundary.remove(checkTop);
+				if(tile.getCroc()){
+					TopArea.addCrocodile(1);
+				}
+				if(tile.getAnimal()!=-1){
+					TopArea.animal.add(tile.getAnimal());
+					TopArea.setHasAnimal(true);
+				}
+				/**ADD TIGER**/
+				if (TopArea.openBoundary.isEmpty()) {
+					TopArea.setCompleted(true);
+				}
+			}
+			else if (count > 1) {
+				if(TopArea.equals(RightArea)){
+					skipR=true;
+					R=true;
+				}
+				if(TopArea.equals(BottomArea)){
+					skipB=true;
+					B=true;
+				}
+				if(TopArea.equals(LeftArea)){
+					skipL=true;
+					L=true;
+				}
+				if(R){
+					TopArea.openBoundary.remove(checkRight);
+				}
+				if(B){
+					TopArea.openBoundary.remove(checkBottom);
+				}
+				if(L){
+					TopArea.openBoundary.remove(checkLeft);
+				}
+				if (tile.getEdgeR() == 1&&!skipR) {
+					RightArea.areaCoor.add(pos);
+					RightArea.openBoundary.remove(checkRight);
+					if(tile.getCroc()){
+						RightArea.addCrocodile(1);
+					}
+					if(tile.getAnimal()!=-1){
+						RightArea.animal.add(tile.getAnimal());
+						RightArea.setHasAnimal(true);
+					}
+					/**ADD TIGER**/
+					if (RightArea.openBoundary.isEmpty()) {
+						RightArea.setCompleted(true);
+					}
+					skipR = true;
+				}
+				if (tile.getEdgeB() == 1&&!skipB) {
+					BottomArea.areaCoor.add(pos);
+					BottomArea.openBoundary.remove(checkBottom);
+					if(tile.getCroc()){
+						BottomArea.addCrocodile(1);
+					}
+					if(tile.getAnimal()!=-1){
+						BottomArea.animal.add(tile.getAnimal());
+						BottomArea.setHasAnimal(true);
+					}
+					/**ADD TIGER**/
+					if (BottomArea.openBoundary.isEmpty()) {
+						BottomArea.setCompleted(true);
+					}
+					skipB = true;
+				}
+				if (tile.getEdgeL() == 1&&!skipL) {
+					LeftArea.areaCoor.add(pos);
+					LeftArea.openBoundary.remove(checkLeft);
+					if(tile.getCroc()){
+						LeftArea.addCrocodile(1);
+					}
+					if(tile.getAnimal()!=-1){
+						LeftArea.animal.add(tile.getAnimal());
+						LeftArea.setHasAnimal(true);
+					}
+					/**ADD TIGER**/
+					if (LeftArea.openBoundary.isEmpty()) {
+						LeftArea.setCompleted(true);
+					}
+					skipL = true;
+				}
+				TopArea.areaCoor.add(pos);
+				TopArea.openBoundary.remove(checkTop);
+				if(tile.getCroc()){
+					TopArea.addCrocodile(1);
+				}
+				if(tile.getAnimal()!=-1){
+					TopArea.animal.add(tile.getAnimal());
+					TopArea.setHasAnimal(true);
+				}
+				/**ADD TIGER**/
+				if (TopArea.openBoundary.isEmpty()) {
+					TopArea.setCompleted(true);
+				}
+			}
+			else{
+				TopArea.areaCoor.add(pos);
+				TopArea.openBoundary.remove(checkTop);
+				if(tile.getCroc()){
+					TopArea.addCrocodile(1);
+				}
+				if(tile.getAnimal()!=-1){
+					TopArea.animal.add(tile.getAnimal());
+					TopArea.setHasAnimal(true);
+				}
+				/**ADD TIGER**/
+				if (TopArea.openBoundary.isEmpty()) {
+					TopArea.setCompleted(true);
+				}
+			}
+		}
+
+
+		/**RIGHT**/
+		B=false;
+		L=false;
+		if(!skipR){
+			/**Lake**/
+			if(tile.getEdgeR()==2){
+				if(RightArea.equals(BottomArea)){
+					skipB=true;
+					B=true;
+				}
+				if(RightArea.equals(LeftArea)){
+					skipL=true;
+					L=true;
+				}
+				if(B){
+					RightArea.openBoundary.remove(checkBottom);
+				}
+				if(L){
+					RightArea.openBoundary.remove(checkLeft);
+				}
+				if(tile.getCBR()&&!skipB){
+					RightArea.areaCoor.addAll(BottomArea.areaCoor);
+					RightArea.openBoundary.addAll((BottomArea.openBoundary));
+					RightArea.openBoundary.remove(checkBottom);
+					if(BottomArea.getHasTiger()){
+						RightArea.tiger.addAll(BottomArea.tiger);
+						RightArea.setHasTiger(true);
+					}
+					if(BottomArea.getHasCrocodile()){
+						RightArea.addCrocodile(BottomArea.numOfCrocs);
+					}
+					if(BottomArea.getHasAnimal()){
+						RightArea.uniqueAnimal.addAll(BottomArea.uniqueAnimal);
+						RightArea.setHasAnimal(true);
+					}
+					BottomArea.areaCoor.clear();
+					skipB=true;
+				}
+				if(tile.getOLR()&&!skipL){
+					RightArea.areaCoor.addAll(LeftArea.areaCoor);
+					RightArea.openBoundary.addAll((LeftArea.openBoundary));
+					RightArea.openBoundary.remove(checkLeft);
+					if(LeftArea.getHasTiger()){
+						RightArea.tiger.addAll(LeftArea.tiger);
+						RightArea.setHasTiger(true);
+					}
+					if(LeftArea.getHasCrocodile()){
+						RightArea.addCrocodile(LeftArea.numOfCrocs);
+					}
+					if(LeftArea.getHasAnimal()){
+						RightArea.uniqueAnimal.addAll(LeftArea.uniqueAnimal);
+						RightArea.setHasAnimal(true);
+					}
+					LeftArea.areaCoor.clear();
+					skipL=true;
+				}
+				RightArea.areaCoor.add(pos);
+				RightArea.openBoundary.remove(checkRight);
+				if(tile.getCroc()){
+					RightArea.addCrocodile(1);
+				}
+				if(tile.getAnimal()!=-1){
+					RightArea.uniqueAnimal.add(tile.getAnimal());
+					RightArea.setHasAnimal(true);
+				}
+				/**ADD TIGER**/
+				if(RightArea.openBoundary.isEmpty()){
+					RightArea.setCompleted(true);
+				}
+			}
+			/**Trail**/
+			else if(tile.getEdgeR()==1){
+				int count = 0;
+				if(tile.getEdgeB()==1&&!skipB){
+					count++;
+				}
+				if(tile.getEdgeL()==1&&!skipL){
+					count++;
+				}
+				//check Intersection
+				if(count==1){
+					if(RightArea.equals(BottomArea)){
+						RightArea.openBoundary.remove(checkBottom);
+						skipB=true;
+					}
+					else if(RightArea.equals(LeftArea)){
+						RightArea.openBoundary.remove(checkLeft);
+						skipL=true;
+					}
+					if(tile.getEdgeB()==1&&!skipB){
+						RightArea.areaCoor.addAll(BottomArea.areaCoor);
+						RightArea.openBoundary.addAll(BottomArea.openBoundary);
+						RightArea.openBoundary.remove(checkBottom);
+						if(BottomArea.getHasTiger()){
+							RightArea.tiger.addAll(BottomArea.tiger);
+							RightArea.setHasTiger(true);
+						}
+						if(BottomArea.getHasCrocodile()){
+							RightArea.addCrocodile(BottomArea.numOfCrocs);
+						}
+						if(BottomArea.getHasAnimal()){
+							RightArea.animal.addAll(BottomArea.animal);
+							RightArea.setHasAnimal(true);
+						}
+						BottomArea.areaCoor.clear();
+						skipB=true;
+					}
+					else if(tile.getEdgeL()==1&&!skipL){
+						RightArea.areaCoor.addAll(LeftArea.areaCoor);
+						RightArea.openBoundary.addAll(LeftArea.openBoundary);
+						RightArea.openBoundary.remove(checkLeft);
+						if(LeftArea.getHasTiger()){
+							RightArea.tiger.addAll(LeftArea.tiger);
+							RightArea.setHasTiger(true);
+						}
+						if(LeftArea.getHasCrocodile()){
+							RightArea.addCrocodile(LeftArea.numOfCrocs);
+						}
+						if(LeftArea.getHasAnimal()){
+							RightArea.animal.addAll(LeftArea.animal);
+							RightArea.setHasAnimal(true);
+						}
+						LeftArea.areaCoor.clear();
+						skipL=true;
+					}
+					RightArea.areaCoor.add(pos);
+					RightArea.openBoundary.remove(checkRight);
+					if(tile.getCroc()){
+						RightArea.addCrocodile(1);
+					}
+					if(tile.getAnimal()!=-1){
+						RightArea.animal.add(tile.getAnimal());
+						RightArea.setHasAnimal(true);
+					}
+					/**ADD TIGER**/
+					if(RightArea.openBoundary.isEmpty()){
+						RightArea.setCompleted(true);
+					}
+
+				}
+				else if(count>1) {
+					if(RightArea.equals(BottomArea)){
+						skipB=true;
+						B=true;
+					}
+					if(RightArea.equals(LeftArea)){
+						skipL=true;
+						L=true;
+					}
+					if(B){
+						RightArea.openBoundary.remove(checkBottom);
+					}
+					if(L){
+						RightArea.openBoundary.remove(checkLeft);
+					}
+					if (tile.getEdgeB() == 1&&!skipB) {
+						BottomArea.areaCoor.add(pos);
+						BottomArea.openBoundary.remove(checkBottom);
+						if(tile.getCroc()){
+							BottomArea.addCrocodile(1);
+						}
+						if(tile.getAnimal()!=-1){
+							BottomArea.animal.add(tile.getAnimal());
+							BottomArea.setHasAnimal(true);
+						}
+						/**ADD TIGER**/
+						if (BottomArea.openBoundary.isEmpty()) {
+							BottomArea.setCompleted(true);
+						}
+						skipB = true;
+					}
+					if (tile.getEdgeL() == 1&&!skipL) {
+						LeftArea.areaCoor.add(pos);
+						LeftArea.openBoundary.remove(checkLeft);
+						if(tile.getCroc()){
+							LeftArea.addCrocodile(1);
+						}
+						if(tile.getAnimal()!=-1){
+							LeftArea.animal.add(tile.getAnimal());
+							LeftArea.setHasAnimal(true);
+						}
+						/**ADD TIGER**/
+						if (LeftArea.openBoundary.isEmpty()) {
+							LeftArea.setCompleted(true);
+						}
+						skipL = true;
+					}
+					RightArea.areaCoor.add(pos);
+					RightArea.openBoundary.remove(checkRight);
+					if(tile.getCroc()){
+						RightArea.addCrocodile(1);
+					}
+					if(tile.getAnimal()!=-1){
+						RightArea.animal.add(tile.getAnimal());
+						RightArea.setHasAnimal(true);
+					}
+					/**ADD TIGER**/
+					if(RightArea.openBoundary.isEmpty()){
+						RightArea.setCompleted(true);
+					}
+				}
+				else{
+					RightArea.areaCoor.add(pos);
+					RightArea.openBoundary.remove(checkRight);
+					if(tile.getCroc()){
+						RightArea.addCrocodile(1);
+					}
+					if(tile.getAnimal()!=-1){
+						RightArea.animal.add(tile.getAnimal());
+						RightArea.setHasAnimal(true);
+					}
+					/**ADD TIGER**/
+					if(RightArea.openBoundary.isEmpty()){
+						RightArea.setCompleted(true);
+					}
+				}
+
+
+			}
+		}
+
+		/**BOTTOM**/
+		L=false;
+		if(!skipB){
+			/**Lake**/
+			if(tile.getEdgeB()==2){
+				if(BottomArea.equals(LeftArea)){
+					skipL=true;
+					L=true;
+				}
+				if(L){
+					BottomArea.openBoundary.remove(checkLeft);
+				}
+				if(tile.getCBL()&&!skipL){
+					BottomArea.areaCoor.addAll(LeftArea.areaCoor);
+					BottomArea.openBoundary.addAll((LeftArea.openBoundary));
+					BottomArea.openBoundary.remove(checkLeft);
+					if(LeftArea.getHasTiger()){
+						BottomArea.tiger.addAll(LeftArea.tiger);
+						BottomArea.setHasTiger(true);
+					}
+					if(LeftArea.getHasCrocodile()){
+						BottomArea.addCrocodile(LeftArea.numOfCrocs);
+					}
+					if(LeftArea.getHasAnimal()){
+						BottomArea.uniqueAnimal.addAll(LeftArea.uniqueAnimal);
+						BottomArea.setHasAnimal(true);
+					}
+					LeftArea.areaCoor.clear();
+					skipL=true;
+				}
+				BottomArea.areaCoor.add(pos);
+				BottomArea.openBoundary.remove(checkBottom);
+				if(tile.getCroc()){
+					BottomArea.addCrocodile(1);
+				}
+				if(tile.getAnimal()!=-1){
+					BottomArea.animal.add(tile.getAnimal());
+					BottomArea.setHasAnimal(true);
+				}
+				/**ADD TIGER**/
+				if(BottomArea.openBoundary.isEmpty()){
+					BottomArea.setCompleted(true);
+				}
+			}
+			/**Trail**/
+			else if(tile.getEdgeB()==1){
+				if(tile.getEdgeL()==1&&!skipL){
+					if(BottomArea.equals(LeftArea)){
+						skipL=true;
+						L=true;
+					}
+					if(L){
+						BottomArea.openBoundary.remove(checkLeft);
+					}
+					else{
+						BottomArea.areaCoor.addAll(LeftArea.areaCoor);
+						BottomArea.openBoundary.addAll(LeftArea.openBoundary);
+						if(LeftArea.getHasCrocodile()){
+							BottomArea.addCrocodile(LeftArea.numOfCrocs);
+						}
+						if(LeftArea.getHasAnimal()){
+							BottomArea.animal.addAll(LeftArea.animal);
+							BottomArea.setHasAnimal(true);
+						}
+						BottomArea.openBoundary.remove(checkLeft);
+						if(LeftArea.getHasTiger()){
+							BottomArea.tiger.addAll(LeftArea.tiger);
+							BottomArea.setHasTiger(true);
+						}
+						LeftArea.areaCoor.clear();
+						skipL=true;
+					}
+
+					BottomArea.areaCoor.add(pos);
+					BottomArea.openBoundary.remove(checkBottom);
+					if(tile.getCroc()){
+						BottomArea.addCrocodile(1);
+					}
+					if(tile.getAnimal()!=-1){
+						BottomArea.animal.add(tile.getAnimal());
+						BottomArea.setHasAnimal(true);
+					}
+					/**ADD TIGER**/
+					if(BottomArea.openBoundary.isEmpty()){
+						BottomArea.setCompleted(true);
+					}
+				}
+				else{
+					BottomArea.areaCoor.add(pos);
+					BottomArea.openBoundary.remove(checkBottom);
+					if(tile.getCroc()){
+						BottomArea.addCrocodile(1);
+					}
+					if(tile.getAnimal()!=-1){
+						BottomArea.animal.add(tile.getAnimal());
+						BottomArea.setHasAnimal(true);
+					}
+					/**ADD TIGER**/
+					if(BottomArea.openBoundary.isEmpty()){
+						BottomArea.setCompleted(true);
+					}
+				}
+			}
+		}
+
+		/**LEFT**/
+		if(!skipL){
+			/**Lake**/
+			if(tile.getEdgeL()==2){
+				LeftArea.areaCoor.add(pos);
+				LeftArea.openBoundary.remove(checkLeft);
+				if(tile.getCroc()){
+					LeftArea.addCrocodile(1);
+				}
+				if(tile.getAnimal()!=-1){
+					LeftArea.animal.add(tile.getAnimal());
+					LeftArea.setHasAnimal(true);
+				}
+				/**ADD TIGER**/
+				if(LeftArea.openBoundary.isEmpty()){
+					LeftArea.setCompleted(true);
+				}
+			}
+			/**Trail**/
+			else if(tile.getEdgeL()==1){
+				LeftArea.areaCoor.add(pos);
+				LeftArea.openBoundary.remove(checkLeft);
+				if(tile.getCroc()){
+					LeftArea.addCrocodile(1);
+				}
+				if(tile.getAnimal()!=-1){
+					LeftArea.animal.add(tile.getAnimal());
+					LeftArea.setHasAnimal(true);
+				}
+				/**ADD TIGER**/
+				if(LeftArea.openBoundary.isEmpty()){
+					LeftArea.setCompleted(true);
+				}
+			}
+		}
+
+		int potential = 0;
+		
 		return 0;
 	}
 
@@ -1632,25 +2469,25 @@ public class HashBoard{
 		//Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
 		//board.gBoard.put(new Position(1,0), tile1);
 		//board.updateFeatures(new Position(1,0), tile1);
-		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true);
+		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(0,1), tile2);
 		board.updateFeatures(new Position(0,1),tile2);
-		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false);
+		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"a");
 		board.gBoard.put(new Position(1,1),tile3);
 		board.updateFeatures(new Position(1,1),tile3);
-		Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false);
+		Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false,"a");
 		board.gBoard.put(new Position(2,1),tile4);
 		board.updateFeatures(new Position(2,1),tile4);
-		Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(2,0),tile5);
 		board.updateFeatures(new Position(2,0),tile5);
-		Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(2,-1),tile6);
 		board.updateFeatures(new Position(2,-1),tile6);
-		Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(1,-1),tile7);
 		board.updateFeatures(new Position(1,-1),tile7);
-		Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(1,0), tile1);
 		board.updateFeatures(new Position(1,0), tile1);
 
@@ -1692,7 +2529,6 @@ public class HashBoard{
 		board.AddTile(new Position(-1,1), arr[4]);
 
 		*/
-        HashBoard board = new HashBoard();
 
 
 		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/
