@@ -125,6 +125,7 @@ public class HashBoard{
 		if(gBoard.isEmpty()) 
 		{
 				gBoard.put(pos, tile);
+				updateOpenSpots(pos);
 				System.out.println("Initial tile placed");
 				return;
 		}
