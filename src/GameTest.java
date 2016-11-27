@@ -21,7 +21,13 @@ public class GameTest{
 				Test A outputs and the tile placements that should be 
 				produced from the board
 
+			-	Outcome: All of the tiles that were placed, passed this
+				particular test suite. Three items were being tested:
 
+				1.	Do the Features Match?
+				2.	Is a tile already placed there?
+				3.	Can a tile be added and updated to the board
+	
 		*/
 
 
@@ -35,10 +41,12 @@ public class GameTest{
 		board.addTile(new Position(0, -2), tile3);		//	Outcome: Pass
 		Tile tile4 = ti.interpret("LLJJ-");
 		board.addTile(new Position(1, -2), tile4);		//	Outcome: Pass
-		Tile tile5 = ti.interpret("LLLL-");
-		board.addTile(new Position(1, 1), tile5);		//	Outcome: Pass
-		Tile tile6 = ti.interpret("JJJJ-");
-		board.addTile(new Position(1, 0), tile6);		//	Outcome: Fail
+		Tile tile5 = ti.interpret("JJJJ-");
+		board.addTile(new Position(1, 1), tile5);		//	Outcome: Fail
+		Tile tile6 = ti.interpret("LLLL-");
+		board.addTile(new Position(1, 1), tile6);		//	Outcome: Pass
+		Tile tile7 = ti.interpret("JLJL-");
+		board.addTile(new Position(1, 1), tile7);		//	Outcomes: Fail
 		board.printLake();
 		board.printTrail();
 
@@ -52,7 +60,6 @@ public class GameTest{
 	public static void testC(){
 		HashBoard board = new HashBoard();
 		TileInterpreter ti = new TileInterpreter();
-
 
 	}
 
