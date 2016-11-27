@@ -41,6 +41,8 @@ public class HashBoard{
 	ArrayList<FeatureArea> ClaimedTrail;
 	ArrayList<FeatureArea> ClaimedLake;
 	ArrayList<Den> ClaimedDens;
+	//GameBoard Added
+	DisplayBoard gameBoard;
 
 
 	public HashBoard(){
@@ -55,7 +57,7 @@ public class HashBoard{
 		ClaimedLake = new ArrayList<FeatureArea>();
 		ClaimedDens = new ArrayList<Den>();
         
-        DisplayBoard gameBoard = new DisplayBoard();
+        gameBoard = new DisplayBoard();
         //gameBoard.setTile("LLLL-", -5, -5, 180);
 
 		TileInterpreter TI = new TileInterpreter();
@@ -122,13 +124,14 @@ public class HashBoard{
 	public void addTile(Position pos, Tile tile){
 		//This is assuming that position and tile, is already been validated!
 		//No new tiger or crocodile
-		if(gBoard.isEmpty()) 
+		/*if(gBoard.isEmpty())
 		{
 				gBoard.put(pos, tile);
 				updateOpenSpots(pos);
 				System.out.println("Initial tile placed");
 				return;
 		}
+		*/
 		
 		System.out.println("TRYING TO PLACE TILE AT " + pos.getXPosition() + " " + pos.getYPosition());
 		if(!checkLegalMove(pos, tile)) 
@@ -140,7 +143,7 @@ public class HashBoard{
 		updateOpenSpots(pos);
 		updateFeatures(pos,tile);
 		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
-        //gameBoard.setTile(tile.getDescription(), pos.getXPosition(), pos.getYPosition(), tile.getRotation());
+        gameBoard.setTile(tile.getDescription(), pos.getXPosition(), pos.getYPosition(), tile.getRotation());
         //^^ WHY WONT THIS WORK?!?!?!
 	}
 
