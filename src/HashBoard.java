@@ -58,7 +58,7 @@ public class HashBoard{
         DisplayBoard gameBoard = new DisplayBoard();
         //gameBoard.setTile("TLTJD",0,3,270);
 
-		gBoard.put(new Position(0,0), new Tile());
+		gBoard.put(new Position(0,0), new TileInterpreter("TLTJ-"));
 
 		FeatureArea initialTrail = new FeatureArea();
 		initialTrail.areaCoor.add(new Position(0,0));
@@ -73,7 +73,7 @@ public class HashBoard{
 
 		Lake.add(initialLake);
 
-		JungleArea initialJungle1 = new JungleArea();
+		/*JungleArea initialJungle1 = new JungleArea();
 		initialJungle1.areaCoor.add(new Position(0,0));
 		Set<Integer> miniTile1 = new HashSet<Integer>();
 		miniTile1.add(1);
@@ -90,7 +90,7 @@ public class HashBoard{
 		miniTile2.add(9);
 		initialJungle2.boundary.add(new BoundaryJungle(new Position(0,0),miniTile2));
 
-		Jungle.add(initialJungle2);
+		Jungle.add(initialJungle2);*/
 
 	}
     
@@ -2423,9 +2423,284 @@ public class HashBoard{
 			}
 		}
 
+		/**Calculate Score**/
 		int potential = 0;
-		
-		return 0;
+		int holder = 0;
+		/**Calculate Potential Points for Top Feature**/
+		if(tile.getEdgeT()==2&&TopArea.areaCoor.size()>0) {
+			if (TopArea.getHasTiger()) {
+				if (TopArea.getCompleted()) {
+					if (TopArea.uniqueAnimal.size() - TopArea.numOfCrocs <= 0) {
+						holder = TopArea.areaCoor.size() * 2;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = TopArea.areaCoor.size() * 2 * (1 + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs);
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				} else {
+					if (TopArea.uniqueAnimal.size() - TopArea.numOfCrocs < 0) {
+						holder = TopArea.areaCoor.size() * 1;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = TopArea.areaCoor.size() * (1 + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs);
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				}
+			}
+		}
+		else if(tile.getEdgeT()==1&&TopArea.areaCoor.size()>0) {
+			if (TopArea.getHasTiger()) {
+				if (TopArea.getCompleted()) {
+					if (TopArea.uniqueAnimal.size() - TopArea.numOfCrocs <= 0) {
+						holder = TopArea.areaCoor.size();
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = TopArea.areaCoor.size() + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				} else {
+					if (TopArea.uniqueAnimal.size() - TopArea.numOfCrocs < 0) {
+						holder = TopArea.areaCoor.size();
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = TopArea.areaCoor.size() + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				}
+			}
+		}
+
+		/**Calculate Potential Points for Right Feature**/
+		if(tile.getEdgeT()==2&&RightArea.areaCoor.size()>0) {
+			if (RightArea.getHasTiger()) {
+				if (RightArea.getCompleted()) {
+					if (RightArea.uniqueAnimal.size() - RightArea.numOfCrocs <= 0) {
+						holder = RightArea.areaCoor.size() * 2;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = RightArea.areaCoor.size() * 2 * (1 + RightArea.uniqueAnimal.size() - RightArea.numOfCrocs);
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				} else {
+					if (RightArea.uniqueAnimal.size() - RightArea.numOfCrocs < 0) {
+						holder = RightArea.areaCoor.size() * 1;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = RightArea.areaCoor.size() * (1 + RightArea.uniqueAnimal.size() - RightArea.numOfCrocs);
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				}
+			}
+		}
+		else if(tile.getEdgeT()==1&&RightArea.areaCoor.size()>0) {
+			if (RightArea.getHasTiger()) {
+				if (RightArea.getCompleted()) {
+					if (RightArea.uniqueAnimal.size() - RightArea.numOfCrocs <= 0) {
+						holder = RightArea.areaCoor.size();
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = RightArea.areaCoor.size() + RightArea.uniqueAnimal.size() - RightArea.numOfCrocs;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				} else {
+					if (RightArea.uniqueAnimal.size() - RightArea.numOfCrocs < 0) {
+						holder = RightArea.areaCoor.size();
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = RightArea.areaCoor.size() + RightArea.uniqueAnimal.size() - RightArea.numOfCrocs;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				}
+			}
+		}
+
+
+		/**Calculate Potential Points for Bottom Feature**/
+		if(tile.getEdgeT()==2&&BottomArea.areaCoor.size()>0) {
+			if (BottomArea.getHasTiger()) {
+				if (BottomArea.getCompleted()) {
+					if (BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs <= 0) {
+						holder = BottomArea.areaCoor.size() * 2;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = BottomArea.areaCoor.size() * 2 * (1 + BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs);
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				} else {
+					if (BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs < 0) {
+						holder = BottomArea.areaCoor.size() * 1;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = BottomArea.areaCoor.size() * (1 + BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs);
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				}
+			}
+		}
+		else if(tile.getEdgeT()==1&&BottomArea.areaCoor.size()>0) {
+			if (BottomArea.getHasTiger()) {
+				if (BottomArea.getCompleted()) {
+					if (BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs <= 0) {
+						holder = BottomArea.areaCoor.size();
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = BottomArea.areaCoor.size() + BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				} else {
+					if (BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs < 0) {
+						holder = BottomArea.areaCoor.size();
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = BottomArea.areaCoor.size() + BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				}
+			}
+		}
+
+		/**Calculate Potential Points for Left Feature**/
+		if(tile.getEdgeT()==2&&LeftArea.areaCoor.size()>0) {
+			if (LeftArea.getHasTiger()) {
+				if (LeftArea.getCompleted()) {
+					if (LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs <= 0) {
+						holder = LeftArea.areaCoor.size() * 2;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = LeftArea.areaCoor.size() * 2 * (1 + LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs);
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				} else {
+					if (LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs < 0) {
+						holder = LeftArea.areaCoor.size() * 1;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = LeftArea.areaCoor.size() * (1 + LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs);
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				}
+			}
+		}
+		else if(tile.getEdgeT()==1&&LeftArea.areaCoor.size()>0) {
+			if (LeftArea.getHasTiger()) {
+				if (LeftArea.getCompleted()) {
+					if (LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs <= 0) {
+						holder = LeftArea.areaCoor.size();
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = LeftArea.areaCoor.size() + LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				} else {
+					if (LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs < 0) {
+						holder = LeftArea.areaCoor.size();
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					} else {
+						holder = LeftArea.areaCoor.size() + LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs;
+						if (holder > potential) {
+							potential = holder;
+							/**UPDATE TIGER LOCATION**/
+						}
+					}
+				}
+			}
+		}
+
+		/**RETURN TIGER PLACEMENT**/
+		return potential;
 	}
 
 	/**TESTING FUNCTIONS BELOW**/
