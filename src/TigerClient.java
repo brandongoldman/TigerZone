@@ -1,7 +1,6 @@
-
 /**********************************************************************
 
-  “TigerClient” Class will establish a socket connection to the server using a provided IP address and port number. 
+“TigerClient” Class will establish a socket connection to the server using a provided IP address and port number. 
   The TigerClient will listen on then socket for messages from the server. 
   The client will provide an output stream for which messages will be sent to the server.
   ***See below as example of the main application.*** 
@@ -12,8 +11,8 @@
 public static void main(String[] args) throws IOException 
     {
 
-		int score = 0;
-		int tigers = 7;
+	int score = 0;
+	int tigers = 7;
     	Player player = new Player(score, tigers);
       
     	//String username = "Red";
@@ -66,9 +65,15 @@ public static void main(String[] args) throws IOException
     		System.exit(0);
     	}
     	
-    	System.out.printf("Number of rounds: %d", rounds);
+    	String opponent = null;
+    	String startingTile = null;
+    	int startingTileX = 0;
+    	int startingTileY = 0;
+    	int orientation = 0;
+    	int numOfTiles = 0;	
+    	int time = 0; 
     	
-    	MatchParam match = new MatchParam();
+    	MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
     	
     	for(int i = 0; i < rounds; i++)
     	{
@@ -80,7 +85,22 @@ public static void main(String[] args) throws IOException
     		// Start Match
     		
     		match = player.client.matchProtocol();
-    				
+    		
+    		//System.out.printf("Opponent is : %s\n", match.getOpponent());
+    		//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
+    		//System.out.printf("Starting Tile X is : %d\n", match.getStartingTileX());
+    		//System.out.printf("Starting Tile Y is : %d\n", match.getStartingTileY());
+    		//System.out.printf("Orientation is : %d\n", match.getOrientation());
+    		//System.out.printf("Number of tiles are: %d\n", match.getNumOfTiles());
+    		//System.out.printf("Match time : %d\n", match.getTime());
+    		
+    		
+    		String gid = player.client.getGID();
+    		
+    		System.out.printf("Game: %s", gid);
+    		
+    		
+    		
     		// TODO: Add logic to start making moves in the game.  Beyond scope of the client
     		
     	}
@@ -89,8 +109,6 @@ public static void main(String[] args) throws IOException
     	{
     		// Sit here 	
     	}
-    	
-    }
 */
 
 /* The TigerClient will realize the Tigerzone protocol which is entirely text based. */ 
@@ -110,7 +128,7 @@ public class TigerClient
     private BufferedReader in;
     private PrintWriter out;
     private boolean connected = false; 
-    public MatchParam match;
+	//public MatchParam match;
 
     public TigerClient()
     {
@@ -277,7 +295,7 @@ public class TigerClient
     			moveString = String.format("GAME %d PLACE %s UNPLACEABLE PASS", gid, tile);
     			break;
     		case 5:
-    			moveString = String.format("GAME %d PLACE %s UNPLACEABLE RETRIEVE TIGER AT %d %d ", gid, tile, x, y);
+    			moveString = String.format("GAME %d PLACE %s UNPLACEABLE RETRIEVE TIGER AT %d %d", gid, tile, x, y);
     			break;
     		case 6:
     			moveString = String.format("GAME %d PLACE %s UNPLACEABLE ADD ANOTHER TIGER TO %d %d", gid, tile, x, y);
@@ -331,6 +349,14 @@ public class TigerClient
     	String response;
     	boolean newMatch = false;
     	
+    	String opponent = null;
+    	String startingTile = null;
+    	int startingTileX = 0;
+    	int startingTileY = 0;
+    	int orientation = 0;
+    	int numOfTiles = 0;	
+    	int time = 0;    	   	
+    	
     	while(newMatch == false)
     	{
     		response = in.readLine();
@@ -338,12 +364,12 @@ public class TigerClient
     		if (response.startsWith("YOUR"))
     		{
     			System.out.println(response);
-    			
+    			    			    			
     			String delims = "[ ]";
             	String[] tokens = response.split(delims);
-            	
-            	match.opponent = tokens[4];
-    		            	
+            	            	           	
+            	opponent = tokens[4];
+            	            	  		            	
     		}
     	
     		else if (response.startsWith("STARTING"))
@@ -353,14 +379,14 @@ public class TigerClient
     			String delims = "[ ]";
             	String[] tokens = response.split(delims);
             	
-            	match.startingTile= tokens[3];
-            	match.startingTileX = Integer.parseInt(tokens[5]);;
-            	match.startingTileY = Integer.parseInt(tokens[6]);
-            	match.orientation = Integer.parseInt(tokens[7]);
+            	startingTile = tokens[3];
+            	startingTileX = Integer.parseInt(tokens[5]);;
+            	startingTileY = Integer.parseInt(tokens[6]);
+            	orientation = Integer.parseInt(tokens[7]);
             	
     		}
     		
-    		else if (response.startsWith("THE REMAINING"))
+    		else if (response.startsWith("THE"))
     		{
     			
     			System.out.println(response);
@@ -368,22 +394,23 @@ public class TigerClient
     			String delims = "[ ]";
     			String[] tokens = response.split(delims);
     			
-    			match.numOfTiles = Integer.parseInt(tokens[2]);
-    	
-    			for(int i = 0; i < match.numOfTiles; i++)
+    			numOfTiles = Integer.parseInt(tokens[2]);
+    			
+    			for(int i = 0; i < numOfTiles; i++)
     			{
-    				match.tiles[i] = tokens[i+6];  	
+    				//match.tiles[i] = tokens[i+6];  	
     			}
+    		
     		}
     		
-    		else if (response.startsWith("MATCH BEGINS"))
+    		else if (response.startsWith("MATCH"))
     		{
     			System.out.println(response);
     			
     			String delims = "[ ]";
     			String[] tokens = response.split(delims);
     			
-    			match.time = Integer.parseInt(tokens[3]);
+    			time = Integer.parseInt(tokens[3]);
     			
     			newMatch = true;
     		}
@@ -397,7 +424,42 @@ public class TigerClient
     		
     	}
     	
+    	MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
+    	
     	return match;
+    }
+    
+    
+    public String getGID() throws IOException
+    {
+    	String response;
+    	String gid = null;
+    	boolean makeMove = false;
+    	
+    	while(makeMove == false)
+    	{
+    		response = in.readLine();
+    		
+    		if (response.startsWith("MAKE"))
+    		{
+    			System.out.println(response);
+    			
+    			String delims = "[ ]";
+            		String[] tokens = response.split(delims);
+            	
+            		gid = tokens[5];
+    			
+            		makeMove = true;
+    		}
+    		else if (response != null)
+    		{
+    		    // Invalid or unexpected response
+    		    return null;
+    		}
+    	
+    	}
+    	
+    	return gid;
     }
     
     
