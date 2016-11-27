@@ -121,7 +121,7 @@ public class HashBoard{
 
 	}
 
-	public void addTile(Position pos, Tile tile){
+	public void addTile(Position pos, Tile tile, Tiger tiger){
 		//This is assuming that position and tile, is already been validated!
 		//No new tiger or crocodile
 		/*if(gBoard.isEmpty())
@@ -141,13 +141,13 @@ public class HashBoard{
 		}
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
-		updateFeatures(pos,tile);
+		updateFeatures(pos,tile,tiger);
 		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
         gameBoard.setTile(tile.getDescription(), pos.getXPosition(), pos.getYPosition(), tile.getRotation());
         // ^^Should be working now^^
 	}
 
-	public void updateFeatures(Position pos, Tile tile){
+	public void updateFeatures(Position pos, Tile tile, Tiger tiger){
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
 		Position top = new Position(pos.getXPosition(), pos.getYPosition() + 1); //1
@@ -169,12 +169,64 @@ public class HashBoard{
 		Boundary checkTop = new Boundary(top,3);
 		Boundary checkBottom = new Boundary(bottom,1);
 
-		//ArrayList<HashSet<Integer>> JungleConnection = tile.connectedJungle();
-		boolean outsideConnect = false;
+		boolean hasTiger = false;
+		int tigerfeature = -1;
+		int x = -1;
+		int y = -1;
+		if(tiger.getOwner()!=0){
+			hasTiger=true;
+			switch(tiger.getTigerPlacement()){
+				case 1:
+					x=0;
+					y=0;
+					break;
+				case 2:
+					x=1;
+					y=0;
+					break;
+				case 3:
+					x=2;
+					y=0;
+					break;
+				case 4:
+					x=0;
+					y=1;
+					break;
+				case 5:
+					x=1;
+					y=1;
+					break;
+				case 6:
+					x=2;
+					y=1;
+					break;
+				case 7:
+					x=0;
+					y=2;
+					break;
+				case 8:
+					x=1;
+					y=2;
+					break;
+				case 9:
+					x=2;
+					y=2;
+					break;
+			}
+		}
+		if(tile./*minitile[x][y]*/==2){
+
+		}
+		else if(tile./*minitile[x][y]*/==1){
+
+		}
+		else if(tile./*minitile[x][y]*/==55){
+
+		}
 
 
 		/**JUNGLES**/
-		//FAILED XD
+		//FAILED
 
 		/**DENS**/
 		if(tile.getDen()){
@@ -2740,42 +2792,34 @@ public class HashBoard{
 		//board.gBoard.put(new Position(1,0), tile1);
 		//board.updateFeatures(new Position(1,0), tile1);
 		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true,"LLLL-",0);
-        board.addTile(new Position(0,1), tile2);
+        board.addTile(new Position(0,1), tile2,new Tiger(0,0));
 		//board.gBoard.put(new Position(0,1), tile2);
-		board.updateFeatures(new Position(0,1),tile2);
 		
         //ATTN: need to clarify why the ROTATE int identifier is #OFROTATES vs DEGREES ROTATED
         //when itializing tile, rotates int = NUM OF ROTATES so 2 == 180 deg
         Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"TLJT-",2);
 		//board.gBoard.put(new Position(1,1),tile3);
-		board.addTile(new Position(1,1), tile3);
-        board.updateFeatures(new Position(1,1),tile3);
+		board.addTile(new Position(1,1), tile3,new Tiger(0,0));
 		
         Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false,"TLLL-",0);
 		//board.gBoard.put(new Position(2,1),tile4);
-		board.addTile(new Position(2,1), tile4);
-        board.updateFeatures(new Position(2,1),tile4);
-		
+		board.addTile(new Position(2,1), tile4,new Tiger(0,0));
         
         Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TLLLC",0);
 		//board.gBoard.put(new Position(2,0),tile5);
-		board.addTile(new Position(2,0), tile5);
-        board.updateFeatures(new Position(2,0),tile5);
+		board.addTile(new Position(2,0), tile5,new Tiger(0,0));
 		
         Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LJTJ-",0);
 		//board.gBoard.put(new Position(2,-1),tile6);
-		board.addTile(new Position(2,-1), tile6);
-        board.updateFeatures(new Position(2,-1),tile6);
-		
+		board.addTile(new Position(2,-1), tile6,new Tiger(0,0));
+
         Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TLJTP",0);
 		//board.gBoard.put(new Position(1,-1),tile7);
-		board.addTile(new Position(1,-1), tile7);
-        board.updateFeatures(new Position(1,-1),tile7);
-		
+		board.addTile(new Position(1,-1), tile7,new Tiger(0,0));
+
         Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TJJT-",0);
         //board.gBoard.put(new Position(1,0), tile1);
-        board.addTile(new Position(1,0), tile2);
-		board.updateFeatures(new Position(1,0), tile1);
+        board.addTile(new Position(1,0), tile2,new Tiger(0,0));
         
 
 
