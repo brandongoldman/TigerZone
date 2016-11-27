@@ -144,7 +144,7 @@ public class HashBoard{
 		updateFeatures(pos,tile);
 		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
         gameBoard.setTile(tile.getDescription(), pos.getXPosition(), pos.getYPosition(), tile.getRotation());
-        //^^ WHY WONT THIS WORK?!?!?!
+        // ^^Should be working now^^
 	}
 
 	public void updateFeatures(Position pos, Tile tile){
@@ -2741,26 +2741,43 @@ public class HashBoard{
 		//board.gBoard.put(new Position(1,0), tile1);
 		//board.updateFeatures(new Position(1,0), tile1);
 		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true,"LLLL-",0);
-		board.gBoard.put(new Position(0,1), tile2);
+        board.addTile(new Position(0,1), tile2);
+		//board.gBoard.put(new Position(0,1), tile2);
 		board.updateFeatures(new Position(0,1),tile2);
-		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"LLLL-",0);
-		board.gBoard.put(new Position(1,1),tile3);
-		board.updateFeatures(new Position(1,1),tile3);
-		Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false,"LLLL-",0);
-		board.gBoard.put(new Position(2,1),tile4);
-		board.updateFeatures(new Position(2,1),tile4);
-		Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LLLL-",0);
-		board.gBoard.put(new Position(2,0),tile5);
-		board.updateFeatures(new Position(2,0),tile5);
-		Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LLLL-",0);
-		board.gBoard.put(new Position(2,-1),tile6);
-		board.updateFeatures(new Position(2,-1),tile6);
-		Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LLLL-",0);
-		board.gBoard.put(new Position(1,-1),tile7);
-		board.updateFeatures(new Position(1,-1),tile7);
-		Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LLLL-",0);
-		board.gBoard.put(new Position(1,0), tile1);
+		
+        //ATTN: need to clarify why the ROTATE int identifier is #OFROTATES vs DEGREES ROTATED
+        //when itializing tile, rotates int = NUM OF ROTATES so 2 == 180 deg
+        Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"TLJT-",2);
+		//board.gBoard.put(new Position(1,1),tile3);
+		board.addTile(new Position(1,1), tile3);
+        board.updateFeatures(new Position(1,1),tile3);
+		
+        Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false,"TLLL-",0);
+		//board.gBoard.put(new Position(2,1),tile4);
+		board.addTile(new Position(2,1), tile4);
+        board.updateFeatures(new Position(2,1),tile4);
+		
+        
+        Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TLLLC",0);
+		//board.gBoard.put(new Position(2,0),tile5);
+		board.addTile(new Position(2,0), tile5);
+        board.updateFeatures(new Position(2,0),tile5);
+		
+        Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LJTJ-",0);
+		//board.gBoard.put(new Position(2,-1),tile6);
+		board.addTile(new Position(2,-1), tile6);
+        board.updateFeatures(new Position(2,-1),tile6);
+		
+        Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TLJTP",0);
+		//board.gBoard.put(new Position(1,-1),tile7);
+		board.addTile(new Position(1,-1), tile7);
+        board.updateFeatures(new Position(1,-1),tile7);
+		
+        Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"TJJT-",0);
+        //board.gBoard.put(new Position(1,0), tile1);
+        board.addTile(new Position(1,0), tile2);
 		board.updateFeatures(new Position(1,0), tile1);
+        
 
 
 		board.printLake();
