@@ -320,7 +320,9 @@ public class HashBoard{
 		/**DENS**/
 		if(tile.getDen()){
 			Den newDen = new Den(pos);
-			/**ADD TIGER**/
+			if(tigerfeature==55){
+				newDen.addTiger(tiger);
+			}
 			if(newDen.getHasTiger()){
 				ClaimedDens.add(newDen);
 			}
@@ -2723,6 +2725,56 @@ public class HashBoard{
 
 		/**RETURN TIGER PLACEMENT**/
 		return potential;
+	}
+
+	public int ReturnTiger(){
+		int count = 0;
+		FeatureArea L;
+		for(Iterator<FeatureArea> check = ClaimedLake.iterator(); check.hasNext();){
+			L=check.next();
+			if(L.getCompleted()){
+				for(Tiger t : L.tiger){
+					if(t.getOwner()==1){
+						count++;
+					}
+				}
+			}
+			L.tiger.clear();
+			Lake.add(L);
+			check.remove();
+		}
+		Den D;
+		for(Iterator<Den> check = ClaimedDens.iterator(); check.hasNext(); ){
+			D=check.next();
+			boolean complete = true;
+			for(Position p : D.neighborhood){
+				if(!gBoard.containsKey(p)){
+					complete = false;
+					break;
+				}
+			}
+			if(complete == true){
+				count++;
+			}
+			Dens.add(D);
+			check.remove();
+
+		}
+		FeatureArea T;
+		for(Iterator<FeatureArea> check = ClaimedTrail.iterator(); check.hasNext();){
+			T=check.next();
+			if(T.getCompleted()){
+				for(Tiger t : T.tiger){
+					if(t.getOwner()==1){
+						count++;
+					}
+				}
+			}
+			T.tiger.clear();
+			Trail.add(T);
+			check.remove();
+		}
+		return count;
 	}
 
 	/**TESTING FUNCTIONS BELOW**/
