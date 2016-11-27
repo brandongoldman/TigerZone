@@ -117,7 +117,7 @@ public class HashBoard{
 
 	}
 
-	public void AddTile(Position pos, Tile tile){
+	public void addTile(Position pos, Tile tile){
 		//This is assuming that position and tile, is already been validated!
 		//No new tiger or crocodile
 		if(gBoard.isEmpty()) 
