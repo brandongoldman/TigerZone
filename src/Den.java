@@ -12,6 +12,7 @@ public class Den {
 
     public Den(Position pos){
         this.position=pos;
+        neighborhood=new HashSet<Position>();
         Position right = new Position(pos.getXPosition() + 1, pos.getYPosition());
         Position left = new Position(pos.getXPosition() - 1, pos.getYPosition());
         Position top = new Position(pos.getXPosition(), pos.getYPosition() + 1);
