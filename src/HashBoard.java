@@ -43,6 +43,9 @@ public class HashBoard{
 	//GameBoard Added
 	DisplayBoard gameBoard;
 
+	// Client Stuff
+	public TigerClient client;
+
 
 	public HashBoard(){
 		gBoard = new HashMap<Position, Tile>();
@@ -55,6 +58,10 @@ public class HashBoard{
 		ClaimedTrail = new ArrayList<FeatureArea>();
 		ClaimedLake = new ArrayList<FeatureArea>();
 		ClaimedDens = new ArrayList<Den>();
+
+		// Cient Stuff
+		client = new TigerClient();
+
         
         gameBoard = new DisplayBoard();
         gameBoard.setTile("TLTJ-", 0, 0, 0);
@@ -218,9 +225,19 @@ public class HashBoard{
         // case: tile is not valid on current board
         if(bestMove == null)
         {
+<<<<<<< HEAD
             // tile is not placeable on board, so pass
             //Player.passOnTile(t);
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+=======
+			String tile = t.getDescription();
+			String gid = client.getGID();
+
+			// String serverMessage = server.moveProtocol(4, gid, tile, 0, 0, 0, 0);
+			// return serverMessage;
+
+			client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
+>>>>>>> 01a22008f5fdbc6c3c1eb8458b5d62a283b460b1
         }
         addTile(best, t, tiger);
         return bestMove;
@@ -311,7 +328,9 @@ public class HashBoard{
 		/**DENS**/
 		if(tile.getDen()){
 			Den newDen = new Den(pos);
-			/**ADD TIGER**/
+			if(tigerfeature==55){
+				newDen.addTiger(tiger);
+			}
 			if(newDen.getHasTiger()){
 				ClaimedDens.add(newDen);
 			}
@@ -2714,6 +2733,56 @@ public class HashBoard{
 
 		/**RETURN TIGER PLACEMENT**/
 		return potential;
+	}
+
+	public int ReturnTiger(){
+		int count = 0;
+		FeatureArea L;
+		for(Iterator<FeatureArea> check = ClaimedLake.iterator(); check.hasNext();){
+			L=check.next();
+			if(L.getCompleted()){
+				for(Tiger t : L.tiger){
+					if(t.getOwner()==1){
+						count++;
+					}
+				}
+			}
+			L.tiger.clear();
+			Lake.add(L);
+			check.remove();
+		}
+		Den D;
+		for(Iterator<Den> check = ClaimedDens.iterator(); check.hasNext(); ){
+			D=check.next();
+			boolean complete = true;
+			for(Position p : D.neighborhood){
+				if(!gBoard.containsKey(p)){
+					complete = false;
+					break;
+				}
+			}
+			if(complete == true){
+				count++;
+			}
+			Dens.add(D);
+			check.remove();
+
+		}
+		FeatureArea T;
+		for(Iterator<FeatureArea> check = ClaimedTrail.iterator(); check.hasNext();){
+			T=check.next();
+			if(T.getCompleted()){
+				for(Tiger t : T.tiger){
+					if(t.getOwner()==1){
+						count++;
+					}
+				}
+			}
+			T.tiger.clear();
+			Trail.add(T);
+			check.remove();
+		}
+		return count;
 	}
 
 	/**TESTING FUNCTIONS BELOW**/
