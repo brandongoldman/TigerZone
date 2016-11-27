@@ -43,6 +43,9 @@ public class HashBoard{
 	//GameBoard Added
 	DisplayBoard gameBoard;
 
+	// Client Stuff
+	public TigerClient client;
+
 
 	public HashBoard(){
 		gBoard = new HashMap<Position, Tile>();
@@ -55,6 +58,10 @@ public class HashBoard{
 		ClaimedTrail = new ArrayList<FeatureArea>();
 		ClaimedLake = new ArrayList<FeatureArea>();
 		ClaimedDens = new ArrayList<Den>();
+
+		// Cient Stuff
+		client = new TigerClient();
+
         
         gameBoard = new DisplayBoard();
         gameBoard.setTile("TLTJ-", 0, 0, 0);
@@ -216,9 +223,13 @@ public class HashBoard{
         // case: tile is not valid on current board
         if(bestMove == null)
         {
-            // tile is not placeable on board, so pass
-            //Player.passOnTile(t);
-            System.out.println("Hello World");
+			String tile = t.getDescription();
+			String gid = client.getGID();
+
+			// String serverMessage = server.moveProtocol(4, gid, tile, 0, 0, 0, 0);
+			// return serverMessage;
+
+			client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
         }
         
         return bestMove;
