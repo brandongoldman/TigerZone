@@ -1590,8 +1590,237 @@ public class HashBoard{
 	}
 
 	
-	public int getMoveScore(Position pos, Tile t)
+	public int getMoveScore(Position pos, Tile tile)
 	{
+		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
+		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
+		Position top = new Position(pos.getXPosition(), pos.getYPosition() + 1); //1
+		Position bottom = new Position(pos.getXPosition(), pos.getYPosition() - 1); //3
+
+		boolean foundR = false;
+		boolean foundL = false;
+		boolean foundT = false;
+		boolean foundB = false;
+
+
+		FeatureArea RightArea=new FeatureArea();
+		FeatureArea LeftArea=new FeatureArea();
+		FeatureArea TopArea=new FeatureArea();
+		FeatureArea BottomArea=new FeatureArea();
+
+		Boundary checkRight = new Boundary(right,4);
+		Boundary checkLeft = new Boundary(left,2);
+		Boundary checkTop = new Boundary(top,3);
+		Boundary checkBottom = new Boundary(bottom,1);
+
+		/**RightArea**/
+		if(gBoard.containsKey(right)){
+			FeatureArea holder;
+			if(tile.getEdgeR()==2){
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkRight)){
+						RightArea=holder;
+						foundR=true;
+						break;
+					}
+				}
+				if(!foundR) {
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext(); ) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkRight)) {
+							RightArea = holder;
+							foundR=true;
+							break;
+						}
+					}
+				}
+
+			}
+			else if (tile.getEdgeR()==1){
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkRight)){
+						RightArea=holder;
+						foundR=true;
+						break;
+					}
+				}
+				if(!foundR) {
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkRight)) {
+							RightArea = holder;
+							foundR=true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else{
+			RightArea=new FeatureArea();
+			if(tile.getEdgeR()==2||tile.getEdgeR()==1){
+				RightArea.areaCoor.add(pos);
+				RightArea.openBoundary.add(new Boundary(pos,2));
+			}
+		}
+		/**LeftArea**/
+		if(gBoard.containsKey(left)){
+			FeatureArea holder;
+			if(tile.getEdgeL()==2){
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkLeft)){
+						LeftArea=holder;
+						foundL=true;
+						break;
+					}
+				}
+				if(!foundL) {
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkLeft)) {
+							LeftArea = holder;
+							foundL=true;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeL()==1){
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkLeft)){
+						LeftArea=holder;
+						foundL=true;
+						break;
+					}
+				}
+				if(!foundL) {
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkLeft)) {
+							LeftArea = holder;
+							foundL=true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else{
+			LeftArea=new FeatureArea();
+			if(tile.getEdgeL()==2||tile.getEdgeL()==1) {
+				LeftArea.areaCoor.add(pos);
+				LeftArea.openBoundary.add(new Boundary(pos, 4));
+			}
+		}
+
+		/**TopArea**/
+		if(gBoard.containsKey(top)){
+			FeatureArea holder;
+			if(tile.getEdgeT()==2){
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkTop)){
+						TopArea=holder;
+						foundT=true;
+						break;
+					}
+				}
+				if(!foundT) {
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkTop)) {
+							TopArea = holder;
+							foundT=true;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeT()==1){
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkTop)){
+						TopArea=holder;
+						foundT=true;
+						break;
+					}
+				}
+				if(!foundT) {
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkTop)) {
+							TopArea = holder;
+							foundT=true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else{
+			TopArea=new FeatureArea();
+			if(tile.getEdgeT()==2||tile.getEdgeT()==1){
+				TopArea.areaCoor.add(pos);
+				TopArea.openBoundary.add(new Boundary(pos,1));
+			}
+		}
+
+		/**BottomArea**/
+		if(gBoard.containsKey(bottom)){
+			FeatureArea holder;
+			if(tile.getEdgeB()==2){
+				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkBottom)){
+						BottomArea=holder;
+						foundB=true;
+						break;
+					}
+				}
+				if(!foundB) {
+					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkBottom)) {
+							BottomArea = holder;
+							foundB=true;
+							break;
+						}
+					}
+				}
+			}
+			else if (tile.getEdgeB()==1){
+				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+					holder=check.next();
+					if(holder.openBoundary.contains(checkBottom)){
+						BottomArea=holder;
+						foundB=true;
+						break;
+					}
+				}
+				if(!foundB) {
+					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+						holder=check.next();
+						if (holder.openBoundary.contains(checkBottom)) {
+							BottomArea = holder;
+							foundB=true;
+							break;
+						}
+					}
+				}
+			}
+		}
+		else{
+			BottomArea=new FeatureArea();
+			if(tile.getEdgeB()==2||tile.getEdgeB()==1){
+				BottomArea.areaCoor.add(pos);
+				BottomArea.openBoundary.add(new Boundary(pos,3));
+			}
+		}
+
 		return 0;
 	}
 
@@ -1632,25 +1861,25 @@ public class HashBoard{
 		//Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
 		//board.gBoard.put(new Position(1,0), tile1);
 		//board.updateFeatures(new Position(1,0), tile1);
-		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true);
+		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(0,1), tile2);
 		board.updateFeatures(new Position(0,1),tile2);
-		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false);
+		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"a");
 		board.gBoard.put(new Position(1,1),tile3);
 		board.updateFeatures(new Position(1,1),tile3);
-		Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false);
+		Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false,"a");
 		board.gBoard.put(new Position(2,1),tile4);
 		board.updateFeatures(new Position(2,1),tile4);
-		Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(2,0),tile5);
 		board.updateFeatures(new Position(2,0),tile5);
-		Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(2,-1),tile6);
 		board.updateFeatures(new Position(2,-1),tile6);
-		Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(1,-1),tile7);
 		board.updateFeatures(new Position(1,-1),tile7);
-		Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
+		Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
 		board.gBoard.put(new Position(1,0), tile1);
 		board.updateFeatures(new Position(1,0), tile1);
 
@@ -1692,7 +1921,6 @@ public class HashBoard{
 		board.AddTile(new Position(-1,1), arr[4]);
 
 		*/
-        HashBoard board = new HashBoard();
 
 
 		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/
