@@ -1491,18 +1491,15 @@ public class HashBoard{
 	        if (gBoard.get(lPos).getEdgeR() != currentTile.getEdgeL()) return false;
 	   //System.out.println("LPOS CHECKED OUT");
 	   // SHOULD BE VALID... I THINK
-			
-			
-			
-	
 		return true;
 	}
 	
 	
-	public Move FindBestMove(Tile t){
-		
+	public Move FindBestMove(Tile t)
+	{	
 		int bestScore = -1;
 		int currScore = -1;
+		int tigerLocation = 0;
 		
 		//Initialize a Move struct to send to server
 		Move bestMove = null;
@@ -1515,12 +1512,11 @@ public class HashBoard{
 			{
 				if(checkLegalMove(pos, t))
 				{
-					currScore = getMoveScore(pos, t); // need to update with scoring method
+					currScore = getMoveScore(pos, t, tigerLocation); // need to update with scoring method
 					if(currScore > bestScore)
 					{
 						bestScore = currScore;
 						bestMove = new Move();
-
 					}
 				}
 			}
@@ -1540,7 +1536,7 @@ public class HashBoard{
 	}
 
 	
-	public int getMoveScore(Position pos, Tile tile)
+	public int getMoveScore(Position pos, Tile tile, int tigerPlacement)
 	{
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
