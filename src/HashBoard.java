@@ -57,6 +57,9 @@ public class HashBoard{
         
         DisplayBoard gameBoard = new DisplayBoard();
         //gameBoard.setTile("TLTJD",0,3,270);
+        //gameBoard.setTile("TLTJD",0,1,90);
+        //gameBoard.setTile("TLTJD",0,2,180);
+        //gameBoard.setTile("TLTJD",0,3,270);
 
 		TileInterpreter TI = new TileInterpreter();
 		gBoard.put(new Position(0,0), TI.interpret("TLTJ-"));
@@ -92,7 +95,13 @@ public class HashBoard{
 		miniTile2.add(9);
 		initialJungle2.boundary.add(new BoundaryJungle(new Position(0,0),miniTile2));
 
+<<<<<<< HEAD
+		Jungle.add(initialJungle2);
+        
+        //gameBoard.TileGrid();
+=======
 		Jungle.add(initialJungle2);*/
+>>>>>>> 1a7596b8840a7b5bd1b581b1d176603be59c0f8d
 
 	}
     
@@ -139,6 +148,10 @@ public class HashBoard{
 		updateOpenSpots(pos);
 		updateFeatures(pos,tile);
 		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
+        
+        
+        gameBoard.setTile(tile.getDescription,pos.getXPosition, pos.getYPosition, /* GET ROTATION DEGREES*/);
+                          
 	}
 
 	public void updateFeatures(Position pos, Tile tile){
@@ -1407,7 +1420,12 @@ public class HashBoard{
 				}
 			}
 		}
+<<<<<<< HEAD
+}
+
+=======
 	}
+>>>>>>> 1a7596b8840a7b5bd1b581b1d176603be59c0f8d
 
 	public void updateOpenSpots(Position newpos){
 		Position rPosX = new Position(newpos.getXPosition() + 1, newpos.getYPosition());
@@ -2730,11 +2748,16 @@ public class HashBoard{
 	public static void main(String[] args){
 		/**Feature Updating Testing**/
 		HashBoard board = new HashBoard();
+        
 
 		//Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
 		//board.gBoard.put(new Position(1,0), tile1);
 		//board.updateFeatures(new Position(1,0), tile1);
+<<<<<<< HEAD
+		/*Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true);
+=======
 		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true,"a");
+>>>>>>> 1a7596b8840a7b5bd1b581b1d176603be59c0f8d
 		board.gBoard.put(new Position(0,1), tile2);
 		board.updateFeatures(new Position(0,1),tile2);
 		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"a");
@@ -2758,7 +2781,7 @@ public class HashBoard{
 
 
 		board.printLake();
-		board.printTrail();
+		board.printTrail();*/
 
 
 		/**Check Open Spots Testing**/
@@ -2794,6 +2817,10 @@ public class HashBoard{
 		board.AddTile(new Position(-1,1), arr[4]);
 
 		*/
+<<<<<<< HEAD
+        //HashBoard board = new HashBoard();
+=======
+>>>>>>> 1a7596b8840a7b5bd1b581b1d176603be59c0f8d
 
 
 		/**Check Open Boundary Equal function and HashCode works and FeatureArea equals function**/
