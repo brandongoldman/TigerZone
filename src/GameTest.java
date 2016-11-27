@@ -74,9 +74,12 @@ public class GameTest{
 			-	Another case: Rotating multiple times and seeing if
 				the characteristics change accordingly
 
-			-	All of the 
+			-	All of the test cases passed for this class, except for
+				the rotation of the minizones
 
 		*/
+
+
 
 		System.out.println("Test B Begins");
 

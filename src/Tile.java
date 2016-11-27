@@ -205,22 +205,65 @@ public class Tile {
 	}
 
 	//Using for Testing the Tile connected jungle Feature
-	public ArrayList<HashSet<Integer>> addFeatures(){
 
-		ArrayList<HashSet<Integer>> arraylistSet = new ArrayList<HashSet<Integer>>();
+	public ArrayList<HashSet<Integer>> connectedLakes(){
+
+		ArrayList<HashSet<Integer>> lakeSet = new ArrayList<HashSet<Integer>>();
+		HashSet<Integer> lset = new HashSet<Integer>();
+
+		int currentPosition = 0;
 
 		for(int i=0; i < miniZones.length; i++){
-			for(int j=0; j < miniZones.length; j++){
+			for(int j=0; j < miniZones[i].length; j++){
 
-				HashSet<Integer> singleton = new HashSet<Integer>();
-				singleton.add(miniZones[i][j]);
-				arraylistSet.add(singleton);
+				//	Getting the Current Position that
+				//	can be added to the Set
+
+				if(i == 0 && j == 0){
+					currentPosition = 1;
+				}
+
+				else if(i == 0 && j == 1){
+					currentPosition = 2;
+				}
+
+				else if(i == 0 && j == 2){
+					currentPosition = 3;
+				}
+
+				else if(i == 1 && j == 0){
+					currentPosition = 4;
+				}
+
+				else if(i == 1 && j == 1){
+					currentPosition = 5;
+				}
+
+				else if(i == 1 && j == 2){
+					currentPosition = 6;
+				}
+
+				else if(i == 2 && j == 0){
+					currentPosition = 7;
+				}
+
+				else if(i == 2 && j == 1){
+					currentPosition = 8;
+				}
+
+				else if(i == 2 && j == 2){
+					currentPosition = 9;
+				}
+
+				if(miniZones[i][j] == 2){
+					lset.add(currentPosition + 1);
+					lakeSet.add(lset);
+				}
 			}
-		
 		}
-	
-		return arraylistSet;
 
+
+		return lakeSet;
 	}
 
 
@@ -238,16 +281,18 @@ public class Tile {
 
 	public static void main(String[] args){
 
-		Tile tile = new Tile();
+		TileInterpreter ti = new TileInterpreter();
+		Tile tile = ti.interpret("LJLJ-");
 
-		ArrayList <HashSet<Integer>> tile1 = tile.addFeatures();
+		System.out.println("================================================");
+		System.out.println("Finding Connected Lakes");
 
+		ArrayList <HashSet<Integer>> tile1 = tile.connectedLakes();
 		Iterator <HashSet<Integer>> it1 = tile1.iterator();
 
 		while (it1.hasNext()) {
 			System.out.println(it1.next());
 		}
-
 
 		System.out.println("================================================");
 

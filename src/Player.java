@@ -129,9 +129,10 @@ public class Player
 		}
 	}
     
-	public void String passOnTile(Tile t)
+	public String passOnTile(Tile t)
 	{
 		String s = "UNPLACEABLE PASS";
+		return s;
 	}
 
     public static void main(String[] args) {
