@@ -12,6 +12,7 @@ public class TileInterpreter {
 		//File file = new File("newTileInput.txt");
 		
 		//DECLARE THE TILE VARIABLES
+        int rotation = 0;
 		int tileCreated = 0;
 		int numOfCurrentTile = 1;	//******SHOULD CHANGE ONCE WE KNOW HOW INPUT IS GIVEN*******
 		String description = "";
@@ -204,7 +205,7 @@ public class TileInterpreter {
 			e.printStackTrace();
 		}*/
 
-		Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description);
+		Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description, rotation);
 		return newTile;
 
 	}

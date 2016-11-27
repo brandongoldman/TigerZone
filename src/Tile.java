@@ -68,7 +68,7 @@ public class Tile {
 	}
 
 
-	public Tile(int animal, boolean den, boolean croc, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB, String description)
+	public Tile(int animal, boolean den, boolean croc, int eT, int eL, int eR, int eB, boolean cTL, boolean cTR, boolean cBL, boolean cBR, boolean oLR, boolean oTB, String description, int beenRotated)
 	{
 		this.animal = animal;
 		this.den = den;
@@ -84,10 +84,12 @@ public class Tile {
 		this.oLR = oLR;
 		this.oTB = oTB;
         this.description = description;
+        this.beenRotated = beenRotated;
 	}
 	
 	//Getter
 
+    
     public String getDescription(){
         return description;
     }

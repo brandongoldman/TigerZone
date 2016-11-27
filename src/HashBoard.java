@@ -56,7 +56,7 @@ public class HashBoard{
 		ClaimedDens = new ArrayList<Den>();
         
         DisplayBoard gameBoard = new DisplayBoard();
-        //gameBoard.setTile("TLTJD",0,3,270);
+        //gameBoard.setTile("LLLL-", -5, -5, 180);
 
 		TileInterpreter TI = new TileInterpreter();
 		gBoard.put(new Position(0,0), TI.interpret("TLTJ-"));
@@ -139,6 +139,8 @@ public class HashBoard{
 		updateOpenSpots(pos);
 		updateFeatures(pos,tile);
 		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
+        //gameBoard.setTile(tile.getDescription(), pos.getXPosition(), pos.getYPosition(), tile.getRotation());
+        //^^ WHY WONT THIS WORK?!?!?!
 	}
 
 	public void updateFeatures(Position pos, Tile tile){
@@ -2734,25 +2736,25 @@ public class HashBoard{
 		//Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true);
 		//board.gBoard.put(new Position(1,0), tile1);
 		//board.updateFeatures(new Position(1,0), tile1);
-		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true,"a");
+		Tile tile2= new Tile(-1,false,false,1,1,1,1,true,true,true,true,true,true,"LLLL-",0);
 		board.gBoard.put(new Position(0,1), tile2);
 		board.updateFeatures(new Position(0,1),tile2);
-		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"a");
+		Tile tile3= new Tile(-1,false,false,1,1,2,2,true,false,false,true,false,false,"LLLL-",0);
 		board.gBoard.put(new Position(1,1),tile3);
 		board.updateFeatures(new Position(1,1),tile3);
-		Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false,"a");
+		Tile tile4= new Tile(-1,false,false,1,2,1,2,false,true,true,false,false,false,"LLLL-",0);
 		board.gBoard.put(new Position(2,1),tile4);
 		board.updateFeatures(new Position(2,1),tile4);
-		Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
+		Tile tile5= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LLLL-",0);
 		board.gBoard.put(new Position(2,0),tile5);
 		board.updateFeatures(new Position(2,0),tile5);
-		Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
+		Tile tile6= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LLLL-",0);
 		board.gBoard.put(new Position(2,-1),tile6);
 		board.updateFeatures(new Position(2,-1),tile6);
-		Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
+		Tile tile7= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LLLL-",0);
 		board.gBoard.put(new Position(1,-1),tile7);
 		board.updateFeatures(new Position(1,-1),tile7);
-		Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"a");
+		Tile tile1= new Tile(-1,false,false,2,2,2,2,true,true,true,true,true,true,"LLLL-",0);
 		board.gBoard.put(new Position(1,0), tile1);
 		board.updateFeatures(new Position(1,0), tile1);
 
