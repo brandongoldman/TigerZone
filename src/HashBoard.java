@@ -184,6 +184,7 @@ public class HashBoard{
         int bestScore = -1;
         int currScore = -1;
         int tigerLocation = 0;
+        Position best = new Position(0,0);
         
         //Initialize a Move struct to send to server
         Move bestMove = null;
@@ -197,14 +198,15 @@ public class HashBoard{
                 if(checkLegalMove(pos, t))
                 {
                     
-                    addTile(pos, t, tiger);
-                    /*currScore = getMoveScore(pos, t, tigerLocation); // need to update with scoring method
+                    //addTile(pos, t, tiger);
+                    currScore = getMoveScore(pos, t, tigerLocation); // need to update with scoring method
                     if(currScore > bestScore)
                     {
+                        best = pos;
                         bestScore = currScore;
                         bestMove = new Move();
-                    }*/
-                    return null;
+                    }
+                    //return null;
                 }
                 
                 //t.rotate();
@@ -218,9 +220,9 @@ public class HashBoard{
         {
             // tile is not placeable on board, so pass
             //Player.passOnTile(t);
-            System.out.println("Hello World");
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         }
-        
+        addTile(best, t, tiger);
         return bestMove;
     }
     
