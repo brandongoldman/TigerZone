@@ -356,7 +356,7 @@ public class Tile {
 	public static void main(String[] args){
 
 		TileInterpreter ti = new TileInterpreter();
-		Tile tile = ti.interpret("JLLJ-");
+		Tile tile = ti.interpret("TLLLC");
 
 		System.out.println("================================================");
 		System.out.println("Finding Connected Lakes");
