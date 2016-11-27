@@ -163,7 +163,9 @@ public class Tile {
 		return oTB;
 	}
 
-	public 
+	public int[][] getMiniZones(){
+		return miniZones;
+	}
 
 	//Setter
 
