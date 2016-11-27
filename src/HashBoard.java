@@ -58,7 +58,9 @@ public class HashBoard{
         DisplayBoard gameBoard = new DisplayBoard();
         //gameBoard.setTile("TLTJD",0,3,270);
 
-		gBoard.put(new Position(0,0), new TileInterpreter("TLTJ-"));
+		TileInterpreter TI = new TileInterpreter();
+		gBoard.put(new Position(0,0), TI.interpret("TLTJ-"));
+		updateOpenSpots(new Position(0,0));
 
 		FeatureArea initialTrail = new FeatureArea();
 		initialTrail.areaCoor.add(new Position(0,0));
@@ -1405,14 +1407,6 @@ public class HashBoard{
 				}
 			}
 		}
-	}
-
-	public void AddTile(Position pos, Tile tile, Tiger tiger){
-
-	}
-
-	public void updateFeatures(Position pos, Tile tile, Tiger tiger){
-
 	}
 
 	public void updateOpenSpots(Position newpos){
