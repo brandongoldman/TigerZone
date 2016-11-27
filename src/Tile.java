@@ -331,6 +331,17 @@ public class Tile {
 
 	}
 
+	public void printMiniZone(){
+
+		for(int i=0; i < miniZones.length; i++){
+			for(int j=0; j < miniZones[i].length; j++){
+				System.out.print(miniZones[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+	}
+
 	/*
 
 		Main function that is used for the Tile class.
@@ -360,12 +371,5 @@ public class Tile {
 		System.out.println("================================================");
 
 	}
-
-
-
-
-
-
-
 
 }

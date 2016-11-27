@@ -43,15 +43,7 @@ public class TileInterpreter {
 		
 		
 		//TRY TO SCAN THE TEXT FILE
-		//try {
 			Scanner input = new Scanner(newTileInput);
-			
-			//WHILE THERE ARE MORE LINES TO BE READ
-			//while (input.hasNextLine())
-			//{
-				//READ AND SAVE THE NUMBER OF HOW MANY INSTANCES OF THIS TILE THERE WILL BE
-				//numOfCurrentTile = input.nextInt();
-				
 				
 				//INPUT THE TILE DESCRIPTION AND DECIPHER THE EDGES
 				description = input.next();
@@ -182,11 +174,23 @@ public class TileInterpreter {
                 else if(eB == 0 && eR == 0 || eR == 1 && eB == 0 || eR == 0 && eB == 1 || eB == 1 && eB == 1){
                     miniZones[2][2] = 0;
                 }
-                else if(description == "JLLJ-"){
-                    miniZones[2][2] = 0;
-                }
-                
-                
+
+
+            if(description.equals("JLLJ-")){
+            	System.out.println("We here");
+            	miniZones[0][0] = 0;
+            	miniZones[0][1] = 0;
+            	miniZones[0][2] = 0;
+            	miniZones[1][0] = 0;
+            	miniZones[1][1] = 0;
+            	miniZones[1][2] = 2;
+            	miniZones[2][0] = 0;
+            	miniZones[2][1] = 2;
+            	miniZones[2][2] = 0;
+
+            }
+
+
             for(int i = 0; i < 3; i++){
                  
                 for(int j = 0; j < 3; j++){
@@ -195,20 +199,6 @@ public class TileInterpreter {
                      }
                 System.out.println();
             }
-                
-                
-                
-				//CREATE THE INSTANCES OF THE CURRENT TILE AND ADD THEM TO THE TILE ARRAY
-				// for (int i = 0; i < numOfCurrentTile; i++)
-				// {
-				// 	Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description);
-				// 	tileArray[tileCreated] = newTile;
-				// 	tileCreated++;
-				// }	
-			//}	
-		/*} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}*/
 
 		Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description, rotation, miniZones);
 		return newTile;
