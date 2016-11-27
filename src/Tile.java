@@ -234,13 +234,15 @@ public class Tile {
 		ArrayList<HashSet<Integer>> lakeSet = new ArrayList<HashSet<Integer>>();
 		HashSet<Integer> lset = new HashSet<Integer>();
 
-		int currentPosition = 0;
 
 		for(int i=0; i < miniZones.length; i++){
+
 			for(int j=0; j < miniZones[i].length; j++){
 
 				//	Getting the Current Position that
 				//	can be added to the Set
+
+				int currentPosition = 0;
 
 				if(i == 0 && j == 0){
 					currentPosition = 1;
@@ -279,17 +281,66 @@ public class Tile {
 				}
 
 				if(miniZones[i][j] == 2){
-					lset.add(currentPosition + 1);
-					lakeSet.add(lset);
+					lset.add(currentPosition);
+
+					System.out.println(currentPosition);
+
+					if((i+1) < (miniZones.length - 1)){
+						if(miniZones[i+1][j] == 2){
+							if(!lset.contains(miniZones[i+1][j])){
+								lset.add(currentPosition + 1);
+							}
+						}
+					}
+
+					else if((i-1) >= 0){
+						if(miniZones[i-1][j] == 2){
+							if(!lset.contains(miniZones[i-1][j])){
+								lset.add(currentPosition - 1);
+							}
+						}
+					}
+
+					else if((j+1) < (miniZones[i].length - 1)){
+						if(miniZones[i][j+1] == 2){
+							if(!lset.contains(miniZones[i][j+1])){
+								lset.add(currentPosition + 3);
+							}
+						}
+					}
+
+					else if((j-1) >= 0){
+						if(miniZones[i][j-1] == 2){
+							if(!lset.contains(miniZones[i][j-1])){
+								lset.add(currentPosition - 3);
+							}
+						}
+					}
 				}
+
 			}
+
+			if(!lakeSet.contains(lset)){
+				lakeSet.add(lset);
+			}
+
 		}
 
 
 		return lakeSet;
+
 	}
 
+	public void printMiniZone(){
 
+		for(int i=0; i < miniZones.length; i++){
+			for(int j=0; j < miniZones[i].length; j++){
+				System.out.print(miniZones[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+	}
 
 	/*
 
@@ -305,7 +356,7 @@ public class Tile {
 	public static void main(String[] args){
 
 		TileInterpreter ti = new TileInterpreter();
-		Tile tile = ti.interpret("LJLJ-");
+		Tile tile = ti.interpret("TLLLC");
 
 		System.out.println("================================================");
 		System.out.println("Finding Connected Lakes");
@@ -320,12 +371,5 @@ public class Tile {
 		System.out.println("================================================");
 
 	}
-
-
-
-
-
-
-
 
 }

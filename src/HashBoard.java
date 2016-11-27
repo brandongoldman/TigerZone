@@ -30,7 +30,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class HashBoard{
-	
     HashMap <Position, Tile> gBoard;
 	Set <Position> set;
 	ArrayList<JungleArea> Jungle;
@@ -76,25 +75,6 @@ public class HashBoard{
 		initialLake.openBoundary.add(new Boundary(new Position(0,0),2));
 
 		Lake.add(initialLake);
-
-		/*JungleArea initialJungle1 = new JungleArea();
-		initialJungle1.areaCoor.add(new Position(0,0));
-		Set<Integer> miniTile1 = new HashSet<Integer>();
-		miniTile1.add(1);
-		miniTile1.add(4);
-		miniTile1.add(7);
-		initialJungle1.boundary.add(new BoundaryJungle(new Position(0,0),miniTile1));
-
-		Jungle.add(initialJungle1);
-
-		JungleArea initialJungle2 = new JungleArea();
-		initialJungle2.areaCoor.add(new Position(0,0));
-		Set<Integer> miniTile2 = new HashSet<Integer>();
-		miniTile2.add(3);
-		miniTile2.add(9);
-		initialJungle2.boundary.add(new BoundaryJungle(new Position(0,0),miniTile2));
-
-		Jungle.add(initialJungle2);*/
 
 	}
     
@@ -1878,12 +1858,15 @@ public class HashBoard{
 			}
 			if (R) {
 				TopArea.openBoundary.remove(checkRight);
+				RightArea.areaCoor.clear();
 			}
 			if (B) {
 				TopArea.openBoundary.remove(checkBottom);
+				BottomArea.areaCoor.clear();
 			}
 			if (L) {
 				TopArea.openBoundary.remove(checkLeft);
+				LeftArea.areaCoor.clear();
 			}
 			if (tile.getCTR() && !skipR) {
 				TopArea.areaCoor.addAll(RightArea.areaCoor);
@@ -1948,7 +1931,6 @@ public class HashBoard{
 				TopArea.uniqueAnimal.add(tile.getAnimal());
 				TopArea.setHasAnimal(true);
 			}
-			/**ADD TIGER**/
 			if (TopArea.openBoundary.isEmpty()) {
 				TopArea.setCompleted(true);
 			}
@@ -1969,14 +1951,17 @@ public class HashBoard{
 			if (count == 1) {
 				if(TopArea.equals(RightArea)){
 					TopArea.openBoundary.remove(checkRight);
+					RightArea.areaCoor.clear();
 					skipR=true;
 				}
 				else if(TopArea.equals(BottomArea)){
 					TopArea.openBoundary.remove(checkBottom);
+					BottomArea.areaCoor.clear();
 					skipB=true;
 				}
 				else if(TopArea.equals(LeftArea)){
 					TopArea.openBoundary.remove(checkLeft);
+					LeftArea.areaCoor.clear();
 					skipL=true;
 				}
 				if (tile.getEdgeR() == 1&&!skipR) {
@@ -2042,7 +2027,6 @@ public class HashBoard{
 					TopArea.animal.add(tile.getAnimal());
 					TopArea.setHasAnimal(true);
 				}
-				/**ADD TIGER**/
 				if (TopArea.openBoundary.isEmpty()) {
 					TopArea.setCompleted(true);
 				}
@@ -2062,12 +2046,15 @@ public class HashBoard{
 				}
 				if(R){
 					TopArea.openBoundary.remove(checkRight);
+					RightArea.areaCoor.clear();
 				}
 				if(B){
 					TopArea.openBoundary.remove(checkBottom);
+					BottomArea.areaCoor.clear();
 				}
 				if(L){
 					TopArea.openBoundary.remove(checkLeft);
+					LeftArea.areaCoor.clear();
 				}
 				if (tile.getEdgeR() == 1&&!skipR) {
 					RightArea.areaCoor.add(pos);
@@ -2079,7 +2066,6 @@ public class HashBoard{
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
-					/**ADD TIGER**/
 					if (RightArea.openBoundary.isEmpty()) {
 						RightArea.setCompleted(true);
 					}
@@ -2095,7 +2081,6 @@ public class HashBoard{
 						BottomArea.animal.add(tile.getAnimal());
 						BottomArea.setHasAnimal(true);
 					}
-					/**ADD TIGER**/
 					if (BottomArea.openBoundary.isEmpty()) {
 						BottomArea.setCompleted(true);
 					}
@@ -2111,7 +2096,6 @@ public class HashBoard{
 						LeftArea.animal.add(tile.getAnimal());
 						LeftArea.setHasAnimal(true);
 					}
-					/**ADD TIGER**/
 					if (LeftArea.openBoundary.isEmpty()) {
 						LeftArea.setCompleted(true);
 					}
@@ -2126,7 +2110,6 @@ public class HashBoard{
 					TopArea.animal.add(tile.getAnimal());
 					TopArea.setHasAnimal(true);
 				}
-				/**ADD TIGER**/
 				if (TopArea.openBoundary.isEmpty()) {
 					TopArea.setCompleted(true);
 				}
@@ -2141,7 +2124,6 @@ public class HashBoard{
 					TopArea.animal.add(tile.getAnimal());
 					TopArea.setHasAnimal(true);
 				}
-				/**ADD TIGER**/
 				if (TopArea.openBoundary.isEmpty()) {
 					TopArea.setCompleted(true);
 				}
@@ -2165,9 +2147,11 @@ public class HashBoard{
 				}
 				if(B){
 					RightArea.openBoundary.remove(checkBottom);
+					BottomArea.areaCoor.clear();
 				}
 				if(L){
 					RightArea.openBoundary.remove(checkLeft);
+					LeftArea.areaCoor.clear();
 				}
 				if(tile.getCBR()&&!skipB){
 					RightArea.areaCoor.addAll(BottomArea.areaCoor);
@@ -2232,10 +2216,12 @@ public class HashBoard{
 				if(count==1){
 					if(RightArea.equals(BottomArea)){
 						RightArea.openBoundary.remove(checkBottom);
+						BottomArea.areaCoor.clear();
 						skipB=true;
 					}
 					else if(RightArea.equals(LeftArea)){
 						RightArea.openBoundary.remove(checkLeft);
+						LeftArea.areaCoor.clear();
 						skipL=true;
 					}
 					if(tile.getEdgeB()==1&&!skipB){
@@ -2300,9 +2286,11 @@ public class HashBoard{
 					}
 					if(B){
 						RightArea.openBoundary.remove(checkBottom);
+						BottomArea.areaCoor.clear();
 					}
 					if(L){
 						RightArea.openBoundary.remove(checkLeft);
+						LeftArea.areaCoor.clear();
 					}
 					if (tile.getEdgeB() == 1&&!skipB) {
 						BottomArea.areaCoor.add(pos);
@@ -2314,7 +2302,6 @@ public class HashBoard{
 							BottomArea.animal.add(tile.getAnimal());
 							BottomArea.setHasAnimal(true);
 						}
-						/**ADD TIGER**/
 						if (BottomArea.openBoundary.isEmpty()) {
 							BottomArea.setCompleted(true);
 						}
@@ -2330,7 +2317,6 @@ public class HashBoard{
 							LeftArea.animal.add(tile.getAnimal());
 							LeftArea.setHasAnimal(true);
 						}
-						/**ADD TIGER**/
 						if (LeftArea.openBoundary.isEmpty()) {
 							LeftArea.setCompleted(true);
 						}
@@ -2345,7 +2331,6 @@ public class HashBoard{
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
-					/**ADD TIGER**/
 					if(RightArea.openBoundary.isEmpty()){
 						RightArea.setCompleted(true);
 					}
@@ -2381,6 +2366,7 @@ public class HashBoard{
 				}
 				if(L){
 					BottomArea.openBoundary.remove(checkLeft);
+					LeftArea.areaCoor.clear();
 				}
 				if(tile.getCBL()&&!skipL){
 					BottomArea.areaCoor.addAll(LeftArea.areaCoor);
@@ -2409,7 +2395,6 @@ public class HashBoard{
 					BottomArea.animal.add(tile.getAnimal());
 					BottomArea.setHasAnimal(true);
 				}
-				/**ADD TIGER**/
 				if(BottomArea.openBoundary.isEmpty()){
 					BottomArea.setCompleted(true);
 				}
@@ -2423,6 +2408,7 @@ public class HashBoard{
 					}
 					if(L){
 						BottomArea.openBoundary.remove(checkLeft);
+						LeftArea.areaCoor.clear();
 					}
 					else{
 						BottomArea.areaCoor.addAll(LeftArea.areaCoor);
@@ -2452,7 +2438,6 @@ public class HashBoard{
 						BottomArea.animal.add(tile.getAnimal());
 						BottomArea.setHasAnimal(true);
 					}
-					/**ADD TIGER**/
 					if(BottomArea.openBoundary.isEmpty()){
 						BottomArea.setCompleted(true);
 					}
@@ -2467,7 +2452,6 @@ public class HashBoard{
 						BottomArea.animal.add(tile.getAnimal());
 						BottomArea.setHasAnimal(true);
 					}
-					/**ADD TIGER**/
 					if(BottomArea.openBoundary.isEmpty()){
 						BottomArea.setCompleted(true);
 					}
@@ -2511,12 +2495,15 @@ public class HashBoard{
 			}
 		}
 
+
+
 		/**Calculate Score**/
 		int potential = 0;
 		int holder = 0;
+		int placement =0 ;
 		/**Calculate Potential Points for Top Feature**/
 		if(tile.getEdgeT()==2&&TopArea.areaCoor.size()>0) {
-			if (TopArea.getHasTiger()) {
+			if (!TopArea.getHasTiger()) {
 				if (TopArea.getCompleted()) {
 					if (TopArea.uniqueAnimal.size() - TopArea.numOfCrocs <= 0) {
 						holder = TopArea.areaCoor.size() * 2;
@@ -2536,55 +2523,39 @@ public class HashBoard{
 						holder = TopArea.areaCoor.size() * 1;
 						if (holder > potential) {
 							potential = holder;
-							/**UPDATE TIGER LOCATION**/
+							placement=2;
 						}
 					} else {
 						holder = TopArea.areaCoor.size() * (1 + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
-							/**UPDATE TIGER LOCATION**/
+							placement=2;
 						}
 					}
 				}
 			}
 		}
 		else if(tile.getEdgeT()==1&&TopArea.areaCoor.size()>0) {
-			if (TopArea.getHasTiger()) {
-				if (TopArea.getCompleted()) {
-					if (TopArea.uniqueAnimal.size() - TopArea.numOfCrocs <= 0) {
-						holder = TopArea.areaCoor.size();
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
-					} else {
-						holder = TopArea.areaCoor.size() + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs;
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
+			if (!TopArea.getHasTiger()) {
+				if (TopArea.animal.size() - TopArea.numOfCrocs < 0) {
+					holder = TopArea.areaCoor.size();
+					if (holder > potential) {
+						potential = holder;
+						/**UPDATE TIGER LOCATION**/
 					}
 				} else {
-					if (TopArea.uniqueAnimal.size() - TopArea.numOfCrocs < 0) {
-						holder = TopArea.areaCoor.size();
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
-					} else {
-						holder = TopArea.areaCoor.size() + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs;
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
+					holder = TopArea.areaCoor.size() + TopArea.animal.size() - TopArea.numOfCrocs;
+					if (holder > potential) {
+						potential = holder;
+						/**UPDATE TIGER LOCATION**/
 					}
 				}
 			}
 		}
 
 		/**Calculate Potential Points for Right Feature**/
-		if(tile.getEdgeT()==2&&RightArea.areaCoor.size()>0) {
-			if (RightArea.getHasTiger()) {
+		if(tile.getEdgeR()==2&&RightArea.areaCoor.size()>0) {
+			if (!RightArea.getHasTiger()) {
 				if (RightArea.getCompleted()) {
 					if (RightArea.uniqueAnimal.size() - RightArea.numOfCrocs <= 0) {
 						holder = RightArea.areaCoor.size() * 2;
@@ -2616,35 +2587,19 @@ public class HashBoard{
 				}
 			}
 		}
-		else if(tile.getEdgeT()==1&&RightArea.areaCoor.size()>0) {
-			if (RightArea.getHasTiger()) {
-				if (RightArea.getCompleted()) {
-					if (RightArea.uniqueAnimal.size() - RightArea.numOfCrocs <= 0) {
-						holder = RightArea.areaCoor.size();
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
-					} else {
-						holder = RightArea.areaCoor.size() + RightArea.uniqueAnimal.size() - RightArea.numOfCrocs;
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
+		else if(tile.getEdgeR()==1&&RightArea.areaCoor.size()>0) {
+			if (!RightArea.getHasTiger()) {
+				if (RightArea.animal.size() - RightArea.numOfCrocs < 0) {
+					holder = RightArea.areaCoor.size();
+					if (holder > potential) {
+						potential = holder;
+						/**UPDATE TIGER LOCATION**/
 					}
 				} else {
-					if (RightArea.uniqueAnimal.size() - RightArea.numOfCrocs < 0) {
-						holder = RightArea.areaCoor.size();
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
-					} else {
-						holder = RightArea.areaCoor.size() + RightArea.uniqueAnimal.size() - RightArea.numOfCrocs;
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
+					holder = RightArea.areaCoor.size() + RightArea.animal.size() - RightArea.numOfCrocs;
+					if (holder > potential) {
+						potential = holder;
+						/**UPDATE TIGER LOCATION**/
 					}
 				}
 			}
@@ -2652,8 +2607,8 @@ public class HashBoard{
 
 
 		/**Calculate Potential Points for Bottom Feature**/
-		if(tile.getEdgeT()==2&&BottomArea.areaCoor.size()>0) {
-			if (BottomArea.getHasTiger()) {
+		if(tile.getEdgeB()==2&&BottomArea.areaCoor.size()>0) {
+			if (!BottomArea.getHasTiger()) {
 				if (BottomArea.getCompleted()) {
 					if (BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs <= 0) {
 						holder = BottomArea.areaCoor.size() * 2;
@@ -2685,43 +2640,27 @@ public class HashBoard{
 				}
 			}
 		}
-		else if(tile.getEdgeT()==1&&BottomArea.areaCoor.size()>0) {
-			if (BottomArea.getHasTiger()) {
-				if (BottomArea.getCompleted()) {
-					if (BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs <= 0) {
-						holder = BottomArea.areaCoor.size();
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
-					} else {
-						holder = BottomArea.areaCoor.size() + BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs;
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
+		else if(tile.getEdgeB()==1&&BottomArea.areaCoor.size()>0) {
+			if (!BottomArea.getHasTiger()) {
+				if (BottomArea.animal.size() - BottomArea.numOfCrocs < 0) {
+					holder = BottomArea.areaCoor.size();
+					if (holder > potential) {
+						potential = holder;
+						/**UPDATE TIGER LOCATION**/
 					}
 				} else {
-					if (BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs < 0) {
-						holder = BottomArea.areaCoor.size();
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
-					} else {
-						holder = BottomArea.areaCoor.size() + BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs;
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
+					holder = BottomArea.areaCoor.size() + BottomArea.animal.size() - BottomArea.numOfCrocs;
+					if (holder > potential) {
+						potential = holder;
+						/**UPDATE TIGER LOCATION**/
 					}
 				}
 			}
 		}
 
 		/**Calculate Potential Points for Left Feature**/
-		if(tile.getEdgeT()==2&&LeftArea.areaCoor.size()>0) {
-			if (LeftArea.getHasTiger()) {
+		if(tile.getEdgeL()==2&&LeftArea.areaCoor.size()>0) {
+			if (!LeftArea.getHasTiger()) {
 				if (LeftArea.getCompleted()) {
 					if (LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs <= 0) {
 						holder = LeftArea.areaCoor.size() * 2;
@@ -2753,35 +2692,19 @@ public class HashBoard{
 				}
 			}
 		}
-		else if(tile.getEdgeT()==1&&LeftArea.areaCoor.size()>0) {
-			if (LeftArea.getHasTiger()) {
-				if (LeftArea.getCompleted()) {
-					if (LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs <= 0) {
-						holder = LeftArea.areaCoor.size();
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
-					} else {
-						holder = LeftArea.areaCoor.size() + LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs;
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
+		else if(tile.getEdgeL()==1&&LeftArea.areaCoor.size()>0) {
+			if (!LeftArea.getHasTiger()) {
+				if (LeftArea.animal.size() - LeftArea.numOfCrocs < 0) {
+					holder = LeftArea.areaCoor.size();
+					if (holder > potential) {
+						potential = holder;
+						/**UPDATE TIGER LOCATION**/
 					}
 				} else {
-					if (LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs < 0) {
-						holder = LeftArea.areaCoor.size();
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
-					} else {
-						holder = LeftArea.areaCoor.size() + LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs;
-						if (holder > potential) {
-							potential = holder;
-							/**UPDATE TIGER LOCATION**/
-						}
+					holder = LeftArea.areaCoor.size() + LeftArea.animal.size() - LeftArea.numOfCrocs;
+					if (holder > potential) {
+						potential = holder;
+						/**UPDATE TIGER LOCATION**/
 					}
 				}
 			}

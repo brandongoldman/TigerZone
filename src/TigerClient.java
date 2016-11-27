@@ -1,3 +1,5 @@
+/**********************************************************************
+
 “TigerClient” Class will establish a socket connection to the server using a provided IP address and port number. 
   The TigerClient will listen on then socket for messages from the server. 
   The client will provide an output stream for which messages will be sent to the server.
@@ -9,8 +11,8 @@
 public static void main(String[] args) throws IOException 
     {
 
-		int score = 0;
-		int tigers = 7;
+	int score = 0;
+	int tigers = 7;
     	Player player = new Player(score, tigers);
       
     	//String username = "Red";
@@ -63,9 +65,15 @@ public static void main(String[] args) throws IOException
     		System.exit(0);
     	}
     	
-    	System.out.printf("Number of rounds: %d", rounds);
+    	String opponent = null;
+    	String startingTile = null;
+    	int startingTileX = 0;
+    	int startingTileY = 0;
+    	int orientation = 0;
+    	int numOfTiles = 0;	
+    	int time = 0; 
     	
-    	MatchParam match = new MatchParam();
+    	MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
     	
     	for(int i = 0; i < rounds; i++)
     	{
@@ -77,7 +85,22 @@ public static void main(String[] args) throws IOException
     		// Start Match
     		
     		match = player.client.matchProtocol();
-    				
+    		
+    		//System.out.printf("Opponent is : %s\n", match.getOpponent());
+    		//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
+    		//System.out.printf("Starting Tile X is : %d\n", match.getStartingTileX());
+    		//System.out.printf("Starting Tile Y is : %d\n", match.getStartingTileY());
+    		//System.out.printf("Orientation is : %d\n", match.getOrientation());
+    		//System.out.printf("Number of tiles are: %d\n", match.getNumOfTiles());
+    		//System.out.printf("Match time : %d\n", match.getTime());
+    		
+    		
+    		String gid = player.client.getGID();
+    		
+    		System.out.printf("Game: %s", gid);
+    		
+    		
+    		
     		// TODO: Add logic to start making moves in the game.  Beyond scope of the client
     		
     	}
@@ -86,8 +109,6 @@ public static void main(String[] args) throws IOException
     	{
     		// Sit here 	
     	}
-    	
-    }
 */
 
 /* The TigerClient will realize the Tigerzone protocol which is entirely text based. */ 
@@ -246,8 +267,8 @@ public class TigerClient
     	return rounds;
     	
     }
-    
-    public void moveProtocol(int type, int gid, String tile, int x, int y, int orientation, int zone)
+    //                                  vvv I changed this from int to String!!!
+    public void moveProtocol(int type, String gid, String tile, int x, int y, int orientation, int zone)
     {
     	// type = move type
     	// type = 1:  GAME <gid> PLACE <tile> AT <x> <y> <orientation> NONE

@@ -26,7 +26,8 @@ public class Player
 	int tigerPlacement;
 	int crocodilePlacement;
     
-    HashBoard x = new HashBoard();
+    //HashBoard x = new HashBoard();
+    public TigerClient client;
 
     //For Testing Purposes, use an empty Player constructor
     public Player(){
@@ -42,7 +43,8 @@ public class Player
 		this.score = score;
 		this.numOfTigers = numOfTigers;
 		this.numOfCrocodiles = numOfCrocodiles;
-        HashMap<Position, Tile> board = x;
+        //HashMap<Position, Tile> board = x;
+        client = new TigerClient();
 	}
 
 	public boolean tigerOnBoard(){
@@ -129,10 +131,15 @@ public class Player
 		}
 	}
     
-	public String passOnTile(Tile t)
+	public void passOnTile(Tile t)
 	{
-		String s = "UNPLACEABLE PASS";
-		return s;
+		String tile = t.getDescription();
+		String gid = client.getGID();
+
+		// String serverMessage = server.moveProtocol(4, gid, tile, 0, 0, 0, 0);
+		// return serverMessage;
+
+		client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
 	}
 
     public static void main(String[] args) {
@@ -141,6 +148,11 @@ public class Player
 		int tigers = 7;
 		int crocodiles = 2;
     	Player player = new Player(score, tigers, crocodiles);
+
+		TileInterpreter ti = new TileInterpreter();
+		Tiger tiger = new Tiger();
+		Tile tile = ti.interpret("TLTTP");
+    	player.passOnTile(tile);
       
     }
 
