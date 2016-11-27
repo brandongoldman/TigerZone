@@ -181,26 +181,6 @@ public class Tile {
 			+ "\noTB is " + this.oTB + ". oLR is " + this.oLR);
 	}
 	
-
-	// ---- ROTATE CLOCKWISE ----
-	// public void rotateCW()
-	// {
-	// 	boolean bitTemp = cTL;
-	// 	int edgeTemp = eT;
-	// 	cTL = cBL;
-	// 	cBL = cBR;
-	// 	cBR = cTR;
-	// 	cTR = bitTemp;
-	// 	eT = eL;
-	// 	eL = eB;
-	// 	eB = eR;
-	// 	eR = edgeTemp;
-	// 	bitTemp = oTB;
-	// 	oTB = oLR;
-	// 	oLR = bitTemp;
-	// 	orientation = (orientation + 1) % 4;		// !!!!! BRAD FIX ME!!
-	// }
-	
 	// ---- ROTATE COUNTER CLOCKWISE
 	public void rotate()
 	{
@@ -219,42 +199,6 @@ public class Tile {
 		oLR = bitTemp;
 		beenRotated = (beenRotated + 1) % 4;
 	}
-
-	// public void rotate180()
-	// {
-	// 	boolean bitTemp = cTL;
-	// 	int edgeTemp = eT;
-	// 	cTL = cTR;
-	// 	cTR = cBR;
-	// 	cBR = cBL;
-	// 	cBL = bitTemp;
-	// 	eT = eR;
-	// 	eR = eB;
-	// 	eB = eL;
-	// 	eL = edgeTemp;
-	// 	bitTemp = oTB;
-	// 	oTB = oLR;
-	// 	oLR = bitTemp;
-	// 	orientation += 90;
-	// }
-
-	// public void rotate270()
-	// {
-	// 	boolean bitTemp = cTL;
-	// 	int edgeTemp = eT;
-	// 	cTL = cBL;
-	// 	cBL = cBR;
-	// 	cBR = cTR;
-	// 	cTR = bitTemp;
-	// 	eT = eL;
-	// 	eL = eB;
-	// 	eB = eR;
-	// 	eR = edgeTemp;
-	// 	bitTemp = oTB;
-	// 	oTB = oLR;
-	// 	oLR = bitTemp;
-	// 	orientation += 270;
-	// }
 
 	public int getRotation() {
 		return beenRotated * 90;
