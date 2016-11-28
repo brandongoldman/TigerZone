@@ -2646,12 +2646,38 @@ public class HashBoard{
 					if (holder > potential) {
 						potential = holder;
 						/**UPDATE TIGER LOCATION**/
+						ArrayList<HashSet<Integer>> mini = tile.connectedRoads();
+						int min = 2;
+						for(HashSet<Integer> miniVal : mini){
+							if(miniVal.contains(min)){
+								for(int x : miniVal){
+									if(x<min){
+										min=x;
+									}
+								}
+								break;
+							}
+						}
+						placement=min;
 					}
 				} else {
 					holder = TopArea.areaCoor.size() + TopArea.animal.size() - TopArea.numOfCrocs;
 					if (holder > potential) {
 						potential = holder;
 						/**UPDATE TIGER LOCATION**/
+						ArrayList<HashSet<Integer>> mini = tile.connectedRoads();
+						int min = 2;
+						for(HashSet<Integer> miniVal : mini){
+							if(miniVal.contains(min)){
+								for(int x : miniVal){
+									if(x<min){
+										min=x;
+									}
+								}
+								break;
+							}
+						}
+						placement=min;
 					}
 				}
 			}
@@ -2774,12 +2800,38 @@ public class HashBoard{
 					if (holder > potential) {
 						potential = holder;
 						/**UPDATE TIGER LOCATION**/
+						ArrayList<HashSet<Integer>> mini = tile.connectedRoads();
+						int min = 6;
+						for(HashSet<Integer> miniVal : mini){
+							if(miniVal.contains(min)){
+								for(int x : miniVal){
+									if(x<min){
+										min=x;
+									}
+								}
+								break;
+							}
+						}
+						placement=min;
 					}
 				} else {
 					holder = RightArea.areaCoor.size() + RightArea.animal.size() - RightArea.numOfCrocs;
 					if (holder > potential) {
 						potential = holder;
 						/**UPDATE TIGER LOCATION**/
+						ArrayList<HashSet<Integer>> mini = tile.connectedRoads();
+						int min = 6;
+						for(HashSet<Integer> miniVal : mini){
+							if(miniVal.contains(min)){
+								for(int x : miniVal){
+									if(x<min){
+										min=x;
+									}
+								}
+								break;
+							}
+						}
+						placement=min;
 					}
 				}
 			}
@@ -2903,12 +2955,38 @@ public class HashBoard{
 					if (holder > potential) {
 						potential = holder;
 						/**UPDATE TIGER LOCATION**/
+						ArrayList<HashSet<Integer>> mini = tile.connectedRoads();
+						int min = 8;
+						for(HashSet<Integer> miniVal : mini){
+							if(miniVal.contains(min)){
+								for(int x : miniVal){
+									if(x<min){
+										min=x;
+									}
+								}
+								break;
+							}
+						}
+						placement=min;
 					}
 				} else {
 					holder = BottomArea.areaCoor.size() + BottomArea.animal.size() - BottomArea.numOfCrocs;
 					if (holder > potential) {
 						potential = holder;
 						/**UPDATE TIGER LOCATION**/
+						ArrayList<HashSet<Integer>> mini = tile.connectedRoads();
+						int min = 8;
+						for(HashSet<Integer> miniVal : mini){
+							if(miniVal.contains(min)){
+								for(int x : miniVal){
+									if(x<min){
+										min=x;
+									}
+								}
+								break;
+							}
+						}
+						placement=min;
 					}
 				}
 			}
@@ -3031,12 +3109,38 @@ public class HashBoard{
 					if (holder > potential) {
 						potential = holder;
 						/**UPDATE TIGER LOCATION**/
+						ArrayList<HashSet<Integer>> mini = tile.connectedRoads();
+						int min = 4;
+						for(HashSet<Integer> miniVal : mini){
+							if(miniVal.contains(min)){
+								for(int x : miniVal){
+									if(x<min){
+										min=x;
+									}
+								}
+								break;
+							}
+						}
+						placement=min;
 					}
 				} else {
 					holder = LeftArea.areaCoor.size() + LeftArea.animal.size() - LeftArea.numOfCrocs;
 					if (holder > potential) {
 						potential = holder;
 						/**UPDATE TIGER LOCATION**/
+						ArrayList<HashSet<Integer>> mini = tile.connectedRoads();
+						int min = 4;
+						for(HashSet<Integer> miniVal : mini){
+							if(miniVal.contains(min)){
+								for(int x : miniVal){
+									if(x<min){
+										min=x;
+									}
+								}
+								break;
+							}
+						}
+						placement=min;
 					}
 				}
 			}
