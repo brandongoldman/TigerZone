@@ -23,10 +23,10 @@ public class Move
 		client = new TigerClient();
 	}
 
-	public String toString(Move m)
+	public String toString()
 	{
-		if (m.special.equals("NONE")) return ("GAME " + m.gid + " PLACE " + m.t + " AT " + m.x + " " + m.y + " " + m.rotation + " NONE");
-		else return ("GAME " + m.gid + " PLACE " + m.t + " AT " + m.x + " " + m.y + " " + m.rotation + " TIGER " + m.zone);
+		if (this.special.equals("NONE")) return ("GAME " + this.gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE");
+		else return ("GAME " + this.gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " TIGER " + this.zone);
 	}
 
 	// type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS
@@ -46,7 +46,7 @@ public class Move
 	}
 
 
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		String t = "TLTTP";
 		int x = 0;
@@ -58,8 +58,8 @@ public class Move
 		int zone = 8;
 
 		Move myMove = new Move();
-		System.out.println(myMove.prepForServerZone(t, x, y, rotation, special, zone));
-		System.out.println(myMove.prepForServerNoZone(t, x, y, rotation, special));
+		//System.out.println(myMove.prepForServerZone(t, x, y, rotation, special, zone));
+		//System.out.println(myMove.prepForServerNoZone(t, x, y, rotation, special));
 
-	}
+	}*/
 }
