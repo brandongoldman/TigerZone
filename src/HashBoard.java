@@ -192,6 +192,7 @@ public class HashBoard{
         int currScore = -1;
         int tigerLocation = 0;
         Position best = new Position(0,0);
+        int rot = 0;
         
         //Initialize a Move struct to send to server
         Move bestMove = null;
@@ -209,7 +210,9 @@ public class HashBoard{
                     currScore = getMoveScore(pos, t, tigerLocation); // need to update with scoring method
                     if(currScore > bestScore)
                     {
+                        System.out.println("UPDATED SCORE: " + bestScore + " to " + currScore);
                         best = pos;
+                        rot = t.getRotation();
                         bestScore = currScore;
                         bestMove = new Move();
                     }
@@ -230,14 +233,18 @@ public class HashBoard{
             //Player.passOnTile(t);
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
-			String tile = t.getDescription();
-			String gid = client.getGID();
+			//String tile = t.getDescription();
+			//String gid = client.getGID();
 
 			// String serverMessage = server.moveProtocol(4, gid, tile, 0, 0, 0, 0);
 			// return serverMessage;
 
 			//client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
 
+        }
+        
+        for(int x = 0; x < (rot/90); x++){
+            t.rotate();
         }
         addTile(best, t, tiger);
         return bestMove;
