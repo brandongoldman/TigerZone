@@ -607,7 +607,7 @@ public class TigerClient
             //while(!client.RoundEnd()){
                 
             String[] both = client.GetShit();
-            System.out.println(both);
+            //System.out.println(both);
             
             int move = Integer.parseInt(both[2]);
             String gid = both[0];

@@ -50,17 +50,17 @@ public class GameTest{
 		//board.addTile(new Position(0, 1), tile, tiger);		//	Outcome: Pass
         board.FindBestMove(tile,tiger);
 		
-        Tile tile2 = ti.interpret("TLJT-");
+        Tile tile2 = ti.interpret("JJJJX");
 		board.FindBestMove(tile2,tiger);		//	Outcome: Pass
 		
-        /*
+        
         Tile tile3 = ti.interpret("TLLT-");
 		board.FindBestMove(tile3,tiger);		//	Outcome: Pass
 		
         Tile tile4 = ti.interpret("LLJJ-");
 		board.FindBestMove(tile4,tiger);		//	Outcome: Pass
 		
-        Tile tile5 = ti.interpret("JJJJ-");
+        Tile tile5 = ti.interpret("JJJJX");
 		board.FindBestMove(tile5,tiger);		//	Outcome: Fail
 		
         Tile tile6 = ti.interpret("LLLL-");
@@ -189,9 +189,10 @@ public class GameTest{
         
         //Tile tile24 = ti.interpret("LJTJD");
         //board.FindBestMove(tile24,tiger);
-        */
+        //*/
 		board.printLake();
-		//board.printTrail();
+		board.printTrail();
+        //board.printDen();
 
 
 		System.out.println("Test A Ends");
