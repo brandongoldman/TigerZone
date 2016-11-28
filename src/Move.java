@@ -23,16 +23,10 @@ public class Move
 		client = new TigerClient();
 	}
 
-	public String prepForServerZone(String t, int x, int y, int rotation, String special, int zone)
+	public String toString(Move m)
 	{
-		messageToServer = t + " " + x + " " + y + " " + rotation + " " + special + " " + zone;
-		return messageToServer;
-	}
-
-	public String prepForServerNoZone(String t, int x, int y, int rotation, String special)
-	{
-		messageToServer = t + " " + x + " " + y + " " + rotation + " " + special;
-		return messageToServer;
+		if (m.special.equals("NONE")) return ("GAME " + m.gid + " PLACE " + m.t + " AT " + m.x + " " + m.y + " " + m.rotation + " NONE");
+		else return ("GAME " + m.gid + " PLACE " + m.t + " AT " + m.x + " " + m.y + " " + m.rotation + " TIGER " + m.zone);
 	}
 
 	// type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS
