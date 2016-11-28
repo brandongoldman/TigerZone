@@ -43,6 +43,7 @@ public class Move
 
 		String messageToServer = "GAME " + gid + " TILE " + tileDescription + " UNPLACEABLE PASS";
 		return messageToServer; 
+		// ^^^^^ I NEED THAT STRING IN TIGERCLIENT!!!!!!!!!
 	}
 
 
