@@ -119,8 +119,8 @@ public class HashBoard{
 		*/
 		
 		System.out.println("TRYING TO PLACE TILE AT " + pos.getXPosition() + " " + pos.getYPosition());
-		if(!checkLegalMove(pos, tile)) 
-		{
+		if(!checkLegalMove(pos, tile))
+        {
 			System.out.println("INVALID LOCATION");
 			return;
 		}
@@ -193,6 +193,7 @@ public class HashBoard{
         int rot = 0;
 		int placement = 0;
 		int owner = 0;
+        boolean validSpot = false;
         
         //Initialize a Move struct to send to server
         Move bestMove = new Move();
@@ -216,6 +217,7 @@ public class HashBoard{
                         rot = t.getRotation();
                         bestScore = currScore;
                         bestMove = new Move();
+                        validSpot = true;
 						owner=1;
 						placement=holder.placement;
                         //addTile(best, t, tiger);
@@ -232,9 +234,10 @@ public class HashBoard{
         }
         
         // case: tile is not valid on current board
-        if(bestMove == null)
+        if(!validSpot)
         {
-        	bestMove.passOnTile(t);
+            System.out.println("TESTESTESTEST");
+            System.out.println(bestMove.passOnTile(t));
             // tile is not placeable on board, so pass
 			// String tile = t.getDescription();
 			// String gid = client.getGID();
@@ -267,7 +270,7 @@ public class HashBoard{
         }
         
         addTile(best, t, new Tiger(0,0));
-
+        System
         return bestMove;
     }
     

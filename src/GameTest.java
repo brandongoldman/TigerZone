@@ -32,7 +32,20 @@ public class GameTest{
 		System.out.println("Test A Begins");
 		HashBoard board = new HashBoard();
 		TileInterpreter ti = new TileInterpreter();
-		Tiger tiger = new Tiger();
+		
+        
+        
+        Tiger tiger = new Tiger();
+        Tile tile = ti.interpret("TLTJ-");
+        tile.rotate();
+        tile.rotate();
+        board.addTile(new Position(1, 0), tile, tiger);
+        //board.FindBestMove(tile,tiger);
+        
+        Tile tile2 = ti.interpret("LLLL-");
+        board.FindBestMove(tile2,tiger);
+        
+        /*Tiger tiger = new Tiger();
 		Tile tile = ti.interpret("TLLT-");
 		//board.addTile(new Position(0, 1), tile, tiger);		//	Outcome: Pass
         board.FindBestMove(tile,tiger);
@@ -163,7 +176,7 @@ public class GameTest{
         board.FindBestMove(tile41,tiger);
         
         Tile tile42 = ti.interpret("LJTJ-");
-        board.FindBestMove(tile42,tiger);
+        board.FindBestMove(tile42,tiger);*/
         
         //Tile tile21 = ti.interpret("JJJJX");
         //board.FindBestMove(tile21,tiger);

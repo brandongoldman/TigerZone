@@ -41,7 +41,7 @@ public class Move
 		String tileDescription = t.getDescription();
 		try
 		{
-			String gid = client.getGID();
+			gid = client.getGID();
 		}
 		catch (Exception e){
 			e.printStackTrace();
