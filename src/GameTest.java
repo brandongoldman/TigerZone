@@ -108,62 +108,62 @@ public class GameTest{
         board.FindBestMove(tile24,tiger);
         
         Tile tile25 = ti.interpret("TLJT-");
-        board.FindBestMove(tile2,tiger);		//	Outcome: Pass
+        board.FindBestMove(tile25,tiger);		//	Outcome: Pass
         
         
         Tile tile26  = ti.interpret("TLLT-");
-        board.FindBestMove(tile3,tiger);		//	Outcome: Pass
+        board.FindBestMove(tile26,tiger);		//	Outcome: Pass
         
         //Tile tile26 = ti.interpret("LLJJ-");
         //board.FindBestMove(tile4,tiger);		//	Outcome: Pass
         
         Tile tile27 = ti.interpret("JJJJ-");
-        board.FindBestMove(tile5,tiger);		//	Outcome: Fail
+        board.FindBestMove(tile27,tiger);		//	Outcome: Fail
         
         Tile tile28 = ti.interpret("LLLL-");
-        board.FindBestMove(tile6,tiger);		//	Outcome: Pass
+        board.FindBestMove(tile28,tiger);		//	Outcome: Pass
         
         Tile tile29 = ti.interpret("JLJL-");
-        board.FindBestMove(tile7,tiger);		//	Outcomes: Fail
+        board.FindBestMove(tile29,tiger);		//	Outcomes: Fail
         
         Tile tile30 = ti.interpret("TJTT-");
-        board.FindBestMove(tile8,tiger);
+        board.FindBestMove(tile30,tiger);
         
         Tile tile31 = ti.interpret("JLLL-");
-        board.FindBestMove(tile9,tiger);
+        board.FindBestMove(tile31,tiger);
         
         Tile tile32 = ti.interpret("LLJJ-");
-        board.FindBestMove(tile10,tiger);
+        board.FindBestMove(tile32,tiger);
         
         Tile tile33 = ti.interpret("LJLJ-");
-        board.FindBestMove(tile11,tiger);
+        board.FindBestMove(tile33,tiger);
         
         Tile tile34 = ti.interpret("TLJT-");
-        board.FindBestMove(tile12,tiger);
+        board.FindBestMove(tile34,tiger);
         
         Tile tile35 = ti.interpret("TLJTP");
-        board.FindBestMove(tile13,tiger);
+        board.FindBestMove(tile35,tiger);
         
         Tile tile36 = ti.interpret("JLTTB");
-        board.FindBestMove(tile14,tiger);
+        board.FindBestMove(tile36,tiger);
         
         Tile tile37 = ti.interpret("TLTJD");
-        board.FindBestMove(tile15,tiger);
+        board.FindBestMove(tile37,tiger);
         
         Tile tile38 = ti.interpret("TLTT-");
-        board.FindBestMove(tile16,tiger);
+        board.FindBestMove(tile38,tiger);
         
         Tile tile39 = ti.interpret("TLTTP");
-        board.FindBestMove(tile17,tiger);
+        board.FindBestMove(tile39,tiger);
         
         Tile tile40 = ti.interpret("TLLT-");
-        board.FindBestMove(tile18,tiger);
+        board.FindBestMove(tile40,tiger);
         
         Tile tile41 = ti.interpret("TLLTB");
-        board.FindBestMove(tile19,tiger);
+        board.FindBestMove(tile41,tiger);
         
         Tile tile42 = ti.interpret("LJTJ-");
-        board.FindBestMove(tile20,tiger);
+        board.FindBestMove(tile42,tiger);
         
         //Tile tile21 = ti.interpret("JJJJX");
         //board.FindBestMove(tile21,tiger);

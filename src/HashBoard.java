@@ -215,8 +215,11 @@ public class HashBoard{
                         rot = t.getRotation();
                         bestScore = currScore;
                         bestMove = new Move();
+                        //addTile(best, t, tiger);
+                        //return bestMove;
                     }
                     //return null;
+                    //t.rotate();
                 }
                 
                 //t.rotate();
@@ -242,10 +245,15 @@ public class HashBoard{
 			//client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
 
         }
+        System.out.println("THIS IS FINAL ROTATION # " + t.getRotation());
+        //while(t.getRotation() != 0){
+        //    t.rotate();
+        //}
         
         for(int x = 0; x < (rot/90); x++){
             t.rotate();
         }
+        
         addTile(best, t, tiger);
         return bestMove;
     }
