@@ -282,8 +282,6 @@ public class Tile {
 				if(miniZones[i][j] == 2){
 					lset.add(currentPosition);
 
-					System.out.println(currentPosition);
-
 					if((i+1) < (miniZones.length - 1)){
 						if(miniZones[i+1][j] == 2){
 							if(!lset.contains(miniZones[i+1][j])){
