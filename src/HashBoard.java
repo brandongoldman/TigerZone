@@ -254,7 +254,7 @@ public class HashBoard{
             t.rotate();
         }
         
-<<<<<<< HEAD
+
         addTile(best, t, tiger);
         bestMove.t = t.getDescription();
         bestMove.x = best.getXPosition();
@@ -265,10 +265,9 @@ public class HashBoard{
         	bestMove.special = "TIGER";
         	bestMove.zone = tiger.getTigerPlacement();
         }
-        	
-=======
+        
         addTile(best, t, new Tiger(owner,placement));
->>>>>>> fb82384ebd6dc3361b78f2758690e864569a1c43
+
         return bestMove;
     }
     
