@@ -193,6 +193,8 @@ public class HashBoard{
         int tigerLocation = 0;
         Position best = new Position(0,0);
         int rot = 0;
+		int placement = 0;
+		int owner = 0;
         
         //Initialize a Move struct to send to server
         Move bestMove = null;
@@ -207,7 +209,8 @@ public class HashBoard{
                 {
                     
                     //addTile(pos, t, tiger);
-                    currScore = getMoveScore(pos, t, tigerLocation); // need to update with scoring method
+					ScorePotential holder = getMoveScore(pos, t, tigerLocation);
+                    currScore = holder.score; // need to update with scoring method
                     if(currScore > bestScore)
                     {
                         System.out.println("UPDATED SCORE: " + bestScore + " to " + currScore);
@@ -215,6 +218,8 @@ public class HashBoard{
                         rot = t.getRotation();
                         bestScore = currScore;
                         bestMove = new Move();
+						owner=1;
+						placement=holder.placement;
                         //addTile(best, t, tiger);
                         //return bestMove;
                     }
@@ -254,7 +259,7 @@ public class HashBoard{
             t.rotate();
         }
         
-        addTile(best, t, tiger);
+        addTile(best, t, new Tiger(owner,placement));
         return bestMove;
     }
     
@@ -1641,7 +1646,7 @@ public class HashBoard{
 	
 	
 		
-	public int getMoveScore(Position pos, Tile tile, int tigerPlacement)
+	public ScorePotential getMoveScore(Position pos, Tile tile, int tigerPlacement)
 	{
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
@@ -3155,7 +3160,7 @@ public class HashBoard{
 		}
 
 		/**RETURN TIGER PLACEMENT**/
-		return potential;
+		return new ScorePotential(potential,placement);
 	}
 
 	public int ReturnTiger(){
