@@ -43,8 +43,7 @@ public class HashBoard{
 	//GameBoard Added
 	DisplayBoard gameBoard;
 
-	// Client Stuff
-	public TigerClient client;
+
 
 
 	public HashBoard(){
@@ -59,8 +58,7 @@ public class HashBoard{
 		ClaimedLake = new ArrayList<FeatureArea>();
 		ClaimedDens = new ArrayList<Den>();
 
-		// Cient Stuff
-		client = new TigerClient();
+
 
         
         gameBoard = new DisplayBoard();
@@ -193,6 +191,8 @@ public class HashBoard{
         int tigerLocation = 0;
         Position best = new Position(0,0);
         int rot = 0;
+		int placement = 0;
+		int owner = 0;
         
         //Initialize a Move struct to send to server
         Move bestMove = new Move();
@@ -207,7 +207,8 @@ public class HashBoard{
                 {
                     
                     //addTile(pos, t, tiger);
-                    currScore = getMoveScore(pos, t, tigerLocation); // need to update with scoring method
+					ScorePotential holder = getMoveScore(pos, t, tigerLocation);
+                    currScore = holder.score; // need to update with scoring method
                     if(currScore > bestScore)
                     {
                         System.out.println("UPDATED SCORE: " + bestScore + " to " + currScore);
@@ -215,6 +216,8 @@ public class HashBoard{
                         rot = t.getRotation();
                         bestScore = currScore;
                         bestMove = new Move();
+						owner=1;
+						placement=holder.placement;
                         //addTile(best, t, tiger);
                         //return bestMove;
                     }
@@ -231,16 +234,13 @@ public class HashBoard{
         // case: tile is not valid on current board
         if(bestMove == null)
         {
-
+        	bestMove.passOnTile(t);
             // tile is not placeable on board, so pass
-            //Player.passOnTile(t);
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+			// String tile = t.getDescription();
+			// String gid = client.getGID();
 
-			//String tile = t.getDescription();
-			//String gid = client.getGID();
-
-			// String serverMessage = server.moveProtocol(4, gid, tile, 0, 0, 0, 0);
-			// return serverMessage;
+			// String serverMessage = client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
+			//return serverMessage;
 
 			//client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
 
@@ -254,6 +254,7 @@ public class HashBoard{
             t.rotate();
         }
         
+<<<<<<< HEAD
         addTile(best, t, tiger);
         bestMove.t = t.getDescription();
         bestMove.x = best.getXPosition();
@@ -265,6 +266,9 @@ public class HashBoard{
         	bestMove.zone = tiger.getTigerPlacement();
         }
         	
+=======
+        addTile(best, t, new Tiger(owner,placement));
+>>>>>>> fb82384ebd6dc3361b78f2758690e864569a1c43
         return bestMove;
     }
     
@@ -1653,7 +1657,7 @@ public class HashBoard{
 	
 	
 		
-	public int getMoveScore(Position pos, Tile tile, int tigerPlacement)
+	public ScorePotential getMoveScore(Position pos, Tile tile, int tigerPlacement)
 	{
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
@@ -3167,7 +3171,7 @@ public class HashBoard{
 		}
 
 		/**RETURN TIGER PLACEMENT**/
-		return potential;
+		return new ScorePotential(potential,placement);
 	}
 
 	public int ReturnTiger(){
@@ -3222,6 +3226,7 @@ public class HashBoard{
 
 	/**TESTING FUNCTIONS BELOW**/
 	public void printLake(){
+		System.out.println("Here");
 		for(FeatureArea lake : Lake){
 			System.out.println();
 			System.out.println("Lake Coordinates:");
@@ -3236,6 +3241,7 @@ public class HashBoard{
 	}
 
 	public void printTrail(){
+		System.out.println("There");
 		for(FeatureArea trail : Trail){
 			System.out.println();
 			System.out.println("Trail Coordinates:");
