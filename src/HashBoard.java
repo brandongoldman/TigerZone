@@ -1681,11 +1681,34 @@ public class HashBoard{
 		Boundary checkTop = new Boundary(top,3);
 		Boundary checkBottom = new Boundary(bottom,1);
 
+		ArrayList<FeatureArea> Trailcopy = new ArrayList<FeatureArea>();
+		Trailcopy.addAll(Trail);
+		//for(FeatureArea hold : Trail){
+		//	Trailcopy.add(hold.clone());
+		//}
+		ArrayList<FeatureArea> Lakecopy = new ArrayList<FeatureArea>();
+		Lakecopy.addAll(Lake);
+		//for(FeatureArea hold : Lake){
+		//	Lakecopy.add(hold.clone());
+		//}
+		ArrayList<FeatureArea> ClaimedTrailcopy = new ArrayList<FeatureArea>();
+		ClaimedTrailcopy.addAll(ClaimedTrail);
+		//for(FeatureArea hold : ClaimedLake){
+		//	ClaimedTrailcopy.add(hold.clone());
+		//}
+		ArrayList<FeatureArea> ClaimedLakecopy = new ArrayList<FeatureArea>();
+		ClaimedLakecopy.addAll(ClaimedLake);
+		//for(FeatureArea hold : ClaimedTrail){
+		//	ClaimedLakecopy.add(hold.clone());
+		//}
+
+
+
 		/**RightArea**/
 		if(gBoard.containsKey(right)){
 			FeatureArea holder;
 			if(tile.getEdgeR()==2){
-				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+				for(Iterator<FeatureArea> check=Lakecopy.iterator(); check.hasNext(); ){
 					holder=check.next();
 					if(holder.openBoundary.contains(checkRight)){
 						RightArea=holder;
@@ -1694,7 +1717,7 @@ public class HashBoard{
 					}
 				}
 				if(!foundR) {
-					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext(); ) {
+					for (Iterator<FeatureArea> check=ClaimedLakecopy.iterator(); check.hasNext(); ) {
 						holder=check.next();
 						if (holder.openBoundary.contains(checkRight)) {
 							RightArea = holder;
@@ -1706,7 +1729,7 @@ public class HashBoard{
 
 			}
 			else if (tile.getEdgeR()==1){
-				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+				for(Iterator<FeatureArea> check=Trailcopy.iterator(); check.hasNext();){
 					holder=check.next();
 					if(holder.openBoundary.contains(checkRight)){
 						RightArea=holder;
@@ -1715,7 +1738,7 @@ public class HashBoard{
 					}
 				}
 				if(!foundR) {
-					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+					for (Iterator<FeatureArea> check=ClaimedTrailcopy.iterator(); check.hasNext();) {
 						holder=check.next();
 						if (holder.openBoundary.contains(checkRight)) {
 							RightArea = holder;
@@ -1737,7 +1760,7 @@ public class HashBoard{
 		if(gBoard.containsKey(left)){
 			FeatureArea holder;
 			if(tile.getEdgeL()==2){
-				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+				for(Iterator<FeatureArea> check=Lakecopy.iterator(); check.hasNext(); ){
 					holder=check.next();
 					if(holder.openBoundary.contains(checkLeft)){
 						LeftArea=holder;
@@ -1746,7 +1769,7 @@ public class HashBoard{
 					}
 				}
 				if(!foundL) {
-					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+					for (Iterator<FeatureArea> check=ClaimedLakecopy.iterator(); check.hasNext();) {
 						holder=check.next();
 						if (holder.openBoundary.contains(checkLeft)) {
 							LeftArea = holder;
@@ -1757,7 +1780,7 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeL()==1){
-				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+				for(Iterator<FeatureArea> check=Trailcopy.iterator(); check.hasNext();){
 					holder=check.next();
 					if(holder.openBoundary.contains(checkLeft)){
 						LeftArea=holder;
@@ -1766,7 +1789,7 @@ public class HashBoard{
 					}
 				}
 				if(!foundL) {
-					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+					for (Iterator<FeatureArea> check=ClaimedTrailcopy.iterator(); check.hasNext();) {
 						holder=check.next();
 						if (holder.openBoundary.contains(checkLeft)) {
 							LeftArea = holder;
@@ -1789,7 +1812,7 @@ public class HashBoard{
 		if(gBoard.containsKey(top)){
 			FeatureArea holder;
 			if(tile.getEdgeT()==2){
-				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+				for(Iterator<FeatureArea> check=Lakecopy.iterator(); check.hasNext(); ){
 					holder=check.next();
 					if(holder.openBoundary.contains(checkTop)){
 						TopArea=holder;
@@ -1798,7 +1821,7 @@ public class HashBoard{
 					}
 				}
 				if(!foundT) {
-					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+					for (Iterator<FeatureArea> check=ClaimedLakecopy.iterator(); check.hasNext();) {
 						holder=check.next();
 						if (holder.openBoundary.contains(checkTop)) {
 							TopArea = holder;
@@ -1809,7 +1832,7 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeT()==1){
-				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+				for(Iterator<FeatureArea> check=Trailcopy.iterator(); check.hasNext();){
 					holder=check.next();
 					if(holder.openBoundary.contains(checkTop)){
 						TopArea=holder;
@@ -1818,7 +1841,7 @@ public class HashBoard{
 					}
 				}
 				if(!foundT) {
-					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+					for (Iterator<FeatureArea> check=ClaimedTrailcopy.iterator(); check.hasNext();) {
 						holder=check.next();
 						if (holder.openBoundary.contains(checkTop)) {
 							TopArea = holder;
@@ -1841,7 +1864,7 @@ public class HashBoard{
 		if(gBoard.containsKey(bottom)){
 			FeatureArea holder;
 			if(tile.getEdgeB()==2){
-				for(Iterator<FeatureArea> check=Lake.iterator(); check.hasNext(); ){
+				for(Iterator<FeatureArea> check=Lakecopy.iterator(); check.hasNext(); ){
 					holder=check.next();
 					if(holder.openBoundary.contains(checkBottom)){
 						BottomArea=holder;
@@ -1850,7 +1873,7 @@ public class HashBoard{
 					}
 				}
 				if(!foundB) {
-					for (Iterator<FeatureArea> check=ClaimedLake.iterator(); check.hasNext();) {
+					for (Iterator<FeatureArea> check=ClaimedLakecopy.iterator(); check.hasNext();) {
 						holder=check.next();
 						if (holder.openBoundary.contains(checkBottom)) {
 							BottomArea = holder;
@@ -1861,7 +1884,7 @@ public class HashBoard{
 				}
 			}
 			else if (tile.getEdgeB()==1){
-				for(Iterator<FeatureArea> check=Trail.iterator(); check.hasNext();){
+				for(Iterator<FeatureArea> check=Trailcopy.iterator(); check.hasNext();){
 					holder=check.next();
 					if(holder.openBoundary.contains(checkBottom)){
 						BottomArea=holder;
@@ -1870,7 +1893,7 @@ public class HashBoard{
 					}
 				}
 				if(!foundB) {
-					for (Iterator<FeatureArea> check=ClaimedTrail.iterator(); check.hasNext();) {
+					for (Iterator<FeatureArea> check=ClaimedTrailcopy.iterator(); check.hasNext();) {
 						holder=check.next();
 						if (holder.openBoundary.contains(checkBottom)) {
 							BottomArea = holder;

@@ -1,6 +1,7 @@
 /**
  * Created by David on 11/22/2016.
  */
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList;
@@ -39,6 +40,20 @@ public class FeatureArea {
         numOfCrocs=numOfCrocs+number;
         hasCrocodile=true;
     }
+
+    protected FeatureArea clone() {
+        FeatureArea clone = null;
+        try{
+            clone = (FeatureArea) super.clone();
+        }
+        catch(CloneNotSupportedException e){
+            throw new RuntimeException(e);
+        }
+        return clone;
+
+    }
+
+
 
     public boolean getCompleted(){
         return completed;
