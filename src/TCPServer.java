@@ -67,7 +67,7 @@ public class TCPServer
 	                    	
 	                    	username = tokens[2];            		
 	                		
-	                		
+	                		// send back “I am ” with username and password  
 	                		out.printf("WELCOME %s PLEASE WAIT FOR THE NEXT CHALLENGE\n", username);
 	                		
 	                		Thread.sleep(10000);
