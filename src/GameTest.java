@@ -180,6 +180,9 @@ public class GameTest{
 		//board.printLake();
 		//board.printTrail();
 
+        board.printLake();
+        board.printTrail();
+
 		System.out.println("Test A Ends");
 
 		System.out.println("==================================================================");

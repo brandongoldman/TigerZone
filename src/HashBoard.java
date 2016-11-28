@@ -3210,6 +3210,7 @@ public class HashBoard{
 
 	/**TESTING FUNCTIONS BELOW**/
 	public void printLake(){
+		System.out.println("Here");
 		for(FeatureArea lake : Lake){
 			System.out.println();
 			System.out.println("Lake Coordinates:");
@@ -3224,6 +3225,7 @@ public class HashBoard{
 	}
 
 	public void printTrail(){
+		System.out.println("There");
 		for(FeatureArea trail : Trail){
 			System.out.println();
 			System.out.println("Trail Coordinates:");
