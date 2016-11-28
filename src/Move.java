@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.Exception;
 
 public class Move
 {
@@ -11,9 +12,15 @@ public class Move
 
 	String messageToServer;
 
+	// Client Stuff
+	public TigerClient client;
+	String gid;
+
+
 	public Move()
 	{
-		// stuff
+		// Cient Stuff
+		client = new TigerClient();
 	}
 
 	public String prepForServerZone(String t, int x, int y, int rotation, String special, int zone)
@@ -26,6 +33,22 @@ public class Move
 	{
 		messageToServer = t + " " + x + " " + y + " " + rotation + " " + special;
 		return messageToServer;
+	}
+
+	// type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS
+	public String passOnTile(Tile t, String tileDescription, String gid)
+	{
+		tileDescription = t.getDescription();
+		try
+		{
+			gid = client.getGID();
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		};
+
+		String messageToServer = "GAME " + gid + " TILE " + tileDescription + " UNPLACEABLE PASS";
+		return messageToServer; 
 	}
 
 
