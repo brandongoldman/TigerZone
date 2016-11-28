@@ -7,7 +7,6 @@ public class MatchParam
 	private int startingTileY;
 	private int orientation;
 	private int numOfTiles;
-	public String[] tiles = new String[77];	
 	private int time;       // seconds the time to the beginning of the Match
 	
 	
@@ -95,3 +94,4 @@ public class MatchParam
 	
 	
 }
+
