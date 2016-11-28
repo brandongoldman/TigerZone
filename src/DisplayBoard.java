@@ -166,7 +166,7 @@ public class DisplayBoard extends JPanel
         int f = TranslateTile(t);
         
         int newX = xCord + mapLength/2;
-        int newY = yCord + mapWidth/2;
+        int newY = (-1*yCord) + mapWidth/2;
         
         if(newX <= mapLength && newY <= mapWidth){
             //int degrees = rotates;
