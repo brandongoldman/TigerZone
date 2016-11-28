@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.Random;
 
-
 public class Tile {
 
 	//Private Variables
@@ -232,11 +231,10 @@ public class Tile {
 	public ArrayList<HashSet<Integer>> connectedLakes(){
 
 		ArrayList<HashSet<Integer>> lakeSet = new ArrayList<HashSet<Integer>>();
-		HashSet<Integer> lset;
+		HashSet<Integer> lset = new HashSet<Integer>();;
 
 		for(int i=0; i < miniZones.length; i++){
 
-			lset = new HashSet<Integer>();
 
 			for(int j=0; j < miniZones[i].length; j++){
 
@@ -319,10 +317,10 @@ public class Tile {
 					}
 				}
 
-				if(!lakeSet.contains(lset) && !lset.isEmpty()){
-					lakeSet.add(lset);
-				}
+			}
 
+			if(!lakeSet.contains(lset) && !lset.isEmpty()){
+				lakeSet.add(lset);
 			}
 
 		}
@@ -482,7 +480,7 @@ public class Tile {
 	public static void main(String[] args){
 
 		TileInterpreter ti = new TileInterpreter();
-		Tile tile = ti.interpret("JLJL-");
+		Tile tile = ti.interpret("TLLL-");
 
 		System.out.println("================================================");
 		System.out.println("Finding Connected Lakes");
@@ -490,7 +488,7 @@ public class Tile {
 		ArrayList <HashSet<Integer>> tile1;
 		Iterator <HashSet<Integer>> it1;
 
-		if(tile.description == "JLJL-" || tile.description == "LJLJ-"){
+		if(tile.description.equals("JLLJ-") || tile.description.equals("LJLJ-")){
 			tile1 = tile.specialConnectedLakes();
 			it1 = tile1.iterator();
 		} else {
