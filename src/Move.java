@@ -26,7 +26,7 @@ public class Move
 	public String toString()
 	{
 		if (this.special.equals("NONE")) return ("GAME " + this.gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE");
-		else return ("GAME " + this.gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " TIGER " + this.zone);
+        else return ("GAME " + this.gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE ");//" TIGER " + this.zone);
 	}
 
 	// type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS

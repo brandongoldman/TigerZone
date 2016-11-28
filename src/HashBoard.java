@@ -270,7 +270,7 @@ public class HashBoard{
         }
         
         addTile(best, t, new Tiger(0,0));
-        System.out.println(bestMove.toString());
+        //System.out.println(bestMove.toString());
         return bestMove;
     }
     

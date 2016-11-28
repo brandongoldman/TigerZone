@@ -70,15 +70,15 @@ public class TCPServer
 	                		  
 	                		out.printf("WELCOME %s PLEASE WAIT FOR THE NEXT CHALLENGE\n", username);
 	                		
-	                		Thread.sleep(10000);
+	                		Thread.sleep(2000);
 	                			                			                		               		
 	                		out.println("NEW CHALLENGE 1 YOU WILL PLAY 2 MATCHES");
 	                		
-	                		Thread.sleep(5000);
+	                		Thread.sleep(2000);
 	                		
 	                		out.println("BEGIN ROUND 1 of 2");
 	                		
-	                		Thread.sleep(5000);
+	                		Thread.sleep(2000);
 	                		
 	                		out.println("YOUR OPPONENT IS PLAYER Blue");
 	                		
@@ -88,9 +88,9 @@ public class TCPServer
 	                		
 	                		out.println("MATCH BEGINS IN 15 SECONDS");
 	                		
-	                		Thread.sleep(15000);
+	                		Thread.sleep(2000);
 	                		
-	                		out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 1 PLACE <tile>");
+	                		out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 1 PLACE TLLT-");
 	                		
 	                		
 	                	}  

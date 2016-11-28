@@ -314,6 +314,43 @@ public class TigerClient
     	return match;
     }
     
+    public String[] GetShit() throws IOException
+    {
+        
+        String response;
+
+        String info[] = new String[2];
+        boolean makeMove = false;
+        
+        while(makeMove == false)
+        {
+            response = in.readLine();
+            
+            if (response.startsWith("MAKE"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                
+                info[0] = tokens[5]; //gid
+                info[1] = tokens[12]; //tile
+                //System.out.println(info[1]);
+                
+                makeMove = true;
+            }
+            else if (response != null)
+            {
+                // Invalid or unexpected response
+                return null;
+            }
+            
+        }
+        
+        return info;
+    }
+    
+    
     
     public String getGID() throws IOException
     {
@@ -331,8 +368,9 @@ public class TigerClient
     			
     			String delims = "[ ]";
             	String[] tokens = response.split(delims);
-            	
+                System.out.println(tokens[1] + " " + tokens[2] + " " + tokens[3] + " " + tokens[4] + " " + tokens[5] + " " +  tokens[6] + " "  + tokens[7] + " " +  tokens[8] + " " + tokens[9] + " " + tokens[10] + " " +  tokens[11] + " " + tokens[12]);
             	gid = tokens[5];
+                
     			
             	makeMove = true;
     		}
@@ -371,6 +409,15 @@ public class TigerClient
     public static void main(String[] args) throws IOException 
     {
     	TigerClient client = new TigerClient();
+        HashBoard board = new HashBoard();
+        TileInterpreter ti = new TileInterpreter();
+        Tiger tiger = new Tiger();
+        
+        
+        //Tile tile = ti.interpret("TLLT-");
+        
+        //board.FindBestMove(tile,tiger);
+
     	
 		//String username = "Red";
     	//String password = "Obiwan77";
@@ -454,16 +501,31 @@ public class TigerClient
     		
     		//player.client.moveProtocol(1, A, tile, x, y, orientation, zone)
     		
-    		String gid = client.getGID();
+    		//String gid = client.getGID();
+            String gid = client.GetShit()[0];
+            //String tile = client.GetShit()[1];
+            
+            //System.out.println(gid);
     		
-    		System.out.printf("Game: %s", gid);
+    		System.out.printf("Game: %s", gid); //whenever i do anything else here it freezes
+            //System.out.println(tile);
     		
     		// TODO: Add logic to start making moves in the game.  Beyond scope of the client
+            
+            //String tile = client.getTile();
+            //System.out.printf(tile);
+            //Tile tile = ti.interpret(client.GetShit()[1]);
+            //board.FindBestMove(tile, tiger);
+
     		
     	}
     	
     	while(true)
     	{
+            Tile tile = ti.interpret(client.GetShit()[1]);
+            board.FindBestMove(tile, tiger);
+            //String tile = client.getTile();
+            //System.out.printf(tile);
     		// Sit here 	
     	}
     	
