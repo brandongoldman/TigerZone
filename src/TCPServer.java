@@ -84,14 +84,17 @@ public class TCPServer
 	                		
 	                		out.println("STARTING TILE IS TLTJ- AT 0 0 0");
 	                		
-	                		out.println("THE REMAINDING 3 tiles are [ TTTT- JJJJ- TLLT- ]");
+	                		out.println("THE REMAINDING 2 tiles are [ TTTT- JJJJ- ]");
 	                		
 	                		out.println("MATCH BEGINS IN 15 SECONDS");
 	                		
 	                		Thread.sleep(2000);
 	                		
 	                		out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 1 PLACE TLLT-");
-	                		
+                            Thread.sleep(2000);
+                            
+                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 2 PLACE JJJJ-");
+                          
 	                		
 	                	}  
 	                	

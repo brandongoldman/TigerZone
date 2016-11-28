@@ -200,7 +200,39 @@ public class TigerClient
     	out.println(moveString);
     	
     }
+    
+    public boolean RoundEnd() throws IOException
+    {
+        String response;
+        boolean round = false;
         
+        while(round == false)
+        {
+            response = in.readLine();
+            
+            if (response.startsWith("END"))
+            {
+                System.out.println(response);
+                
+               // String delims = "[ ]";
+                //String[] tokens = response.split(delims);
+                //gid = tokens[5];
+                
+                
+                round = true;
+                return true;
+            }
+            else if (response != null)
+            {
+                // Invalid or unexpected response
+                return false;
+            }
+            
+        }
+        
+        return false;
+    }
+    
     public int roundProtocol() throws IOException
     {
     	String response;
@@ -285,6 +317,11 @@ public class TigerClient
     		{
     			
     			System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                
+                numOfTiles = Integer.parseInt(tokens[2]);
     		
     		}
     		
@@ -319,7 +356,7 @@ public class TigerClient
         
         String response;
 
-        String info[] = new String[2];
+        String info[] = new String[3];
         boolean makeMove = false;
         
         while(makeMove == false)
@@ -334,7 +371,9 @@ public class TigerClient
                 String[] tokens = response.split(delims);
                 
                 info[0] = tokens[5]; //gid
+                
                 info[1] = tokens[12]; //tile
+                info[2] = tokens[10]; //MOVE
                 //System.out.println(info[1]);
                 
                 makeMove = true;
@@ -350,27 +389,70 @@ public class TigerClient
         return info;
     }
     
-    
-    
     public String getGID() throws IOException
     {
+        String response;
+        String gid = null;
+        boolean makeMove = false;
+        
+        while(makeMove == false)
+        {
+            response = in.readLine();
+            
+            if (response.startsWith("MAKE"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                //System.out.println(tokens[1] + " " + tokens[2] + " " + tokens[3] + " " + tokens[4] + " " + tokens[5] + " " +  tokens[6] + " "  + tokens[7] + " " +  tokens[8] + " " + tokens[9] + " " + tokens[10] + " " +  tokens[11] + " " + tokens[12]);
+                //gid = tokens[5];
+                
+                
+                makeMove = true;
+            }
+            else if (response != null)
+            {
+                // Invalid or unexpected response
+                return null;
+            }
+            
+        }
+        
+        return gid;
+    }
+
+    
+    
+    public String[] GetOtherMove() throws IOException
+    {
     	String response;
-    	String gid = null;
+        String msg[] = new String[6];
+    	/*String gid = null;
+        String move = null;
+        String tile = null;
+        String x = null;
+        String y = null;
+        String ori = null;*/
+        
     	boolean makeMove = false;
     	
     	while(makeMove == false)
     	{
     		response = in.readLine();
     		
-    		if (response.startsWith("MAKE"))
+    		if (response.startsWith("GAME"))
     		{
     			System.out.println(response);
     			
     			String delims = "[ ]";
             	String[] tokens = response.split(delims);
-                System.out.println(tokens[1] + " " + tokens[2] + " " + tokens[3] + " " + tokens[4] + " " + tokens[5] + " " +  tokens[6] + " "  + tokens[7] + " " +  tokens[8] + " " + tokens[9] + " " + tokens[10] + " " +  tokens[11] + " " + tokens[12]);
-            	gid = tokens[5];
-                
+                msg[0] = tokens[1]; //other gid
+            	msg[1] = tokens[5]; //move
+                msg[2] = tokens[7]; //tile
+                msg[3] = tokens[9]; //x
+                msg[4] = tokens[10]; //y
+                msg[5] = tokens[11]; //ori
     			
             	makeMove = true;
     		}
@@ -382,7 +464,7 @@ public class TigerClient
     	
     	}
     	
-    	return gid;
+    	return msg;
     }
     
     
@@ -413,6 +495,8 @@ public class TigerClient
         TileInterpreter ti = new TileInterpreter();
         Tiger tiger = new Tiger();
         
+         Move bestMove = new Move();
+        //bestMove.setGID();
         
         //Tile tile = ti.interpret("TLLT-");
         
@@ -443,7 +527,10 @@ public class TigerClient
         {
         	System.out.println("I am null?");
         }
+       
         */
+      
+        
         
         if (client.connect(serverAdx, port) == false)
         {
@@ -479,9 +566,10 @@ public class TigerClient
     	int time = 0; 
     	
     	MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
-    	
-    	for(int i = 0; i < rounds; i++)
-    	{
+
+            
+        
+       
     		// Rounds Protocol
     		
     		// Begin rounds
@@ -490,6 +578,10 @@ public class TigerClient
     		// Start Match
     		
     		match = client.matchProtocol();
+            int turns = match.getNumOfTiles();
+            System.out.println(turns);
+            for(int i = 0; i < turns; i++)
+            {
     		
     		//System.out.printf("Opponent is : %s\n", match.getOpponent());
     		//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
@@ -500,35 +592,57 @@ public class TigerClient
     		//System.out.printf("Match time : %d\n", match.getTime());	
     		
     		//player.client.moveProtocol(1, A, tile, x, y, orientation, zone)
+                
+               /* String[] info = client.GetOtherMove();
+                String gid = info[0];
+                String move = info[1];
+                String tileOther = info[2];
+                Sring x = info[3];
+                String y = info[4];
+                String ori = info[5];*/
     		
     		//String gid = client.getGID();
-            String gid = client.GetShit()[0];
             //String tile = client.GetShit()[1];
             
+            //while(!client.RoundEnd()){
+                
+            String[] both = client.GetShit();
+            System.out.println(both);
+            
+            int move = Integer.parseInt(both[2]);
+            String gid = both[0];
+            String tile = both[1];
+            
             //System.out.println(gid);
-    		
-    		System.out.printf("Game: %s", gid); //whenever i do anything else here it freezes
-            //System.out.println(tile);
+            
+            System.out.printf("Game: %s", gid); //whenever i do anything else here it freezes
+            System.out.println(tile);
+
+           
     		
     		// TODO: Add logic to start making moves in the game.  Beyond scope of the client
             
             //String tile = client.getTile();
             //System.out.printf(tile);
-            //Tile tile = ti.interpret(client.GetShit()[1]);
-            //board.FindBestMove(tile, tiger);
+            Tile tile1 = ti.interpret(tile);
+            bestMove = board.FindBestMove(tile1, tiger);
+            System.out.println(bestMove.toString());
+            client.sendToServer(bestMove.toString());
+            //Position pos = new Position(x,y);
+            //board.gBoard.put(pos,tileOther);
+            
+            
+                
+            }
 
     		
-    	}
     	
-    	while(true)
-    	{
-            Tile tile = ti.interpret(client.GetShit()[1]);
-            board.FindBestMove(tile, tiger);
-            //String tile = client.getTile();
-            //System.out.printf(tile);
-    		// Sit here 	
-    	}
+    	
+            while(true){
+                
+            }
     	
     }
   
+        
 }
