@@ -234,7 +234,7 @@ public class HashBoard{
         // case: tile is not valid on current board
         if(bestMove == null)
         {
-
+        	bestMove.passOnTile(t);
             // tile is not placeable on board, so pass
 			// String tile = t.getDescription();
 			// String gid = client.getGID();

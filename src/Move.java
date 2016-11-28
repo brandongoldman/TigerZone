@@ -36,12 +36,12 @@ public class Move
 	}
 
 	// type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS
-	public String passOnTile(Tile t, String tileDescription, String gid)
+	public String passOnTile(Tile t)
 	{
-		tileDescription = t.getDescription();
+		String tileDescription = t.getDescription();
 		try
 		{
-			gid = client.getGID();
+			String gid = client.getGID();
 		}
 		catch (Exception e){
 			e.printStackTrace();
