@@ -406,7 +406,7 @@ public class TigerClient
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
                 //System.out.println(tokens[1] + " " + tokens[2] + " " + tokens[3] + " " + tokens[4] + " " + tokens[5] + " " +  tokens[6] + " "  + tokens[7] + " " +  tokens[8] + " " + tokens[9] + " " + tokens[10] + " " +  tokens[11] + " " + tokens[12]);
-                //gid = tokens[5];
+                gid = tokens[5];
                 
                 
                 makeMove = true;
@@ -414,7 +414,7 @@ public class TigerClient
             else if (response != null)
             {
                 // Invalid or unexpected response
-                return null;
+                return gid;
             }
             
         }
