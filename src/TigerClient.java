@@ -1,6 +1,6 @@
 /**********************************************************************
   Created by Alex Krepacki
-  “TigerClient” Class will establish a socket connection to the server using a provided IP address and port number. 
+  TigerClient Class will establish a socket connection to the server using a provided IP address and port number.
   The TigerClient will listen on then socket for messages from the server. 
   The client will provide an output stream for which messages will be sent to the server.
 
@@ -94,7 +94,7 @@ public class TigerClient
             	
             	System.out.println(response);
             	
-            	// send back “I am ” with username and password  
+            	// send back I am with username and password
             	out.printf("I AM %s %s\n", username, password);
             	
             }
@@ -377,7 +377,7 @@ public class TigerClient
     	//String tournamentPassword = "PersianRocks!";
     	String pid = null;
     	   	
-    	// Get IP address, if none provided use “localhost” 
+    	// Get IP address, if none provided use localhost
     	// args[0] = server Address
     	// args[1] = port
     	// args[2] = tournament password
