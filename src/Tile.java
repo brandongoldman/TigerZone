@@ -384,8 +384,6 @@ public class Tile {
 				if(miniZones[i][j] == 2){
 					lset.add(currentPosition);
 
-					System.out.println(currentPosition);
-
 					if((i+1) < (miniZones.length - 1)){
 						if(miniZones[i+1][j] == 2){
 							if(!lset.contains(miniZones[i+1][j])){
@@ -453,6 +451,85 @@ public class Tile {
 
 	}
 
+
+	public ArrayList<HashSet<Integer>> connectedRoads(){
+
+		ArrayList<HashSet<Integer>> roadSet = new ArrayList<HashSet<Integer>>();
+		HashSet<Integer> rset;
+
+		for(int i=0; i < miniZones.length; i++){
+
+			rset = new HashSet<Integer>();
+
+			for(int j=0; j < miniZones[i].length; j++){
+
+				//	Getting the Current Position that
+				//	can be added to the Set
+
+				int currentPosition = 0;
+
+				if(i == 0 && j == 0){
+					currentPosition = 1;
+				}
+
+				else if(i == 0 && j == 1){
+					currentPosition = 2;
+				}
+
+				else if(i == 0 && j == 2){
+					currentPosition = 3;
+				}
+
+				else if(i == 1 && j == 0){
+					currentPosition = 4;
+				}
+
+				else if(i == 1 && j == 1){
+					currentPosition = 5;
+				}
+
+				else if(i == 1 && j == 2){
+					currentPosition = 6;
+				}
+
+				else if(i == 2 && j == 0){
+					currentPosition = 7;
+				}
+
+				else if(i == 2 && j == 1){
+					currentPosition = 8;
+				}
+
+				else if(i == 2 && j == 2){
+					currentPosition = 9;
+				}
+
+				if(miniZones[i][j] == 1){
+					rset.add(currentPosition);
+				}
+
+			}
+
+			if(!roadSet.contains(rset) && !rset.isEmpty()){
+				roadSet.add(rset);
+			}
+
+		}
+
+		ArrayList<HashSet<Integer>> completeRoadSet = new ArrayList<HashSet<Integer>>();
+		HashSet<Integer> union = new HashSet<Integer>();
+
+		for(int i=0; i < roadSet.size(); i++){
+				HashSet<Integer> set1 = roadSet.get(i);
+				union.addAll(set1);
+		}
+
+		completeRoadSet.add(union);
+
+		return completeRoadSet;
+
+	}
+
 	public void printMiniZone(){
 
 		HashSet<Integer> lset;
@@ -480,7 +557,7 @@ public class Tile {
 	public static void main(String[] args){
 
 		TileInterpreter ti = new TileInterpreter();
-		Tile tile = ti.interpret("TLLL-");
+		Tile tile = ti.interpret("TLLLC");
 
 		System.out.println("================================================");
 		System.out.println("Finding Connected Lakes");
@@ -501,6 +578,22 @@ public class Tile {
 		}
 
 		System.out.println("================================================");
+		System.out.println("Finding Connected Roads");
+
+
+		ArrayList <HashSet<Integer>> tile2 = tile.connectedRoads();
+		Iterator <HashSet<Integer>> it2 = tile2.iterator();
+
+		while (it2.hasNext()) {
+			System.out.println(it2.next());
+		}
+
+
+
+
+
+
+
 
 	}
 
