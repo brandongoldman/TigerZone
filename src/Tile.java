@@ -232,10 +232,11 @@ public class Tile {
 	public ArrayList<HashSet<Integer>> connectedLakes(){
 
 		ArrayList<HashSet<Integer>> lakeSet = new ArrayList<HashSet<Integer>>();
-		HashSet<Integer> lset = new HashSet<Integer>();
-
+		HashSet<Integer> lset;
 
 		for(int i=0; i < miniZones.length; i++){
+
+			lset = new HashSet<Integer>();
 
 			for(int j=0; j < miniZones[i].length; j++){
 
@@ -318,20 +319,145 @@ public class Tile {
 					}
 				}
 
-			}
+				if(!lakeSet.contains(lset) && !lset.isEmpty()){
+					lakeSet.add(lset);
+				}
 
-			if(!lakeSet.contains(lset)){
-				lakeSet.add(lset);
 			}
 
 		}
-
 
 		return lakeSet;
 
 	}
 
+	public ArrayList<HashSet<Integer>> specialConnectedLakes(){
+
+		ArrayList<HashSet<Integer>> lakeSet = new ArrayList<HashSet<Integer>>();
+		HashSet<Integer> lset;
+
+		for(int i=0; i < miniZones.length; i++){
+
+			lset = new HashSet<Integer>();
+
+			for(int j=0; j < miniZones[i].length; j++){
+
+				//	Getting the Current Position that
+				//	can be added to the Set
+
+				int currentPosition = 0;
+
+				if(i == 0 && j == 0){
+					currentPosition = 1;
+				}
+
+				else if(i == 0 && j == 1){
+					currentPosition = 2;
+				}
+
+				else if(i == 0 && j == 2){
+					currentPosition = 3;
+				}
+
+				else if(i == 1 && j == 0){
+					currentPosition = 4;
+				}
+
+				else if(i == 1 && j == 1){
+					currentPosition = 5;
+				}
+
+				else if(i == 1 && j == 2){
+					currentPosition = 6;
+				}
+
+				else if(i == 2 && j == 0){
+					currentPosition = 7;
+				}
+
+				else if(i == 2 && j == 1){
+					currentPosition = 8;
+				}
+
+				else if(i == 2 && j == 2){
+					currentPosition = 9;
+				}
+
+				if(miniZones[i][j] == 2){
+					lset.add(currentPosition);
+
+					System.out.println(currentPosition);
+
+					if((i+1) < (miniZones.length - 1)){
+						if(miniZones[i+1][j] == 2){
+							if(!lset.contains(miniZones[i+1][j])){
+								lset.add(currentPosition + 1);
+							}
+						}
+					}
+
+					else if((i-1) >= 0){
+						if(miniZones[i-1][j] == 2){
+							if(!lset.contains(miniZones[i-1][j])){
+								lset.add(currentPosition - 1);
+							}
+						}
+					}
+
+					else if((j+1) < (miniZones[i].length - 1)){
+						if(miniZones[i][j+1] == 2){
+							if(!lset.contains(miniZones[i][j+1])){
+								lset.add(currentPosition + 3);
+							}
+						}
+					}
+
+					else if((j-1) >= 0){
+						if(miniZones[i][j-1] == 2){
+							if(!lset.contains(miniZones[i][j-1])){
+								lset.add(currentPosition - 3);
+							}
+						}
+					}
+				}
+
+				if(!lakeSet.contains(lset) && !lset.isEmpty()){
+					lakeSet.add(lset);
+				}
+
+			}
+
+		}
+
+		ArrayList<HashSet<Integer>> completeLakeSet = new ArrayList<HashSet<Integer>>();
+
+		for(int i=0; i < lakeSet.size(); i++){
+			if(i + 1 < lakeSet.size()){
+				HashSet<Integer> set1 = lakeSet.get(i);
+				HashSet<Integer> set2 = lakeSet.get(i+1);
+				HashSet<Integer> intersection = new HashSet<Integer>(set1);
+
+				intersection.retainAll(set2);
+
+				if(!intersection.isEmpty()){
+					set1.addAll(set2);
+					completeLakeSet.add(set1);
+				} else {
+					completeLakeSet.add(set1);
+					completeLakeSet.add(set2);
+				}
+
+			}
+
+		}
+
+		return completeLakeSet;
+
+	}
+
 	public void printMiniZone(){
+
+		HashSet<Integer> lset;
 
 		for(int i=0; i < miniZones.length; i++){
 			for(int j=0; j < miniZones[i].length; j++){
@@ -356,13 +482,21 @@ public class Tile {
 	public static void main(String[] args){
 
 		TileInterpreter ti = new TileInterpreter();
-		Tile tile = ti.interpret("TLLLC");
+		Tile tile = ti.interpret("JLJL-");
 
 		System.out.println("================================================");
 		System.out.println("Finding Connected Lakes");
 
-		ArrayList <HashSet<Integer>> tile1 = tile.connectedLakes();
-		Iterator <HashSet<Integer>> it1 = tile1.iterator();
+		ArrayList <HashSet<Integer>> tile1;
+		Iterator <HashSet<Integer>> it1;
+
+		if(tile.description == "JLJL-" || tile.description == "LJLJ-"){
+			tile1 = tile.specialConnectedLakes();
+			it1 = tile1.iterator();
+		} else {
+			tile1 = tile.connectedLakes();
+			it1 = tile1.iterator();
+		}
 
 		while (it1.hasNext()) {
 			System.out.println(it1.next());
