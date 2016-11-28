@@ -2528,7 +2528,7 @@ public class HashBoard{
 		/**Calculate Score**/
 		int potential = 0;
 		int holder = 0;
-		int placement =0 ;
+		int placement = 0;
 		/**Calculate Potential Points for Top Feature**/
 		if(tile.getEdgeT()==2&&TopArea.areaCoor.size()>0) {
 			if (!TopArea.getHasTiger()) {
@@ -2538,12 +2538,50 @@ public class HashBoard{
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 2;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					} else {
 						holder = TopArea.areaCoor.size() * 2 * (1 + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 2;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					}
 				} else {
@@ -2551,13 +2589,51 @@ public class HashBoard{
 						holder = TopArea.areaCoor.size() * 1;
 						if (holder > potential) {
 							potential = holder;
-							placement=2;
+							/**UPDATE TIGER PLACEMENT**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 2;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					} else {
 						holder = TopArea.areaCoor.size() * (1 + TopArea.uniqueAnimal.size() - TopArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
-							placement=2;
+							/**UPDATE TIGER PLACEMENT**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 2;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					}
 				}
@@ -2590,12 +2666,50 @@ public class HashBoard{
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 6;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					} else {
 						holder = RightArea.areaCoor.size() * 2 * (1 + RightArea.uniqueAnimal.size() - RightArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 6;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					}
 				} else {
@@ -2604,12 +2718,50 @@ public class HashBoard{
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 6;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					} else {
 						holder = RightArea.areaCoor.size() * (1 + RightArea.uniqueAnimal.size() - RightArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 6;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					}
 				}
@@ -2643,12 +2795,50 @@ public class HashBoard{
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 8;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					} else {
 						holder = BottomArea.areaCoor.size() * 2 * (1 + BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 8;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					}
 				} else {
@@ -2657,12 +2847,50 @@ public class HashBoard{
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 8;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					} else {
 						holder = BottomArea.areaCoor.size() * (1 + BottomArea.uniqueAnimal.size() - BottomArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 8;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					}
 				}
@@ -2695,12 +2923,50 @@ public class HashBoard{
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 4;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					} else {
 						holder = LeftArea.areaCoor.size() * 2 * (1 + LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 4;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					}
 				} else {
@@ -2709,12 +2975,50 @@ public class HashBoard{
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 4;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					} else {
 						holder = LeftArea.areaCoor.size() * (1 + LeftArea.uniqueAnimal.size() - LeftArea.numOfCrocs);
 						if (holder > potential) {
 							potential = holder;
 							/**UPDATE TIGER LOCATION**/
+							ArrayList<HashSet<Integer>> mini;
+							if(tile.getDescription().equals("LJLJ-")||tile.getDescription().equals("JLLJ-")) {
+								mini = tile.specialConnectedLakes();
+							}
+							else{
+								mini = tile.connectedLakes();
+							}
+							int min = 4;
+							for(HashSet<Integer> miniVal : mini){
+								if(miniVal.contains(min)){
+									for(int x : miniVal){
+										if(x<min){
+											min=x;
+										}
+									}
+									break;
+								}
+							}
+							placement=min;
 						}
 					}
 				}
