@@ -195,7 +195,7 @@ public class HashBoard{
         int rot = 0;
         
         //Initialize a Move struct to send to server
-        Move bestMove = null;
+        Move bestMove = new Move();
         
         //For all four rotations
         for (int i = 0; i < 4; i++)
@@ -255,8 +255,20 @@ public class HashBoard{
         }
         
         addTile(best, t, tiger);
+        bestMove.t = t.getDescription();
+        bestMove.x = best.getXPosition();
+        bestMove.y = best.getYPosition();
+        bestMove.rotation = t.getRotation();
+        if (tiger == null) bestMove.special = "NONE";
+        else {
+        	bestMove.special = "TIGER";
+        	bestMove.zone = tiger.getTigerPlacement();
+        }
+        	
         return bestMove;
     }
+    
+
     
 
     
