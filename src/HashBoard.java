@@ -310,32 +310,32 @@ public class HashBoard{
 					y = 0;
 					break;
 				case 2:
-					x = 1;
-					y = 0;
-					break;
-				case 3:
-					x = 2;
-					y = 0;
-					break;
-				case 4:
 					x = 0;
 					y = 1;
+					break;
+				case 3:
+					x = 0;
+					y = 2;
+					break;
+				case 4:
+					x = 1;
+					y = 0;
 					break;
 				case 5:
 					x = 1;
 					y = 1;
 					break;
 				case 6:
-					x = 2;
-					y = 1;
-					break;
-				case 7:
-					x = 0;
-					y = 2;
-					break;
-				case 8:
 					x = 1;
 					y = 2;
+					break;
+				case 7:
+					x = 2;
+					y = 0;
+					break;
+				case 8:
+					x = 2;
+					y = 1;
 					break;
 				case 9:
 					x = 2;
@@ -351,6 +351,14 @@ public class HashBoard{
 			}
 			else if (minitile[x][y] == 55) {
 				tigerfeature = 55;
+			}
+		}
+		/**TEST**/
+		int[][] minitile = tile.getMiniZones();
+		for(int i = 0; i<3; i++){
+			System.out.println();
+			for(int j = 0; j<3; j++){
+				System.out.print(minitile[i][j] + " ");
 			}
 		}
 
@@ -785,6 +793,7 @@ public class HashBoard{
 		boolean R=false;
 		boolean B=false;
 		boolean L=false;
+		System.out.println(tigerfeature + " " + tiger.getOwner() + " " + tiger.getTigerPlacement() + "++++++++++++++++++++++++++++++++++++++++");
 
 		if(!skipT) {
 			if (tile.getEdgeT() == 2) {

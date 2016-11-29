@@ -183,6 +183,7 @@ public class Tile {
 	// ---- ROTATE COUNTER CLOCKWISE
 	public void rotate()
 	{
+
         //loading top minizones into temp
         int[] tempZones = new int[3];
         for(int x = 0; x < 3; x++){
