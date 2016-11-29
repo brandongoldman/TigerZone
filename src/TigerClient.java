@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 /* A client for the Tigerzone game */
 public class TigerClient 
@@ -596,36 +597,20 @@ public class TigerClient
             {//iterates every ROUND
             for(int i = 0; i < turns; i++) //interates per round every TURN
                 {
-    		
-
-            /*         
-
-
-                Hopefully write some initialization
-                code that can do all the stuff that is in
-                GameTest.java class
-
-                     */
-
-
-
-    		//System.out.printf("Opponent is : %s\n", match.getOpponent());
-    		//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
-    		//System.out.printf("Starting Tile X is : %d\n", match.getStartingTileX());
-    		//System.out.printf("Starting Tile Y is : %d\n", match.getStartingTileY());
-    		//System.out.printf("Orientation is : %d\n", match.getOrientation());
-    		//System.out.printf("Number of tiles are: %d\n", match.getNumOfTiles());
-    		//System.out.printf("Match time : %d\n", match.getTime());	
-
-    		
-    		//player.client.moveProtocol(1, A, tile, x, y, orientation, zone)
+            
+                    /*String response;
+                    Scanner input = new Scanner(System.in);
+                    response = input.readLine();
+                    if(response.startsWith("MAKE")){
+                        System.out.println("WHATTUP");
+                    }*/
+                    
+                    
                 
             //if(client.GetInfo() != null){
-                String[] both = client.GetInfo();
+            String[] both = client.GetInfo();
                     
-              //  System.out.println(both[0] + " " + both[1] + " " + both[2]);
-            //System.out.println(both);
-            
+
                 int move = Integer.parseInt(both[2]);
                 String gid = both[0];
                 String tile = both[1];
@@ -684,8 +669,8 @@ public class TigerClient
                             //System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
                             }
 
-                        
-                        Tile tile2 = ti.interpret(TileOther);
+                       
+                       /* Tile tile2 = ti.interpret(TileOther);
                         
                         for(int z = 0; z < (ori/90); z++){
                             tile2.rotate();
@@ -704,6 +689,7 @@ public class TigerClient
                             System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
 
                         }
+                        */
             }
                     
                     
