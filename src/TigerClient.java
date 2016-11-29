@@ -444,6 +444,17 @@ public class TigerClient
     		
     		match = client.matchProtocol();
     		
+            /*         
+
+
+                Hopefully write some initialization
+                code that can do all the stuff that is in
+                GameTest.java class
+
+                     */
+
+
+
     		//System.out.printf("Opponent is : %s\n", match.getOpponent());
     		//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
     		//System.out.printf("Starting Tile X is : %d\n", match.getStartingTileX());
