@@ -189,7 +189,7 @@ public class GameTest{
         
         //Tile tile24 = ti.interpret("LJTJD");
         //board.FindBestMove(tile24,tiger);
-        //*/
+        //
 		board.printLake();
 		board.printTrail();
         //board.printDen();

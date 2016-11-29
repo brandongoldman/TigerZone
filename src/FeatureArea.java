@@ -41,6 +41,31 @@ public class FeatureArea {
         hasCrocodile=true;
     }
 
+    public FeatureArea copy(){
+        FeatureArea copy = new FeatureArea();
+        for(Tiger t : tiger){
+            copy.tiger.add(new Tiger(t.getOwner(),t.getTigerPlacement()));
+        }
+        copy.numOfCrocs=this.numOfCrocs;
+        for(Position p : areaCoor){
+            copy.areaCoor.add(new Position(p.getXPosition(),p.getYPosition()));
+        }
+        for(Boundary b : openBoundary){
+            copy.openBoundary.add(new Boundary(new Position (b.position.getXPosition(), b.position.getYPosition()),b.edge));
+        }
+        for(Integer i : animal){
+            copy.animal.add(new Integer(i));
+        }
+        for(Integer i : uniqueAnimal){
+            copy.uniqueAnimal.add(new Integer(i));
+        }
+        copy.setHasAnimal(this.getHasAnimal());
+        copy.setCompleted(this.getCompleted());
+        copy.setHasTiger(this.getHasTiger());
+
+        return copy;
+    }
+
     protected FeatureArea clone() {
         FeatureArea clone = null;
         try{
