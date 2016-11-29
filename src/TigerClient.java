@@ -375,14 +375,17 @@ public class TigerClient
                 
                 info[1] = tokens[12]; //tile
                 info[2] = tokens[10]; //MOVE
+                //info[3] = "true";
                 
                 
                 makeMove = true;
             }
-            else if (response != null)
+            else// if (response == null)
             {
                 // Invalid or unexpected response
-                return null;
+                //info[3] = "false";
+                String empty[] = new String[0];
+                return empty;
             }
             
         }
@@ -467,10 +470,12 @@ public class TigerClient
     			
             	makeMove = true;
     		}
-    		else if (response != null)
+    		else// if (response != null)
     		{
     			// Invalid or unexpected response
-    			return null;
+    			//return null;
+                String empty[] = new String[0];
+                return empty;
     		}
     	
     	}
@@ -608,12 +613,14 @@ public class TigerClient
                     
                 
             //if(client.GetInfo() != null){
+        //if(client.GetInfo()[3].equals("true")){
             String[] both = client.GetInfo();
                     
-
-                int move = Integer.parseInt(both[2]);
-                String gid = both[0];
-                String tile = both[1];
+        if(both.length != 0){
+            
+            String gid = both[0];
+            String tile = both[1];
+            int move = Integer.parseInt(both[2]);
             
             if(gid.equals("A")){
                 Tile tile1 = ti.interpret(tile);
@@ -629,18 +636,19 @@ public class TigerClient
                 System.out.println(bestMove.toString(gid));
                 client.sendToServer(bestMove.toString(gid));
             }
-            
+        }
                     
             //if(client.GetOtherMove() == null){
             String[] info = client.GetOtherMove();
-                    
+                 
+            if(info.length != 0){
                     String moveMade = info[0];
                     String theirPID = info[3];
                     
                     //System.out.println(moveMade + " theirs: " + theirPID + "ours: " + pid);
                     
                     if((moveMade.equals("true")) && !(theirPID.equals(pid))){
-                        //System.out.println("WE MADE IT");
+                        System.out.println("WE MADE IT");
                         String OtherGid = info[1];
                         int OtherMove = Integer.parseInt(info[2]);
                         String OtherPid = info[3];
@@ -670,27 +678,8 @@ public class TigerClient
                             }
 
                        
-                       /* Tile tile2 = ti.interpret(TileOther);
-                        
-                        for(int z = 0; z < (ori/90); z++){
-                            tile2.rotate();
-                        }
-                        
-                        
-                        if (OtherGid == "A"){
-                            System.out.println("Yooooo");
-                            boardA.gBoard.put(new Position(x,y), tile2);
-                            System.out.println("TILE PLACED BOARD A");
-                            System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
-                        }
-                        else if (OtherGid == "B"){
-                            boardB.gBoard.put(new Position(x,y), tile2);
-                            System.out.println("TILE PLACED BOARD B");
-                            System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
-
-                        }
-                        */
             }
+                 }
                     
                     
  

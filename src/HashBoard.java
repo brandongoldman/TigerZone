@@ -273,7 +273,7 @@ public class HashBoard{
         	bestMove.zone = tiger.getTigerPlacement();
         }
         //System.out.println(best.getXPosition() + " " + best.getYPosition());
-        System.out.println("PLACEMENT:" + placement);
+        //System.out.println("PLACEMENT:" + placement);
         addTile(best, t, new Tiger(owner,placement));
         //System.out.println(bestMove.toString());
         return bestMove;
