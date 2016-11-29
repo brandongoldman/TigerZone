@@ -49,7 +49,7 @@ public class GameTest{
 		Tile tile = ti.interpret("LLLL-");
 		//board.addTile(new Position(0, 1), tile, tiger);		//	Outcome: Pass
         board.FindBestMove(tile,tiger);
-		/*
+		
         Tile tile2 = ti.interpret("JJJJX");
 		board.FindBestMove(tile2,tiger);		//	Outcome: Pass
 		
@@ -83,7 +83,7 @@ public class GameTest{
         
         Tile tile12 = ti.interpret("TLJT-");
         board.FindBestMove(tile12,tiger);
-        
+        /*
         Tile tile13 = ti.interpret("TLJTP");
         board.FindBestMove(tile13,tiger);
         
