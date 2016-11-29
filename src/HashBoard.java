@@ -268,7 +268,7 @@ public class HashBoard{
         	bestMove.special = "TIGER";
         	bestMove.zone = tiger.getTigerPlacement();
         }
-        
+        System.out.println("PLACEMENT:" + placement);
         addTile(best, t, new Tiger(owner,placement));
         //System.out.println(bestMove.toString());
         return bestMove;
@@ -2539,6 +2539,7 @@ public class HashBoard{
 					}
 				}
 			}
+		}
 
 			/**LEFT**/
 			if (!skipL) {
@@ -2590,7 +2591,7 @@ public class HashBoard{
 						}
 					}
 				}
-
+			}
 
 				/**Calculate Score**/
 
@@ -3188,8 +3189,7 @@ public class HashBoard{
 						}
 					}
 				}
-			}
-		}
+
 		return new ScorePotential(potential, placement);
 	}
 
@@ -3261,7 +3261,7 @@ public class HashBoard{
 
 	public void printTrail(){
 		System.out.println("There");
-		for(FeatureArea trail : ClaimedTrail){
+		for(FeatureArea trail : Trail){
 			System.out.println();
 			System.out.println("Trail Coordinates:");
 			for(Position pos : trail.areaCoor){
