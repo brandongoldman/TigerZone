@@ -46,11 +46,11 @@ public class GameTest{
         board.FindBestMove(tile2,tiger);*/
         
         Tiger tiger = new Tiger();
-		Tile tile = ti.interpret("TLLT-");
+		Tile tile = ti.interpret("LLLL-");
 		//board.addTile(new Position(0, 1), tile, tiger);		//	Outcome: Pass
         board.FindBestMove(tile,tiger);
 		
-        Tile tile2 = ti.interpret("TLJT-");
+        Tile tile2 = ti.interpret("JJJJX");
 		board.FindBestMove(tile2,tiger);		//	Outcome: Pass
 		
         
@@ -59,8 +59,8 @@ public class GameTest{
 		
         Tile tile4 = ti.interpret("LLJJ-");
 		board.FindBestMove(tile4,tiger);		//	Outcome: Pass
-		
-        Tile tile5 = ti.interpret("JJJJ-");
+
+        Tile tile5 = ti.interpret("JJJJX");
 		board.FindBestMove(tile5,tiger);		//	Outcome: Fail
 		
         Tile tile6 = ti.interpret("LLLL-");
@@ -83,7 +83,7 @@ public class GameTest{
         
         Tile tile12 = ti.interpret("TLJT-");
         board.FindBestMove(tile12,tiger);
-        
+        /*
         Tile tile13 = ti.interpret("TLJTP");
         board.FindBestMove(tile13,tiger);
         
@@ -176,7 +176,7 @@ public class GameTest{
         board.FindBestMove(tile41,tiger);
         
         Tile tile42 = ti.interpret("LJTJ-");
-        board.FindBestMove(tile42,tiger);
+        board.FindBestMove(tile42,tiger);*/
         
         //Tile tile21 = ti.interpret("JJJJX");
         //board.FindBestMove(tile21,tiger);
@@ -189,12 +189,11 @@ public class GameTest{
         
         //Tile tile24 = ti.interpret("LJTJD");
         //board.FindBestMove(tile24,tiger);
-        
-		//board.printLake();
-		//board.printTrail();
+        //
+		board.printLake();
+		board.printTrail();
+        //board.printDen();
 
-        //board.printLake();
-        //board.printTrail();
 
 		System.out.println("Test A Ends");
 
