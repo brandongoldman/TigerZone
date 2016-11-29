@@ -237,7 +237,7 @@ public class HashBoard{
         if(!validSpot)
         {
             System.out.println("TESTESTESTEST");
-            System.out.println(bestMove.passOnTile(t));
+            //System.out.println(bestMove.passOnTile(t));
             // tile is not placeable on board, so pass
 			// String tile = t.getDescription();
 			// String gid = client.getGID();
