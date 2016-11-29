@@ -13,15 +13,15 @@ public class Move
 	String messageToServer;
 
 	// Client Stuff
-	public TigerClient client;
-	String gid;
+	//public TigerClient client;
+	//String gid;
 
 
-	public Move()
-	{
+	//public Move()
+	//{
 		// Cient Stuff
-		client = new TigerClient();
-	}
+	//	client = new TigerClient();
+	//}
     
     /*public void setGID(){
         try
@@ -34,14 +34,14 @@ public class Move
         //return gid;
     }*/
 
-	public String toString()
+	public String toString(String gid)
 	{
-		if (this.special.equals("NONE")) return ("GAME " + /*this.gid*/"A" + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE");
-        else return ("GAME " + "A"/*this.gid*/ + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE ");//" TIGER " + this.zone);
+		if (this.special.equals("NONE")) return ("GAME " + gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE");
+        else return ("GAME " + gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE ");//" TIGER " + this.zone);
 	}
 
 	// type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS
-	public String passOnTile(Tile t)
+	public String passOnTile(Tile t, String gid)
 	{
 		String tileDescription = t.getDescription();
 		//try
@@ -52,7 +52,7 @@ public class Move
 		//	e.printStackTrace();
 		//};
 
-		String messageToServer = "GAME " + "A"/*gid*/ + " TILE " + tileDescription + " UNPLACEABLE PASS";
+		String messageToServer = "GAME " + gid + " TILE " + tileDescription + " UNPLACEABLE PASS";
 		return messageToServer; 
 		// ^^^^^ I NEED THAT STRING IN TIGERCLIENT!!!!!!!!!
 	}

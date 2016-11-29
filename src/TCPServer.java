@@ -72,7 +72,7 @@ public class TCPServer
 	                		
 	                		Thread.sleep(2000);
 	                			                			                		               		
-	                		out.println("NEW CHALLENGE 1 YOU WILL PLAY 2 MATCHES");
+	                		out.println("NEW CHALLENGE 1 YOU WILL PLAY 1 MATCHES");
 	                		
 	                		Thread.sleep(2000);
                             
@@ -95,11 +95,12 @@ public class TCPServer
 	                		Thread.sleep(2000);
 	                		
 	                		out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 1 PLACE TLLT-");
+                            
                             Thread.sleep(2000);
                             
-                            out.println("<REPEATS OUR MOVE>");
+                            out.println("GAME A MOVE 1 PLAYER Red PLACED TLLT- AT 1 0 180 NONE");
                             
-                            out.println("GAME B MOVE 1 PLAYER Blue PLACED TLTTP AT 0 1 90 TIGER 8");
+                            out.println("GAME B MOVE 1 PLAYER Blue PLACED TLLT- AT 0 1 90 TIGER 8");
                             
                             out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 2 PLACE LJTJ-");
                             

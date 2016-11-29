@@ -374,7 +374,7 @@ public class TigerClient
                 
                 info[1] = tokens[12]; //tile
                 info[2] = tokens[10]; //MOVE
-                //System.out.println(info[1]);
+                
                 
                 makeMove = true;
             }
@@ -427,7 +427,7 @@ public class TigerClient
     public String[] GetOtherMove() throws IOException
     {
     	String response;
-        String msg[] = new String[6];
+        String msg[] = new String[8];
     	/*String gid = null;
         String move = null;
         String tile = null;
@@ -447,12 +447,20 @@ public class TigerClient
     			
     			String delims = "[ ]";
             	String[] tokens = response.split(delims);
-                msg[0] = tokens[1]; //other gid
-            	msg[1] = tokens[5]; //move
-                msg[2] = tokens[7]; //tile
-                msg[3] = tokens[9]; //x
-                msg[4] = tokens[10]; //y
-                msg[5] = tokens[11]; //ori
+                
+                if(tokens[8] == "UNPLACEABLE"){
+                    msg [0] = "false";
+                }
+                else{
+                    msg[0] = "true";
+                    msg[1] = tokens[1]; //other gid
+                    msg[2] = tokens[3]; //move
+                    msg[3] = tokens[5]; //pid
+                    msg[4] = tokens[7]; //tile
+                    msg[5] = tokens[9]; //x
+                    msg[6] = tokens[10]; //y
+                    msg[7] = tokens[11]; //ori
+                }
     			
             	makeMove = true;
     		}
@@ -491,7 +499,8 @@ public class TigerClient
     public static void main(String[] args) throws IOException 
     {
     	TigerClient client = new TigerClient();
-        HashBoard board = new HashBoard();
+        HashBoard boardA = new HashBoard();
+        HashBoard boardB = new HashBoard();
         TileInterpreter ti = new TileInterpreter();
         Tiger tiger = new Tiger();
         
@@ -581,7 +590,7 @@ public class TigerClient
             int turns = match.getNumOfTiles();
             System.out.println(turns);
         
-        //for(int j = 0; j < rounds; j++)//iterates every ROUND
+        for(int j = 0; j < rounds; j++){//iterates every ROUND
             for(int i = 0; i < turns; i++) //interates per round every TURN
                 {
     		
@@ -606,20 +615,17 @@ public class TigerClient
     		
     		//player.client.moveProtocol(1, A, tile, x, y, orientation, zone)
                 
-               /* String[] info = client.GetOtherMove();
-                String gid = info[0];
-                String move = info[1];
-                String tileOther = info[2];
-                Sring x = info[3];
-                String y = info[4];
-                String ori = info[5];*/
-    		
+            
+                
+                    
     		//String gid = client.getGID();
             //String tile = client.GetShit()[1];
             
             //while(!client.RoundEnd()){
                 
             String[] both = client.GetInfo();
+                    
+            System.out.println(both[0] + " " + both[1] + " " + both[2]);
             //System.out.println(both);
             
             int move = Integer.parseInt(both[2]);
@@ -637,16 +643,60 @@ public class TigerClient
             
             //String tile = client.getTile();
             //System.out.printf(tile);
-            Tile tile1 = ti.interpret(tile);
-            bestMove = board.FindBestMove(tile1, tiger);
-            System.out.println(bestMove.toString());
-            client.sendToServer(bestMove.toString());
+            if(gid == "A"){
+                Tile tile1 = ti.interpret(tile);
+                bestMove = boardA.FindBestMove(tile1, tiger);
+                System.out.println(bestMove.toString(gid));
+                client.sendToServer(bestMove.toString(gid));
             //Position pos = new Position(x,y);
             //board.gBoard.put(pos,tileOther);
-            
-            
-                
             }
+            else{
+                Tile tile1 = ti.interpret(tile);
+                bestMove = boardB.FindBestMove(tile1, tiger);
+                System.out.println(bestMove.toString(gid));
+                client.sendToServer(bestMove.toString(gid));
+            }
+                    
+            String[] info = client.GetOtherMove();
+                    
+                    if(info[0] == "true" && info[3] != pid){
+                        String OtherGid = info[1];
+                        int OtherMove = Integer.parseInt(info[2]);
+                        String OtherPid = info[3];
+                        String TileOther = info[4];
+                        int x = Integer.parseInt(info[5]);
+                        int y = Integer.parseInt(info[6]);
+                        int ori = Integer.parseInt(info[7]);
+                        
+                        Tile tile2 = ti.interpret(TileOther);
+                        
+                        for(int z = 0; z < (ori/90); z++){
+                            tile2.rotate();
+                        }
+                        
+                        
+                        if (OtherGid == "A"){
+                            boardA.gBoard.put(new Position(x,y), tile2);
+                            System.out.println("TILE PLACED BOARD A");
+                            System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
+                        }
+                        else if (OtherGid == "B"){
+                            boardB.gBoard.put(new Position(x,y), tile2);
+                            System.out.println("TILE PLACED BOARD B");
+                            System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
+                        }
+                        
+                        
+                    }
+                    else{
+                        System.out.println("OUR MOVE WAS REPEATED");
+                    }
+                    
+                    
+            }
+        }
+    
     
 
     
