@@ -351,7 +351,7 @@ public class TigerClient
     	return match;
     }
     
-    public String[] GetShit() throws IOException
+    public String[] GetInfo() throws IOException
     {
         
         String response;
@@ -580,8 +580,10 @@ public class TigerClient
     		match = client.matchProtocol();
             int turns = match.getNumOfTiles();
             System.out.println(turns);
-            for(int i = 0; i < turns; i++)
-            {
+        
+        //for(int j = 0; j < rounds; j++)//iterates every ROUND
+            for(int i = 0; i < turns; i++) //interates per round every TURN
+                {
     		
     		//System.out.printf("Opponent is : %s\n", match.getOpponent());
     		//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
@@ -606,7 +608,7 @@ public class TigerClient
             
             //while(!client.RoundEnd()){
                 
-            String[] both = client.GetShit();
+            String[] both = client.GetInfo();
             //System.out.println(both);
             
             int move = Integer.parseInt(both[2]);
@@ -634,13 +636,14 @@ public class TigerClient
             
                 
             }
+    
 
-    		
-    	
-    	
-            while(true){
+    
+
+
+            //while(true){
                 
-            }
+            //}
     	
     }
   
