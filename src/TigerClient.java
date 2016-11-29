@@ -677,6 +677,7 @@ public class TigerClient
                         
                         
                         if (OtherGid == "A"){
+                            System.out.println("Yooooo");
                             boardA.gBoard.put(new Position(x,y), tile2);
                             System.out.println("TILE PLACED BOARD A");
                             System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);

@@ -183,28 +183,26 @@ public class Tile {
 	// ---- ROTATE COUNTER CLOCKWISE
 	public void rotate()
 	{
-        //loading top minizones into temp
-        int[] tempZones = new int[3];
-        for(int x = 0; x < 3; x++){
-            tempZones[x] = miniZones[0][x];
-        }
-        //sets top = right side
-        for(int x = 0; x < 3; x++){
-            miniZones[0][x] = miniZones[x][2];
-        }
-        //sets right = bottom
-        for(int x = 0; x < 3; x++){
-            miniZones[x][2] = miniZones[2][x];
-        }
-        //sets bottom to left
-        for(int x = 0; x < 3; x++){
-            miniZones[2][x] = miniZones[x][0];
-        }
-        //sets left = temp
-        for(int x = 0; x < 3; x++){
-            miniZones[x][0] = tempZones[x];
-        }
-        
+
+
+		    // Transpose the matrix
+    	for ( int i = 0; i < miniZones.length; i++ ) {
+        	for ( int j = i + 1; j < miniZones[i].length; j++ ) {
+            	int tmp = miniZones[i][j];
+            	miniZones[i][j] = miniZones[j][i];
+            	miniZones[j][i] = tmp;
+        	}
+    	}
+
+    // Swap the columns
+    	for ( int i = 0; i < miniZones.length; i++ ) {
+        	for ( int j = 0; j < miniZones[i].length/2; j++ ) {
+        	    int tmp = miniZones[i][j];
+        	    miniZones[i][j] = miniZones[i][miniZones[i].length-1-j];
+        	    miniZones[i][miniZones[i].length-1-j] = tmp;
+        	}
+    	}
+
         
         boolean bitTemp = cTL;
 		int edgeTemp = eT;
@@ -586,9 +584,12 @@ public class Tile {
 			System.out.println(it2.next());
 		}
 
+		System.out.println("================================================");
+		System.out.println("Rotating Tile");
 
-
-
+		tile.printMiniZone();
+		tile.rotate();
+		tile.printMiniZone();
 
 
 
