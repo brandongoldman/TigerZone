@@ -357,7 +357,7 @@ public class HashBoard{
 				tigerfeature = 55;
 			}
 		}
-		/**TEST**/
+
 		int[][] minitile = tile.getMiniZones();
 		for(int i = 0; i<3; i++){
 			System.out.println();
@@ -365,7 +365,6 @@ public class HashBoard{
 				System.out.print(minitile[i][j] + " ");
 			}
 		}
-
 
 		/**JUNGLES**/
 		//FAILED
@@ -797,7 +796,6 @@ public class HashBoard{
 		boolean R=false;
 		boolean B=false;
 		boolean L=false;
-		System.out.println(tigerfeature + " " + tiger.getOwner() + " " + tiger.getTigerPlacement() + "++++++++++++++++++++++++++++++++++++++++");
 
 		if(!skipT) {
 			if (tile.getEdgeT() == 2) {
@@ -885,7 +883,7 @@ public class HashBoard{
 				if(tile.getCroc()){
 					TopArea.addCrocodile(1);
 				}
-				if(tile.getAnimal()!=-1){
+				if(tile.getAnimal()!=0){
 					TopArea.uniqueAnimal.add(tile.getAnimal());
 					TopArea.setHasAnimal(true);
 				}
@@ -985,7 +983,7 @@ public class HashBoard{
 					if(tile.getCroc()){
 						TopArea.addCrocodile(1);
 					}
-					if(tile.getAnimal()!=-1){
+					if(tile.getAnimal()!=0){
 						TopArea.animal.add(tile.getAnimal());
 						TopArea.setHasAnimal(true);
 					}
@@ -1040,7 +1038,7 @@ public class HashBoard{
 						if(tile.getCroc()){
 							RightArea.addCrocodile(1);
 						}
-						if(tile.getAnimal()!=-1){
+						if(tile.getAnimal()!=0){
 							RightArea.animal.add(tile.getAnimal());
 							RightArea.setHasAnimal(true);
 						}
@@ -1064,7 +1062,7 @@ public class HashBoard{
 						if(tile.getCroc()){
 							BottomArea.addCrocodile(1);
 						}
-						if(tile.getAnimal()!=-1){
+						if(tile.getAnimal()!=0){
 							BottomArea.animal.add(tile.getAnimal());
 							BottomArea.setHasAnimal(true);
 						}
@@ -1088,7 +1086,7 @@ public class HashBoard{
 						if(tile.getCroc()){
 							LeftArea.addCrocodile(1);
 						}
-						if(tile.getAnimal()!=-1){
+						if(tile.getAnimal()!=0){
 							LeftArea.animal.add(tile.getAnimal());
 							LeftArea.setHasAnimal(true);
 						}
@@ -1111,7 +1109,7 @@ public class HashBoard{
 					if(tile.getCroc()){
 						TopArea.addCrocodile(1);
 					}
-					if(tile.getAnimal()!=-1){
+					if(tile.getAnimal()!=0){
 						TopArea.animal.add(tile.getAnimal());
 						TopArea.setHasAnimal(true);
 					}
@@ -1134,7 +1132,7 @@ public class HashBoard{
 					if(tile.getCroc()){
 						TopArea.addCrocodile(1);
 					}
-					if(tile.getAnimal()!=-1){
+					if(tile.getAnimal()!=0){
 						TopArea.animal.add(tile.getAnimal());
 						TopArea.setHasAnimal(true);
 					}
@@ -1221,7 +1219,7 @@ public class HashBoard{
 				if(tile.getCroc()){
 					RightArea.addCrocodile(1);
 				}
-				if(tile.getAnimal()!=-1){
+				if(tile.getAnimal()!=0){
 					RightArea.uniqueAnimal.add(tile.getAnimal());
 					RightArea.setHasAnimal(true);
 				}
@@ -1304,7 +1302,7 @@ public class HashBoard{
 					if(tile.getCroc()){
 						RightArea.addCrocodile(1);
 					}
-					if(tile.getAnimal()!=-1){
+					if(tile.getAnimal()!=0){
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
@@ -1350,7 +1348,7 @@ public class HashBoard{
 						if(tile.getCroc()){
 							BottomArea.addCrocodile(1);
 						}
-						if(tile.getAnimal()!=-1){
+						if(tile.getAnimal()!=0){
 							BottomArea.animal.add(tile.getAnimal());
 							BottomArea.setHasAnimal(true);
 						}
@@ -1374,7 +1372,7 @@ public class HashBoard{
 						if(tile.getCroc()){
 							LeftArea.addCrocodile(1);
 						}
-						if(tile.getAnimal()!=-1){
+						if(tile.getAnimal()!=0){
 							LeftArea.animal.add(tile.getAnimal());
 							LeftArea.setHasAnimal(true);
 						}
@@ -1397,7 +1395,7 @@ public class HashBoard{
 					if(tile.getCroc()){
 						RightArea.addCrocodile(1);
 					}
-					if(tile.getAnimal()!=-1){
+					if(tile.getAnimal()!=0){
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
@@ -1421,7 +1419,7 @@ public class HashBoard{
 					if(tile.getCroc()){
 						RightArea.addCrocodile(1);
 					}
-					if(tile.getAnimal()!=-1){
+					if(tile.getAnimal()!=0){
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
@@ -1485,7 +1483,7 @@ public class HashBoard{
 				if(tile.getCroc()){
 					BottomArea.addCrocodile(1);
 				}
-				if(tile.getAnimal()!=-1){
+				if(tile.getAnimal()!=0){
 					BottomArea.animal.add(tile.getAnimal());
 					BottomArea.setHasAnimal(true);
 				}
@@ -1543,7 +1541,7 @@ public class HashBoard{
 					if(tile.getCroc()){
 						BottomArea.addCrocodile(1);
 					}
-					if(tile.getAnimal()!=-1){
+					if(tile.getAnimal()!=0){
 						BottomArea.animal.add(tile.getAnimal());
 						BottomArea.setHasAnimal(true);
 					}
@@ -1567,7 +1565,7 @@ public class HashBoard{
 					if(tile.getCroc()){
 						BottomArea.addCrocodile(1);
 					}
-					if(tile.getAnimal()!=-1){
+					if(tile.getAnimal()!=0){
 						BottomArea.animal.add(tile.getAnimal());
 						BottomArea.setHasAnimal(true);
 					}
@@ -1597,7 +1595,7 @@ public class HashBoard{
 				if(tile.getCroc()){
 					LeftArea.addCrocodile(1);
 				}
-				if(tile.getAnimal()!=-1){
+				if(tile.getAnimal()!=0){
 					LeftArea.animal.add(tile.getAnimal());
 					LeftArea.setHasAnimal(true);
 				}
@@ -1622,7 +1620,7 @@ public class HashBoard{
 				if(tile.getCroc()){
 					LeftArea.addCrocodile(1);
 				}
-				if(tile.getAnimal()!=-1){
+				if(tile.getAnimal()!=0){
 					LeftArea.animal.add(tile.getAnimal());
 					LeftArea.setHasAnimal(true);
 				}
@@ -2034,7 +2032,7 @@ public class HashBoard{
 			if (tile.getCroc()) {
 				TopArea.addCrocodile(1);
 			}
-			if (tile.getAnimal() != -1) {
+			if (tile.getAnimal()!=0) {
 				TopArea.uniqueAnimal.add(tile.getAnimal());
 				TopArea.setHasAnimal(true);
 			}
@@ -2126,7 +2124,7 @@ public class HashBoard{
 				if (tile.getCroc()) {
 					TopArea.addCrocodile(1);
 				}
-				if (tile.getAnimal() != -1) {
+				if (tile.getAnimal()!=0) {
 					TopArea.animal.add(tile.getAnimal());
 					TopArea.setHasAnimal(true);
 				}
@@ -2164,7 +2162,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						RightArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
@@ -2179,7 +2177,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						BottomArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						BottomArea.animal.add(tile.getAnimal());
 						BottomArea.setHasAnimal(true);
 					}
@@ -2194,7 +2192,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						LeftArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						LeftArea.animal.add(tile.getAnimal());
 						LeftArea.setHasAnimal(true);
 					}
@@ -2208,7 +2206,7 @@ public class HashBoard{
 				if (tile.getCroc()) {
 					TopArea.addCrocodile(1);
 				}
-				if (tile.getAnimal() != -1) {
+				if (tile.getAnimal()!=0) {
 					TopArea.animal.add(tile.getAnimal());
 					TopArea.setHasAnimal(true);
 				}
@@ -2221,7 +2219,7 @@ public class HashBoard{
 				if (tile.getCroc()) {
 					TopArea.addCrocodile(1);
 				}
-				if (tile.getAnimal() != -1) {
+				if (tile.getAnimal()!=0) {
 					TopArea.animal.add(tile.getAnimal());
 					TopArea.setHasAnimal(true);
 				}
@@ -2295,7 +2293,7 @@ public class HashBoard{
 				if (tile.getCroc()) {
 					RightArea.addCrocodile(1);
 				}
-				if (tile.getAnimal() != -1) {
+				if (tile.getAnimal()!=0) {
 					RightArea.uniqueAnimal.add(tile.getAnimal());
 					RightArea.setHasAnimal(true);
 				}
@@ -2364,7 +2362,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						RightArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
@@ -2396,7 +2394,7 @@ public class HashBoard{
 						if (tile.getCroc()) {
 							BottomArea.addCrocodile(1);
 						}
-						if (tile.getAnimal() != -1) {
+						if (tile.getAnimal()!=0) {
 							BottomArea.animal.add(tile.getAnimal());
 							BottomArea.setHasAnimal(true);
 						}
@@ -2411,7 +2409,7 @@ public class HashBoard{
 						if (tile.getCroc()) {
 							LeftArea.addCrocodile(1);
 						}
-						if (tile.getAnimal() != -1) {
+						if (tile.getAnimal()!=0) {
 							LeftArea.animal.add(tile.getAnimal());
 							LeftArea.setHasAnimal(true);
 						}
@@ -2425,7 +2423,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						RightArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
@@ -2438,7 +2436,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						RightArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						RightArea.animal.add(tile.getAnimal());
 						RightArea.setHasAnimal(true);
 					}
@@ -2488,7 +2486,7 @@ public class HashBoard{
 				if (tile.getCroc()) {
 					BottomArea.addCrocodile(1);
 				}
-				if (tile.getAnimal() != -1) {
+				if (tile.getAnimal()!=0) {
 					BottomArea.animal.add(tile.getAnimal());
 					BottomArea.setHasAnimal(true);
 				}
@@ -2530,7 +2528,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						BottomArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						BottomArea.animal.add(tile.getAnimal());
 						BottomArea.setHasAnimal(true);
 					}
@@ -2543,7 +2541,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						BottomArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						BottomArea.animal.add(tile.getAnimal());
 						BottomArea.setHasAnimal(true);
 					}
@@ -2563,7 +2561,7 @@ public class HashBoard{
 					if (tile.getCroc()) {
 						LeftArea.addCrocodile(1);
 					}
-					if (tile.getAnimal() != -1) {
+					if (tile.getAnimal()!=0) {
 						LeftArea.animal.add(tile.getAnimal());
 						LeftArea.setHasAnimal(true);
 					}
@@ -2578,7 +2576,7 @@ public class HashBoard{
 						if (tile.getCroc()) {
 							LeftArea.addCrocodile(1);
 						}
-						if (tile.getAnimal() != -1) {
+						if (tile.getAnimal()!=0) {
 							LeftArea.animal.add(tile.getAnimal());
 							LeftArea.setHasAnimal(true);
 						}
@@ -2594,7 +2592,7 @@ public class HashBoard{
 						if (tile.getCroc()) {
 							LeftArea.addCrocodile(1);
 						}
-						if (tile.getAnimal() != -1) {
+						if (tile.getAnimal()!=0) {
 							LeftArea.animal.add(tile.getAnimal());
 							LeftArea.setHasAnimal(true);
 						}
