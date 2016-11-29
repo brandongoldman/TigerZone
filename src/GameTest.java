@@ -46,10 +46,10 @@ public class GameTest{
         board.FindBestMove(tile2,tiger);*/
         
         Tiger tiger = new Tiger();
-		Tile tile = ti.interpret("TLLT-");
+		Tile tile = ti.interpret("LLLL-");
 		//board.addTile(new Position(0, 1), tile, tiger);		//	Outcome: Pass
         board.FindBestMove(tile,tiger);
-		
+		/*
         Tile tile2 = ti.interpret("JJJJX");
 		board.FindBestMove(tile2,tiger);		//	Outcome: Pass
 		
@@ -176,7 +176,7 @@ public class GameTest{
         board.FindBestMove(tile41,tiger);
         
         Tile tile42 = ti.interpret("LJTJ-");
-        board.FindBestMove(tile42,tiger);
+        board.FindBestMove(tile42,tiger);*/
         
         //Tile tile21 = ti.interpret("JJJJX");
         //board.FindBestMove(tile21,tiger);
