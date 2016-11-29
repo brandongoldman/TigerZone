@@ -460,6 +460,8 @@ public class TigerClient
                     msg[5] = tokens[9]; //x
                     msg[6] = tokens[10]; //y
                     msg[7] = tokens[11]; //ori
+                    
+                    //System.out.println(msg[4] + " HELLO ");
                 }
     			
             	makeMove = true;
@@ -588,53 +590,30 @@ public class TigerClient
     		
     		match = client.matchProtocol();
             int turns = match.getNumOfTiles();
-            System.out.println(turns);
+            //System.out.println(turns);
         
-        for(int j = 0; j < rounds; j++){//iterates every ROUND
+        for(int j = 0; j < rounds; j++)
+            {//iterates every ROUND
             for(int i = 0; i < turns; i++) //interates per round every TURN
                 {
     		
-    		//System.out.printf("Opponent is : %s\n", match.getOpponent());
-    		//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
-    		//System.out.printf("Starting Tile X is : %d\n", match.getStartingTileX());
-    		//System.out.printf("Starting Tile Y is : %d\n", match.getStartingTileY());
-    		//System.out.printf("Orientation is : %d\n", match.getOrientation());
-    		//System.out.printf("Number of tiles are: %d\n", match.getNumOfTiles());
-    		//System.out.printf("Match time : %d\n", match.getTime());	
+    		
     		
     		//player.client.moveProtocol(1, A, tile, x, y, orientation, zone)
                 
-            
-                
+            //if(client.GetInfo() != null){
+                String[] both = client.GetInfo();
                     
-    		//String gid = client.getGID();
-            //String tile = client.GetShit()[1];
-            
-            //while(!client.RoundEnd()){
-                
-            String[] both = client.GetInfo();
-                    
-            System.out.println(both[0] + " " + both[1] + " " + both[2]);
+              //  System.out.println(both[0] + " " + both[1] + " " + both[2]);
             //System.out.println(both);
             
-            int move = Integer.parseInt(both[2]);
-            String gid = both[0];
-            String tile = both[1];
+                int move = Integer.parseInt(both[2]);
+                String gid = both[0];
+                String tile = both[1];
             
-            //System.out.println(gid);
-            
-            System.out.printf("Game: %s", gid); //whenever i do anything else here it freezes
-            System.out.println(tile);
-
-           
-    		
-    		// TODO: Add logic to start making moves in the game.  Beyond scope of the client
-            
-            //String tile = client.getTile();
-            //System.out.printf(tile);
-            if(gid == "A"){
+            if(gid.equals("A")){
                 Tile tile1 = ti.interpret(tile);
-                bestMove = boardA.FindBestMove(tile1, tiger);
+                bestMove = boardA.FindBestMove(tile1, tiger, gid);
                 System.out.println(bestMove.toString(gid));
                 client.sendToServer(bestMove.toString(gid));
             //Position pos = new Position(x,y);
@@ -642,14 +621,22 @@ public class TigerClient
             }
             else{
                 Tile tile1 = ti.interpret(tile);
-                bestMove = boardB.FindBestMove(tile1, tiger);
+                bestMove = boardB.FindBestMove(tile1, tiger, gid);
                 System.out.println(bestMove.toString(gid));
                 client.sendToServer(bestMove.toString(gid));
             }
+            
                     
+            //if(client.GetOtherMove() == null){
             String[] info = client.GetOtherMove();
                     
-                    if(info[0] == "true" && info[3] != pid){
+                    String moveMade = info[0];
+                    String theirPID = info[3];
+                    
+                    //System.out.println(moveMade + " theirs: " + theirPID + "ours: " + pid);
+                    
+                    if((moveMade.equals("true")) && !(theirPID.equals(pid))){
+                        //System.out.println("WE MADE IT");
                         String OtherGid = info[1];
                         int OtherMove = Integer.parseInt(info[2]);
                         String OtherPid = info[3];
@@ -657,45 +644,45 @@ public class TigerClient
                         int x = Integer.parseInt(info[5]);
                         int y = Integer.parseInt(info[6]);
                         int ori = Integer.parseInt(info[7]);
-                        
-                        Tile tile2 = ti.interpret(TileOther);
-                        
-                        for(int z = 0; z < (ori/90); z++){
-                            tile2.rotate();
-                        }
-                        
-                        
-                        if (OtherGid == "A"){
-                            boardA.gBoard.put(new Position(x,y), tile2);
-                            System.out.println("TILE PLACED BOARD A");
-                            System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
-                        }
-                        else if (OtherGid == "B"){
-                            boardB.gBoard.put(new Position(x,y), tile2);
-                            System.out.println("TILE PLACED BOARD B");
-                            System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
-                        }
-                        
-                        
-                    }
-                    else{
-                        System.out.println("OUR MOVE WAS REPEATED");
-                    }
                     
-                    
-            }
-        }
-    
-    
-
-    
-
-
-            //while(true){
-                
+                            if (OtherGid.equals("A")){
+                                Tile tile2 = ti.interpret(TileOther);
+                                for(int z = 0; z < (ori/90); z++){
+                                    tile2.rotate();
+                                }
+                                boardA.gBoard.put(new Position(x,y), tile2);
+                            //System.out.println("TILE PLACED BOARD A");
+                            //System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
+                            }
+                            else if (OtherGid.equals("B")){
+                                Tile tile2 = ti.interpret(TileOther);
+                                for(int z = 0; z < (ori/90); z++){
+                                    tile2.rotate();
+                                }
+                                boardB.gBoard.put(new Position(x,y), tile2);
+                            //System.out.println("TILE PLACED BOARD B");
+                            //System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
+                            }
+                        }
             //}
+                    
+                    
+ 
+                    
+    }
+}
+    
+ 
     	
     }
   
         
 }
+
+//System.out.printf("Opponent is : %s\n", match.getOpponent());
+//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
+//System.out.printf("Starting Tile X is : %d\n", match.getStartingTileX());
+//System.out.printf("Starting Tile Y is : %d\n", match.getStartingTileY());
+//System.out.printf("Orientation is : %d\n", match.getOrientation());
+//System.out.printf("Number of tiles are: %d\n", match.getNumOfTiles());
+//System.out.printf("Match time : %d\n", match.getTime());

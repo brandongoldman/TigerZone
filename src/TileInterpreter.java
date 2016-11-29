@@ -47,7 +47,7 @@ public class TileInterpreter {
 				
 				//INPUT THE TILE DESCRIPTION AND DECIPHER THE EDGES
 				description = input.next();
-                System.out.println(description);
+                //System.out.println(description);
 				
 				eT = decipher(description.charAt(0));
 				eR = decipher(description.charAt(1));
@@ -191,14 +191,14 @@ public class TileInterpreter {
             }*/
 
 
-            for(int i = 0; i < 3; i++){
+           // for(int i = 0; i < 3; i++){
                  
-                for(int j = 0; j < 3; j++){
-                     System.out.print(/*"location " + i + " " + j + " " +*/ " " + miniZones[i][j]);
+           //     for(int j = 0; j < 3; j++){
+           //          System.out.print(/*"location " + i + " " + j + " " +*/ " " + miniZones[i][j]);
                 
-                     }
-                System.out.println();
-            }
+           //          }
+           //     System.out.println();
+           // }
 
 		Tile newTile = new Tile(animal, den, croc, eT, eL, eR, eB, cTL, cTR, cBL, cBR, oLR, oTB, description, rotation, miniZones);
 		return newTile;

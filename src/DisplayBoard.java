@@ -144,7 +144,7 @@ public class DisplayBoard extends JPanel
             }
         }
         
-        System.out.println("Game tile images loaded successfully...");
+        //System.out.println("Game tile images loaded successfully...");
         
     }
     
@@ -195,7 +195,7 @@ public class DisplayBoard extends JPanel
                 map[x][y] = tiles[28]; //all map locations are set to blank tiles
             }
         }
-        System.out.println("Game board initialized successfully...");
+        //System.out.println("Game board initialized successfully...");
         
     }
     

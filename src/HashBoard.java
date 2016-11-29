@@ -118,7 +118,7 @@ public class HashBoard{
 		}
 		*/
 		
-		System.out.println("TRYING TO PLACE TILE AT " + pos.getXPosition() + " " + pos.getYPosition());
+		//System.out.println("TRYING TO PLACE TILE AT " + pos.getXPosition() + " " + pos.getYPosition());
 		if(!checkLegalMove(pos, tile))
         {
 			System.out.println("INVALID LOCATION");
@@ -127,7 +127,7 @@ public class HashBoard{
 		gBoard.put(pos,tile);
 		updateOpenSpots(pos);
 		updateFeatures(pos,tile,tiger);
-		System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
+		//System.out.println("TILE PLACED AT " + pos.getXPosition() + " " + pos.getYPosition() + "**************************");
         gameBoard.setTile(tile.getDescription(), pos.getXPosition(), pos.getYPosition(), tile.getRotation());
         // ^^Should be working now^^
 	}
@@ -184,7 +184,7 @@ public class HashBoard{
     }
     
     
-    public Move FindBestMove(Tile t, Tiger tiger)
+    public Move FindBestMove(Tile t, Tiger tiger, String gid)
     {
         int bestScore = -1;
         int currScore = -1;
@@ -212,7 +212,7 @@ public class HashBoard{
                     currScore = holder.score; // need to update with scoring method
                     if(currScore > bestScore)
                     {
-                        System.out.println("UPDATED SCORE: " + bestScore + " to " + currScore);
+                        //System.out.println("UPDATED SCORE: " + bestScore + " to " + currScore);
                         best = pos;
                         rot = t.getRotation();
                         bestScore = currScore;
@@ -236,8 +236,9 @@ public class HashBoard{
         // case: tile is not valid on current board
         if(!validSpot)
         {
-            System.out.println("TESTESTESTEST");
-            System.out.println(bestMove.passOnTile(t));
+            //System.out.println("TESTESTESTEST");
+            //System.out.println(bestMove.passOnTile(t));
+            bestMove.passOnTile(t, gid);
             // tile is not placeable on board, so pass
 			// String tile = t.getDescription();
 			// String gid = client.getGID();
@@ -248,7 +249,7 @@ public class HashBoard{
 			//client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
 
         }
-        System.out.println("THIS IS FINAL ROTATION # " + t.getRotation());
+        //System.out.println("THIS IS FINAL ROTATION # " + t.getRotation());
         //while(t.getRotation() != 0){
         //    t.rotate();
         //}
@@ -268,7 +269,7 @@ public class HashBoard{
         	bestMove.special = "TIGER";
         	bestMove.zone = tiger.getTigerPlacement();
         }
-        System.out.println("PLACEMENT:" + placement);
+        //System.out.println("PLACEMENT:" + placement);
         addTile(best, t, new Tiger(owner,placement));
         //System.out.println(bestMove.toString());
         return bestMove;
