@@ -153,7 +153,7 @@ public class TCPServer
                             out.println("THANK YOU FOR PLAYING! GOODBYE");
                             //////////////////////////////////////////////////////////
                             
-                            
+                           /*
                             out.println("END OF ROUND 1 OF 2 PLEASE WAIT FOR THE NEXT MATCH");
                             
                             out.println("PLEASE WAIT FOR THE NEXT CHALLENGE TO BEGIN ");
@@ -251,6 +251,7 @@ public class TCPServer
                             out.println("GAME A OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
                             
                             out.println("GAME B OVER PLAYER Red <red_score> PLAYER Blue <red_score>");
+                            */
                             
 	                	}  
 	                	
