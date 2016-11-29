@@ -597,9 +597,7 @@ public class TigerClient
             for(int i = 0; i < turns; i++) //interates per round every TURN
                 {
     		
-<<<<<<< HEAD
-    		
-=======
+
             /*         
 
 
@@ -618,7 +616,7 @@ public class TigerClient
     		//System.out.printf("Orientation is : %d\n", match.getOrientation());
     		//System.out.printf("Number of tiles are: %d\n", match.getNumOfTiles());
     		//System.out.printf("Match time : %d\n", match.getTime());	
->>>>>>> f5d0cebbacf4445d75800e2a89f720425394bdc9
+
     		
     		//player.client.moveProtocol(1, A, tile, x, y, orientation, zone)
                 
@@ -665,7 +663,7 @@ public class TigerClient
                         int x = Integer.parseInt(info[5]);
                         int y = Integer.parseInt(info[6]);
                         int ori = Integer.parseInt(info[7]);
-<<<<<<< HEAD
+
                     
                             if (OtherGid.equals("A")){
                                 Tile tile2 = ti.interpret(TileOther);
@@ -685,7 +683,7 @@ public class TigerClient
                             //System.out.println("TILE PLACED BOARD B");
                             //System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
                             }
-=======
+
                         
                         Tile tile2 = ti.interpret(TileOther);
                         
@@ -704,9 +702,9 @@ public class TigerClient
                             boardB.gBoard.put(new Position(x,y), tile2);
                             System.out.println("TILE PLACED BOARD B");
                             System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
->>>>>>> f5d0cebbacf4445d75800e2a89f720425394bdc9
+
                         }
-            //}
+            }
                     
                     
  

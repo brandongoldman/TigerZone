@@ -184,7 +184,7 @@ public class Tile {
 	public void rotate()
 	{
 
-<<<<<<< HEAD
+
 
 		    // Transpose the matrix
     	for ( int i = 0; i < miniZones.length; i++ ) {
@@ -204,7 +204,7 @@ public class Tile {
         	}
     	}
 
-=======
+
         //loading top minizones into temp
         int[] tempZones = new int[3];
         for(int x = 0; x < 3; x++){
@@ -227,7 +227,7 @@ public class Tile {
             miniZones[x][0] = tempZones[x];
         }
         
->>>>>>> 678c085b9a46014ca06c8a99cc2253da9d780439
+
         
         boolean bitTemp = cTL;
 		int edgeTemp = eT;

@@ -236,14 +236,12 @@ public class HashBoard{
         // case: tile is not valid on current board
         if(!validSpot)
         {
-<<<<<<< HEAD
+
             //System.out.println("TESTESTESTEST");
             //System.out.println(bestMove.passOnTile(t));
             bestMove.passOnTile(t, gid);
-=======
             System.out.println("TESTESTESTEST");
             //System.out.println(bestMove.passOnTile(t));
->>>>>>> f5d0cebbacf4445d75800e2a89f720425394bdc9
             // tile is not placeable on board, so pass
 			// String tile = t.getDescription();
 			// String gid = client.getGID();
