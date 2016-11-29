@@ -44,7 +44,7 @@ public class FeatureArea {
     public FeatureArea copy(){
         FeatureArea copy = new FeatureArea();
         for(Tiger t : tiger){
-            copy.tiger.add(new Tiger(t.getOwner(),t.getTigerPlacement()));
+            copy.addTiger(new Tiger(t.getOwner(),t.getTigerPlacement()));
         }
         copy.numOfCrocs=this.numOfCrocs;
         for(Position p : areaCoor){

@@ -59,7 +59,7 @@ public class GameTest{
 		
         Tile tile4 = ti.interpret("LLJJ-");
 		board.FindBestMove(tile4,tiger);		//	Outcome: Pass
-		
+
         Tile tile5 = ti.interpret("JJJJX");
 		board.FindBestMove(tile5,tiger);		//	Outcome: Fail
 		
