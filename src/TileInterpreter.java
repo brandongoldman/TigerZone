@@ -176,7 +176,7 @@ public class TileInterpreter {
                 }
 
 
-            if(description.equals("JLLJ-")){
+            /*if(description.equals("JLLJ-")){
             	System.out.println("We here");
             	miniZones[0][0] = 0;
             	miniZones[0][1] = 0;
@@ -188,7 +188,7 @@ public class TileInterpreter {
             	miniZones[2][1] = 2;
             	miniZones[2][2] = 0;
 
-            }
+            }*/
 
 
             for(int i = 0; i < 3; i++){
