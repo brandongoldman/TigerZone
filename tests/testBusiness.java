@@ -30,11 +30,8 @@ public class testBusiness {
 		assertEquals("GAME B MOVE 2 TILE LLLL- UNPLACEABLE PASS\n", hb.FindBestMove(t1, true, "B", 2).passOnTile(t1, "B", 2));		
 	}
 	
-	/*@Test
-	public void testTigersOnDen() {
-		// THIS TEST WILL ONLY WORK IF THRESHOLD IS 0 (as of 11/30)
-		// THIS TEST WILL WORK IF DENS ARE MADE TO BE AN EXCEPTION FOR THRESHOLD BASED TIGER PLACEMENT
-		
+	@Test
+	public void testTigersOnDen() {		
 		TileInterpreter ti = new TileInterpreter();
 		HashBoard hb = new HashBoard();
 		
@@ -56,7 +53,7 @@ public class testBusiness {
 		hb.FindBestMove(t0, false, "A", 11).toString("A", 11);
 		// A TIGER HAS BEEN RETURNED 
 		assertEquals("GAME A MOVE 12 PLACE JJJJX AT -3 -2 0 TIGER 5\n", hb.FindBestMove(t0, true, "A", 12).toString("A", 12));
-	}*/
+	}
 	
 	@Test
 	public void testTigerOnLake() {
