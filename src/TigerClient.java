@@ -680,20 +680,39 @@ public class TigerClient
                     if(GameATigerCount>0){
                         tiger=true;
                     }
+<<<<<<< HEAD
                     bestMove = boardA.FindBestMove(tile1, tiger, gid, (i+1));
                     System.out.println(bestMove.toString(gid, (i+1)));
                     client.sendToServer(bestMove.toString(gid, (i+1)));
+=======
+                    bestMove = boardA.FindBestMove(tile1, tiger, gid);
+                    if(bestMove.zone!=0){
+                        GameATigerCount--;
+                    }
+                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
+                    System.out.println(bestMove.toString(gid));
+                    client.sendToServer(bestMove.toString(gid));
+>>>>>>> ed82ee6259741923553554286be8c25951a6cef5
 
                 }
                 else{
                     System.out.println("we placed B");
                     Tile tile1 = ti.interpret(tile);
                     boolean tiger = false;
-                    if(GameATigerCount>0){
+                    if(GameBTigerCount>0){
                         tiger=true;
                     }
+<<<<<<< HEAD
                     bestMove = boardB.FindBestMove(tile1, tiger, gid, (i+1));
                     System.out.println(bestMove.toString(gid, (i+1)));
+=======
+                    bestMove = boardB.FindBestMove(tile1, tiger, gid);
+                    if(bestMove.zone!=0){
+                        GameBTigerCount--;
+                    }
+                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
+                    System.out.println(bestMove.toString(gid, (i+1));
+>>>>>>> ed82ee6259741923553554286be8c25951a6cef5
                     client.sendToServer(bestMove.toString(gid, (i+1)));
                 }
             }
@@ -739,6 +758,7 @@ public class TigerClient
                                     //System.out.println("They placed A"  + x + " " + y);
                                     Tiger P2Tiger = new Tiger();
                                     boardA.addTile(new Position(x, y), tile2, P2Tiger);
+                                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
                                     //boardA.FindBestMove(tile2, tiger, OtherGid);
 
                                 } else if (OtherGid.equals("B") && forfB == false) {
@@ -749,6 +769,7 @@ public class TigerClient
                                     Tiger P2Tiger = new Tiger();
                                     //System.out.println("They placed B " + x + " " + y);
                                     boardB.addTile(new Position(x, y), tile2, P2Tiger);
+                                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
                                     //boardB.FindBestMove(tile2, tiger, OtherGid);
                                 }
                             }
@@ -791,6 +812,7 @@ public class TigerClient
                                 //System.out.println("They placed A"  + x + " " + y);
                                 Tiger P2Tiger = new Tiger();
                                 boardA.addTile(new Position(x, y), tile2, P2Tiger);
+                                GameATigerCount=GameATigerCount+boardA.ReturnTiger();
                                 //boardA.FindBestMove(tile2, tiger, OtherGid);
 
                             } else if (OtherGid.equals("B") && forfB == false) {
@@ -801,6 +823,7 @@ public class TigerClient
                                 Tiger P2Tiger = new Tiger();
                                 //System.out.println("They placed B " + x + " " + y);
                                 boardB.addTile(new Position(x, y), tile2, P2Tiger);
+                                GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
                                 //boardB.FindBestMove(tile2, tiger, OtherGid);
                             }
                         }

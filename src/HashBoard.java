@@ -209,7 +209,7 @@ public class HashBoard{
                     //addTile(pos, t, tiger);
 					ScorePotential holder = getMoveScore(pos, t);
                     currScore = holder.score; // need to update with scoring method
-                    if(currScore > bestScore)
+                    if(currScore > bestScore && currScore>8)
                     {
                         //System.out.println("UPDATED SCORE: " + bestScore + " to " + currScore);
                         best = pos;
@@ -3253,7 +3253,7 @@ public class HashBoard{
 					break;
 				}
 			}
-			if(complete == true){
+			if(complete == true&&D.tiger.getOwner()==1){
 				count++;
 			}
 			Dens.add(D);
