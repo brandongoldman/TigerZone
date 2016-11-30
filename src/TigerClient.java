@@ -85,6 +85,7 @@ public class TigerClient
                 System.out.println(response);
                 
                 // TODO: NEED NEW LINES!!!!!!
+                System.out.printf("JOIN %s\n", tournamentPassword);
                 out.printf("JOIN %s\n", tournamentPassword);
                   
             } 
@@ -96,7 +97,7 @@ public class TigerClient
                 System.out.println(response);
                 
                 // send back I am with username and password
-                System.out.println("I AM %s %s\n", username, password);
+                System.out.printf("I AM %s %s\n", username, password);
                 out.printf("I AM %s %s\n", username, password);
                 
             }
@@ -487,6 +488,42 @@ public class TigerClient
         return msg;
     }
     
+    public String FinalMessage() throws IOException
+    {
+        String response;
+        String fin = null;
+        boolean foundFinal = false;
+        
+        while(foundFinal == false)
+        {
+            response = in.readLine();
+            
+            if (response.startsWith("END"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                fin = tokens[3];
+                return fin;
+            }
+            else if (response.startsWith("PLEASE"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                fin = tokens[3];
+                return fin;
+                // Invalid or unexpected response
+                //return false;
+                //return null;
+            }
+            
+        }
+        return fin;
+    }
+    
     
     public boolean isConnected()
     {
@@ -511,8 +548,7 @@ public class TigerClient
     public static void main(String[] args) throws IOException 
     {
         TigerClient client = new TigerClient();
-        HashBoard boardA = new HashBoard();
-        HashBoard boardB = new HashBoard();
+        
         TileInterpreter ti = new TileInterpreter();
         
          Move bestMove = new Move();
@@ -585,26 +621,31 @@ public class TigerClient
         int numOfTiles = 0; 
         int time = 0; 
         
-        MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
 
-            
         
        
             // Rounds Protocol
             
             // Begin rounds
-            int roundID = client.roundProtocol();
-            
-            // Start Match
-            
-            match = client.matchProtocol();
-            int turns = match.getNumOfTiles();
-            System.out.println("Number of Turns: " + turns);
+        
 
-            //System.out.println(turns);
         
         for(int j = 0; j < rounds; j++)
             {//iterates every ROUND
+                HashBoard boardA = new HashBoard();
+                HashBoard boardB = new HashBoard();
+                
+                
+                 MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
+                
+                int roundID = client.roundProtocol();
+                
+                // Start Match
+                
+                match = client.matchProtocol();
+                int turns = match.getNumOfTiles();
+                System.out.println("Number of Turns: " + turns);
+    
                 boolean forfA = false;
                 boolean forfB = false;
                 int GameATigerCount=7;
@@ -639,9 +680,9 @@ public class TigerClient
                     if(GameATigerCount>0){
                         tiger=true;
                     }
-                    bestMove = boardA.FindBestMove(tile1, tiger, gid);
-                    System.out.println(bestMove.toString(gid));
-                    client.sendToServer(bestMove.toString(gid));
+                    bestMove = boardA.FindBestMove(tile1, tiger, gid, (i+1));
+                    System.out.println(bestMove.toString(gid, (i+1)));
+                    client.sendToServer(bestMove.toString(gid, (i+1)));
 
                 }
                 else{
@@ -651,8 +692,8 @@ public class TigerClient
                     if(GameATigerCount>0){
                         tiger=true;
                     }
-                    bestMove = boardB.FindBestMove(tile1, tiger, gid);
-                    System.out.println(bestMove.toString(gid, (i+1));
+                    bestMove = boardB.FindBestMove(tile1, tiger, gid, (i+1));
+                    System.out.println(bestMove.toString(gid, (i+1)));
                     client.sendToServer(bestMove.toString(gid, (i+1)));
                 }
             }
@@ -771,10 +812,12 @@ public class TigerClient
             }
         }
                 int r = Integer.parseInt(client.RoundEnd());
-                if(r == rounds){
+                String y = client.FinalMessage();
+                //if(r == rounds){
                     
-                }
-                System.out.println("YO QW REACHED ENF OD REBIFBEI");
-    }
+                //     System.out.println("YO QW REACHED ENF OD REBIFBEI");
+                //}
+               
+    }//round for loop
     }      
 }
