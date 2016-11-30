@@ -613,251 +613,257 @@ public class TigerClient
             return;
         }
         
-        while(cont){
-        
-        // Get the number of rounds to be played 
-        int rounds = client.challengeProtocol();
-        
-        if (rounds < 0)
-        {
-            // Invalid: End Game
-            System.exit(0);
-        }
-        
-        String opponent = null;
-        String startingTile = null;
-        int startingTileX = 0;
-        int startingTileY = 0;
-        int orientation = 0;
-        int numOfTiles = 0; 
-        int time = 0; 
-        
-
-        
-       
-            // Rounds Protocol
-            
-            // Begin rounds
-        
-
-        
-        for(int j = 0; j < rounds; j++)
-            {//iterates every ROUND
-                HashBoard boardA = new HashBoard();
-                HashBoard boardB = new HashBoard();
-                
-                
-                 MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
-                
-                int roundID = client.roundProtocol();
-                
-                // Start Match
-                
-                match = client.matchProtocol();
-                int turns = match.getNumOfTiles();
-                System.out.println("Number of Turns: " + turns);
-    
-                boolean forfA = false;
-                boolean forfB = false;
-                int GameATigerCount=7;
-                int GameBTigerCount=7;
-
-            for(int i = 0; i < turns; i++) //interates per round every TURN
-                {
-            
-                    /*String response;
-                    Scanner input = new Scanner(System.in);
-                    response = input.readLine();
-                    if(response.startsWith("MAKE")){
-                        System.out.println("WHATTUP");
-                    }*/
-                    
-                    
-           
-            String[] both = client.GetInfo();
-
-            if(both.length != 0){
-                
-                String gid = both[0];
-                String tile = both[1];
-                int move = Integer.parseInt(both[2]);
-                
-                if(gid.equals("A")){
-                    System.out.println("We placed A");
-                    Tile tile1 = ti.interpret(tile);
-                    boolean tiger = false;
-                    if(GameATigerCount>0){
-                        tiger=true;
-                    }
-
-                    bestMove = boardA.FindBestMove(tile1, tiger, gid, (i+1));
-                    
-
-                    if(bestMove.zone!=0){
-                        GameATigerCount--;
-                    }
-                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
-                    System.out.println(bestMove.toString(gid, (i+1)));
-                    client.sendToServer(bestMove.toString(gid, (i+1)));
-
-                }
-                else{
-                    System.out.println("we placed B");
-                    Tile tile1 = ti.interpret(tile);
-                    boolean tiger = false;
-                    if(GameBTigerCount>0){
-                        tiger=true;
-                    }
-
-                    bestMove = boardB.FindBestMove(tile1, tiger, gid, (i+1));
-                    
-                    if(bestMove.zone!=0){
-                        GameBTigerCount--;
-                    }
-                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
-                    System.out.println(bestMove.toString(gid, (i+1)));
-                    //System.out.println(bestMove.toString(gid, (i+1)));
-                    client.sendToServer(bestMove.toString(gid, (i+1)));
-                }
-            }
-                    
-            //if(client.GetOtherMove() == null){
-            if(forfA==false||forfB==false) {
-                if(forfA==false&&forfB==false) {
-                    for (int s = 0; s < 2; s++) {
-                        String[] info = client.GetOtherMove();
-
-                        //if(info.length != 0){
-                        String moveMade = info[0];
-                        String whichGame = info[1];
-                        if (moveMade.equals("FORFEITED")) {
-                            if (whichGame.equals("A")) {
-                                forfA = true;
-                            } else if (whichGame.equals("B")) {
-                                forfB = true;
-                            }
-
-                        }
-                        if(forfA==true&&forfB==true){
-                            break;
-                        }
-                        if (moveMade.equals("true")) {
-
-                            String theirPID = info[3];
-                            if/*((moveMade.equals("true")) && */ (!(theirPID.equals(pid))) {
-
-                                String OtherGid = info[1];
-                                int OtherMove = Integer.parseInt(info[2]);
-                                String OtherPid = info[3];
-                                String TileOther = info[4];
-                                int x = Integer.parseInt(info[5]);
-                                int y = Integer.parseInt(info[6]);
-                                int ori = Integer.parseInt(info[7]);
-                                String tig = info[8];//Integer.parseInt(info[8]);
-                                int placement = 0;
-                                
-                                if(!tig.equals("none")){
-                                    placement = Integer.parseInt(tig);
-                                }
-
-                                if (OtherGid.equals("A") && forfA == false) {
-                                    Tile tile2 = ti.interpret(TileOther);
-                                    for (int z = 0; z < (ori / 90); z++) {
-                                        tile2.rotate();
-                                    }
-                                    //System.out.println("They placed A"  + x + " " + y);
-                                    Tiger P2Tiger = new Tiger(2, placement);
-                                    boardA.addTile(new Position(x, y), tile2, P2Tiger);
-                                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
-                                    //boardA.FindBestMove(tile2, tiger, OtherGid);
-
-                                } else if (OtherGid.equals("B") && forfB == false) {
-                                    Tile tile2 = ti.interpret(TileOther);
-                                    for (int z = 0; z < (ori / 90); z++) {
-                                        tile2.rotate();
-                                    }
-                                    Tiger P2Tiger = new Tiger(2, placement);
-                                    //System.out.println("They placed B " + x + " " + y);
-                                    boardB.addTile(new Position(x, y), tile2, P2Tiger);
-                                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
-                                    //boardB.FindBestMove(tile2, tiger, OtherGid);
-                                }
-                            }
-                        }
-                    }
-                }
-                else{
-                    String[] info = client.GetOtherMove();
-                    //info = client.GetOtherMove();
-                    //if(info.length != 0){
-                    String moveMade = info[0];
-                    String whichGame = info[1];
-                    if (moveMade.equals("FORFEITED")) {
-                        if (whichGame.equals("A")) {
-                            forfA = true;
-                        } else if (whichGame.equals("B")) {
-                            forfB = true;
-                        }
-
-                    }
-
-                    if (moveMade.equals("true")) {
-
-                        String theirPID = info[3];
-                        if/*((moveMade.equals("true")) && */ (!(theirPID.equals(pid))) {
-
-                            String OtherGid = info[1];
-                            int OtherMove = Integer.parseInt(info[2]);
-                            String OtherPid = info[3];
-                            String TileOther = info[4];
-                            int x = Integer.parseInt(info[5]);
-                            int y = Integer.parseInt(info[6]);
-                            int ori = Integer.parseInt(info[7]);
-                            String tig = info[8];//Integer.parseInt(info[8]);
-                            int placement = 0;
-                            
-                            if(!tig.equals("none")){
-                                placement = Integer.parseInt(tig);
-                            }
-
-                            if (OtherGid.equals("A") && forfA == false) {
-                                Tile tile2 = ti.interpret(TileOther);
-                                for (int z = 0; z < (ori / 90); z++) {
-                                    tile2.rotate();
-                                }
-                                //System.out.println("They placed A"  + x + " " + y);
-                                Tiger P2Tiger = new Tiger(2, placement);
-                                boardA.addTile(new Position(x, y), tile2, P2Tiger);
-                                GameATigerCount=GameATigerCount+boardA.ReturnTiger();
-                                //boardA.FindBestMove(tile2, tiger, OtherGid);
-
-                            } else if (OtherGid.equals("B") && forfB == false) {
-                                Tile tile2 = ti.interpret(TileOther);
-                                for (int z = 0; z < (ori / 90); z++) {
-                                    tile2.rotate();
-                                }
-                                Tiger P2Tiger = new Tiger(2, placement);
-                                //System.out.println("They placed B " + x + " " + y);
-                                boardB.addTile(new Position(x, y), tile2, P2Tiger);
-                                GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
-                                //boardB.FindBestMove(tile2, tiger, OtherGid);
-                            }
-                        }
-                    }
-                }
-            }
-            if(forfA==true && forfB==true){
-                break;
-            }
-        }
-                int r = Integer.parseInt(client.RoundEnd());
-                String y = client.FinalMessage();
-                if(y.equals("END")){
-                    cont = false;
-                }
-                
-               
-    }//round for loop
-    }
-    }
-}
+	        while(cont){
+	        
+	        // Get the number of rounds to be played 
+	        int rounds = client.challengeProtocol();
+	        
+	        if (rounds < 0)
+	        {
+	            // Invalid: End Game
+	            System.exit(0);
+	        }
+	        
+	        String opponent = null;
+	        String startingTile = null;
+	        int startingTileX = 0;
+	        int startingTileY = 0;
+	        int orientation = 0;
+	        int numOfTiles = 0; 
+	        int time = 0; 
+	        
+	
+	        
+	       
+	            // Rounds Protocol
+	            
+	            // Begin rounds
+	        
+	
+	        
+	        for(int j = 0; j < rounds; j++)
+	            {//iterates every ROUND
+	                HashBoard boardA = new HashBoard();
+	                HashBoard boardB = new HashBoard();
+	                
+	                
+	                 MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
+	                
+	                int roundID = client.roundProtocol();
+	                
+	                // Start Match
+	                
+	                match = client.matchProtocol();
+	                int turns = match.getNumOfTiles();
+	                System.out.println("Number of Turns: " + turns);
+	    
+	                boolean forfA = false;
+	                boolean forfB = false;
+	                int GameATigerCount=7;
+	                int GameBTigerCount=7;
+	
+		            for(int i = 0; i < turns; i++) //interates per round every TURN
+		                {
+		            
+		                    /*String response;
+		                    Scanner input = new Scanner(System.in);
+		                    response = input.readLine();
+		                    if(response.startsWith("MAKE")){
+		                        System.out.println("WHATTUP");
+		                    }*/
+		                    
+		                    
+		           
+		            String[] both = client.GetInfo();
+		
+		            if(both.length != 0){
+		                
+		                String gid = both[0];
+		                String tile = both[1];
+		                int move = Integer.parseInt(both[2]);
+		                
+		                if(gid.equals("A")){
+		                    System.out.println("We placed A");
+		                    Tile tile1 = ti.interpret(tile);
+		                    boolean tiger = false;
+		                    if(GameATigerCount>0){
+		                        tiger=true;
+		                    }
+		
+		                    bestMove = boardA.FindBestMove(tile1, tiger, gid, (i+1));
+		                    
+		
+		                    if(bestMove.zone!=0){
+		                        GameATigerCount--;
+		                    }
+		                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
+		                    System.out.println(bestMove.toString(gid, (i+1)));
+		                    client.sendToServer(bestMove.toString(gid, (i+1)));
+		
+		                }
+		                else{
+		                    System.out.println("we placed B");
+		                    Tile tile1 = ti.interpret(tile);
+		                    boolean tiger = false;
+		                    if(GameBTigerCount>0){
+		                        tiger=true;
+		                    }
+		
+		                    bestMove = boardB.FindBestMove(tile1, tiger, gid, (i+1));
+		                    
+		                    if(bestMove.zone!=0){
+		                        GameBTigerCount--;
+		                    }
+		                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
+		                    System.out.println(bestMove.toString(gid, (i+1)));
+		                    //System.out.println(bestMove.toString(gid, (i+1)));
+		                    client.sendToServer(bestMove.toString(gid, (i+1)));
+		                }
+		            }
+		                    
+		            //if(client.GetOtherMove() == null){
+		            if(forfA==false||forfB==false) {
+		                if(forfA==false&&forfB==false) {
+		                    for (int s = 0; s < 2; s++) {
+		                        String[] info = client.GetOtherMove();
+		
+		                        //if(info.length != 0){
+		                        String moveMade = info[0];
+		                        String whichGame = info[1];
+		                        if (moveMade.equals("FORFEITED")) {
+		                            if (whichGame.equals("A")) {
+		                                forfA = true;
+		                             } 
+		                             else if (whichGame.equals("B")) {
+		                                forfB = true;
+		                             }
+		
+		                        }
+		                        if(forfA==true&&forfB==true){
+		                            break;
+		                        }
+		                        if (moveMade.equals("true")) {
+		
+		                            String theirPID = info[3];
+		                            if/*((moveMade.equals("true")) && */ (!(theirPID.equals(pid))) {
+		
+		                                String OtherGid = info[1];
+		                                int OtherMove = Integer.parseInt(info[2]);
+		                                String OtherPid = info[3];
+		                                String TileOther = info[4];
+		                                int x = Integer.parseInt(info[5]);
+		                                int y = Integer.parseInt(info[6]);
+		                                int ori = Integer.parseInt(info[7]);
+		                                String tig = info[8];//Integer.parseInt(info[8]);
+		                                int placement = 0;
+		                                
+		                                if(!tig.equals("none")){
+		                                    placement = Integer.parseInt(tig);
+		                                }
+		
+		                                if (OtherGid.equals("A") && forfA == false) {
+		                                    Tile tile2 = ti.interpret(TileOther);
+		                                    for (int z = 0; z < (ori / 90); z++) {
+		                                        tile2.rotate();
+		                                    }
+		                                    //System.out.println("They placed A"  + x + " " + y);
+		                                    Tiger P2Tiger = new Tiger(2, placement);
+		                                    boardA.addTile(new Position(x, y), tile2, P2Tiger);
+		                                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
+		                                    //boardA.FindBestMove(tile2, tiger, OtherGid);
+		
+		                                } 
+		                                else if (OtherGid.equals("B") && forfB == false) {
+		                                    Tile tile2 = ti.interpret(TileOther);
+		                                    for (int z = 0; z < (ori / 90); z++) {
+		                                        tile2.rotate();
+		                                    }
+		                                    Tiger P2Tiger = new Tiger(2, placement);
+		                                    //System.out.println("They placed B " + x + " " + y);
+		                                    boardB.addTile(new Position(x, y), tile2, P2Tiger);
+		                                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
+		                                    //boardB.FindBestMove(tile2, tiger, OtherGid);
+		                                }
+		                            } // If the PIDs are inequal
+		                        } // If moveMade is true
+		                    } // Run twice (s)
+		                } // If both games are going
+		                else{
+		                    String[] info = client.GetOtherMove();
+		                    //info = client.GetOtherMove();
+		                    //if(info.length != 0){
+		                    String moveMade = info[0];
+		                    String whichGame = info[1];
+		                    
+		                    if (moveMade.equals("FORFEITED")) {
+		                        if (whichGame.equals("A")) {
+		                            forfA = true;
+		                        } 
+		                        else if (whichGame.equals("B")) {
+		                            forfB = true;
+		                        }
+		                     }
+		
+		                    if (moveMade.equals("true")) {
+		
+		                        String theirPID = info[3];
+		                        if/*((moveMade.equals("true")) && */ (!(theirPID.equals(pid))) {
+		
+		                            String OtherGid = info[1];
+		                            int OtherMove = Integer.parseInt(info[2]);
+		                            String OtherPid = info[3];
+		                            String TileOther = info[4];
+		                            int x = Integer.parseInt(info[5]);
+		                            int y = Integer.parseInt(info[6]);
+		                            int ori = Integer.parseInt(info[7]);
+		                            String tig = info[8];//Integer.parseInt(info[8]);
+		                            int placement = 0;
+		                            
+		                            if(!tig.equals("none")){
+		                                placement = Integer.parseInt(tig);
+		                            }
+		
+		                            if (OtherGid.equals("A") && forfA == false) {
+		                                Tile tile2 = ti.interpret(TileOther);
+		                                for (int z = 0; z < (ori / 90); z++) {
+		                                    tile2.rotate();
+		                                }
+		                                //System.out.println("They placed A"  + x + " " + y);
+		                                Tiger P2Tiger = new Tiger(2, placement);
+		                                boardA.addTile(new Position(x, y), tile2, P2Tiger);
+		                                GameATigerCount=GameATigerCount+boardA.ReturnTiger();
+		                                //boardA.FindBestMove(tile2, tiger, OtherGid);
+		                             } 
+		                             else if (OtherGid.equals("B") && forfB == false) {
+		                                Tile tile2 = ti.interpret(TileOther);
+		                                for (int z = 0; z < (ori / 90); z++) {
+		                                    tile2.rotate();
+		                                }
+		                                Tiger P2Tiger = new Tiger(2, placement);
+		                                //System.out.println("They placed B " + x + " " + y);
+		                                boardB.addTile(new Position(x, y), tile2, P2Tiger);
+		                                GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
+		                                //boardB.FindBestMove(tile2, tiger, OtherGid);
+		                             }
+		                        } // If the PIDs are inequal
+		                    } // If moveMade is true
+		                } // If neither has forfeited
+		            } // If at least one game is going on
+		            
+		            if(forfA==true && forfB==true){
+		                break;
+		            }
+		        } // For the number of turns in a round
+		            
+		        int r = Integer.parseInt(client.RoundEnd());
+		        String y = client.FinalMessage();
+		                
+		        if(y.equals("END")){
+		        	cont = false;
+		        }
+		                
+		               
+		    } //For the number of rounds
+	    } // While cont
+    } // Main
+} // Class
