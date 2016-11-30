@@ -615,28 +615,27 @@ public class TigerClient
             //if(client.GetInfo() != null){
         //if(client.GetInfo()[3].equals("true")){
             String[] both = client.GetInfo();
-                    
-        if(both.length != 0){
-            
-            String gid = both[0];
-            String tile = both[1];
-            int move = Integer.parseInt(both[2]);
-            
-            if(gid.equals("A")){
-                Tile tile1 = ti.interpret(tile);
-                bestMove = boardA.FindBestMove(tile1, tiger, gid);
-                System.out.println(bestMove.toString(gid));
-                client.sendToServer(bestMove.toString(gid));
-            //Position pos = new Position(x,y);
-            //board.gBoard.put(pos,tileOther);
+
+            if(both.length != 0){
+                
+                String gid = both[0];
+                String tile = both[1];
+                int move = Integer.parseInt(both[2]);
+                
+                if(gid.equals("A")){
+                    Tile tile1 = ti.interpret(tile);
+                    bestMove = boardA.FindBestMove(tile1, tiger, gid);
+                    System.out.println(bestMove.toString(gid));
+                    client.sendToServer(bestMove.toString(gid));
+
+                }
+                else{
+                    Tile tile1 = ti.interpret(tile);
+                    bestMove = boardB.FindBestMove(tile1, tiger, gid);
+                    System.out.println(bestMove.toString(gid));
+                    client.sendToServer(bestMove.toString(gid));
+                }
             }
-            else{
-                Tile tile1 = ti.interpret(tile);
-                bestMove = boardB.FindBestMove(tile1, tiger, gid);
-                System.out.println(bestMove.toString(gid));
-                client.sendToServer(bestMove.toString(gid));
-            }
-        }
                     
             //if(client.GetOtherMove() == null){
             String[] info = client.GetOtherMove();
@@ -664,8 +663,7 @@ public class TigerClient
                                     tile2.rotate();
                                 }
                                 boardA.gBoard.put(new Position(x,y), tile2);
-                            //System.out.println("TILE PLACED BOARD A");
-                            //System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
+                            
                             }
                             else if (OtherGid.equals("B")){
                                 Tile tile2 = ti.interpret(TileOther);
@@ -673,8 +671,7 @@ public class TigerClient
                                     tile2.rotate();
                                 }
                                 boardB.gBoard.put(new Position(x,y), tile2);
-                            //System.out.println("TILE PLACED BOARD B");
-                            //System.out.println(OtherGid + " " + OtherMove + " " + OtherPid + " " + TileOther + " " + x + " " + y + " " + ori);
+                            
                             }
 
                        
@@ -693,11 +690,3 @@ public class TigerClient
   
         
 }
-
-//System.out.printf("Opponent is : %s\n", match.getOpponent());
-//System.out.printf("Starting Tile is : %s\n", match.getStartingTile());
-//System.out.printf("Starting Tile X is : %d\n", match.getStartingTileX());
-//System.out.printf("Starting Tile Y is : %d\n", match.getStartingTileY());
-//System.out.printf("Orientation is : %d\n", match.getOrientation());
-//System.out.printf("Number of tiles are: %d\n", match.getNumOfTiles());
-//System.out.printf("Match time : %d\n", match.getTime());
