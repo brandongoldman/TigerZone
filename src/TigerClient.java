@@ -625,6 +625,7 @@ public class TigerClient
                 int move = Integer.parseInt(both[2]);
                 
                 if(gid.equals("A")){
+                    System.out.println("We placed A");
                     Tile tile1 = ti.interpret(tile);
                     bestMove = boardA.FindBestMove(tile1, tiger, gid);
                     System.out.println(bestMove.toString(gid));
@@ -632,6 +633,7 @@ public class TigerClient
 
                 }
                 else{
+                    System.out.println("we placed B");
                     Tile tile1 = ti.interpret(tile);
                     bestMove = boardB.FindBestMove(tile1, tiger, gid);
                     System.out.println(bestMove.toString(gid));
@@ -640,16 +642,19 @@ public class TigerClient
             }
                     
             //if(client.GetOtherMove() == null){
+            
+            for(int s = 0; s < 2; s++){
             String[] info = client.GetOtherMove();
                  
+                    
             if(info.length != 0){
                     String moveMade = info[0];
                     String theirPID = info[3];
-                    System.out.println("WE MADE IT");
+                    //System.out.println("WE MADE IT");
                     //System.out.println(moveMade + " theirs: " + theirPID + "ours: " + pid);
                     
                     if((moveMade.equals("true")) && !(theirPID.equals(pid))){
-                        System.out.println("WE MADE IT");
+                        
                         String OtherGid = info[1];
                         int OtherMove = Integer.parseInt(info[2]);
                         String OtherPid = info[3];
@@ -664,7 +669,9 @@ public class TigerClient
                                 for(int z = 0; z < (ori/90); z++){
                                     tile2.rotate();
                                 }
-                                boardA.gBoard.put(new Position(x,y), tile2);
+                                //System.out.println("They placed A"  + x + " " + y);
+                                boardA.addTile(new Position(x,y), tile2, tiger);
+                                //boardA.FindBestMove(tile2, tiger, OtherGid);
                             
                             }
                             else if (OtherGid.equals("B")){
@@ -672,12 +679,15 @@ public class TigerClient
                                 for(int z = 0; z < (ori/90); z++){
                                     tile2.rotate();
                                 }
-                                boardB.gBoard.put(new Position(x,y), tile2);
+                                //System.out.println("They placed B " + x + " " + y);
+                                boardB.addTile(new Position(x,y), tile2, tiger);
+                                //boardB.FindBestMove(tile2, tiger, OtherGid);
                             
                             }
 
                     }
                 }               
+            }
             }
         }
     }      
