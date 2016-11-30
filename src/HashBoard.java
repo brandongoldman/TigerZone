@@ -209,7 +209,7 @@ public class HashBoard{
                     //addTile(pos, t, tiger);
 					ScorePotential holder = getMoveScore(pos, t);
                     currScore = holder.score; // need to update with scoring method
-                    if(currScore > bestScore)
+                    if(currScore > bestScore && currScore>8)
                     {
                         //System.out.println("UPDATED SCORE: " + bestScore + " to " + currScore);
                         best = pos;
