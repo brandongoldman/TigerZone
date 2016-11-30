@@ -27,29 +27,29 @@ public class TigerClient
 
     public TigerClient()
     {
-    	// Empty Constructor
+        // Empty Constructor
     }
     
     /* Constructs the client by connecting to a server */
     public boolean connect(String serverAdx, int port) throws IOException  
-    {	
+    {   
         // Setup connection
         try {
-			socket = new Socket(serverAdx, port);
-		} catch (UnknownHostException e) 
-		{
-			
-			return false;
-			
-		} catch (IOException e) 
-		{
-			
-			return false;
-		}
+            socket = new Socket(serverAdx, port);
+        } catch (UnknownHostException e) 
+        {
+            
+            return false;
+            
+        } catch (IOException e) 
+        {
+            
+            return false;
+        }
 
-	    // input stream
+        // input stream
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-	      
+          
         // output stream
         // Second argument is boolean value. When true: println / printf methods will flush the output buffer
         out = new PrintWriter(socket.getOutputStream(), true);
@@ -63,143 +63,143 @@ public class TigerClient
 
     public String authenticateProtocol(String username, String password, String tournamentPassword) throws IOException
     {
-    	String pid = null;
-    	
-    	String response;
+        String pid = null;
+        
+        String response;
         boolean authenticated = false;
         
         // TODO: display server messages on terminal screen
         
         while(authenticated == false)
         {
-        	
-        	// Poll the input string until something "pops" up
+            
+            // Poll the input string until something "pops" up
             response = in.readLine();
 
             // Authentication Protocol
 
             if (response.startsWith("THIS IS SPARTA!")) 
             {
-	           
-            	// display message on terminal screen
-            	System.out.println(response);
-            	
-            	// TODO: NEED NEW LINES!!!!!!
-            	out.printf("JOIN %s\n", tournamentPassword);
-            	  
+               
+                // display message on terminal screen
+                System.out.println(response);
+                
+                // TODO: NEED NEW LINES!!!!!!
+                out.printf("JOIN %s\n", tournamentPassword);
+                  
             } 
             
             else if (response.startsWith("HELLO!")) 
             {
-		          
-            	
-            	System.out.println(response);
-            	
-            	// send back I am with username and password
-            	out.printf("I AM %s %s\n", username, password);
-            	
+                  
+                
+                System.out.println(response);
+                
+                // send back I am with username and password
+                out.printf("I AM %s %s\n", username, password);
+                
             }
             
             else if (response.startsWith("WELCOME")) 
             {
-		        // End of authentication
-            	
-            	System.out.println(response);
-            	
-		        //Save off passed in PID
+                // End of authentication
+                
+                System.out.println(response);
+                
+                //Save off passed in PID
             
-            	String delims = "[ ]";
-            	String[] tokens = response.split(delims);
-            	
-            	pid = tokens[1];
-            	
-		        authenticated = true;
-	        }
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                
+                pid = tokens[1];
+                
+                authenticated = true;
+            }
 
             
             else if (response != null)
             {
-            	// Invalid or unexpected response
-            	return null;
+                // Invalid or unexpected response
+                return null;
             }      
         }
-    	
-    	return pid;
+        
+        return pid;
     }
     
     
     public int challengeProtocol() throws IOException
     {
-    	String response;
-    	int rounds = 0;
-    	boolean newChallenge = false;
-    	
-    	// TODO:  Do we need to return back the cid? 
-    	
-    	while(newChallenge == false)
-    	{
-    		response = in.readLine();
-    		
-    		if (response.startsWith("NEW CHALLENGE"))
-    		{
-    			System.out.println(response);
-    			
-    			String delims = "[ ]";
-            	String[] tokens = response.split(delims);
-            	
-            	rounds = Integer.parseInt(tokens[6]);
-    			
-            	newChallenge = true;
-    		}
-    		else if (response != null)
-    		{
-    			// Invalid or unexpected response
-    			return -1;
-    		}
-    	
-    	}
-    	
-    	return rounds;
-    	
+        String response;
+        int rounds = 0;
+        boolean newChallenge = false;
+        
+        // TODO:  Do we need to return back the cid? 
+        
+        while(newChallenge == false)
+        {
+            response = in.readLine();
+            
+            if (response.startsWith("NEW CHALLENGE"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                
+                rounds = Integer.parseInt(tokens[6]);
+                
+                newChallenge = true;
+            }
+            else if (response != null)
+            {
+                // Invalid or unexpected response
+                return -1;
+            }
+        
+        }
+        
+        return rounds;
+        
     }
     
-    /***************Don't have to use this method if we want to build this strings up elsewhere**************/	
+    /***************Don't have to use this method if we want to build this strings up elsewhere**************/  
     public void moveMethod(int type, String gid, String tile, int x, int y, int orientation, int zone)
     {
-    	// type = move type
-    	// type = 1:  GAME <gid> PLACE <tile> AT <x> <y> <orientation> NONE
-    	// type = 2:  GAME <gid> PLACE <tile> AT <x> <y> <orientation> CROCODILE 
-    	// type = 3:  GAME <gid> PLACE <tile> AT <x> <y> <orientation> TIGER <zone>
-    	// type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS
-    	// type = 5:  GAME <gid> TILE <tile> UNPLACEABLE RETRIEVE TIGER AT <x> <y>
-    	// type = 6:  GAME <gid> TILE <tile> UNPLACEABLE ADD ANOTHER TIGER TO <x> <y>
-    	
-    	String moveString = null;
-    	
-    	switch(type)
-    	{
-    		case 1:
-    			moveString = String.format("GAME %d PLACE %s AT %d %d %d NONE", gid, tile, x, y, orientation); 
-    			break;
-    		case 2:
-    			moveString = String.format("GAME %d PLACE %s AT %d %d %d CROCODILE", gid, tile, x, y, orientation);
-    			break;
-    		case 3:
-    			moveString = String.format("GAME %d PLACE %s AT %d %d %d TIGER %d", gid, tile, x, y, orientation, zone);
-    			break;
-    		case 4:
-    			moveString = String.format("GAME %d PLACE %s UNPLACEABLE PASS", gid, tile);
-    			break;
-    		case 5:
-    			moveString = String.format("GAME %d PLACE %s UNPLACEABLE RETRIEVE TIGER AT %d %d", gid, tile, x, y);
-    			break;
-    		case 6:
-    			moveString = String.format("GAME %d PLACE %s UNPLACEABLE ADD ANOTHER TIGER TO %d %d", gid, tile, x, y);
-    			break;
-    	}
-    	
-    	out.println(moveString);
-    	
+        // type = move type
+        // type = 1:  GAME <gid> PLACE <tile> AT <x> <y> <orientation> NONE
+        // type = 2:  GAME <gid> PLACE <tile> AT <x> <y> <orientation> CROCODILE 
+        // type = 3:  GAME <gid> PLACE <tile> AT <x> <y> <orientation> TIGER <zone>
+        // type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS
+        // type = 5:  GAME <gid> TILE <tile> UNPLACEABLE RETRIEVE TIGER AT <x> <y>
+        // type = 6:  GAME <gid> TILE <tile> UNPLACEABLE ADD ANOTHER TIGER TO <x> <y>
+        
+        String moveString = null;
+        
+        switch(type)
+        {
+            case 1:
+                moveString = String.format("GAME %d PLACE %s AT %d %d %d NONE", gid, tile, x, y, orientation); 
+                break;
+            case 2:
+                moveString = String.format("GAME %d PLACE %s AT %d %d %d CROCODILE", gid, tile, x, y, orientation);
+                break;
+            case 3:
+                moveString = String.format("GAME %d PLACE %s AT %d %d %d TIGER %d", gid, tile, x, y, orientation, zone);
+                break;
+            case 4:
+                moveString = String.format("GAME %d PLACE %s UNPLACEABLE PASS", gid, tile);
+                break;
+            case 5:
+                moveString = String.format("GAME %d PLACE %s UNPLACEABLE RETRIEVE TIGER AT %d %d", gid, tile, x, y);
+                break;
+            case 6:
+                moveString = String.format("GAME %d PLACE %s UNPLACEABLE ADD ANOTHER TIGER TO %d %d", gid, tile, x, y);
+                break;
+        }
+        
+        out.println(moveString);
+        
     }
     
     public boolean RoundEnd() throws IOException
@@ -236,120 +236,120 @@ public class TigerClient
     
     public int roundProtocol() throws IOException
     {
-    	String response;
-    	String stringRoundID = null;
-    	boolean newRound = false;
-    	
-    	while(newRound == false)
-    	{
-    		response = in.readLine();
-    		
-    		if (response.startsWith("BEGIN ROUND"))
-    		{
-    			System.out.println(response);
-    			
-    			String delims = "[ ]";
-            	String[] tokens = response.split(delims);
-            	
-            	stringRoundID = tokens[2];
-            	// rounds = tokens[4];
-    			
-            	newRound = true;
-    		}
-    		else if (response != null)
-    		{
-    			// Invalid or unexpected response
-    			return -1;
-    		}
-    	
-    	}
-    	
-    	    	
-    	int roundID = Integer.parseInt(stringRoundID);
-    	
-    	return roundID;
+        String response;
+        String stringRoundID = null;
+        boolean newRound = false;
+        
+        while(newRound == false)
+        {
+            response = in.readLine();
+            
+            if (response.startsWith("BEGIN ROUND"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                
+                stringRoundID = tokens[2];
+                // rounds = tokens[4];
+                
+                newRound = true;
+            }
+            else if (response != null)
+            {
+                // Invalid or unexpected response
+                return -1;
+            }
+        
+        }
+        
+                
+        int roundID = Integer.parseInt(stringRoundID);
+        
+        return roundID;
     }
     
     public MatchParam matchProtocol() throws IOException
     {
-    	// Returns the type MatchParam 
-    	
-    	String response;
-    	boolean newMatch = false;
-    	
-    	String opponent = null;
-    	String startingTile = null;
-    	int startingTileX = 0;
-    	int startingTileY = 0;
-    	int orientation = 0;	
-    	int numOfTiles = 0;	
-    	int time = 0;    	   	
-    	
-    	while(newMatch == false)
-    	{
-    		response = in.readLine();
-    		
-    		if (response.startsWith("YOUR"))
-    		{
-    			System.out.println(response);
-    			    			    			
-    			String delims = "[ ]";
-            	String[] tokens = response.split(delims);
-            	            	           	
-            	opponent = tokens[4];
-            	            	  		            	
-    		}
-    	
-    		else if (response.startsWith("STARTING"))
-    		{
-    			System.out.println(response);
-    			
-    			String delims = "[ ]";
-            	String[] tokens = response.split(delims);
-            	
-            	startingTile = tokens[3];
-            	startingTileX = Integer.parseInt(tokens[5]);;
-            	startingTileY = Integer.parseInt(tokens[6]);
-            	orientation = Integer.parseInt(tokens[7]);
-            	
-    		}
-    		
-    		else if (response.startsWith("THE"))
-    		{
-    			
-    			System.out.println(response);
+        // Returns the type MatchParam 
+        
+        String response;
+        boolean newMatch = false;
+        
+        String opponent = null;
+        String startingTile = null;
+        int startingTileX = 0;
+        int startingTileY = 0;
+        int orientation = 0;    
+        int numOfTiles = 0; 
+        int time = 0;           
+        
+        while(newMatch == false)
+        {
+            response = in.readLine();
+            
+            if (response.startsWith("YOUR"))
+            {
+                System.out.println(response);
+                                                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                                            
+                opponent = tokens[4];
+                                                        
+            }
+        
+            else if (response.startsWith("STARTING"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                
+                startingTile = tokens[3];
+                startingTileX = Integer.parseInt(tokens[5]);;
+                startingTileY = Integer.parseInt(tokens[6]);
+                orientation = Integer.parseInt(tokens[7]);
+                
+            }
+            
+            else if (response.startsWith("THE"))
+            {
+                
+                System.out.println(response);
                 
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
                 
                 numOfTiles = Integer.parseInt(tokens[2]);
-    		
-    		}
-    		
-    		else if (response.startsWith("MATCH"))
-    		{
-    			System.out.println(response);
-    			
-    			String delims = "[ ]";
-    			String[] tokens = response.split(delims);
-    			
-    			time = Integer.parseInt(tokens[3]);
-    			
-    			newMatch = true;
-    		}
-    		
-    	
-    		else if (response != null)
-    		{
-    			// Invalid or unexpected response
-    			return null;
-    		}
-    		
-    	}
-    	
-    	MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
-    	
-    	return match;
+            
+            }
+            
+            else if (response.startsWith("MATCH"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                
+                time = Integer.parseInt(tokens[3]);
+                
+                newMatch = true;
+            }
+            
+        
+            else if (response != null)
+            {
+                // Invalid or unexpected response
+                return null;
+            }
+            
+        }
+        
+        MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
+        
+        return match;
     }
     
     public String[] GetInfo() throws IOException
@@ -430,27 +430,27 @@ public class TigerClient
     
     public String[] GetOtherMove() throws IOException
     {
-    	String response;
+        String response;
         String msg[] = new String[8];
-    	/*String gid = null;
+        /*String gid = null;
         String move = null;
         String tile = null;
         String x = null;
         String y = null;
         String ori = null;*/
         
-    	boolean makeMove = false;
-    	
-    	while(makeMove == false)
-    	{
-    		response = in.readLine();
-    		
-    		if (response.startsWith("GAME"))
-    		{
-    			System.out.println(response);
-    			
-    			String delims = "[ ]";
-            	String[] tokens = response.split(delims);
+        boolean makeMove = false;
+        
+        while(makeMove == false)
+        {
+            response = in.readLine();
+            
+            if (response.startsWith("GAME"))
+            {
+                System.out.println(response);
+                
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
                 
                 if(tokens[8] == "UNPLACEABLE"){
                     msg [0] = "false";
@@ -467,46 +467,46 @@ public class TigerClient
                     
                     //System.out.println(msg[4] + " HELLO ");
                 }
-    			
-            	makeMove = true;
-    		}
-    		else// if (response != null)
-    		{
-    			// Invalid or unexpected response
-    			//return null;
+                
+                makeMove = true;
+            }
+            else// if (response != null)
+            {
+                // Invalid or unexpected response
+                //return null;
                 String empty[] = new String[0];
                 return empty;
-    		}
-    	
-    	}
-    	
-    	return msg;
+            }
+        
+        }
+        
+        return msg;
     }
     
     
     public boolean isConnected()
     {
-    	return connected;
+        return connected;
     }
      
     
     public void sendToServer(String message)
     {
-    	out.println(message);
+        out.println(message);
     }
     
     public String readFromServer() throws IOException 
     {
-    	String response = null;
-    	
-    	response = in.readLine();
-    	
-    	return response;
+        String response = null;
+        
+        response = in.readLine();
+        
+        return response;
     }
     
     public static void main(String[] args) throws IOException 
     {
-    	TigerClient client = new TigerClient();
+        TigerClient client = new TigerClient();
         HashBoard boardA = new HashBoard();
         HashBoard boardB = new HashBoard();
         TileInterpreter ti = new TileInterpreter();
@@ -519,19 +519,19 @@ public class TigerClient
         
         //board.FindBestMove(tile,tiger);
 
-    	
-		//String username = "Red";
-    	//String password = "Obiwan77";
-    	//String tournamentPassword = "PersianRocks!";
-    	String pid = null;
-    	   	
-    	// Get IP address, if none provided use localhost
-    	// args[0] = server Address
-    	// args[1] = port
-    	// args[2] = tournament password
-    	// args[3] = username
-     	// args[4] = password
-    	
+        
+        //String username = "Red";
+        //String password = "Obiwan77";
+        //String tournamentPassword = "PersianRocks!";
+        String pid = null;
+            
+        // Get IP address, if none provided use localhost
+        // args[0] = server Address
+        // args[1] = port
+        // args[2] = tournament password
+        // args[3] = username
+        // args[4] = password
+        
         String serverAdx = (args.length == 0)?"localhost":args[0];
         String stringPort = args[1];
         String tournamentPassword = args[2];
@@ -539,10 +539,10 @@ public class TigerClient
         String password = args[4];
         
         int port = Integer.parseInt(stringPort);
-    	
+        
         /*if (client == null)
         {
-        	System.out.println("I am null?");
+            System.out.println("I am null?");
         }
        
         */
@@ -551,50 +551,50 @@ public class TigerClient
         
         if (client.connect(serverAdx, port) == false)
         {
-        	//Cannot establish connection 
-        	System.out.println("Cannot establish connection");
-        	return;
+            //Cannot establish connection 
+            System.out.println("Cannot establish connection");
+            return;
         }
-    	
-    	pid = client.authenticateProtocol(username, password, tournamentPassword);
-    	
-    	if (pid == null)
-    	{
-    		// authentication failed
-    		System.out.println("Authentication failed.");
-    		return;
-    	}
-    	
-    	// Get the number of rounds to be played 
-    	int rounds = client.challengeProtocol();
-    	
-    	if (rounds < 0)
-    	{
-    		// Invalid: End Game
-    		System.exit(0);
-    	}
-    	
-    	String opponent = null;
-    	String startingTile = null;
-    	int startingTileX = 0;
-    	int startingTileY = 0;
-    	int orientation = 0;
-    	int numOfTiles = 0;	
-    	int time = 0; 
-    	
-    	MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
+        
+        pid = client.authenticateProtocol(username, password, tournamentPassword);
+        
+        if (pid == null)
+        {
+            // authentication failed
+            System.out.println("Authentication failed.");
+            return;
+        }
+        
+        // Get the number of rounds to be played 
+        int rounds = client.challengeProtocol();
+        
+        if (rounds < 0)
+        {
+            // Invalid: End Game
+            System.exit(0);
+        }
+        
+        String opponent = null;
+        String startingTile = null;
+        int startingTileX = 0;
+        int startingTileY = 0;
+        int orientation = 0;
+        int numOfTiles = 0; 
+        int time = 0; 
+        
+        MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time);
 
             
         
        
-    		// Rounds Protocol
-    		
-    		// Begin rounds
-    		int roundID = client.roundProtocol();
-    		
-    		// Start Match
-    		
-    		match = client.matchProtocol();
+            // Rounds Protocol
+            
+            // Begin rounds
+            int roundID = client.roundProtocol();
+            
+            // Start Match
+            
+            match = client.matchProtocol();
             int turns = match.getNumOfTiles();
             System.out.println("Number of Turns: " + turns);
 
@@ -616,29 +616,6 @@ public class TigerClient
                 
             //if(client.GetInfo() != null){
         //if(client.GetInfo()[3].equals("true")){
-<<<<<<< HEAD
-        String[] both = client.GetInfo();
-                    
-        if(both.length != 0){
-            
-            String gid = both[0];
-            String tile = both[1];
-            int move = Integer.parseInt(both[2]);
-            
-            if(gid.equals("A")){
-                Tile tile1 = ti.interpret(tile);
-                bestMove = boardA.FindBestMove(tile1, tiger, gid);
-                System.out.println(bestMove.toString(gid));
-                client.sendToServer(bestMove.toString(gid));
-            //Position pos = new Position(x,y);
-            //board.gBoard.put(pos,tileOther);
-            }
-            else{
-                Tile tile1 = ti.interpret(tile);
-                bestMove = boardB.FindBestMove(tile1, tiger, gid);
-                System.out.println(bestMove.toString(gid));
-                client.sendToServer(bestMove.toString(gid));
-=======
             String[] both = client.GetInfo();
 
             if(both.length != 0){
@@ -660,11 +637,10 @@ public class TigerClient
                     System.out.println(bestMove.toString(gid));
                     client.sendToServer(bestMove.toString(gid));
                 }
->>>>>>> 2b5cb2d8b60285b4585ffe9a4a86b7d4c2993dd5
             }
                     
             //if(client.GetOtherMove() == null){
-        String[] info = client.GetOtherMove();
+            String[] info = client.GetOtherMove();
                  
             if(info.length != 0){
                     String moveMade = info[0];
