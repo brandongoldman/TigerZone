@@ -8,19 +8,7 @@ import java.util.Date;
 
 
 public class TCPServer 
-{
-
-	/**
-	 * A TCP server that runs on port 9090.  When a client connects, it
-	 * sends the client the current date and time, then closes the
-	 * connection with that client.  Arguably just about the simplest
-	 * server you can write.
-	 */
-
-	 /**
-	 * Runs the server 
-	 */
-	
+{	
 	    public static void main(String[] args) throws IOException, InterruptedException 
 	    {
 	        ServerSocket listener = new ServerSocket(9090);
@@ -490,20 +478,20 @@ public class TCPServer
                             //out.println("GAME B OVER PLAYER Red <red_score> PLAYER Blue <red_score>");
                             
                             
-	                	}  
+	                	}  // I AM
 	                	
 	                		                	                	
-	                }
+	                } // While true, wait for message
 	               
 	                
-	            }
-	        }
+	            } // While true, accept socket
+	        } // try
 	        
 	        finally 
 	        {
 	            listener.close();
 	        }
-	    }
-}
+	    } // Main
+} // Class
 	
 
