@@ -510,9 +510,9 @@ public class TigerClient
                 
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
-                fin = tokens[0];
-		foundFinal = true;        
-                return fin;
+                fin = tokens[0];        
+                
+		foundFinal = true;      
             }
             else if (response.startsWith("PLEASE"))
             {
@@ -521,14 +521,15 @@ public class TigerClient
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
                 fin = tokens[0];
-		foundFinal = true; 
-                return fin;
-                // Invalid or unexpected response
+                
+                foundFinal = true; 
+		// Invalid or unexpected response
                 //return false;
                 //return null;
             }
             
         }
+	     
         return fin;
     }
     
