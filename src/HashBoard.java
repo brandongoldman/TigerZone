@@ -209,7 +209,7 @@ public class HashBoard{
                     //addTile(pos, t, tiger);
 					ScorePotential holder = getMoveScore(pos, t);
                     currScore = holder.score; // need to update with scoring method
-                    if(currScore > bestScore && currScore>8)
+                    if(currScore > bestScore/* && currScore>8*/)
                     {
                         //System.out.println("UPDATED SCORE: " + bestScore + " to " + currScore);
                         best = pos;
@@ -239,7 +239,7 @@ public class HashBoard{
             //System.out.println("TESTESTESTEST");
             //System.out.println(bestMove.passOnTile(t));
             bestMove.passOnTile(t, gid, move);
-            System.out.println("TESTESTESTEST");
+            //System.out.println("TESTESTESTEST");
             //System.out.println(bestMove.passOnTile(t));
             // tile is not placeable on board, so pass
 			// String tile = t.getDescription();
