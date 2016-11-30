@@ -674,7 +674,9 @@ public class TigerClient
                             }
 
                         }
-
+                        if(forfA==true&&forfB==true){
+                            break;
+                        }
                         if (moveMade.equals("true")) {
 
                             String theirPID = info[3];
@@ -764,7 +766,9 @@ public class TigerClient
                     }
                 }
             }
-                    
+            if(forfA==true && forfB==true){
+                break;
+            }
         }
                 int r = Integer.parseInt(client.RoundEnd());
                 if(r == rounds){

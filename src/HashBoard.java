@@ -184,7 +184,7 @@ public class HashBoard{
     }
     
     
-    public Move FindBestMove(Tile t, boolean tiger, String gid)
+    public Move FindBestMove(Tile t, boolean tiger, String gid, int move)
     {
         int bestScore = -1;
         int currScore = -1;
@@ -238,7 +238,7 @@ public class HashBoard{
 
             //System.out.println("TESTESTESTEST");
             //System.out.println(bestMove.passOnTile(t));
-            bestMove.passOnTile(t, gid);
+            bestMove.passOnTile(t, gid, move);
             System.out.println("TESTESTESTEST");
             //System.out.println(bestMove.passOnTile(t));
             // tile is not placeable on board, so pass
