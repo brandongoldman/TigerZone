@@ -680,11 +680,11 @@ public class TigerClient
                     if(GameATigerCount>0){
                         tiger=true;
                     }
-<<<<<<< HEAD
+
                     bestMove = boardA.FindBestMove(tile1, tiger, gid, (i+1));
                     System.out.println(bestMove.toString(gid, (i+1)));
                     client.sendToServer(bestMove.toString(gid, (i+1)));
-=======
+
                     bestMove = boardA.FindBestMove(tile1, tiger, gid);
                     if(bestMove.zone!=0){
                         GameATigerCount--;
@@ -692,7 +692,7 @@ public class TigerClient
                     GameATigerCount=GameATigerCount+boardA.ReturnTiger();
                     System.out.println(bestMove.toString(gid));
                     client.sendToServer(bestMove.toString(gid));
->>>>>>> ed82ee6259741923553554286be8c25951a6cef5
+
 
                 }
                 else{
@@ -702,17 +702,16 @@ public class TigerClient
                     if(GameBTigerCount>0){
                         tiger=true;
                     }
-<<<<<<< HEAD
+
                     bestMove = boardB.FindBestMove(tile1, tiger, gid, (i+1));
                     System.out.println(bestMove.toString(gid, (i+1)));
-=======
+
                     bestMove = boardB.FindBestMove(tile1, tiger, gid);
                     if(bestMove.zone!=0){
                         GameBTigerCount--;
                     }
                     GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
                     System.out.println(bestMove.toString(gid, (i+1));
->>>>>>> ed82ee6259741923553554286be8c25951a6cef5
                     client.sendToServer(bestMove.toString(gid, (i+1)));
                 }
             }
