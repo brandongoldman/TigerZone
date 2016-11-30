@@ -202,12 +202,13 @@ public class TigerClient
         
     }
     
-    public boolean RoundEnd() throws IOException
+    public String RoundEnd() throws IOException
     {
         String response;
-        boolean round = false;
+        String round = null;
+        boolean foundRound = false;
         
-        while(round == false)
+        while(foundRound == false)
         {
             response = in.readLine();
             
@@ -215,23 +216,19 @@ public class TigerClient
             {
                 System.out.println(response);
                 
-               // String delims = "[ ]";
-                //String[] tokens = response.split(delims);
-                //gid = tokens[5];
-                
-                
-                round = true;
-                return true;
+                String delims = "[ ]";
+                String[] tokens = response.split(delims);
+                round = tokens[3];
+                return round;
             }
-            else if (response != null)
+            else// if (response != null)
             {
                 // Invalid or unexpected response
-                return false;
+                //return false;
+                return null;
             }
             
         }
-        
-        return false;
     }
     
     public int roundProtocol() throws IOException
@@ -269,6 +266,7 @@ public class TigerClient
         
         return roundID;
     }
+    
     
     public MatchParam matchProtocol() throws IOException
     {
@@ -708,6 +706,10 @@ public class TigerClient
             //}
                     
         }
+                String r = Integer.parseInt(client.RoundEnd());
+                if(r == rounds){
+                    //
+                }
                 System.out.println("YO QW REACHED ENF OD REBIFBEI");
     }
     }      
