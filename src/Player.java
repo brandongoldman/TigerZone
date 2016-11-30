@@ -2,7 +2,7 @@
 
     Created By: Group N
 
-    Logic:
+    Logic: Most important class
 
         This class will simulate the options of the player,
         which will probably be switched to the AI class later.
