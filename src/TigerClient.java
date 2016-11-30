@@ -510,7 +510,7 @@ public class TigerClient
                 
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
-                fin = tokens[3];
+                fin = tokens[0];
                 return fin;
             }
             else if (response.startsWith("PLEASE"))
@@ -519,7 +519,7 @@ public class TigerClient
                 
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
-                fin = tokens[3];
+                fin = tokens[0];
                 return fin;
                 // Invalid or unexpected response
                 //return false;
@@ -556,6 +556,9 @@ public class TigerClient
         TigerClient client = new TigerClient();
         
         TileInterpreter ti = new TileInterpreter();
+        
+        boolean cont = true;
+        
         
          Move bestMove = new Move();
         //bestMove.setGID();
@@ -609,6 +612,8 @@ public class TigerClient
             System.out.println("Authentication failed.");
             return;
         }
+        
+        while(cont){
         
         // Get the number of rounds to be played 
         int rounds = client.challengeProtocol();
@@ -847,11 +852,12 @@ public class TigerClient
         }
                 int r = Integer.parseInt(client.RoundEnd());
                 String y = client.FinalMessage();
-                //if(r == rounds){
-                    
-                //     System.out.println("YO QW REACHED ENF OD REBIFBEI");
-                //}
+                if(y.equals("END")){
+                    cont = false;
+                }
+                
                
     }//round for loop
-    }      
+    }
+    }
 }
