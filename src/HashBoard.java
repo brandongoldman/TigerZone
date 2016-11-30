@@ -3253,7 +3253,7 @@ public class HashBoard{
 					break;
 				}
 			}
-			if(complete == true){
+			if(complete == true&&D.tiger.getOwner()==1){
 				count++;
 			}
 			Dens.add(D);
