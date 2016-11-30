@@ -452,9 +452,14 @@ public class TigerClient
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
                 
-                if(tokens[8] == "UNPLACEABLE"){
-                    msg [0] = "false";
+                if(tokens[8].equals("UNPLACEABLE")){
+                    msg [0] = tokens[8];
                 }
+                else if(tokens[6].equals("FORFEITED")){
+                    msg [0] = tokens[6];
+                    msg [1] = tokens[1];
+                }
+                
                 else{
                     msg[0] = "true";
                     msg[1] = tokens[1]; //other gid
@@ -464,7 +469,6 @@ public class TigerClient
                     msg[5] = tokens[9]; //x
                     msg[6] = tokens[10]; //y
                     msg[7] = tokens[11]; //ori
-                    
                     //System.out.println(msg[4] + " HELLO ");
                 }
                 
@@ -602,6 +606,8 @@ public class TigerClient
         
         for(int j = 0; j < rounds; j++)
             {//iterates every ROUND
+                boolean forfA = false;
+                boolean forfB = false;
             for(int i = 0; i < turns; i++) //interates per round every TURN
                 {
             
@@ -647,13 +653,25 @@ public class TigerClient
             String[] info = client.GetOtherMove();
                  
                     
-            if(info.length != 0){
+            //if(info.length != 0){
                     String moveMade = info[0];
+                    String whichGame = info[1];
+                if(moveMade.equals("FORFEITED")){
+                    if(whichGame.equals("A")){
+                        forfA = true;
+                    }
+                    else if(whichGame.equals("B")){
+                        forfB = true;
+                    }
+                
+            }
+                
+                
+                
+                if(moveMade.equals("true")){
+                   
                     String theirPID = info[3];
-                    //System.out.println("WE MADE IT");
-                    //System.out.println(moveMade + " theirs: " + theirPID + "ours: " + pid);
-                    
-                    if((moveMade.equals("true")) && !(theirPID.equals(pid))){
+                    if/*((moveMade.equals("true")) && */(!(theirPID.equals(pid))){
                         
                         String OtherGid = info[1];
                         int OtherMove = Integer.parseInt(info[2]);
@@ -664,7 +682,7 @@ public class TigerClient
                         int ori = Integer.parseInt(info[7]);
 
                     
-                            if (OtherGid.equals("A")){
+                            if (OtherGid.equals("A") && forfA == false){
                                 Tile tile2 = ti.interpret(TileOther);
                                 for(int z = 0; z < (ori/90); z++){
                                     tile2.rotate();
@@ -674,7 +692,7 @@ public class TigerClient
                                 //boardA.FindBestMove(tile2, tiger, OtherGid);
                             
                             }
-                            else if (OtherGid.equals("B")){
+                            else if (OtherGid.equals("B") && forfB == false){
                                 Tile tile2 = ti.interpret(TileOther);
                                 for(int z = 0; z < (ori/90); z++){
                                     tile2.rotate();
@@ -684,11 +702,13 @@ public class TigerClient
                                 //boardB.FindBestMove(tile2, tiger, OtherGid);
                             
                             }
-
+                    }
                     }
                 }               
-            }
-            }
+            //}
+                    
         }
+                System.out.println("YO QW REACHED ENF OD REBIFBEI");
+    }
     }      
 }
