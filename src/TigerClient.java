@@ -96,6 +96,7 @@ public class TigerClient
                 System.out.println(response);
                 
                 // send back I am with username and password
+                System.out.println("I AM %s %s\n", username, password);
                 out.printf("I AM %s %s\n", username, password);
                 
             }
@@ -229,6 +230,7 @@ public class TigerClient
             }
             
         }
+        return round;
     }
     
     public int roundProtocol() throws IOException
@@ -650,8 +652,8 @@ public class TigerClient
                         tiger=true;
                     }
                     bestMove = boardB.FindBestMove(tile1, tiger, gid);
-                    System.out.println(bestMove.toString(gid));
-                    client.sendToServer(bestMove.toString(gid));
+                    System.out.println(bestMove.toString(gid, (i+1));
+                    client.sendToServer(bestMove.toString(gid, (i+1)));
                 }
             }
                     
@@ -764,9 +766,9 @@ public class TigerClient
             }
                     
         }
-                String r = Integer.parseInt(client.RoundEnd());
+                int r = Integer.parseInt(client.RoundEnd());
                 if(r == rounds){
-                    //
+                    
                 }
                 System.out.println("YO QW REACHED ENF OD REBIFBEI");
     }
