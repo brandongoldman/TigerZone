@@ -614,7 +614,7 @@ public class TigerClient
                 
             //if(client.GetInfo() != null){
         //if(client.GetInfo()[3].equals("true")){
-            String[] both = client.GetInfo();
+        String[] both = client.GetInfo();
                     
         if(both.length != 0){
             
@@ -639,7 +639,7 @@ public class TigerClient
         }
                     
             //if(client.GetOtherMove() == null){
-            String[] info = client.GetOtherMove();
+        String[] info = client.GetOtherMove();
                  
             if(info.length != 0){
                     String moveMade = info[0];
