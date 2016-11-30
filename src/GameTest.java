@@ -190,7 +190,7 @@ public class GameTest{
         //board.FindBestMove(tile24,tiger);
         //
 		board.printLake();
-		//board.printTrail();
+		board.printTrail();
         //board.printDen();
 
 
