@@ -122,15 +122,17 @@ public class TCPServer
                             
                             Thread.sleep(2000); //ACTUAL BREAK - 15++ SECONDS
                             
-                            out.println("GAME A MOVE 4 PLAYER Blue PLACED JJTJX AT 1 1 270 TIGER 5");
+                            out.println("GAME A MOVE 4 PLAYER Blue FORFEITED: ILLEGAL TILE PLACEMENT ");
                             
                             out.println("GAME B MOVE 4 PLAYER Red PLACED JJTJX AT -1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 5 PLACE JLTTB");
+                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 5 PLACE JLTTB");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 5 PLAYER Red PLACED JLTTB AT -1 -1 90 NONE");
+                            //out.println("GAME A MOVE 5 PLAYER Red PLACED JLTTB AT -1 -1 90 NONE");
+                            
+                            out.println("GAME B MOVE 5 PLAYER Red PLACED JLTTB AT 2 0 180 TIGER 1");
                             
                             out.println("GAME B MOVE 5 PLAYER Blue PLACED JLTTB AT 2 0 180 TIGER 1");
                             
@@ -138,9 +140,9 @@ public class TCPServer
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 6 PLAYER Blue PLACED TLLT- AT 0 -1 180 CROCODILE");
+                            out.println("GAME B MOVE 6 PLAYER Red PLACED TLLT- AT 0 -1 180 CROCODILE");
                             
-                            out.println("GAME B MOVE 6 PLAYER Red PLACED TLLT- AT 0 -2 90 NONE");
+                            out.println("GAME B MOVE 6 PLAYER Blue PLACED TLLT- AT 0 -2 90 NONE");
                             
                             //out.println("GAME A OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
                             

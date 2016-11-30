@@ -456,7 +456,7 @@ public class TigerClient
                 if(tokens[8].equals("UNPLACEABLE")){
                     msg [0] = tokens[8];
                 }
-                else if(tokens[6].equals("FORFEITED")){
+                else if(tokens[6].equals("FORFEITED:")){
                     msg [0] = tokens[6];
                     msg [1] = tokens[1];
                 }
@@ -783,7 +783,7 @@ public class TigerClient
                 }
                 else{
                     String[] info = client.GetOtherMove();
-
+                    //info = client.GetOtherMove();
                     //if(info.length != 0){
                     String moveMade = info[0];
                     String whichGame = info[1];
