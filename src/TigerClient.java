@@ -596,6 +596,8 @@ public class TigerClient
     		
     		match = client.matchProtocol();
             int turns = match.getNumOfTiles();
+            System.out.println("Number of Turns: " + turns);
+
             //System.out.println(turns);
         
         for(int j = 0; j < rounds; j++)
@@ -643,7 +645,7 @@ public class TigerClient
             if(info.length != 0){
                     String moveMade = info[0];
                     String theirPID = info[3];
-                    
+                    System.out.println("WE MADE IT");
                     //System.out.println(moveMade + " theirs: " + theirPID + "ours: " + pid);
                     
                     if((moveMade.equals("true")) && !(theirPID.equals(pid))){
@@ -674,19 +676,9 @@ public class TigerClient
                             
                             }
 
-                       
+                    }
+                }               
             }
-                 }
-                    
-                    
- 
-                    
-    }
-}
-    
- 
-    	
-    }
-  
-        
+        }
+    }      
 }
