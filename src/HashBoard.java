@@ -184,11 +184,10 @@ public class HashBoard{
     }
     
     
-    public Move FindBestMove(Tile t, Tiger tiger, String gid)
+    public Move FindBestMove(Tile t, boolean tiger, String gid)
     {
         int bestScore = -1;
         int currScore = -1;
-        int tigerLocation = 0;
         Position best = new Position(0,0);
         int rot = 0;
 		int placement = 0;
@@ -208,7 +207,7 @@ public class HashBoard{
                 {
                     
                     //addTile(pos, t, tiger);
-					ScorePotential holder = getMoveScore(pos, t, tigerLocation);
+					ScorePotential holder = getMoveScore(pos, t);
                     currScore = holder.score; // need to update with scoring method
                     if(currScore > bestScore)
                     {
@@ -267,10 +266,17 @@ public class HashBoard{
         bestMove.x = best.getXPosition();
         bestMove.y = best.getYPosition();
         bestMove.rotation = t.getRotation();
-        if (tiger == null) bestMove.special = "NONE";
+		if(placement==0){
+			owner=0;
+		}
+		if(tiger!=true){
+			owner=0;
+			placement=0;
+		}
+        if (owner == 0) bestMove.special = "NONE";
         else {
         	bestMove.special = "TIGER";
-        	bestMove.zone = tiger.getTigerPlacement();
+        	bestMove.zone = placement;
         }
         //System.out.println(best.getXPosition() + " " + best.getYPosition());
         System.out.println("PLACEMENT:" + placement);
@@ -1672,7 +1678,7 @@ public class HashBoard{
 	
 	
 		
-	public ScorePotential getMoveScore(Position pos, Tile tile, int tigerPlacement) {
+	public ScorePotential getMoveScore(Position pos, Tile tile) {
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
 		Position top = new Position(pos.getXPosition(), pos.getYPosition() + 1); //1

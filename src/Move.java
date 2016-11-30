@@ -36,25 +36,17 @@ public class Move
 
 	public String toString(String gid)
 	{
-		if (this.special.equals("NONE")) return ("GAME " + gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE");
-        else return ("GAME " + gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE ");//" TIGER " + this.zone);
+		if (this.special.equals("NONE")) return ("GAME " + gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE\n");
+        else return ("GAME " + gid + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " TIGER " + this.zone + "\n");
 	}
 
 	// type = 4:  GAME <gid> TILE <tile> UNPLACEABLE PASS
 	public String passOnTile(Tile t, String gid)
 	{
 		String tileDescription = t.getDescription();
-		//try
-		//{
-		//	gid = client.getGID();
-		//}
-		//catch (Exception e){
-		//	e.printStackTrace();
-		//};
 
-		String messageToServer = "GAME " + gid + " TILE " + tileDescription + " UNPLACEABLE PASS";
+		String messageToServer = "GAME " + gid + " TILE " + tileDescription + " UNPLACEABLE PASS\n";
 		return messageToServer; 
-		// ^^^^^ I NEED THAT STRING IN TIGERCLIENT!!!!!!!!!
 	}
 
 
