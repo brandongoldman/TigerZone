@@ -432,7 +432,7 @@ public class TigerClient
     public String[] GetOtherMove() throws IOException
     {
         String response;
-        String msg[] = new String[8];
+        String msg[] = new String[9];
         /*String gid = null;
         String move = null;
         String tile = null;
@@ -470,7 +470,13 @@ public class TigerClient
                     msg[5] = tokens[9]; //x
                     msg[6] = tokens[10]; //y
                     msg[7] = tokens[11]; //ori
-                    //System.out.println(msg[4] + " HELLO ");
+                    if(tokens[12].equals("TIGER")){
+                        msg[8] = tokens[13];
+                    }
+                       else{
+                           msg[8]="none";
+                       }
+                   
                 }
                 
                 makeMove = true;
@@ -662,9 +668,7 @@ public class TigerClient
                     }*/
                     
                     
-                
-            //if(client.GetInfo() != null){
-        //if(client.GetInfo()[3].equals("true")){
+           
             String[] both = client.GetInfo();
 
             if(both.length != 0){
@@ -687,7 +691,7 @@ public class TigerClient
                     if(bestMove.zone!=0){
                         GameATigerCount--;
                     }
-                    //GameATigerCount=GameATigerCount+boardA.ReturnTiger();
+                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
                     System.out.println(bestMove.toString(gid, (i+1)));
                     client.sendToServer(bestMove.toString(gid, (i+1)));
 
@@ -705,7 +709,7 @@ public class TigerClient
                     if(bestMove.zone!=0){
                         GameBTigerCount--;
                     }
-                    //GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
+                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
                     System.out.println(bestMove.toString(gid, (i+1)));
                     //System.out.println(bestMove.toString(gid, (i+1)));
                     client.sendToServer(bestMove.toString(gid, (i+1)));
@@ -744,6 +748,12 @@ public class TigerClient
                                 int x = Integer.parseInt(info[5]);
                                 int y = Integer.parseInt(info[6]);
                                 int ori = Integer.parseInt(info[7]);
+                                String tig = info[8];//Integer.parseInt(info[8]);
+                                int placement = 0;
+                                
+                                if(!tig.equals("none")){
+                                    placement = Integer.parseInt(tig);
+                                }
 
                                 if (OtherGid.equals("A") && forfA == false) {
                                     Tile tile2 = ti.interpret(TileOther);
@@ -751,9 +761,9 @@ public class TigerClient
                                         tile2.rotate();
                                     }
                                     //System.out.println("They placed A"  + x + " " + y);
-                                    Tiger P2Tiger = new Tiger();
+                                    Tiger P2Tiger = new Tiger(2, placement);
                                     boardA.addTile(new Position(x, y), tile2, P2Tiger);
-                                    //GameATigerCount=GameATigerCount+boardA.ReturnTiger();
+                                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
                                     //boardA.FindBestMove(tile2, tiger, OtherGid);
 
                                 } else if (OtherGid.equals("B") && forfB == false) {
@@ -761,10 +771,10 @@ public class TigerClient
                                     for (int z = 0; z < (ori / 90); z++) {
                                         tile2.rotate();
                                     }
-                                    Tiger P2Tiger = new Tiger();
+                                    Tiger P2Tiger = new Tiger(2, placement);
                                     //System.out.println("They placed B " + x + " " + y);
                                     boardB.addTile(new Position(x, y), tile2, P2Tiger);
-                                    //GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
+                                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
                                     //boardB.FindBestMove(tile2, tiger, OtherGid);
                                 }
                             }
@@ -798,6 +808,12 @@ public class TigerClient
                             int x = Integer.parseInt(info[5]);
                             int y = Integer.parseInt(info[6]);
                             int ori = Integer.parseInt(info[7]);
+                            String tig = info[8];//Integer.parseInt(info[8]);
+                            int placement = 0;
+                            
+                            if(!tig.equals("none")){
+                                placement = Integer.parseInt(tig);
+                            }
 
                             if (OtherGid.equals("A") && forfA == false) {
                                 Tile tile2 = ti.interpret(TileOther);
@@ -805,9 +821,9 @@ public class TigerClient
                                     tile2.rotate();
                                 }
                                 //System.out.println("They placed A"  + x + " " + y);
-                                Tiger P2Tiger = new Tiger();
+                                Tiger P2Tiger = new Tiger(2, placement);
                                 boardA.addTile(new Position(x, y), tile2, P2Tiger);
-                                //GameATigerCount=GameATigerCount+boardA.ReturnTiger();
+                                GameATigerCount=GameATigerCount+boardA.ReturnTiger();
                                 //boardA.FindBestMove(tile2, tiger, OtherGid);
 
                             } else if (OtherGid.equals("B") && forfB == false) {
@@ -815,10 +831,10 @@ public class TigerClient
                                 for (int z = 0; z < (ori / 90); z++) {
                                     tile2.rotate();
                                 }
-                                Tiger P2Tiger = new Tiger();
+                                Tiger P2Tiger = new Tiger(2, placement);
                                 //System.out.println("They placed B " + x + " " + y);
                                 boardB.addTile(new Position(x, y), tile2, P2Tiger);
-                                //GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
+                                GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
                                 //boardB.FindBestMove(tile2, tiger, OtherGid);
                             }
                         }

@@ -217,7 +217,9 @@ public class HashBoard{
                         bestScore = currScore;
                         bestMove = new Move();
                         validSpot = true;
-						owner=1;
+                        if(currScore >= 5){
+                            owner=1;
+                        }
 						placement=holder.placement;
                         //addTile(best, t, tiger);
                         //return bestMove;
