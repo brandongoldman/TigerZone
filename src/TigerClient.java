@@ -616,6 +616,29 @@ public class TigerClient
                 
             //if(client.GetInfo() != null){
         //if(client.GetInfo()[3].equals("true")){
+<<<<<<< HEAD
+        String[] both = client.GetInfo();
+                    
+        if(both.length != 0){
+            
+            String gid = both[0];
+            String tile = both[1];
+            int move = Integer.parseInt(both[2]);
+            
+            if(gid.equals("A")){
+                Tile tile1 = ti.interpret(tile);
+                bestMove = boardA.FindBestMove(tile1, tiger, gid);
+                System.out.println(bestMove.toString(gid));
+                client.sendToServer(bestMove.toString(gid));
+            //Position pos = new Position(x,y);
+            //board.gBoard.put(pos,tileOther);
+            }
+            else{
+                Tile tile1 = ti.interpret(tile);
+                bestMove = boardB.FindBestMove(tile1, tiger, gid);
+                System.out.println(bestMove.toString(gid));
+                client.sendToServer(bestMove.toString(gid));
+=======
             String[] both = client.GetInfo();
 
             if(both.length != 0){
@@ -637,10 +660,11 @@ public class TigerClient
                     System.out.println(bestMove.toString(gid));
                     client.sendToServer(bestMove.toString(gid));
                 }
+>>>>>>> 2b5cb2d8b60285b4585ffe9a4a86b7d4c2993dd5
             }
                     
             //if(client.GetOtherMove() == null){
-            String[] info = client.GetOtherMove();
+        String[] info = client.GetOtherMove();
                  
             if(info.length != 0){
                     String moveMade = info[0];
