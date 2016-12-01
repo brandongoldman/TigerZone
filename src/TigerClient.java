@@ -8,6 +8,8 @@
 
 /* The TigerClient will realize the Tigerzone protocol which is entirely text based. */ 
 
+// NOTE: Changed A-->1, B-->2 ... STILL NEED TO ACCOUNT FOR THIRD GAME?
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -510,8 +512,9 @@ public class TigerClient
                 
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
-                fin = tokens[0];
-                return fin;
+                fin = tokens[0];        
+                
+		foundFinal = true;      
             }
             else if (response.startsWith("PLEASE"))
             {
@@ -520,13 +523,15 @@ public class TigerClient
                 String delims = "[ ]";
                 String[] tokens = response.split(delims);
                 fin = tokens[0];
-                return fin;
-                // Invalid or unexpected response
+                
+                foundFinal = true; 
+		// Invalid or unexpected response
                 //return false;
                 //return null;
             }
             
         }
+	     
         return fin;
     }
     
@@ -682,8 +687,8 @@ public class TigerClient
 		                String tile = both[1];
 		                int move = Integer.parseInt(both[2]);
 		                
-		                if(gid.equals("A")){
-		                    System.out.println("We placed A");
+		                if(gid.equals("1")){
+		                    System.out.println("We placed 1");
 		                    Tile tile1 = ti.interpret(tile);
 		                    boolean tiger = false;
 		                    if(GameATigerCount>0){
@@ -702,7 +707,7 @@ public class TigerClient
 		
 		                }
 		                else{
-		                    System.out.println("we placed B");
+		                    System.out.println("we placed 2");
 		                    Tile tile1 = ti.interpret(tile);
 		                    boolean tiger = false;
 		                    if(GameBTigerCount>0){
@@ -731,10 +736,10 @@ public class TigerClient
 		                        String moveMade = info[0];
 		                        String whichGame = info[1];
 		                        if (moveMade.equals("FORFEITED")) {
-		                            if (whichGame.equals("A")) {
+		                            if (whichGame.equals("1")) {    
 		                                forfA = true;
 		                             } 
-		                             else if (whichGame.equals("B")) {
+		                             else if (whichGame.equals("2")) {
 		                                forfB = true;
 		                             }
 		
@@ -761,7 +766,7 @@ public class TigerClient
 		                                    placement = Integer.parseInt(tig);
 		                                }
 		
-		                                if (OtherGid.equals("A") && forfA == false) {
+		                                if (OtherGid.equals("1") && forfA == false) {
 		                                    Tile tile2 = ti.interpret(TileOther);
 		                                    for (int z = 0; z < (ori / 90); z++) {
 		                                        tile2.rotate();
@@ -773,7 +778,7 @@ public class TigerClient
 		                                    //boardA.FindBestMove(tile2, tiger, OtherGid);
 		
 		                                } 
-		                                else if (OtherGid.equals("B") && forfB == false) {
+		                                else if (OtherGid.equals("2") && forfB == false) {
 		                                    Tile tile2 = ti.interpret(TileOther);
 		                                    for (int z = 0; z < (ori / 90); z++) {
 		                                        tile2.rotate();
@@ -796,10 +801,10 @@ public class TigerClient
 		                    String whichGame = info[1];
 		                    
 		                    if (moveMade.equals("FORFEITED")) {
-		                        if (whichGame.equals("A")) {
+		                        if (whichGame.equals("1")) {
 		                            forfA = true;
 		                        } 
-		                        else if (whichGame.equals("B")) {
+		                        else if (whichGame.equals("2")) {
 		                            forfB = true;
 		                        }
 		                     }
@@ -823,7 +828,7 @@ public class TigerClient
 		                                placement = Integer.parseInt(tig);
 		                            }
 		
-		                            if (OtherGid.equals("A") && forfA == false) {
+		                            if (OtherGid.equals("1") && forfA == false) {
 		                                Tile tile2 = ti.interpret(TileOther);
 		                                for (int z = 0; z < (ori / 90); z++) {
 		                                    tile2.rotate();
@@ -834,7 +839,7 @@ public class TigerClient
 		                                GameATigerCount=GameATigerCount+boardA.ReturnTiger();
 		                                //boardA.FindBestMove(tile2, tiger, OtherGid);
 		                             } 
-		                             else if (OtherGid.equals("B") && forfB == false) {
+		                             else if (OtherGid.equals("2") && forfB == false) {
 		                                Tile tile2 = ti.interpret(TileOther);
 		                                for (int z = 0; z < (ori / 90); z++) {
 		                                    tile2.rotate();

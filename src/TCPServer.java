@@ -82,59 +82,59 @@ public class TCPServer
 	                		
 	                		Thread.sleep(2000);
 	                		
-	                		out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 1 PLACE TLLT-");
+	                		out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 1 PLACE TLLT-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 1 PLAYER Red PLACED TLLT- AT 1 0 180 NONE");
+                            out.println("GAME 1 MOVE 1 PLAYER Red PLACED TLLT- AT 1 0 180 NONE");
                             
-                            out.println("GAME B MOVE 1 PLAYER Blue PLACED TLLT- AT 0 1 90 TIGER 8");
+                            out.println("GAME 2 MOVE 1 PLAYER Blue PLACED TLLT- AT 0 1 90 TIGER 8");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 2 PLACE LJTJ-");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 2 PLAYER Blue PLACED LJTJ- AT 0 2 180 TIGER 8");
-                            
-                            out.println("GAME B MOVE 2 PLAYER Red PLACED LJTJ- AT 0 -1 180 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 3 PLACE JLJL-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 2 PLACE LJTJ-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 3 PLAYER Red PLACED JLJL- AT -1 0 90 NONE");
+                            out.println("GAME 1 MOVE 2 PLAYER Blue PLACED LJTJ- AT 0 2 180 TIGER 8");
                             
-                            out.println("GAME B MOVE 3 PLAYER Blue PLACED JLJL- AT 1 0 0 TIGER 4");
+                            out.println("GAME 2 MOVE 2 PLAYER Red PLACED LJTJ- AT 0 -1 180 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 4 PLACE JJTJX");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 3 PLACE JLJL-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 3 PLAYER Red PLACED JLJL- AT -1 0 90 NONE");
+                            
+                            out.println("GAME 2 MOVE 3 PLAYER Blue PLACED JLJL- AT 1 0 0 TIGER 4");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 4 PLACE JJTJX");
                             
                             Thread.sleep(2000); //ACTUAL BREAK - 15++ SECONDS
                             
-                            out.println("GAME A MOVE 4 PLAYER Blue FORFEITED: ILLEGAL TILE PLACEMENT ");
+                            out.println("GAME 1 MOVE 4 PLAYER Blue FORFEITED: ILLEGAL TILE PLACEMENT ");
                             
-                            out.println("GAME B MOVE 4 PLAYER Red PLACED JJTJX AT -1 0 0 NONE");
+                            out.println("GAME 2 MOVE 4 PLAYER Red PLACED JJTJX AT -1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 5 PLACE JLTTB");
-                            
-                            Thread.sleep(2000);
-                            
-                            //out.println("GAME A MOVE 5 PLAYER Red PLACED JLTTB AT -1 -1 90 NONE");
-                            
-                            out.println("GAME B MOVE 5 PLAYER Red PLACED JLTTB AT 2 0 180 TIGER 1");
-                            
-                            out.println("GAME B MOVE 5 PLAYER Blue PLACED JLTTB AT 2 0 180 TIGER 1");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 6 PLACE TLLT-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 5 PLACE JLTTB");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME B MOVE 6 PLAYER Red PLACED TLLT- AT 0 -1 180 CROCODILE");
+                            //out.println("GAME 1 MOVE 5 PLAYER Red PLACED JLTTB AT -1 -1 90 NONE");
                             
-                            out.println("GAME B MOVE 6 PLAYER Blue PLACED TLLT- AT 0 -2 90 NONE");
+                            out.println("GAME 2 MOVE 5 PLAYER Red PLACED JLTTB AT 2 0 180 TIGER 1");
                             
-                            //out.println("GAME A OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
+                            out.println("GAME 2 MOVE 5 PLAYER Blue PLACED JLTTB AT 2 0 180 TIGER 1");
                             
-                            //out.println("GAME B OVER PLAYER Red <red_score> PLAYER Blue <red_score>");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 6 PLACE TLLT-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 2 MOVE 6 PLAYER Red PLACED TLLT- AT 0 -1 180 CROCODILE");
+                            
+                            out.println("GAME 2 MOVE 6 PLAYER Blue PLACED TLLT- AT 0 -2 90 NONE");
+                            
+                            //out.println("GAME 1 OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
+                            
+                            //out.println("GAME 2 OVER PLAYER Red <red_score> PLAYER Blue <red_score>");
                             
                             //////////////////////////////////////////////////////////
                             //out.println("END OF ROUND 1 OF 1");
@@ -165,100 +165,100 @@ public class TCPServer
                             
                             Thread.sleep(2000);
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 1 PLACE LLLL-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 1 PLACE LLLL-");
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 1 PLAYER Red PLACED LLLL- AT 1 0 0 TIGER 1");
+                            out.println("GAME 1 MOVE 1 PLAYER Red PLACED LLLL- AT 1 0 0 TIGER 1");
                             
-                            out.println("GAME B MOVE 1 PLAYER Blue PLACED LLLL- AT 1 0 0 NONE");
+                            out.println("GAME 2 MOVE 1 PLAYER Blue PLACED LLLL- AT 1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 2 PLACE JJJJX");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 2 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 2 PLAYER Red PLACED JJJJX AT 1 0 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 3 PLACE TLLT-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 2 PLACE JJJJX");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 3 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 1 MOVE 2 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("GAME B MOVE 3 PLAYER Blue PLACED TLLT- AT 0 -1 0 NONE");
+                            out.println("GAME 2 MOVE 2 PLAYER Red PLACED JJJJX AT 1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 4 PLACE LLJJ-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 3 PLACE TLLT-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 3 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("GAME 2 MOVE 3 PLAYER Blue PLACED TLLT- AT 0 -1 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 4 PLACE LLJJ-");
                             
                             Thread.sleep(2000); //ACTUAL BREAK - 15++ SECONDS
                             
-                            out.println("GAME A MOVE 4 PLAYER Blue PLACED LLJJ- AT 0 -2 0 NONE");
+                            out.println("GAME 1 MOVE 4 PLAYER Blue PLACED LLJJ- AT 0 -2 0 NONE");
                             
-                            out.println("GAME A MOVE 4 PLAYER Red PLACED LLJJ- AT 0 -2 0 NONE");
+                            out.println("GAME 1 MOVE 4 PLAYER Red PLACED LLJJ- AT 0 -2 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 5 PLACE JJJJX");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 5 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 5 PLAYER Blue PLACED JJJJX AT -1 -2 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 6 PLACE LLLL-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 5 PLACE JJJJX");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 6 PLAYER Blue PLACED TLLT- AT 1 -2 0 NONE");
+                            out.println("GAME 1 MOVE 5 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("GAME A MOVE 6 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 2 MOVE 5 PLAYER Blue PLACED JJJJX AT -1 -2 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 7 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 7 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 8 PLACE TJTT-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 6 PLACE LLLL-");
                             
                             Thread.sleep(2000);
                             
-                             out.println("GAME B MOVE 8 PLAYER Blue PLACED TJTT- AT 0 1 0 NONE");
+                            out.println("GAME 1 MOVE 6 PLAYER Blue PLACED TLLT- AT 1 -2 0 NONE");
                             
-                            out.println("GAME A MOVE 8 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 1 MOVE 6 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 9 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 9 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 10 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 1 MOVE 7 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("GAME B MOVE 10 PLAYER Red PLACED JLTTB AT -1 -2 0 NONE");
+                            out.println("GAME 2 MOVE 7 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 8 PLACE TJTT-");
+                            
+                            Thread.sleep(2000);
+                            
+                             out.println("GAME 2 MOVE 8 PLAYER Blue PLACED TJTT- AT 0 1 0 NONE");
+                            
+                            out.println("GAME 1 MOVE 8 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 9 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("GAME 2 MOVE 9 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 10 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("GAME 2 MOVE 10 PLAYER Red PLACED JLTTB AT -1 -2 0 NONE");
     
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 11 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 1 MOVE 11 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("GAME B MOVE 11 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
+                            out.println("GAME 2 MOVE 11 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
     
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 12 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 1 MOVE 12 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("GAME B MOVE 12 PLAYER Red PLACED JLTTB AT -1 -2 0 NONE");//....
+                            out.println("GAME 2 MOVE 12 PLAYER Red PLACED JLTTB AT -1 -2 0 NONE");//....
                             
                             out.println("END OF ROUND 2 OF 2");
                             
@@ -286,59 +286,59 @@ public class TCPServer
                             
                             Thread.sleep(2000);
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 1 PLACE TLLT-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 1 PLACE TLLT-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 1 PLAYER Red PLACED TLLT- AT 1 0 180 NONE");
+                            out.println("GAME 1 MOVE 1 PLAYER Red PLACED TLLT- AT 1 0 180 NONE");
                             
-                            out.println("GAME B MOVE 1 PLAYER Blue PLACED TLLT- AT 0 1 90 TIGER 8");
+                            out.println("GAME 2 MOVE 1 PLAYER Blue PLACED TLLT- AT 0 1 90 TIGER 8");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 2 PLACE LJTJ-");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 2 PLAYER Blue PLACED LJTJ- AT 0 2 180 TIGER 8");
-                            
-                            out.println("GAME B MOVE 2 PLAYER Red PLACED LJTJ- AT 0 -1 180 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 3 PLACE JLJL-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 2 PLACE LJTJ-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 3 PLAYER Red PLACED JLJL- AT -1 0 90 NONE");
+                            out.println("GAME 1 MOVE 2 PLAYER Blue PLACED LJTJ- AT 0 2 180 TIGER 8");
                             
-                            out.println("GAME B MOVE 3 PLAYER Blue PLACED JLJL- AT 1 0 0 TIGER 4");
+                            out.println("GAME 2 MOVE 2 PLAYER Red PLACED LJTJ- AT 0 -1 180 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 4 PLACE JJTJX");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 3 PLACE JLJL-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 3 PLAYER Red PLACED JLJL- AT -1 0 90 NONE");
+                            
+                            out.println("GAME 2 MOVE 3 PLAYER Blue PLACED JLJL- AT 1 0 0 TIGER 4");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 4 PLACE JJTJX");
                             
                             Thread.sleep(2000); //ACTUAL BREAK - 15++ SECONDS
                             
-                            out.println("GAME A MOVE 4 PLAYER Blue FORFEITED: ILLEGAL TILE PLACEMENT ");
+                            out.println("GAME 1 MOVE 4 PLAYER Blue FORFEITED: ILLEGAL TILE PLACEMENT ");
                             
-                            out.println("GAME B MOVE 4 PLAYER Red PLACED JJTJX AT -1 0 0 NONE");
+                            out.println("GAME 2 MOVE 4 PLAYER Red PLACED JJTJX AT -1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 5 PLACE JLTTB");
-                            
-                            Thread.sleep(2000);
-                            
-                            //out.println("GAME A MOVE 5 PLAYER Red PLACED JLTTB AT -1 -1 90 NONE");
-                            
-                            out.println("GAME B MOVE 5 PLAYER Red PLACED JLTTB AT 2 0 180 TIGER 1");
-                            
-                            out.println("GAME B MOVE 5 PLAYER Blue PLACED JLTTB AT 2 0 180 TIGER 1");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 6 PLACE TLLT-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 5 PLACE JLTTB");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME B MOVE 6 PLAYER Red PLACED TLLT- AT 0 -1 180 CROCODILE");
+                            //out.println("GAME 1 MOVE 5 PLAYER Red PLACED JLTTB AT -1 -1 90 NONE");
                             
-                            out.println("GAME B MOVE 6 PLAYER Blue PLACED TLLT- AT 0 -2 90 NONE");
+                            out.println("GAME 2 MOVE 5 PLAYER Red PLACED JLTTB AT 2 0 180 TIGER 1");
                             
-                            //out.println("GAME A OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
+                            out.println("GAME 2 MOVE 5 PLAYER Blue PLACED JLTTB AT 2 0 180 TIGER 1");
                             
-                            //out.println("GAME B OVER PLAYER Red <red_score> PLAYER Blue <red_score>");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 6 PLACE TLLT-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 2 MOVE 6 PLAYER Red PLACED TLLT- AT 0 -1 180 CROCODILE");
+                            
+                            out.println("GAME 2 MOVE 6 PLAYER Blue PLACED TLLT- AT 0 -2 90 NONE");
+                            
+                            //out.println("GAME 1 OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
+                            
+                            //out.println("GAME 2 OVER PLAYER Red <red_score> PLAYER Blue <red_score>");
                             
                             //////////////////////////////////////////////////////////
                             //out.println("END OF ROUND 1 OF 1");
@@ -372,100 +372,100 @@ public class TCPServer
                             
                             Thread.sleep(2000);
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 1 PLACE LLLL-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 1 PLACE LLLL-");
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 1 PLAYER Red PLACED LLLL- AT 1 0 0 TIGER 1");
+                            out.println("GAME 1 MOVE 1 PLAYER Red PLACED LLLL- AT 1 0 0 TIGER 1");
                             
-                            out.println("GAME B MOVE 1 PLAYER Blue PLACED LLLL- AT 1 0 0 NONE");
+                            out.println("GAME 2 MOVE 1 PLAYER Blue PLACED LLLL- AT 1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 2 PLACE JJJJX");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 2 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 2 PLAYER Red PLACED JJJJX AT 1 0 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 3 PLACE TLLT-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 2 PLACE JJJJX");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 3 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 1 MOVE 2 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("GAME B MOVE 3 PLAYER Blue PLACED TLLT- AT 0 -1 0 NONE");
+                            out.println("GAME 2 MOVE 2 PLAYER Red PLACED JJJJX AT 1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 4 PLACE LLJJ-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 3 PLACE TLLT-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 3 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("GAME 2 MOVE 3 PLAYER Blue PLACED TLLT- AT 0 -1 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 4 PLACE LLJJ-");
                             
                             Thread.sleep(2000); //ACTUAL BREAK - 15++ SECONDS
                             
-                            out.println("GAME A MOVE 4 PLAYER Blue PLACED LLJJ- AT 0 -2 0 NONE");
+                            out.println("GAME 1 MOVE 4 PLAYER Blue PLACED LLJJ- AT 0 -2 0 NONE");
                             
-                            out.println("GAME A MOVE 4 PLAYER Red PLACED LLJJ- AT 0 -2 0 NONE");
+                            out.println("GAME 1 MOVE 4 PLAYER Red PLACED LLJJ- AT 0 -2 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 5 PLACE JJJJX");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 5 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 5 PLAYER Blue PLACED JJJJX AT -1 -2 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 6 PLACE LLLL-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 5 PLACE JJJJX");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 6 PLAYER Blue PLACED TLLT- AT 1 -2 0 NONE");
+                            out.println("GAME 1 MOVE 5 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("GAME A MOVE 6 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 2 MOVE 5 PLAYER Blue PLACED JJJJX AT -1 -2 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 7 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 7 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME B WITHIN 1 SECOND: MOVE 8 PLACE TJTT-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 6 PLACE LLLL-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME B MOVE 8 PLAYER Blue PLACED TJTT- AT 0 1 0 NONE");
+                            out.println("GAME 1 MOVE 6 PLAYER Blue PLACED TLLT- AT 1 -2 0 NONE");
                             
-                            out.println("GAME A MOVE 8 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 1 MOVE 6 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 9 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 9 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 10 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 1 MOVE 7 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
                             
-                            out.println("GAME B MOVE 10 PLAYER Red PLACED JLTTB AT -1 -2 0 NONE");
+                            out.println("GAME 2 MOVE 7 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
                             
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
-                            
-                            Thread.sleep(2000);
-                            
-                            out.println("GAME A MOVE 11 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
-                            
-                            out.println("GAME B MOVE 11 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
-                            
-                            out.println("MAKE YOUR MOVE IN GAME A WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 8 PLACE TJTT-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME A MOVE 12 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
+                            out.println("GAME 2 MOVE 8 PLAYER Blue PLACED TJTT- AT 0 1 0 NONE");
                             
-                            out.println("GAME B MOVE 12 PLAYER Red PLACED JLTTB AT -1 -2 0 NONE");//....
+                            out.println("GAME 1 MOVE 8 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 9 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("GAME 2 MOVE 9 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 10 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("GAME 2 MOVE 10 PLAYER Red PLACED JLTTB AT -1 -2 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 11 PLAYER Red PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("GAME 2 MOVE 11 PLAYER Blue PLACED JLTTB AT -1 -2 0 NONE");
+                            
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 7 PLACE JLJL-");
+                            
+                            Thread.sleep(2000);
+                            
+                            out.println("GAME 1 MOVE 12 PLAYER Blue PLACED JJJJX AT -1 0 0 NONE");
+                            
+                            out.println("GAME 2 MOVE 12 PLAYER Red PLACED JLTTB AT -1 -2 0 NONE");//....
                             
                             out.println("END OF ROUND 2 OF 2");
                             
@@ -476,9 +476,9 @@ public class TCPServer
                             out.println("THANK YOU FOR PLAYING! GOODBYE");
                             
                             
-                            //out.println("GAME A OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
+                            //out.println("GAME 1 OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
                             
-                            //out.println("GAME B OVER PLAYER Red <red_score> PLAYER Blue <red_score>");
+                            //out.println("GAME 2 OVER PLAYER Red <red_score> PLAYER Blue <red_score>");
                             
                             
 	                	}  // I AM
