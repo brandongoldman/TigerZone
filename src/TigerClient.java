@@ -167,7 +167,7 @@ public class TigerClient
         
     }
     
-    /***************Don't have to use this method if we want to build this strings up elsewhere**************/  
+    /***************We decided to scrap this method in favor of using a Move class instead**************/  
     public void moveMethod(int type, String gid, String tile, int x, int y, int orientation, int zone)
     {
         // type = move type
