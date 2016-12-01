@@ -794,7 +794,7 @@ public class TigerClient
 		                                    for (int z = 0; z < (ori / 90); z++) { //rotate the tile the given number of times
 		                                        tile2.rotate();
 		                                    }
-		                                    //System.out.println("They placed A"  + x + " " + y);
+		                                    System.out.println("They placed A"  + x + " " + y);
 		                                    Tiger P2Tiger = new Tiger(2, placement);//place the tiger in the correct spot if placed
 		                                    boardA.addTile(new Position(x, y), tile2, P2Tiger);
 		                                    GameATigerCount=GameATigerCount+boardA.ReturnTiger();
@@ -807,7 +807,7 @@ public class TigerClient
 		                                        tile2.rotate();
 		                                    }
 		                                    Tiger P2Tiger = new Tiger(2, placement);
-		                                    //System.out.println("They placed B " + x + " " + y);
+		                                    System.out.println("They placed B " + x + " " + y);
 		                                    boardB.addTile(new Position(x, y), tile2, P2Tiger);
 		                                    GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
 		                                    //boardB.FindBestMove(tile2, tiger, OtherGid);
@@ -818,7 +818,7 @@ public class TigerClient
                                                 tile2.rotate();
                                             }
                                             Tiger P2Tiger = new Tiger(2, placement);
-                                            //System.out.println("They placed B " + x + " " + y);
+                                            System.out.println("They placed C " + x + " " + y);
                                             boardC.addTile(new Position(x, y), tile2, P2Tiger);
                                             GameCTigerCount=GameCTigerCount+boardC.ReturnTiger();
                                             //boardB.FindBestMove(tile2, tiger, OtherGid);
@@ -870,7 +870,7 @@ public class TigerClient
 		                                for (int z = 0; z < (ori / 90); z++) {
 		                                    tile2.rotate();
 		                                }
-		                                //System.out.println("They placed A"  + x + " " + y);
+		                                System.out.println("They placed A"  + x + " " + y);
 		                                Tiger P2Tiger = new Tiger(2, placement);
 		                                boardA.addTile(new Position(x, y), tile2, P2Tiger);
 		                                GameATigerCount=GameATigerCount+boardA.ReturnTiger();
@@ -882,7 +882,7 @@ public class TigerClient
 		                                    tile2.rotate();
 		                                }
 		                                Tiger P2Tiger = new Tiger(2, placement);
-		                                //System.out.println("They placed B " + x + " " + y);
+		                                System.out.println("They placed B " + x + " " + y);
 		                                boardB.addTile(new Position(x, y), tile2, P2Tiger);
 		                                GameBTigerCount=GameBTigerCount+boardB.ReturnTiger();
 		                                //boardB.FindBestMove(tile2, tiger, OtherGid);
@@ -893,7 +893,7 @@ public class TigerClient
                                              tile2.rotate();
                                          }
                                          Tiger P2Tiger = new Tiger(2, placement);
-                                         //System.out.println("They placed B " + x + " " + y);
+                                         System.out.println("They placed C " + x + " " + y);
                                          boardC.addTile(new Position(x, y), tile2, P2Tiger);
                                          GameCTigerCount=GameCTigerCount+boardC.ReturnTiger();
                                          //boardB.FindBestMove(tile2, tiger, OtherGid);
