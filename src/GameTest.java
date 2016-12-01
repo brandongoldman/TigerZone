@@ -112,8 +112,7 @@ public class GameTest{
         
         
         Tile tile26  = ti.interpret("TLLT-");
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         board.FindBestMove(tile26,true,"A",1);		//	Outcome: Pass
         
         //Tile tile26 = ti.interpret("LLJJ-");
@@ -169,12 +168,9 @@ public class GameTest{
 
         //Tile tile21 = ti.interpret("JJJJX");
         //board.FindBestMove(tile21,tiger);
-=======
-        board.FindBestMove(tile26,true,"A",1);		
->>>>>>> origin/master
-=======
-        board.FindBestMove(tile26,true,"A",1);		
->>>>>>> origin/master
+
+        board.FindBestMove(tile26,true,"A",1);
+        board.FindBestMove(tile26,true,"A",1);
         
 		board.printLake();
 		board.printTrail();
