@@ -36,26 +36,25 @@ public class GameTest{
         
         Tiger tiger = new Tiger();
 		Tile tile = ti.interpret("LLLL-");
-		//board.addTile(new Position(0, 1), tile, tiger);		//	Outcome: Pass
         board.FindBestMove(tile,true,"A",1);
 
         Tile tile2 = ti.interpret("JJJJX");
-		board.FindBestMove(tile2,true,"A",1);		//	Outcome: Pass
+		board.FindBestMove(tile2,true,"A",1);		
 
         Tile tile3 = ti.interpret("TLLT-");
-		board.FindBestMove(tile3,true,"A",1);		//	Outcome: Pass
+		board.FindBestMove(tile3,true,"A",1);		
 
         Tile tile4 = ti.interpret("LLJJ-");
-		board.FindBestMove(tile4,true,"A",1);		//	Outcome: Pass
+		board.FindBestMove(tile4,true,"A",1);		
 
         Tile tile5 = ti.interpret("JJJJX");
-		board.FindBestMove(tile5,true,"A",1);		//	Outcome: Fail
+		board.FindBestMove(tile5,true,"A",1);		
 
         Tile tile6 = ti.interpret("LLLL-");
-		board.FindBestMove(tile6,true,"A",1);		//	Outcome: Pass
+		board.FindBestMove(tile6,true,"A",1);		
 
         Tile tile7 = ti.interpret("JLJL-");
-		board.FindBestMove(tile7,true,"A",1);		//	Outcomes: Fail
+		board.FindBestMove(tile7,true,"A",1);		
 
         Tile tile8 = ti.interpret("TJTT-");
         board.FindBestMove(tile8,true,"A",1);
@@ -109,78 +108,14 @@ public class GameTest{
         board.FindBestMove(tile24,true,"A",1);
         
         Tile tile25 = ti.interpret("TLJT-");
-        board.FindBestMove(tile25,true,"A",1);		//	Outcome: Pass
+        board.FindBestMove(tile25,true,"A",1);		
         
         
         Tile tile26  = ti.interpret("TLLT-");
-        board.FindBestMove(tile26,true,"A",1);		//	Outcome: Pass
+        board.FindBestMove(tile26,true,"A",1);		
         
-        //Tile tile26 = ti.interpret("LLJJ-");
-        //board.FindBestMove(tile4,tiger);		//	Outcome: Pass
-   /*
-        Tile tile27 = ti.interpret("JJJJ-");
-        board.FindBestMove(tile27,tiger,"A");		//	Outcome: Fail
-        
-        Tile tile28 = ti.interpret("LLLL-");
-        board.FindBestMove(tile28,tiger,"A");		//	Outcome: Pass
-        
-        Tile tile29 = ti.interpret("JLJL-");
-        board.FindBestMove(tile29,tiger,"A");		//	Outcomes: Fail
-        
-        Tile tile30 = ti.interpret("TJTT-");
-        board.FindBestMove(tile30,tiger,"A");
-        
-        Tile tile31 = ti.interpret("JLLL-");
-        board.FindBestMove(tile31,tiger,"A");
-        
-        Tile tile32 = ti.interpret("LLJJ-");
-        board.FindBestMove(tile32,tiger,"A");
-        
-        Tile tile33 = ti.interpret("LJLJ-");
-        board.FindBestMove(tile33,tiger,"A");
-        
-        Tile tile34 = ti.interpret("TLJT-");
-        board.FindBestMove(tile34,tiger,"A");
-        
-        Tile tile35 = ti.interpret("TLJTP");
-        board.FindBestMove(tile35,tiger,"A");
-        
-        Tile tile36 = ti.interpret("JLTTB");
-        board.FindBestMove(tile36,tiger,"A");
-        
-        Tile tile37 = ti.interpret("TLTJD");
-        board.FindBestMove(tile37,tiger,"A");
-        
-        Tile tile38 = ti.interpret("TLTT-");
-        board.FindBestMove(tile38,tiger,"A");
-        
-        Tile tile39 = ti.interpret("TLTTP");
-        board.FindBestMove(tile39,tiger,"A");
-        
-        Tile tile40 = ti.interpret("TLLT-");
-        board.FindBestMove(tile40,tiger,"A");
-        
-        Tile tile41 = ti.interpret("TLLTB");
-        board.FindBestMove(tile41,tiger,"A");
-        
-        Tile tile42 = ti.interpret("LJTJ-");
-        board.FindBestMove(tile42,tiger,"A");
-        */
-        //Tile tile21 = ti.interpret("JJJJX");
-        //board.FindBestMove(tile21,tiger);
-        
-        //Tile tile22 = ti.interpret("JLJL-");
-        //board.FindBestMove(tile22,tiger);
-        
-        //Tile tile23 = ti.interpret("LJJJ-");
-        //board.FindBestMove(tile23,tiger);
-        
-        //Tile tile24 = ti.interpret("LJTJD");
-        //board.FindBestMove(tile24,tiger);
-        //
 		board.printLake();
 		board.printTrail();
-        //board.printDen();
 
 
 		System.out.println("Test A Ends");
@@ -290,8 +225,83 @@ public class GameTest{
 	}
 
 	public static void testD(){
-		//	HashBoard board = new HashBoard();
-		//	TileInterpreter ti = new TileInterpreter();
+
+        /*
+                
+            Test D Description:
+
+            -   This test will begin with checking the connected lakes, dens and 
+            trails. We can check the Feature Areas and show the lakes, trails, 
+            and dens that are connected. From this case, we can see that lakes,
+            trails and dens are being accounted for in the score, the potential
+            moves that can be made, and the locations that can be played for
+            the crocodiles and for the tigers
+
+            -   We used the somes of the 
+            tiles that were created and placed from the first test case. 
+            Then the test will print the connected lakes, trails, and dens 
+            for the particular tiles that have been added to the board.
+
+            Outcome: Pass
+
+        */
+
+        System.out.println("Test D Begins");
+
+		HashBoard board = new HashBoard();
+		TileInterpreter ti = new TileInterpreter();
+
+        Tiger tiger = new Tiger();
+        Tile tile = ti.interpret("LLLL-");
+        board.FindBestMove(tile,true,"A",1);
+
+        Tile tile2 = ti.interpret("JJJJX");
+        board.FindBestMove(tile2,true,"A",1);       
+
+        Tile tile3 = ti.interpret("TLLT-");
+        board.FindBestMove(tile3,true,"A",1);       
+
+        Tile tile4 = ti.interpret("LLJJ-");
+        board.FindBestMove(tile4,true,"A",1);       
+
+        Tile tile5 = ti.interpret("JJJJX");
+        board.FindBestMove(tile5,true,"A",1);       
+
+        Tile tile6 = ti.interpret("LLLL-");
+        board.FindBestMove(tile6,true,"A",1);       
+
+        Tile tile7 = ti.interpret("JLJL-");
+        board.FindBestMove(tile7,true,"A",1);       
+
+        Tile tile8 = ti.interpret("TJTT-");
+        board.FindBestMove(tile8,true,"A",1);
+
+        Tile tile9 = ti.interpret("JLLL-");
+        board.FindBestMove(tile9,true,"A",1);
+
+        Tile tile10 = ti.interpret("LLJJ-");
+        board.FindBestMove(tile10,true,"A",1);
+
+        Tile tile11 = ti.interpret("LJLJ-");
+        board.FindBestMove(tile11,true,"A",1);
+
+        Tile tile12 = ti.interpret("TLJT-");
+        board.FindBestMove(tile12,true,"A",1);
+
+        Tile tile13 = ti.interpret("TLJTP");
+        board.FindBestMove(tile13,true,"A",1);
+        
+        Tile tile14 = ti.interpret("JLTTB");
+        board.FindBestMove(tile14,true,"A",1);
+        
+        Tile tile15 = ti.interpret("TLTJD");
+        board.FindBestMove(tile15,true,"A",1);
+
+        board.printLake();
+        board.printTrail();
+
+        System.out.println("Test D Ends");
+        System.out.println("==================================================================");
 
 
 	}
@@ -312,7 +322,7 @@ public class GameTest{
 		testA();
 		testB();
 		testC();
-		//testD();
+		testD();
 
 	}
 
