@@ -3280,7 +3280,7 @@ public class HashBoard{
 	}
 
 	/**TESTING FUNCTIONS BELOW**/
-	public void printLake(){
+	public void printClaimedLake(){
 		System.out.println("Here");
 		for(FeatureArea lake : ClaimedLake){
 			System.out.println();
@@ -3294,10 +3294,38 @@ public class HashBoard{
 			}
 		}
 	}
+	public void printLake(){
+		System.out.println("Here");
+		for(FeatureArea lake : Lake){
+			System.out.println();
+			System.out.println("Lake Coordinates:");
+			for(Position pos : lake.areaCoor){
+				System.out.println(pos.getXPosition() + " " + pos.getYPosition());
+			}
+			System.out.println("Open Boundaries:");
+			for(Boundary bound : lake.openBoundary){
+				System.out.println("Coor:" + bound.position.getXPosition() + " " + bound.position.getYPosition() + " Boundary:" + bound.edge);
+			}
+		}
+	}
 
-	public void printTrail(){
+	public void printClaimedTrail(){
 		System.out.println("There");
 		for(FeatureArea trail : ClaimedTrail){
+			System.out.println();
+			System.out.println("Trail Coordinates:");
+			for(Position pos : trail.areaCoor){
+				System.out.println(pos.getXPosition() + " " + pos.getYPosition());
+			}
+			System.out.println("Open Boundaries:");
+			for(Boundary bound : trail.openBoundary){
+				System.out.println("Coor:" + bound.position.getXPosition() + " " + bound.position.getYPosition() + " Boundary:" + bound.edge);
+			}
+		}
+	}
+	public void printTrail(){
+		System.out.println("There");
+		for(FeatureArea trail : Trail){
 			System.out.println();
 			System.out.println("Trail Coordinates:");
 			for(Position pos : trail.areaCoor){

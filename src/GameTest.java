@@ -166,14 +166,11 @@ public class GameTest{
         Tile tile42 = ti.interpret("LJTJ-");
         board.FindBestMove(tile42,true,"A",1);
 
-        //Tile tile21 = ti.interpret("JJJJX");
-        //board.FindBestMove(tile21,tiger);
-
-        board.FindBestMove(tile26,true,"A",1);
-        board.FindBestMove(tile26,true,"A",1);
         
 		board.printLake();
 		board.printTrail();
+		board.printClaimedLake();
+		board.printClaimedTrail();
 
 
 		System.out.println("Test A Ends");
@@ -378,9 +375,9 @@ public class GameTest{
 		*/
 
 		testA();
-		testB();
-		testC();
-		testD();
+		//testB();
+		//testC();
+		//testD();
 
 	}
 
