@@ -184,7 +184,13 @@ public class Tile {
 	public void rotate()
 	{
 
-		    // Transpose the matrix
+		/*
+
+			This for loop is used to rotate the minizones
+			in a counter clockwise fashion
+
+		*/
+
     	for (int i = 0; i < miniZones.length/2; i++) {
 			for (int j=i; j<miniZones.length-i-1; j++) {
 
@@ -196,6 +202,14 @@ public class Tile {
 
 			}
 		}
+
+		/*
+
+			Rest of these values are rotated according
+			to the location of the features on the
+			minizones
+
+		*/
         
         boolean bitTemp = cTL;
 		int edgeTemp = eT;
@@ -217,7 +231,14 @@ public class Tile {
 		return beenRotated * 90;
 	}
 
-	//Using for Testing the Tile connected jungle Feature
+	/*
+
+		Function is used for the Feature Areas in the HashBoard.java
+	
+		Finds the lakes that are connected in the minizones for
+		each tile
+
+	*/
 
 	public ArrayList<HashSet<Integer>> connectedLakes(){
 
@@ -317,6 +338,16 @@ public class Tile {
 		return lakeSet;
 
 	}
+
+	/*
+
+		Function is used for the Feature Areas in the HashBoard.java
+	
+		This function solves for the particular case of the minizones
+		where the lakes are not connected, which is the "JLLJ-" and "LJLJ-"
+		tiles
+
+	*/
 
 	public ArrayList<HashSet<Integer>> specialConnectedLakes(){
 
@@ -440,6 +471,15 @@ public class Tile {
 
 	}
 
+	/*
+
+	Function is used for the Feature Areas in the HashBoard.java
+	
+	This function solves for the connected roads/trails in the
+	minizones
+
+	*/
+
 
 	public ArrayList<HashSet<Integer>> connectedRoads(){
 
@@ -519,6 +559,16 @@ public class Tile {
 
 	}
 
+	/*	Prints the values that are in a minizone
+
+	
+		This particular function is mostly used for
+		testing and checking to see if the functions for
+		rotation the feature area and connected 
+		feature areas are working.
+
+	*/
+
 	public void printMiniZone(){
 
 		HashSet<Integer> lset;
@@ -532,24 +582,25 @@ public class Tile {
 
 	}
 
-	/*
-
-		Main function that is used for the Tile class.
-		Used for unit testing the class and its appropriate
-		functions. 
-
-		Main checks the values before the subset and the
-		values that are created after the subset occurs.
-
-	*/
-
 	public static void main(String[] args){
+
+		/*
+
+			Main function that is used for the Tile class.
+			Used for unit testing the class and its appropriate
+			functions. 
+
+			Main checks the values before the subset and the
+			values that are created after the subset occurs.
+
+		*/
+
 
 		TileInterpreter ti = new TileInterpreter();
 		Tile tile = ti.interpret("TLLLC");
 
 		System.out.println("================================================");
-		System.out.println("Finding Connected Lakes");
+		System.out.println("Test for Connected Lakes & Special Connected Lakes");
 
 		ArrayList <HashSet<Integer>> tile1;
 		Iterator <HashSet<Integer>> it1;
@@ -567,7 +618,7 @@ public class Tile {
 		}
 
 		System.out.println("================================================");
-		System.out.println("Finding Connected Roads");
+		System.out.println("Test for Connected Roads");
 
 
 		ArrayList <HashSet<Integer>> tile2 = tile.connectedRoads();
@@ -578,7 +629,7 @@ public class Tile {
 		}
 
 		System.out.println("================================================");
-		System.out.println("Rotating Tile");
+		System.out.println("Test for Rotating Tile");
 
 		tile.printMiniZone();
 		tile.rotate();
