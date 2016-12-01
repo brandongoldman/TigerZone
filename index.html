@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Tigerzone by brandongoldman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Tigerzone</h1>
+      <h2 class="project-tagline">Tiger Zone is a spinoff of the popular tile-laying game Carcassonne. Created for CEN3031 with Dave Small (Fall 2016).</h2>
+      <a href="https://github.com/brandongoldman/TigerZone" class="btn">View on GitHub</a>
+      <a href="https://github.com/brandongoldman/TigerZone/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/brandongoldman/TigerZone/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="tigerzone" class="anchor" href="#tigerzone" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TigerZone</h1>
+
+<h2>
+<a id="cen3031---fall-2016-group-n" class="anchor" href="#cen3031---fall-2016-group-n" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CEN3031 - Fall 2016 (Group N)</h2>
+
+<hr>
+
+<h3>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributors:</h3>
+
+<ul>
+<li>Adam Schuster <a href="https://github.com/adamschuster">(@adamschuster)</a>
+</li>
+<li>Adam Wexler <a href="https://github.com/adamwexler01">(@adamwexler01)</a>
+</li>
+<li>Brandon Goldman <a href="https://github.com/brandongoldman">(@brandongoldman)</a>
+</li>
+<li>Bradley Lazar <a href="https://github.com/lazarbrad">(@lazarbrad)</a>
+</li>
+<li>Alexander Krepacki <a href="https://github.com/alexbrucek">(@alexbrucek)</a>
+</li>
+<li>David Weng <a href="https://github.com/rorath">(@rorath)</a>
+</li>
+</ul>
+
+<hr>
+
+<h3>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of Contents</h3>
+
+<ul>
+<li><a href="#objective">Objective</a></li>
+<li>
+<a href="#sprint-outline">Sprint Outline</a>
+
+<ul>
+<li><a href="#sprint-1">Sprint 1</a></li>
+<li><a href="#sprint-2">Sprint 2</a></li>
+<li><a href="#sprint-3">Sprint 3</a></li>
+<li><a href="#sprint-4">Sprint 4</a></li>
+</ul>
+</li>
+<li><a href="#deliverables">Deliverables</a></li>
+<li>
+<a href="#building-tigerzone">Building TigerZone</a>
+
+<ul>
+<li><a href="#tigerclient">TigerClient</a></li>
+<li><a href="#running-the-client">Running the Client</a></li>
+</ul>
+</li>
+<li><a href="#report">Report</a></li>
+</ul>
+
+<hr>
+
+<h3>
+<a id="objective" class="anchor" href="#objective" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objective</h3>
+
+<p>Our client, Professor Dave Small, presented us with a task of creating an Artificial Intelligence (AI) for a tile-based strategy game. This game, dubbed "TigerZone" is a spinoff of the popular board game "Carcassonne". TigerZone reflects adaptations to Carassonne by including new features such as new scoring features. The full game description and rules can be found on our client's website <a href="http://www.cise.ufl.edu/%7Edts/cen3031/TigerZone%20v2.2.pdf">here</a>.</p>
+
+<p>The objective of this project was to utilize agile software development skills that were discussed throughout the course. Our team utilized sprints to get specific features working and to build our overall project progress in incremental ways that helped with testing. As explained above, the goal of this project was to create an AI that could play against other teams in the class by connecting to a TCP server. A game was won by scoring points strategically by completing game features.</p>
+
+<h3>
+<a id="sprint-outline" class="anchor" href="#sprint-outline" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sprint Outline</h3>
+
+<h4>
+<a id="sprint-1-103116---11716" class="anchor" href="#sprint-1-103116---11716" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sprint 1 (10/31/16 - 11/7/16)</h4>
+
+<p>The goal of this sprint was to begin brainstorming a solution to a variant of the game Carcassonne that is to be dubbed “Tiger Zone” by our client. Our client determined this project must have a networked competition server that has the ability for two AI clients to play two games simultaneously using TCP sockets. The two games are expected to use the same stack of tiles, with one game having Player1 start and the other game having Player2 start. The client also wants the game to have a time limit, and have a player forfeit if an illegal move is made or if time runs out.</p>
+
+<p>The duration of this sprint was spent researching existing Carcassonne games, including both digital and physical variants of the game. This helped our team understand the rules and flow of the game which later was useful when completing team deliverables. In addition, the team discussed each other’s experience working with different programming languages as well as created a schedule to determine when the team would be able to meet face-to-face.</p>
+
+<h4>
+<a id="sprint-2-11816---111416" class="anchor" href="#sprint-2-11816---111416" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sprint 2 (11/8/16 - 11/14/16)</h4>
+
+<h4>
+<a id="sprint-3-111516---112116" class="anchor" href="#sprint-3-111516---112116" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sprint 3 (11/15/16 - 11/21/16)</h4>
+
+<h4>
+<a id="sprint-4-112216---12216" class="anchor" href="#sprint-4-112216---12216" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sprint 4 (11/22/16 - 12/2/16)</h4>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/brandongoldman/TigerZone">Tigerzone</a> is maintained by <a href="https://github.com/brandongoldman">brandongoldman</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
