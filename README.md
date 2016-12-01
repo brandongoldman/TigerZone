@@ -3,12 +3,12 @@
 ---
 
 ### Contributors:
-* Adam Schuster
-* Adam Wexler
-* Brandon Goldman
-* Bradley Lazar
-* Alexander Krepacki
-* David Weng
+* Adam Schuster [@adamschuster](https://github.com/adamschuster)
+* Adam Wexler [@adamwexler01](https://github.com/adamwexler01)
+* Brandon Goldman [@brandongoldman](https://github.com/brandongoldman)
+* Bradley Lazar [@lazarbrad](https://github.com/lazarbrad)
+* Alexander Krepacki [@alexbrucek](https://github.com/alexbrucek)
+* David Weng [@rorath](https://github.com/rorath)
 
 ---
 
