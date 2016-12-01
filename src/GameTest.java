@@ -1,6 +1,14 @@
 //	Import statements & possibly using JUnit to
 //	test the application
 
+import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Iterator;
+
 public class GameTest{
 
 
@@ -361,6 +369,65 @@ public class GameTest{
 
 	}
 
+    public static void testE(){
+
+
+        /*
+                
+            Test E Description:
+
+            -   This test is used to test the simple functions that are
+                used in the tile class. The four main functions that 
+                were created in this class were the connectedLakes,
+                specialConnectedLakes, connectedRoads, and rotate.
+                These functions are tested from the sample data below
+
+            Outcome: Pass
+
+        */
+
+
+        TileInterpreter ti = new TileInterpreter();
+        Tile tile = ti.interpret("TLLLC");
+
+        System.out.println("================================================");
+        System.out.println("Test for Connected Lakes & Special Connected Lakes");
+
+        ArrayList <HashSet<Integer>> tile1;
+        Iterator <HashSet<Integer>> it1;
+
+        if(tile.getDescription().equals("JLLJ-") || tile.getDescription().equals("LJLJ-")){
+            tile1 = tile.specialConnectedLakes();
+            it1 = tile1.iterator();
+        } else {
+            tile1 = tile.connectedLakes();
+            it1 = tile1.iterator();
+        }
+
+        while (it1.hasNext()) {
+            System.out.println(it1.next());
+        }
+
+        System.out.println("================================================");
+        System.out.println("Test for Connected Roads");
+
+
+        ArrayList <HashSet<Integer>> tile2 = tile.connectedRoads();
+        Iterator <HashSet<Integer>> it2 = tile2.iterator();
+
+        while (it2.hasNext()) {
+            System.out.println(it2.next());
+        }
+
+        System.out.println("================================================");
+        System.out.println("Test for Rotating Tile");
+
+        tile.printMiniZone();
+        tile.rotate();
+        tile.printMiniZone();
+
+    }
+
 
 	public static void main(String[] args){
 
@@ -378,6 +445,7 @@ public class GameTest{
 		//testB();
 		//testC();
 		//testD();
+        //testE();
 
 	}
 
