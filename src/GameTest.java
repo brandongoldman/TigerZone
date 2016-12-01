@@ -26,24 +26,13 @@ public class GameTest{
 				1.	Do the Features Match?
 				2.	Is a tile already placed there?
 				3.	Can a tile be added and updated to the board
+
 	
 		*/
 
 		System.out.println("Test A Begins");
 		HashBoard board = new HashBoard();
 		TileInterpreter ti = new TileInterpreter();
-		
-        
-        
-        //Tiger tiger = new Tiger();
-        /*Tile tile = ti.interpret("TLTJ-");
-        tile.rotate();
-        tile.rotate();
-        board.addTile(new Position(1, 0), tile, tiger);
-        //board.FindBestMove(tile,tiger);
-        
-        Tile tile2 = ti.interpret("LLLL-");
-        board.FindBestMove(tile2,tiger);*/
         
         Tiger tiger = new Tiger();
 		Tile tile = ti.interpret("LLLL-");
@@ -221,6 +210,9 @@ public class GameTest{
 			-	All of the test cases passed for this class, except for
 				the rotation of the minizones
 
+
+            Outcome: Pass
+
 		*/
 
 
@@ -253,8 +245,47 @@ public class GameTest{
 	}
 
 	public static void testC(){
-		//	HashBoard board = new HashBoard();
-		//	TileInterpreter ti = new TileInterpreter();
+
+        /*
+
+            Test C:
+
+                This is a basic test that allows the player
+                to add a tile with a specific tiger. The Tiger object 
+                is created the tile is rotated and then 
+                placed onto the board. Since the tile can connect to the
+                very first tile of the game, this test case should allow
+                the player to place the tile with a specific tiger on a zone.
+
+                However the second tile should return an invalid location
+                because after the rotation, the tile does not match up
+                with the tile design. As a result, the location should be
+                invalid.
+
+                Outcome: Pass
+
+
+        */
+
+        System.out.println("Test C Begins");
+		HashBoard board = new HashBoard();
+		TileInterpreter ti = new TileInterpreter();
+
+        Tiger tiger = new Tiger();
+        Tile tile = ti.interpret("TLTJ-");
+        tile.rotate();
+        tile.rotate();
+        board.addTile(new Position(1, 0), tile, tiger);
+
+        Tiger tiger2 = new Tiger();
+        Tile tile2 = ti.interpret("LLLL-");
+        tile2.rotate();
+        tile2.rotate();
+        board.addTile(new Position(-1, 0), tile2, tiger2);
+
+        System.out.println("Test C Ends");
+        System.out.println("==================================================================");
+
 
 	}
 
@@ -279,8 +310,8 @@ public class GameTest{
 		*/
 
 		testA();
-		//testB();
-		//testC();
+		testB();
+		testC();
 		//testD();
 
 	}
