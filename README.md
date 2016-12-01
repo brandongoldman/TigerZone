@@ -21,9 +21,11 @@
   * [Sprint 3](#sprint-3)
   * [Sprint 4](#sprint-4)
 * [Deliverables](#deliverables)
+* [Screenshots](#screenshots)
 * [Building TigerZone](#building-tigerzone)
   * [TigerClient](#tigerclient)
   * [Running the Client](#running-the-client)
+* [Bugs](#bugs)
 * [Development Summary](#development-summary)
 
 --- 
@@ -43,3 +45,35 @@ Click each of the sprints below to view the documentation that includes sprint s
 #### [Sprint 3]() (11/15/16 - 11/21/16)
 
 #### [Sprint 4]() (11/22/16 - 12/2/16)
+
+### Deliverables
+
+#### UML Diagram
+
+#### Hexagonal Architecture
+
+### Tile Logic
+maybe include a scanned picture showing how we made our tiles (edges, corners, ect)
+
+### Screenshots
+ideas: GUI, connecting to server
+
+### Building TigerZone
+The below instructions are included to help users run our program.
+
+#### TigerClient
+
+#### Running the Client
+
+
+### Bugs
+a detailed list of all the known bugs/issues needing to be addressed
+
+### Development Summary
+discuss what you learnt while doing this project, what you took away, ect.
+#### Adam Schuster
+#### Adam Wexler
+#### Brandon Goldman
+#### Bradley Lazar
+#### Alexander Krepacki
+#### David Weng
