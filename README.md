@@ -64,8 +64,7 @@ Timeline: 11/22/16 - 12/2/16
 
 * ### Story Tracking
 
-
-## Tile Logic
+* ### Tile Logic
 maybe include a scanned picture showing how we made our tiles (edges, corners, ect)
 
 
