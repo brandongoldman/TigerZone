@@ -348,6 +348,9 @@ public class TCPServer
                             //out.println("THANK YOU FOR PLAYING! GOODBYE");
                             //////////////////////////////////////////////////////////
                             
+                            out.println("GAME 1 OVER PLAYER Red 50 PLAYER Blue 40");
+                            System.out.println("GAME 1 OVER PLAYER Red 50 PLAYER Blue 40");
+                            
                             
                             out.println("END OF ROUND 1 OF 2 PLEASE WAIT FOR THE NEXT MATCH");
                             

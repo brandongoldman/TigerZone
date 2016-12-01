@@ -854,7 +854,7 @@ public class TigerClient
 		                break;
 		            }
 		        } // For the number of turns in a round
-		            
+
 		        int r = Integer.parseInt(client.RoundEnd());
 		        String y = client.FinalMessage();
 		                
