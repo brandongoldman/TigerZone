@@ -112,10 +112,65 @@ public class GameTest{
         
         
         Tile tile26  = ti.interpret("TLLT-");
-        board.FindBestMove(tile26,true,"A",1);		
+
+        board.FindBestMove(tile26,true,"A",1);		//	Outcome: Pass
+        
+        //Tile tile26 = ti.interpret("LLJJ-");
+        //board.FindBestMove(tile4,tiger);		//	Outcome: Pass
+   
+        Tile tile27 = ti.interpret("JJJJ-");
+        board.FindBestMove(tile27,true,"A",1);		//	Outcome: Fail
+        
+        Tile tile28 = ti.interpret("LLLL-");
+        board.FindBestMove(tile28,true,"A",1);		//	Outcome: Pass
+        
+        Tile tile29 = ti.interpret("JLJL-");
+        board.FindBestMove(tile29,true,"A",1);		//	Outcomes: Fail
+        
+        Tile tile30 = ti.interpret("TJTT-");
+        board.FindBestMove(tile30,true,"A",1);
+        
+        Tile tile31 = ti.interpret("JLLL-");
+        board.FindBestMove(tile31,true,"A",1);
+        
+        Tile tile32 = ti.interpret("LLJJ-");
+        board.FindBestMove(tile32,true,"A",1);
+        
+        Tile tile33 = ti.interpret("LJLJ-");
+        board.FindBestMove(tile33,true,"A",1);
+        
+        Tile tile34 = ti.interpret("TLJT-");
+        board.FindBestMove(tile34,true,"A",1);
+        
+        Tile tile35 = ti.interpret("TLJTP");
+        board.FindBestMove(tile35,true,"A",1);
+        
+        Tile tile36 = ti.interpret("JLTTB");
+        board.FindBestMove(tile36,true,"A",1);
+        
+        Tile tile37 = ti.interpret("TLTJD");
+        board.FindBestMove(tile37,true,"A",1);
+        
+        Tile tile38 = ti.interpret("TLTT-");
+        board.FindBestMove(tile38,true,"A",1);
+        
+        Tile tile39 = ti.interpret("TLTTP");
+        board.FindBestMove(tile39,true,"A",1);
+        
+        Tile tile40 = ti.interpret("TLLT-");
+        board.FindBestMove(tile40,true,"A",1);
+        
+        Tile tile41 = ti.interpret("TLLTB");
+        board.FindBestMove(tile41,true,"A",1);
+        
+        Tile tile42 = ti.interpret("LJTJ-");
+        board.FindBestMove(tile42,true,"A",1);
+
         
 		board.printLake();
 		board.printTrail();
+		board.printClaimedLake();
+		board.printClaimedTrail();
 
 
 		System.out.println("Test A Ends");
@@ -320,9 +375,9 @@ public class GameTest{
 		*/
 
 		testA();
-		testB();
-		testC();
-		testD();
+		//testB();
+		//testC();
+		//testD();
 
 	}
 
