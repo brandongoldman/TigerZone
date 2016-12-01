@@ -24,7 +24,7 @@
 * [Building TigerZone](#building-tigerzone)
   * [TigerClient](#tigerclient)
   * [Running the Client](#running-the-client)
-* [Report](#report)
+* [Development Summary](#development-summary)
 
 --- 
 
@@ -34,14 +34,12 @@ Our client, Professor Dave Small, presented us with a task of creating an Artifi
 The objective of this project was to utilize agile software development skills that were discussed throughout the course. Our team utilized sprints to get specific features working and to build our overall project progress in incremental ways that helped with testing. As explained above, the goal of this project was to create an AI that could play against other teams in the class by connecting to a TCP server. A game was won by scoring points strategically by completing game features.
 
 ### Sprint Outline
+Click each of the sprints below to view the documentation that includes sprint summary and work accomplished by each team member.
 
-#### Sprint 1 (10/31/16 - 11/7/16)
-The goal of this sprint was to begin brainstorming a solution to a variant of the game Carcassonne that is to be dubbed “Tiger Zone” by our client. Our client determined this project must have a networked competition server that has the ability for two AI clients to play two games simultaneously using TCP sockets. The two games are expected to use the same stack of tiles, with one game having Player1 start and the other game having Player2 start. The client also wants the game to have a time limit, and have a player forfeit if an illegal move is made or if time runs out.
+#### [Sprint 1](https://drive.google.com/open?id=0B1yJp_1wTi1bSWQ0eVh5SE5pUFU) (10/31/16 - 11/7/16)
 
-The duration of this sprint was spent researching existing Carcassonne games, including both digital and physical variants of the game. This helped our team understand the rules and flow of the game which later was useful when completing team deliverables. In addition, the team discussed each other’s experience working with different programming languages as well as created a schedule to determine when the team would be able to meet face-to-face.
+#### [Sprint 2]() (11/8/16 - 11/14/16)
 
-#### Sprint 2 (11/8/16 - 11/14/16)
+#### [Sprint 3]() (11/15/16 - 11/21/16)
 
-#### Sprint 3 (11/15/16 - 11/21/16)
-
-#### Sprint 4 (11/22/16 - 12/2/16)
+#### [Sprint 4]() (11/22/16 - 12/2/16)
