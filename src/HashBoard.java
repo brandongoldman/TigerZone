@@ -221,7 +221,12 @@ public class HashBoard{
                         if(currScore >= 5 || t.getDen()){
                             owner=1;
                         }
-						placement=holder.placement;
+                        if(t.getDescription().equals("LJLJ-") || t.getDescription().equals("JLLJ-")){
+                        	placement=0;
+						}
+						else {
+							placement = holder.placement;
+						}
                         //addTile(best, t, tiger);
                         //return bestMove;
                     }
