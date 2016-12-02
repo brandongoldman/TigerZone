@@ -57,6 +57,8 @@ Timeline: 11/22/16 - 12/2/16
 ## Deliverables
 
 ### UML Diagram
+![UML Diagram](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/UML.png)
+[View Larger](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/UML.png)
 
 ### Hexagonal Architecture
 
@@ -99,7 +101,12 @@ THIS IS SPARTA!
 If desired, you may run the server on your local machine. Instructions and source code for this can be found [here](https://github.com/chausen/TigerZoneServer).
 
 ## Screenshots
-ideas: GUI, connecting to server
+
+### Connecting successfully to the TCP Server
+![Successful Connection](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/successful_connect.png)
+
+### Completed Game (*we won!*)
+![Completed Game](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/completed_game.png)
 
 ## Bugs
 a detailed list of all the known bugs/issues needing to be addressed
