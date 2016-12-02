@@ -1,5 +1,5 @@
-# TigerZone
-## CEN3031 - Fall 2016 (Group N)
+# __TigerZone__
+## *CEN3031 - Fall 2016 (Group N)*
 ---
 
 ## Contributors:
