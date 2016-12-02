@@ -13,19 +13,19 @@
 
 ## Table of Contents
 
-* [Objective](#objective)
-* [Sprint Outlines](#sprint-outlines)
+* [Objective](#objective-muscle)
+* [Sprint Outlines](#sprint-outlines-runner)
   * [Sprint 1](#sprint-1)
   * [Sprint 2](#sprint-2)
   * [Sprint 3](#sprint-3)
   * [Sprint 4](#sprint-4)
-* [Deliverables](#deliverables)
-* [Getting Started](#getting-started)
+* [Deliverables](#deliverables-email)
+* [Getting Started](#getting-started-computer)
   * [Installing](#installing)
   * [Running the Client](#running-the-client)
-* [Testing](#testing)
-* [Screenshots](#screenshots)
-* [Bugs](#bugs)
+* [Testing](#testing-pray)
+* [Screenshots](#screenshots-smiley_cat)
+* [Bugs](#bugs-scream_cat)
 
 --- 
 
