@@ -64,7 +64,7 @@ Timeline: 11/22/16 - 12/2/16
 For this project, our team utilized PivotalTracker to track story progress and issues. Pivotal Tracker is a collaborative & lightweight project management tool developed by Pivotal Labs, a company whose expertise in agile development is widely known. Our PivotalTracker is available [here](https://www.pivotaltracker.com/n/projects/1914531).
 
 ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. For project documentation, including rules and server protocals, please view the documents in the ``` Related Docs``` folder.
 
 ### Installing
 
