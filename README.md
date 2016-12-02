@@ -103,18 +103,3 @@ ideas: GUI, connecting to server
 
 ## Bugs
 a detailed list of all the known bugs/issues needing to be addressed
-
-## Development Summary
-discuss what you learnt while doing this project, what you took away, ect.
-
-### Adam Schuster
-
-### Adam Wexler
-
-### Brandon Goldman
-
-### Bradley Lazar
-
-### Alexander Krepacki
-
-### David Weng
