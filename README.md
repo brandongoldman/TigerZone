@@ -38,19 +38,19 @@ The objective of this project was to utilize agile software development skills t
 Click each of the sprints below to view the documentation that includes sprint summary and work accomplished by each team member.
 
 
-### [Sprint 1](https://drive.google.com/open?id=0B1yJp_1wTi1bSWQ0eVh5SE5pUFU) 
+* ### [Sprint 1](https://drive.google.com/open?id=0B1yJp_1wTi1bSWQ0eVh5SE5pUFU) 
 Timeline: 10/31/16 - 11/7/16
 
 
-### [Sprint 2]() 
+* ### [Sprint 2]() 
 Timeline: 11/8/16 - 11/14/16
 
 
-### [Sprint 3]() 
+* ### [Sprint 3]() 
 Timeline: 11/15/16 - 11/21/16
 
 
-### [Sprint 4]() 
+* ### [Sprint 4]() 
 Timeline: 11/22/16 - 12/2/16
 
 
