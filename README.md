@@ -108,4 +108,5 @@ If desired, you may run the server on your local machine. Instructions and sourc
   ![Completed Game](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/completed_game.png)
 
 ## Bugs :scream_cat:
-a detailed list of all the known bugs/issues needing to be addressed
+- [ ] Game disconnects if other player forfeits both games
+- [ ] Game ends if three players are waiting for same game
