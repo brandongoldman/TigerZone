@@ -1,5 +1,4 @@
-# __TigerZone__
-## *CEN3031 - Fall 2016 (Group N)*
+![TigerZone - Group N](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/tigerzone.JPG)
 ---
 
 ## Contributors:
