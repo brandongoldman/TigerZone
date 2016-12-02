@@ -215,6 +215,7 @@ public class TigerClient
         while(foundRound == false)
         {
             response = in.readLine();
+            System.out.println(response);
             
             if (response.startsWith("END"))
             {
@@ -463,6 +464,10 @@ public class TigerClient
                 else if(tokens[6].equals("FORFEITED:")){
                     msg [0] = tokens[6];
                     msg [1] = tokens[1];
+                }
+                else if(tokens[2].equals("OVER")){
+                    msg[0] = tokens[2];
+                    msg[1] = tokens[1];
                 }
                 
                 else{
@@ -910,6 +915,9 @@ public class TigerClient
 		            }
 		        } // For the number of turns in a round
 
+                String[] gOver1 = client.GetOtherMove();
+                String[] gOver2 = client.GetOtherMove();
+                    
 		        int r = Integer.parseInt(client.RoundEnd());
 		        String y = client.FinalMessage();
 		                
