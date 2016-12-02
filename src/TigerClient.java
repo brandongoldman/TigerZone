@@ -838,18 +838,17 @@ public class TigerClient
 		                    //if(info.length != 0){
 		                    String moveMade = info[0];
 		                    String whichGame = info[1];
-                            if(moveMade.equals("UNPLACEABLE")) {
 
-                                if (moveMade.equals("FORFEITED:")) {
-                                    if (whichGame.equals("1")) {
-                                        forfA = true;
-                                    } else if (whichGame.equals("2")) {
-                                        forfB = true;
-                                    } else if (whichGame.equals("3")) {
-                                        forfC = true;
-                                    }
+                            if (moveMade.equals("FORFEITED:")) {
+                                if (whichGame.equals("1")) {
+                                    forfA = true;
+                                } else if (whichGame.equals("2")) {
+                                    forfB = true;
+                                } else if (whichGame.equals("3")) {
+                                    forfC = true;
                                 }
-
+                            }
+                            if(moveMade.equals("UNPLACEABLE")) {
                                 if (moveMade.equals("true")) {
 
                                     String theirPID = info[3];
