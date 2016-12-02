@@ -103,7 +103,7 @@ If desired, you may run the server on your local machine. Instructions and sourc
 ## Testing :pray:
 All testing files, both acceptance and JUnit, are located in the ```Tests```  folder.
 
-To compile the acceptance test, navigate to the /Tests folder and compile ```GameTest.java```.
+To compile the testing suite, navigate to the /Tests folder and compile ```GameTest.java```.
 
 ```
 javac GameTest.java
