@@ -63,10 +63,7 @@ Timeline: 11/22/16 - 12/2/16
 ### Hexagonal Architecture
 
 ### Story Tracking
-
-### Tile Logic
-maybe include a scanned picture showing how we made our tiles (edges, corners, ect)
-
+For this project, our team utilized PivotalTracker to track story progress and issues. Pivotal Tracker is a collaborative & lightweight project management tool developed by Pivotal Labs, a company whose expertise in agile development is widely known. Our PivotalTracker is available [here](https://www.pivotaltracker.com/n/projects/1914531).
 
 ## Screenshots
 ideas: GUI, connecting to server
