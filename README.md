@@ -96,6 +96,8 @@ If login is successful, you will receive the following message.
 THIS IS SPARTA!
 ```
 
+If desired, you may run the server on your local machine. Instructions and source code for this can be found [here](https://github.com/chausen/TigerZoneServer).
+
 ## Screenshots
 ideas: GUI, connecting to server
 
