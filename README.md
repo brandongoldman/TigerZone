@@ -7,7 +7,7 @@
 * Brandon Goldman [(@brandongoldman)](https://github.com/brandongoldman)
 * Bradley Lazar [(@lazarbrad)](https://github.com/lazarbrad)
 * Alexander Krepacki [(@alexbrucek)](https://github.com/alexbrucek)
-* David Weng [(@rorath)](https://github.com/rorath)
+* David Weng [(@dkweng)](https://github.com/dkweng)
 
 ---
 
@@ -47,11 +47,11 @@ Timeline: 10/31/16 - 11/7/16
 Timeline: 11/8/16 - 11/14/16
 
 
-* ### [Sprint 3]() 
+* ### [Sprint 3](https://drive.google.com/open?id=0B1yJp_1wTi1bNWxSTUg3eV9fVE0) 
 Timeline: 11/15/16 - 11/21/16
 
 
-* ### [Sprint 4]() 
+* ### [Sprint 4](https://drive.google.com/open?id=0B1yJp_1wTi1bV1ljTk4zWTRsZ1k) 
 Timeline: 11/22/16 - 12/2/16
 
 
