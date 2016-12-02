@@ -218,7 +218,7 @@ public class HashBoard{
                         bestScore = currScore;
                         bestMove = new Move();
                         validSpot = true;
-                        if(currScore >= 5 || t.getDen()){
+                        if(currScore >= 6 || t.getDen()){
                             owner=1;
                         }
                         if(t.getDescription().equals("LJLJ-") || t.getDescription().equals("JLLJ-")){
