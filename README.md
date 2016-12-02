@@ -115,6 +115,16 @@ To run the test, run ```GameTest```.
 java GameTest
 ```
 
+To run the JUnit tests through Eclipse, load in the following files: 
+```
+BestMoveTest.java
+PlacementTest.java
+testBusiness.java
+testTileReads.java
+```
+
+Run each individual file by pressing the start button in Eclipse. More information about how to run JUnit tests can be found [here](http://www.eclipseonetips.com/2014/06/16/run-a-single-junit-test-method-in-eclipse/)
+
 ## Screenshots :smiley_cat:
 
 ### GUI showing placed tiles
