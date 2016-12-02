@@ -122,6 +122,7 @@ public class HashBoard{
 		if(!checkLegalMove(pos, tile))
         {
 			System.out.println("INVALID LOCATION");
+            //bestMove.passOnTile(t, gid, move);
 			return;
 		}
 		gBoard.put(pos,tile);
@@ -234,24 +235,26 @@ public class HashBoard{
             t.rotate();
         }
         
+        bestMove.t = t.getDescription();
         // case: tile is not valid on current board
         if(!validSpot)
         {
-
-            //System.out.println("TESTESTESTEST");
+            bestMove.flag = false;
+            bestMove.special = "NO";
+            System.out.println("TESTESTESTEST");
             //System.out.println(bestMove.passOnTile(t));
-            bestMove.passOnTile(t, gid, move);
-            //System.out.println("TESTESTESTEST");
-            //System.out.println(bestMove.passOnTile(t));
-            // tile is not placeable on board, so pass
-			// String tile = t.getDescription();
-			// String gid = client.getGID();
+            //bestMove.passOnTile(t, gid, move);
+            //bestMove.toString(gid, move);
 
 			// String serverMessage = client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
 			//return serverMessage;
 
 			//client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
+            return bestMove;
 
+        }
+        else{
+            bestMove.flag = true;
         }
         //System.out.println("THIS IS FINAL ROTATION # " + t.getRotation());
         //while(t.getRotation() != 0){
@@ -264,7 +267,7 @@ public class HashBoard{
         
 
         //addTile(best, t, tiger);
-        bestMove.t = t.getDescription();
+        
         bestMove.x = best.getXPosition();
         bestMove.y = best.getYPosition();
         bestMove.rotation = t.getRotation();

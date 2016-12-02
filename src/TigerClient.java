@@ -447,6 +447,7 @@ public class TigerClient
         while(makeMove == false)
         {
             response = in.readLine();
+            //System.out.println(response);
             
             if (response.startsWith("GAME"))
             {
@@ -456,7 +457,8 @@ public class TigerClient
                 String[] tokens = response.split(delims);
                 
                 if(tokens[8].equals("UNPLACEABLE")){
-                    msg [0] = tokens[8];
+                    msg[0] = tokens[8];
+                    msg[1] = tokens[1];
                 }
                 else if(tokens[6].equals("FORFEITED:")){
                     msg [0] = tokens[6];
@@ -492,6 +494,7 @@ public class TigerClient
             }
         
         }
+        //System.out.println(msg[0] + " " + msg[1]);
         
         return msg;
     }
@@ -747,7 +750,7 @@ public class TigerClient
 		            }
 		                    
 		            //if(client.GetOtherMove() == null){
-		            if(forfA==false||forfB==false||forfC) { //CHECK LOGIC FOR ADDITION OF GAME C
+		            if(forfA==false||forfB==false||forfC==false) { //CHECK LOGIC FOR ADDITION OF GAME C
 		                if(forfA==false&&forfB==false&&forfC==false) { //checks which games have been forfeited
 		                    for (int s = 0; s < 2; s++) {
 		                        String[] info = client.GetOtherMove();
@@ -755,6 +758,7 @@ public class TigerClient
 		                        //if(info.length != 0){
 		                        String moveMade = info[0];
 		                        String whichGame = info[1];
+                                
 		                        if (moveMade.equals("FORFEITED")) { //DOES THIS NEED TO BE "FORFEITED:"?
 		                            if (whichGame.equals("1")) {    
 		                                forfA = true;
@@ -767,6 +771,9 @@ public class TigerClient
                                      }
 		
 		                        }
+                                if(info == moveMade.equals("UNPLACEABLE")){
+                                    break;
+                                }
 		                        if(forfA==true&&forfB==true&&forfC==true){ //exit loop if all games are over/forfeited
 		                            break;
 		                        }

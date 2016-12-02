@@ -9,22 +9,30 @@ public class Move
 	int rotation;
 	String special;
 	int zone;
+    boolean flag;
 
 	String messageToServer;
 
 	// IF WE PLACE
 	public String toString(String gid, int move)
 	{
-		if (this.special.equals("NONE")) return ("GAME " + gid + " MOVE " + move + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE\n");
-        else return ("GAME " + gid + " MOVE " + move + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " TIGER " + this.zone + "\n");
+        if (this.special.equals("NONE") && flag == true){
+            return ("GAME " + gid + " MOVE " + move + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " NONE");
+        }
+        else if(flag == true){
+            return ("GAME " + gid + " MOVE " + move + " PLACE " + this.t + " AT " + this.x + " " + this.y + " " + this.rotation + " TIGER " + this.zone);// + "\n");
+        }
+        else{
+            return ("GAME " + gid + " MOVE " + move + " TILE " + this.t + " UNPLACEABLE PASS");
+        }
 	}
 
 	// IF WE PASS
-	public String passOnTile(Tile t, String gid, int move)
+	public String passOnTile(String gid, int move)
 	{
-		String tileDescription = t.getDescription();
+		//String tileDescription = t.getDescription();
 
-		String messageToServer = "GAME " + gid + " MOVE " + move + " TILE " + tileDescription + " UNPLACEABLE PASS\n";
+		String messageToServer = "GAME " + gid + " MOVE " + move + " TILE " + this.t + " UNPLACEABLE PASS";
 		return messageToServer; 
 	}
 }
