@@ -138,5 +138,7 @@ Run each individual file by pressing the start button in Eclipse. More informati
   ![Completed Game](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/completed_game.png)
 
 ## Bugs :scream_cat:
+For a detailed explanation for each bug, view the Issues tab at the top of the repo.
+
 - [ ] Game disconnects if other player forfeits both games
 - [ ] Game ends if three players are waiting for same game
