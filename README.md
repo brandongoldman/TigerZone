@@ -21,10 +21,10 @@
   * [Sprint 3](#sprint-3)
   * [Sprint 4](#sprint-4)
 * [Deliverables](#deliverables)
-* [Screenshots](#screenshots)
 * [Getting Started](#getting-started)
   * [Installing](#installing)
   * [Running the Client](#running-the-client)
+* [Screenshots](#screenshots)
 * [Bugs](#bugs)
 * [Development Summary](#development-summary)
 
@@ -65,10 +65,6 @@ Timeline: 11/22/16 - 12/2/16
 ### Story Tracking
 For this project, our team utilized PivotalTracker to track story progress and issues. Pivotal Tracker is a collaborative & lightweight project management tool developed by Pivotal Labs, a company whose expertise in agile development is widely known. Our PivotalTracker is available [here](https://www.pivotaltracker.com/n/projects/1914531).
 
-## Screenshots
-ideas: GUI, connecting to server
-
-
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -101,6 +97,9 @@ If login is successful, you will receive the following message.
 ```
 THIS IS SPARTA!
 ```
+
+## Screenshots
+ideas: GUI, connecting to server
 
 ## Bugs
 a detailed list of all the known bugs/issues needing to be addressed
