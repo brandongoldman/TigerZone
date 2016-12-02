@@ -23,6 +23,7 @@
 * [Getting Started](#getting-started)
   * [Installing](#installing)
   * [Running the Client](#running-the-client)
+* [Testing](#testing)
 * [Screenshots](#screenshots)
 * [Bugs](#bugs)
 
@@ -98,6 +99,8 @@ THIS IS SPARTA!
 ```
 
 If desired, you may run the server on your local machine. Instructions and source code for this can be found [here](https://github.com/chausen/TigerZoneServer).
+
+## Testing :pray:
 
 ## Screenshots :smiley_cat:
 
