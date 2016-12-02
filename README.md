@@ -26,7 +26,6 @@
   * [Running the Client](#running-the-client)
 * [Screenshots](#screenshots)
 * [Bugs](#bugs)
-* [Development Summary](#development-summary)
 
 --- 
 
