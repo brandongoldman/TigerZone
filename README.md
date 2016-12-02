@@ -86,7 +86,7 @@ javac TigerClient.java
 
 To run TigerZone on a TCP server, confirm that a server is running. You will need to use the following arguments in your BASH terminal: ```IP_ADDRESS```, ```PORT```, ```TOURNAMENT_PASSWORD```, ```USERNAME```, and ```PASSWORD```.
 
-To connect to the tournament server, you need to login with the following command.
+To connect to the tournament server, you need to login with the following command in a BASH terminal.
 
 ```
 java TigerClient [IP_ADDRESS] [PORT] [TOURNAMENT_PASSWORD] [USERNAME] [PASSWORD]
