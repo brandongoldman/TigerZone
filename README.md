@@ -22,8 +22,8 @@
   * [Sprint 4](#sprint-4)
 * [Deliverables](#deliverables)
 * [Screenshots](#screenshots)
-* [Building TigerZone](#building-tigerzone)
-  * [TigerClient](#tigerclient)
+* [Getting Started](#getting-started)
+  * [Installing](#installing)
   * [Running the Client](#running-the-client)
 * [Bugs](#bugs)
 * [Development Summary](#development-summary)
@@ -72,15 +72,38 @@ maybe include a scanned picture showing how we made our tiles (edges, corners, e
 ideas: GUI, connecting to server
 
 
-## Building TigerZone
-The below instructions are included to help users run our program.
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+### Installing
 
-### TigerClient
+Clone the repository locally using a BASH terminal.
 
+```
+git clone https://www.github.com/brandongoldman/TigerZone
+```
+
+To compile TigerZone, navigate to the /src folder and compile ```TigerClient.java```.
+
+```
+javac TigerClient.java
+```
 
 ### Running the Client
 
+To run TigerZone on a TCP server, confirm that a server is running. You will need to use the following arguments in your BASH terminal: ```IP_ADDRESS```, ```PORT```, ```TOURNAMENT_PASSWORD```, ```USERNAME```, and ```PASSWORD```.
+
+To connect to the tournament server, you need to login with the following command.
+
+```
+java TigerClient [IP_ADDRESS] [PORT] [TOURNAMENT_PASSWORD] [USERNAME] [PASSWORD]
+```
+
+If login is successful, you will receive the following string.
+
+```
+THIS IS SPARTA!
+```
 
 ## Bugs
 a detailed list of all the known bugs/issues needing to be addressed
