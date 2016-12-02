@@ -1442,7 +1442,7 @@ public class HashBoard{
 						RightArea.setHasAnimal(true);
 					}
 					/**ADD TIGER GOOD**/
-					if(tigerfeature==1&&tiger.getTigerPlacement()==6){
+					if(tigerfeature==1&&tiger.getTigerPlacement()==5){
 						RightArea.addTiger(tiger);
 					}
 					if(RightArea.openBoundary.isEmpty()){
@@ -1588,7 +1588,7 @@ public class HashBoard{
 						BottomArea.setHasAnimal(true);
 					}
 					/**ADD TIGER GOOD**/
-					if(tigerfeature==1&&tiger.getTigerPlacement()==8){
+					if(tigerfeature==1&&tiger.getTigerPlacement()==5){
 						BottomArea.addTiger(tiger);
 					}
 					if(BottomArea.openBoundary.isEmpty()){
