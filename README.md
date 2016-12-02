@@ -14,7 +14,7 @@
 ## Table of Contents
 
 * [Objective](#objective)
-* [Sprint Outline](#sprint-outline)
+* [Sprint Outlines](#sprint-outlines)
   * [Sprint 1](#sprint-1)
   * [Sprint 2](#sprint-2)
   * [Sprint 3](#sprint-3)
