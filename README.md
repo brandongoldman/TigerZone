@@ -99,7 +99,7 @@ To connect to the tournament server, you need to login with the following comman
 java TigerClient [IP_ADDRESS] [PORT] [TOURNAMENT_PASSWORD] [USERNAME] [PASSWORD]
 ```
 
-If login is successful, you will receive the following string.
+If login is successful, you will receive the following message.
 
 ```
 THIS IS SPARTA!
