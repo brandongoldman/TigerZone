@@ -101,6 +101,19 @@ THIS IS SPARTA!
 If desired, you may run the server on your local machine. Instructions and source code for this can be found [here](https://github.com/chausen/TigerZoneServer).
 
 ## Testing :pray:
+All testing files, both acceptance and JUnit, are located in the ```Tests```  folder.
+
+To compile the acceptance test, navigate to the /Tests folder and compile ```GameTest.java```.
+
+```
+javac GameTest.java
+```
+
+To run the test, run ```GameTest```.
+
+```
+java GameTest
+```
 
 ## Screenshots :smiley_cat:
 
