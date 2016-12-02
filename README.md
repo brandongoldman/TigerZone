@@ -57,8 +57,7 @@ Timeline: 11/22/16 - 12/2/16
 ## Deliverables
 
 ### UML Diagram
-![UML Diagram](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/UML.png)
-[View Larger](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/UML.png)
+[View UML](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/UML.png)
 
 ### Hexagonal Architecture
 
@@ -105,7 +104,7 @@ If desired, you may run the server on your local machine. Instructions and sourc
 ### Connecting successfully to the TCP Server
 ![Successful Connection](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/successful_connect.png)
 
-### Completed Game (*we won!*)
+### Completed Game
 ![Completed Game](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/completed_game.png)
 
 ## Bugs
