@@ -771,7 +771,7 @@ public class TigerClient
                                      }
 		
 		                        }
-                                if(moveMade.equals("UNPLACEABLE")) {
+                                if(!moveMade.equals("UNPLACEABLE")) {
 
                                     if (forfA == true && forfB == true && forfC == true) { //exit loop if all games are over/forfeited
                                         break;
@@ -848,7 +848,7 @@ public class TigerClient
                                     forfC = true;
                                 }
                             }
-                            if(moveMade.equals("UNPLACEABLE")) {
+                            if(!moveMade.equals("UNPLACEABLE")) {
                                 if (moveMade.equals("true")) {
 
                                     String theirPID = info[3];
