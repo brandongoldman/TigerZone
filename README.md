@@ -61,6 +61,7 @@ Timeline: 11/22/16 - 12/2/16
 [View UML](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/UML.png)
 
 ### Hexagonal Architecture
+![Hexagonal](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/Hexagonal.png)
 
 ### Story Tracking
 For this project, our team utilized PivotalTracker to track story progress and issues. Pivotal Tracker is a collaborative & lightweight project management tool developed by Pivotal Labs, a company whose expertise in agile development is widely known. Our PivotalTracker is available [here](https://www.pivotaltracker.com/n/projects/1914531).
