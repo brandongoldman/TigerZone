@@ -771,7 +771,7 @@ public class TigerClient
                                      }
 		
 		                        }
-                                if(info == moveMade.equals("UNPLACEABLE")){
+                                if(moveMade.equals("UNPLACEABLE")){
                                     break;
                                 }
 		                        if(forfA==true&&forfB==true&&forfC==true){ //exit loop if all games are over/forfeited
