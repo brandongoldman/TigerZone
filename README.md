@@ -101,6 +101,9 @@ If desired, you may run the server on your local machine. Instructions and sourc
 
 ## Screenshots :smiley_cat:
 
+### GUI showing placed tiles
+  ![GUI](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/GUI.png)
+
 ### Connecting successfully to the TCP Server
   ![Successful Connection](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/successful_connect.png)
 
