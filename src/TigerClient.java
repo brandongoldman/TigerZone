@@ -759,7 +759,7 @@ public class TigerClient
 		                        String moveMade = info[0];
 		                        String whichGame = info[1];
                                 
-		                        if (moveMade.equals("FORFEITED")) { //DOES THIS NEED TO BE "FORFEITED:"?
+		                        if (moveMade.equals("FORFEITED:")) { //DOES THIS NEED TO BE "FORFEITED:"?
 		                            if (whichGame.equals("1")) {    
 		                                forfA = true;
 		                             } 
@@ -841,7 +841,7 @@ public class TigerClient
 		                    String moveMade = info[0];
 		                    String whichGame = info[1];
 		                    
-		                    if (moveMade.equals("FORFEITED")) {
+		                    if (moveMade.equals("FORFEITED:")) {
 		                        if (whichGame.equals("1")) {
 		                            forfA = true;
 		                        } 
