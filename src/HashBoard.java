@@ -45,7 +45,12 @@ public class HashBoard{
 
 
 
-
+	/**INITIALIZATION OF ALL VARIABLES AND OBJECTS**/
+	/**NOTE: Feature Areas hold a set of coordinates and open boundaries. The set of coordinates holds all the coordinates
+	 * that the feature area encompasses and the open boundaries is an object that holds the coordinate and edge where
+	 * there currently is not any connection to that edge. When the set of open boundaries is empty, the feature area is
+	 * completed.
+	 */
 	public HashBoard(){
 		gBoard = new HashMap<Position, Tile>();
 		set = new HashSet<Position>();
@@ -60,11 +65,14 @@ public class HashBoard{
 
 
 
-        
+        /**Display Board is our GUI**/
         gameBoard = new DisplayBoard();
         gameBoard.setTile("TLTJ-", 0, 0, 0);
 
+        /**Tile Interpreter Takes in String Description of Tile and returns respective tile**/
 		TileInterpreter TI = new TileInterpreter();
+
+		/**Initialize first initial tile on board**/
 		gBoard.put(new Position(0,0), TI.interpret("TLTJ-"));
 		updateOpenSpots(new Position(0,0));
 
@@ -106,6 +114,7 @@ public class HashBoard{
 
 	}
 
+	/**Adds tile to the board and updates all feature areas as well as updates all possible open coordinates that are empty**/
 	public void addTile(Position pos, Tile tile, Tiger tiger){
 		//This is assuming that position and tile, is already been validated!
 		//No new tiger or crocodile
@@ -133,6 +142,8 @@ public class HashBoard{
         // ^^Should be working now^^
 	}
 
+
+	/**Checks to see if the position of this tile on the board is a valid move**/
     public boolean checkLegalMove(Position newpos, Tile currentTile)
     {
         
@@ -183,8 +194,9 @@ public class HashBoard{
         // SHOULD BE VALID... I THINK
         return true;
     }
-    
-    
+
+	/**AI Logic, Returns a best move object which holds the coordinate and tiger placement of the best possible move we
+	 * can take with the current tile provided**/
     public Move FindBestMove(Tile t, boolean tiger, String gid, int move)
     {
         int bestScore = -1;
@@ -242,36 +254,20 @@ public class HashBoard{
         
         bestMove.t = t.getDescription();
         // case: tile is not valid on current board
+		/**If not valid spot found set best move string to output UNPLACEABLE**/
         if(!validSpot)
         {
             bestMove.flag = false;
             bestMove.special = "NO";
-            System.out.println("TESTESTESTEST");
-            //System.out.println(bestMove.passOnTile(t));
-            //bestMove.passOnTile(t, gid, move);
-            //bestMove.toString(gid, move);
-
-			// String serverMessage = client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
-			//return serverMessage;
-
-			//client.moveProtocol(4, gid, tile, 0, 0, 0, 0);
             return bestMove;
-
         }
         else{
             bestMove.flag = true;
         }
-        //System.out.println("THIS IS FINAL ROTATION # " + t.getRotation());
-        //while(t.getRotation() != 0){
-        //    t.rotate();
-        //}
         
         for(int x = 0; x < (rot/90); x++){
             t.rotate();
         }
-        
-
-        //addTile(best, t, tiger);
         
         bestMove.x = best.getXPosition();
         bestMove.y = best.getYPosition();
@@ -289,16 +285,17 @@ public class HashBoard{
         	bestMove.zone = placement;
         }
         //System.out.println(best.getXPosition() + " " + best.getYPosition());
-        System.out.println("PLACEMENT:" + placement);
+        //System.out.println("PLACEMENT:" + placement);
         addTile(best, t, new Tiger(owner,placement));
         //System.out.println(bestMove.toString());
         return bestMove;
     }
-    
 
-    
 
-    
+	/**Takes the four associated feature areas associated with the four edges of the tile being place and updates
+	 * all of them based on whether the areas are connected by the placed tile, where tigers are associated with area
+	 * and if there are new areas created to be added to the feature lists.
+	 */
 	public void updateFeatures(Position pos, Tile tile, Tiger tiger){
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
@@ -375,6 +372,7 @@ public class HashBoard{
 			}
 		}
 
+		/**print statement to represent a text visual in console to show what tile is being placed**/
 		int[][] minitile = tile.getMiniZones();
 		for(int i = 0; i<3; i++){
 			System.out.println();
@@ -403,7 +401,7 @@ public class HashBoard{
 
 
 		/**LAKES AND TRAILS**/
-
+		/**Get the associated feature areas of the 4 edges. If none found created new area**/
 		/**RightArea**/
 		if(gBoard.containsKey(right)){
 			FeatureArea holder;
@@ -808,7 +806,9 @@ public class HashBoard{
 		boolean skipB=false;
 		boolean skipL=false;
 
-		/**Account if two or more edges of a tile become a part of the same area.**/
+		/**Start combining feature areas that are connected and pushing them into the feature area lists
+		 * Update these feature areas with tigers and animals and crocodiles accordingly to what is on the
+		 * tile currently being placed**/
 		/**TOP**/
 		/**Lake**/
 		boolean R=false;
@@ -1684,10 +1684,12 @@ public class HashBoard{
 		set.remove(newpos);
 
 	}
-	
-	
-	
-		
+
+
+	/**Returns an object that holds the best possible score and tiger location to give us said score to be returned
+	 * to the BestMove Function above. Lots of code reused from UpdateFeatures function. Essentially updating features
+	 * and looking to see which feature is unclaimed by a tiger and has the largest area i.e. most points possible
+	 */
 	public ScorePotential getMoveScore(Position pos, Tile tile) {
 		Position right = new Position(pos.getXPosition() + 1, pos.getYPosition()); //2
 		Position left = new Position(pos.getXPosition() - 1, pos.getYPosition()); //4
@@ -3194,7 +3196,7 @@ public class HashBoard{
 					}
 
 
-
+		/**See if current placement will also help complete dens owned by us**/
 		/**DENS**/
 
 		if (tile.getDen()) {
@@ -3237,6 +3239,9 @@ public class HashBoard{
 		return new ScorePotential(potential, placement);
 	}
 
+	/**Return a tiger if a feature has been completed. Then take that feature delete the tiger associated with it
+	 * and return it and push the feature back into its associated unclaimed list.
+	 */
 	public int ReturnTiger(){
 		int count = 0;
 		FeatureArea L;
