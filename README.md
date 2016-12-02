@@ -28,13 +28,13 @@
 
 --- 
 
-## Objective
+## Objective :muscle:
 Our client, Professor Dave Small, presented us with a task of creating an Artificial Intelligence (AI) for a tile-based strategy game. This game, dubbed "TigerZone" is a spinoff of the popular board game "Carcassonne". TigerZone reflects adaptations to Carassonne by including new features such as new scoring features. The full game description and rules can be found on our client's website [here](http://www.cise.ufl.edu/~dts/cen3031/TigerZone%20v2.2.pdf).
 
 The objective of this project was to utilize agile software development skills that were discussed throughout the course. Our team utilized sprints to get specific features working and to build our overall project progress in incremental ways that helped with testing. As explained above, the goal of this project was to create an AI that could play against other teams in the class by connecting to a TCP server. A game was won by scoring points strategically by completing game features.
 
 
-## Sprint Outline
+## Sprint Outlines :runner:
 Click each of the sprints below to view the documentation that includes sprint summary and work accomplished by each team member.
 
 
@@ -54,7 +54,7 @@ Timeline: 11/15/16 - 11/21/16
 Timeline: 11/22/16 - 12/2/16
 
 
-## Deliverables
+## Deliverables :email:
 
 ### UML Diagram
 [View UML](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/UML.png)
@@ -64,7 +64,7 @@ Timeline: 11/22/16 - 12/2/16
 ### Story Tracking
 For this project, our team utilized PivotalTracker to track story progress and issues. Pivotal Tracker is a collaborative & lightweight project management tool developed by Pivotal Labs, a company whose expertise in agile development is widely known. Our PivotalTracker is available [here](https://www.pivotaltracker.com/n/projects/1914531).
 
-## Getting Started
+## Getting Started :computer:
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. For project documentation, including rules and server protocals, please view the documents in the ``` Related Docs``` folder.
 
 ### Installing
