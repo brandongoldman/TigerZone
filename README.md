@@ -58,7 +58,7 @@ Timeline: 11/22/16 - 12/2/16
 ## Deliverables :email:
 
 ### UML Diagram
-![UML](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/UML.png)
+![UML](http://i.imgur.com/dqKeSNe.png)
 
 ### Hexagonal Architecture
 ![Hexagonal](https://github.com/brandongoldman/TigerZone/blob/master/stylesheets/Hexagonal_Arch.png)
