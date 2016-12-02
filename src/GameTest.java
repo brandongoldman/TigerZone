@@ -213,8 +213,9 @@ public class GameTest{
 
 		*/
 
-
-
+        System.out.println();
+        System.out.println();
+        System.out.println();
 		System.out.println("Test B Begins");
 
 		HashBoard board = new HashBoard();
@@ -265,6 +266,9 @@ public class GameTest{
 
         */
 
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println("Test C Begins");
 		HashBoard board = new HashBoard();
 		TileInterpreter ti = new TileInterpreter();
@@ -309,6 +313,9 @@ public class GameTest{
 
         */
 
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println("Test D Begins");
 
 		HashBoard board = new HashBoard();
@@ -386,6 +393,11 @@ public class GameTest{
 
         */
 
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("Test E Begins");
+
 
         TileInterpreter ti = new TileInterpreter();
         Tile tile = ti.interpret("TLLLC");
@@ -426,10 +438,14 @@ public class GameTest{
         tile.rotate();
         tile.printMiniZone();
 
+
+        System.out.println("Test E Ends");
+        System.out.println("==================================================================");
+
     }
 
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException{
 
 		/*
 
@@ -442,10 +458,14 @@ public class GameTest{
 		*/
 
 		testA();
-		//testB();
-		//testC();
-		//testD();
-        //testE();
+        Thread.sleep(2000);
+		testB();
+        Thread.sleep(2000);
+		testC();
+        Thread.sleep(2000);
+		testD();
+        Thread.sleep(2000);
+        testE();
 
 	}
 
