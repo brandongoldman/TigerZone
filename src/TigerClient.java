@@ -570,7 +570,7 @@ public class TigerClient
         
         TileInterpreter ti = new TileInterpreter();
         
-        boolean cont = true;
+        // boolean cont = true;
         
         
          Move bestMove = new Move();
@@ -626,8 +626,13 @@ public class TigerClient
             return;
         }
         
-	        while(cont){
-	        
+	     while(true){
+
+                boolean forfA = false;//setting forfeit variables and Tigercounts for each game
+                boolean forfB = false;
+                boolean forfC = false;
+
+	           while(!forfA || !forfB || !forfC){
 	        // Get the number of rounds to be played 
 	        int rounds = client.challengeProtocol();
 	        
@@ -660,7 +665,7 @@ public class TigerClient
 	                HashBoard boardB = new HashBoard();
                     HashBoard boardC = new HashBoard();
 	                
-	                 MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time); //initializing match parameters given to us
+	                MatchParam match = new MatchParam(opponent, startingTile, startingTileX, startingTileY, orientation, numOfTiles, time); //initializing match parameters given to us
 	                
 	                int roundID = client.roundProtocol();
 	                
@@ -670,9 +675,9 @@ public class TigerClient
 	                int turns = match.getNumOfTiles();
 	                //System.out.println("Number of Turns: " + turns); //logging number of turns in this round
 	    
-	                boolean forfA = false;//setting forfeit variables and Tigercounts for each game
-	                boolean forfB = false;
-                    boolean forfC = false;
+	                forfA = false;//setting forfeit variables and Tigercounts for each game
+	                forfB = false;
+                    forfC = false;
 	                int GameATigerCount=7;
 	                int GameBTigerCount=7;
                     int GameCTigerCount=7;
@@ -747,6 +752,7 @@ public class TigerClient
                             if(bestMove.zone!=0){
                                 GameCTigerCount--;
                             }
+
                             GameCTigerCount=GameCTigerCount+boardC.ReturnTiger();
                             System.out.println(bestMove.toString(gid, (i+1)));
                             //System.out.println(bestMove.toString(gid, (i+1)));
@@ -778,9 +784,9 @@ public class TigerClient
 		                        }
                                 if(!moveMade.equals("UNPLACEABLE")) {
 
-                                    if (forfA == true && forfB == true && forfC == true) { //exit loop if all games are over/forfeited
-                                        break;
-                                    }
+                                    //if (forfA == true && forfB == true && forfC == true) { //exit loop if all games are over/forfeited
+                                    //    break;
+                                    //}
                                     if (moveMade.equals("true")) { //if a move has been made and we need to place a tile
 
                                         String theirPID = info[3];
@@ -839,21 +845,29 @@ public class TigerClient
 		                } // If both games are going
 		                else{
 		                    String[] info = client.GetOtherMove();
+
+                            if(info.length == 0){
+                                forfA = true;
+                                forfB = true;
+                                forfC = true;
+                            }
+
+                            System.out.println("String info 0: " + info[0] + "String info 1: " + info[1]);
+
+                            if(info[0] == "FORFEITED:"){
+                                forfA = true;
+                                forfB = true;
+                                forfC = true;
+                            }
+
 		                    //info = client.GetOtherMove();
 		                    //if(info.length != 0){
 		                    String moveMade = info[0];
 		                    String whichGame = info[1];
 
-                            if (moveMade.equals("FORFEITED:")) {
-                                if (whichGame.equals("1")) {
-                                    forfA = true;
-                                } else if (whichGame.equals("2")) {
-                                    forfB = true;
-                                } else if (whichGame.equals("3")) {
-                                    forfC = true;
-                                }
-                            }
+
                             if(!moveMade.equals("UNPLACEABLE")) {
+
                                 if (moveMade.equals("true")) {
 
                                     String theirPID = info[3];
@@ -910,9 +924,9 @@ public class TigerClient
 		                } // If neither has forfeited
 		            } // If at least one game is going on
 		            
-		            if(forfA==true && forfB==true && forfC==true){
-		                break;
-		            }
+		            //if(forfA==true && forfB==true && forfC==true){
+		                //break;
+		            //}
 		        } // For the number of turns in a round
 
                 String[] gOver1 = client.GetOtherMove();
@@ -921,11 +935,11 @@ public class TigerClient
 		        int r = Integer.parseInt(client.RoundEnd());
 		        String y = client.FinalMessage();
 		                
-		        if(y.equals("END")){
-		        	cont = false;
-		        }
+		        // if(y.equals("END")){
+		        // 	cont = false;
+		        // }
 		                
-		               
+		        }       
 		    } //For the number of rounds
 	    } // While cont
     } // Main
