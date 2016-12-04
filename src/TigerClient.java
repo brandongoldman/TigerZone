@@ -448,7 +448,7 @@ public class TigerClient
         while(makeMove == false)
         {
             response = in.readLine();
-            //System.out.println(response);
+            System.out.println(response);
             
             if (response.startsWith("GAME"))
             {
@@ -490,6 +490,7 @@ public class TigerClient
                 
                 makeMove = true;
             }
+            
             else// if (response != null)
             {
                 // Invalid or unexpected response
@@ -757,9 +758,26 @@ public class TigerClient
                             for (int s = 0; s < 2; s++) {
                                 String[] info = client.GetOtherMove();
                                 
-                                //if(info.length != 0){
-                                String moveMade = info[0];
-                                String whichGame = info[1];
+                                String moveMade = "";
+                                String whichGame = "";
+                                
+                                if(info.length == 0){
+                                    System.out.println("A GAME IS OVER");
+                                    
+                                    String[] gOver1 = client.GetOtherMove();
+                                    //String[] gOver2 = client.GetOtherMove();
+                                    
+                                    //int r = Integer.parseInt(client.RoundEnd());
+                                    String y = client.FinalMessage();
+                                    
+                                    //if(y.equals("END")){
+                                    //    cont = false;
+                                    //}
+                                    break;
+                                }
+                                else{
+                                    moveMade = info[0];
+                                    whichGame = info[1];
                                 
                                 if (moveMade.equals("FORFEITED:")) { //DOES THIS NEED TO BE "FORFEITED:"?
                                     if (whichGame.equals("1")) {
@@ -832,7 +850,7 @@ public class TigerClient
                                                 //boardB.FindBestMove(tile2, tiger, OtherGid);
                                             }*/
                                         } // If the PIDs are inequal
-                                    
+                                    }
                                 }// If moveMade is true
                             } // Run twice (s)
                         } // If both games are going
