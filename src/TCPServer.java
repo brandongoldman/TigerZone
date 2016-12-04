@@ -110,27 +110,27 @@ public class TCPServer
                             
                             Thread.sleep(2000); //ACTUAL BREAK - 15++ SECONDS
                             
-                            out.println("GAME 1 MOVE 4 PLAYER Blue FORFEITED: ILLEGAL TILE PLACEMENT ");
+                            out.println("GAME 1 MOVE 4 PLAYER Blue PLACED JJTJX AT -1 0 0 NONE");
                             
-                            out.println("GAME 2 MOVE 4 PLAYER Red PLACED JJTJX AT -1 0 0 NONE");
+                            out.println("GAME 2 MOVE 4 PLAYER Red FORFEITED: ILLEGAL TILE PLACEMENT");
                             
-                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 5 PLACE JLTTB");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 5 PLACE JLTTB");
                             
                             Thread.sleep(2000);
                             
                             //out.println("GAME 1 MOVE 5 PLAYER Red PLACED JLTTB AT -1 -1 90 NONE");
                             
-                            out.println("GAME 2 MOVE 5 PLAYER Red PLACED JLTTB AT 2 0 180 TIGER 1");
+                            out.println("GAME 1 MOVE 5 PLAYER Red PLACED JLTTB AT 2 0 180 TIGER 1");
                             
-                            out.println("GAME 2 MOVE 5 PLAYER Blue PLACED JLTTB AT 2 0 180 TIGER 1");
+                            out.println("GAME 1 MOVE 5 PLAYER Blue PLACED JLTTB AT 2 0 180 TIGER 1");
                             
-                            out.println("MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 6 PLACE TLLT-");
+                            out.println("MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 6 PLACE TLLT-");
                             
                             Thread.sleep(2000);
                             
-                            out.println("GAME 2 MOVE 6 PLAYER Red PLACED TLLT- AT 0 -1 180 CROCODILE");
+                            out.println("GAME 1 MOVE 6 PLAYER Red PLACED TLLT- AT 0 -1 180 CROCODILE");
                             
-                            out.println("GAME 2 MOVE 6 PLAYER Blue PLACED TLLT- AT 0 -2 90 NONE");
+                            out.println("GAME 1 MOVE 6 PLAYER Blue PLACED TLLT- AT 0 -2 90 NONE");
                             
                             //out.println("GAME 1 OVER PLAYER Red <red_score> PLAYER Blue <blue_score>");
                             
