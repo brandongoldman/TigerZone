@@ -279,9 +279,6 @@ public class HashBoard{
 		if(placement==0){
 			owner=0;
 		}
-		if(owner==0){
-			placement=0;
-		}
 		if(tiger!=true){
 			owner=0;
 			placement=0;
@@ -834,13 +831,22 @@ public class HashBoard{
 				}
 				if(R){
 					TopArea.openBoundary.remove(checkRight);
+					if(tigerfeature==2&&tiger.getTigerPlacement()==6){
+						TopArea.addTiger(tiger);
+					}
 				}
 				if(B){
 					TopArea.openBoundary.remove(checkBottom);
+					if(tigerfeature==2&&tiger.getTigerPlacement()==8){
+						TopArea.addTiger(tiger);
+					}
 				}
 				if(L){
 					TopArea.openBoundary.remove(checkLeft);
 					if(tigerfeature==2&&tiger.getTigerPlacement()==1){
+						TopArea.addTiger(tiger);
+					}
+					if(tigerfeature==2&&tiger.getTigerPlacement()==4){
 						TopArea.addTiger(tiger);
 					}
 				}
@@ -1190,6 +1196,9 @@ public class HashBoard{
 				}
 				if(B){
 					RightArea.openBoundary.remove(checkBottom);
+					if(tigerfeature==2&&tiger.getTigerPlacement()==8){
+						RightArea.addTiger(tiger);
+					}
 				}
 				if(L){
 					RightArea.openBoundary.remove(checkLeft);
@@ -1445,7 +1454,7 @@ public class HashBoard{
 						RightArea.setHasAnimal(true);
 					}
 					/**ADD TIGER GOOD**/
-					if(tigerfeature==1&&tiger.getTigerPlacement()==5){
+					if(tigerfeature==1&&(tiger.getTigerPlacement()==5||tiger.getTigerPlacement()==6)){
 						RightArea.addTiger(tiger);
 					}
 					if(RightArea.openBoundary.isEmpty()){
@@ -1591,7 +1600,7 @@ public class HashBoard{
 						BottomArea.setHasAnimal(true);
 					}
 					/**ADD TIGER GOOD**/
-					if(tigerfeature==1&&tiger.getTigerPlacement()==5){
+					if(tigerfeature==1&&(tiger.getTigerPlacement()==5||tiger.getTigerPlacement()==8)){
 						BottomArea.addTiger(tiger);
 					}
 					if(BottomArea.openBoundary.isEmpty()){
