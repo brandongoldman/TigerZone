@@ -279,6 +279,9 @@ public class HashBoard{
 		if(placement==0){
 			owner=0;
 		}
+		if(owner==0){
+			placement=0;
+		}
 		if(tiger!=true){
 			owner=0;
 			placement=0;
