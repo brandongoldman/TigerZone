@@ -544,6 +544,23 @@ public class TigerClient
         return fin;
     }
     
+    public String[] ReadString() throws IOException
+    {
+        
+        String response;
+
+
+        response = in.readLine();
+            
+        System.out.println(response);
+                
+        String delims = "[ ]";
+        String[] tokens = response.split(delims);
+        
+        return tokens;
+
+    }
+    
     
     public boolean isConnected()
     {
@@ -755,7 +772,8 @@ public class TigerClient
                         }*/
                     }
                     
-                            for (int s = 0; s < 2; s++) {
+                    
+                    for (int s = 0; s < 2; s++) {
                                 String[] info = client.GetOtherMove();
                                 
                                 String moveMade = "";
