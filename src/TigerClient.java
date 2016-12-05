@@ -581,7 +581,41 @@ public class TigerClient
         
         return response;
     }
-    
+
+    public static void tempmain(String[] args) throws IOException{
+        TigerClient client = new TigerClient();
+        TileInterpreter ti = new TileInterpreter();
+        boolean cont = true;
+        Move bestMove = new Move();
+        String pid = null;
+
+        String serverAdx = (args.length == 0)?"localhost":args[0];
+        String stringPort = args[1];
+        String tournamentPassword = args[2];
+        String username = args[3];
+        String password = args[4];
+        int port = Integer.parseInt(stringPort);
+        if (client.connect(serverAdx, port) == false)
+        {
+            //Cannot establish connection
+            System.out.println("Cannot establish connection");
+            return;
+        }
+
+        pid = client.authenticateProtocol(username, password, tournamentPassword);
+
+        if (pid == null)
+        {
+            // authentication failed
+            System.out.println("Authentication failed.");
+            return;
+        }
+
+
+
+    }
+
+
     public static void main(String[] args) throws IOException
     {
         TigerClient client = new TigerClient();
